@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matematika - SZZ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <header>
+        <div class="brand">
+            <button id="hamburger" class="hamburger">☰</button>
+            <a href="index.html" style="color:inherit; text-decoration:none;">⬅ SZZ Portál</a>
+        </div>
+        <div style="font-weight:600;">Matematika</div>
+        <button id="theme-toggle" class="theme-toggle">🌙</button>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="toc-title">Obsah okruhů</div>
+            <ul class="toc-list">
+                <li><a href="#otazka-1">1. Derivace, diferenciál a integrál (definice, výpočty, praktický význam</a></li>
+<li><a href="#otazka-2">2. Soustava lineárních rovnic a metody jejich řešení</a></li>
+<li><a href="#otazka-3">3. Maticová algebra, typy matic, inverzní matice, determinant</a></li>
+<li><a href="#otazka-4">4. Vlastní čísla a vlastní vektory matic.</a></li>
+<li><a href="#otazka-5">5. Pojem pravděpodobnost, náhodný jev. Podmíněná pravděpodobnost, nezávislost. Náhodná veličina - diskrétní, spojitá a jejich použití.</a></li>
+
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <a href="pdfs/Matematika.pdf" target="_blank" class="pdf-btn">
+                📄 Stáhnout jako PDF
+            </a>
+            
+            <div id="otazka-1" class="question-section">
+                <p>Níže naleznete studijní materiál k okruhu "1. Derivace, diferenciál a integrál", doplněný a naformátovaný dle vašich požadavků.</p>
+<hr />
+<h1>1. Derivace, diferenciál a integrál</h1>
+<h2>Klíčové pojmy</h2>
+<ul>
+<li>limita funkce</li>
+<li>derivace</li>
+<li>diferenciál</li>
+<li>neurčitý integrál</li>
+<li>určitý integrál</li>
+<li>primitivní funkce</li>
+<li>integrační konstanta</li>
+<li>Newton-LeLeibnizova formule</li>
+<li>metoda per partes</li>
+<li>substituční metoda</li>
+<li>numerická integrace</li>
+<li>lichoběžníkové pravidlo</li>
+</ul>
+<h2>A. Derivace</h2>
+<h3>Definice</h3>
+<p>Derivace funkce $f$ v bodě $x_0$ vyjadřuje okamžitou rychlost změny funkční hodnoty v závislosti na změně nezávisle proměnné. Geometricky představuje směrnici tečny ke grafu funkce v tomto bodě. Fyzikálně je například derivace dráhy podle času rychlost a derivace rychlosti zrychlení.</p>
+<p>Formálně je derivace definována pomocí limity:
+$$f'(x_0) = \lim_{h \to 0} \frac{f(x_0 + h) - f(x_0)}{h}$$
+Pokud tato limita existuje a je vlastní, říkáme, že funkce má v bodě $x_0$ derivaci.</p>
+<h3>Výpočty</h3>
+<p>Při výpočtech se opíráme o vzorce pro derivace základních funkcí a základní pravidla:</p>
+<ul>
+<li>
+<p><strong>Derivace základních funkcí:</strong></p>
+<ul>
+<li>$(c)' = 0$ (kde $c$ je konstanta)</li>
+<li>$(x^n)' = n \cdot x^{n-1}$</li>
+<li>$(\sin x)' = \cos x$</li>
+<li>$(\cos x)' = -\sin x$</li>
+<li>$(e^x)' = e^x$</li>
+<li>$(\ln x)' = \frac{1}{x}$</li>
+<li>$(a^x)' = a^x \ln a$</li>
+<li>$(\log_a x)' = \frac{1}{x \ln a}$</li>
+</ul>
+</li>
+<li>
+<p><strong>Pravidla pro derivování:</strong></p>
+<ul>
+<li><strong>Součet/rozdíl:</strong> $(f(x) \pm g(x))' = f'(x) \pm g'(x)$</li>
+<li><strong>Konstantní násobek:</strong> $(c \cdot f(x))' = c \cdot f'(x)$</li>
+<li><strong>Součin:</strong> $(f(x) \cdot g(x))' = f'(x) \cdot g(x) + f(x) \cdot g'(x)$</li>
+<li><strong>Podíl:</strong> $\left(\frac{f(x)}{g(x)}\right)' = \frac{f'(x) \cdot g(x) - f(x) \cdot g'(x)}{(g(x))^2}$, pro $g(x) \neq 0$</li>
+<li><strong>Složená funkce (řetězové pravidlo):</strong> $(f(g(x)))' = f'(g(x)) \cdot g'(x)$ (derivace vnější složky krát derivace vnitřní složky)</li>
+</ul>
+</li>
+</ul>
+<p><strong>Příklad výpočtu:</strong>
+$$ \frac{d}{dx}(x^3 - 2x) = 3x^2 - 2 $$</p>
+<h3>Praktický význam</h3>
+<ul>
+<li><strong>Matematická analýza:</strong><ul>
+<li>Hledání lokálních extrémů (v bodech, kde $f'(x)=0$, může být maximum/minimum).</li>
+<li>Určování monotónnosti (kde je $f'(x)&gt;0$, funkce roste; kde $f'(x)&lt;0$, funkce klesá).</li>
+<li>Určování konvexnosti/konkávnosti (pomocí druhé derivace: $f''(x)&gt;0$ znamená konvexní, $f''(x)&lt;0$ znamená konkávní).</li>
+<li>Hledání inflexních bodů (kde $f''(x)=0$ a mění se konvexnost/konkávnost).</li>
+</ul>
+</li>
+<li><strong>Fyzika:</strong><ul>
+<li>Okamžitá rychlost a zrychlení (derivace dráhy a rychlosti podle času).</li>
+<li>Rychlost změny jakékoli fyzikální veličiny (např. proud jako derivace náboje).</li>
+</ul>
+</li>
+<li><strong>Optimalizace v informatice a AI:</strong><ul>
+<li><strong>Gradient Descent:</strong> Algoritmus využívaný při trénování neuronových sítí a v mnoha optimalizačních úlohách. Je založen na parciálních derivacích (gradientu), které určují směr nejstrmějšího růstu (nebo poklesu) chybové funkce.</li>
+<li><strong>Citlivostní analýza:</strong> Určuje, jak se výstup modelu mění v závislosti na malých změnách vstupních parametrů.</li>
+<li><strong>Řízení systémů:</strong> V regulační teorii se derivace používají k popisu dynamiky systémů a návrhu regulátorů (např. PID regulátor).</li>
+</ul>
+</li>
+<li><strong>Ekonomie:</strong> Mezní náklady, mezní příjem (derivace celkových nákladů a příjmů).</li>
+<li><strong>Strojové učení:</strong> Derivace se používají k optimalizaci modelů, například v regresních úlohách.</li>
+</ul>
+<h2>B. Diferenciál</h2>
+<h3>Definice</h3>
+<p>Diferenciál funkce $f$ v bodě $x_0$ (značí se $df(x_0)$ nebo $dy$) je lineární aproximace malé změny funkce. Vyjadřuje, o kolik přibližně se změní hodnota funkce, pokud se nezávisle proměnná $x$ změní o malou hodnotu $dx$ (nebo $\Delta x$).</p>
+<p>Formální vztah:
+$$df(x_0) = f'(x_0) \cdot dx$$
+Zatímco skutečný přírůstek funkce je $\Delta y = f(x_0 + dx) - f(x_0)$, diferenciál $df(x_0)$ je aproximace tohoto přírůstku pomocí tečny ke grafu funkce v bodě $x_0$. Vztah lze zapsat jako:
+$$f(x_0 + \Delta x) \approx f(x_0) + f'(x_0) \Delta x$$</p>
+<h3>Výpočty</h3>
+<p>Výpočet diferenciálu spočívá v nalezení první derivace funkce a jejím vynásobení diferencí $dx$.</p>
+<p><strong>Příklad výpočtu:</strong>
+Pro funkci $f(x) = x^2$:
+1.  Najdeme derivaci: $f'(x) = 2x$.
+2.  Diferenciál je: $df = 2x \cdot dx$.</p>
+<h3>Praktický význam</h3>
+<ul>
+<li><strong>Přibližné výpočty:</strong> Používá se k aproximaci složitých funkčních hodnot v blízkosti známého bodu. Například, chceme-li odhadnout $\sqrt{4.01}$, můžeme použít diferenciál funkce $f(x) = \sqrt{x}$ v bodě $x_0=4$ s $dx=0.01$.
+    $f(4.01) \approx f(4) + f'(4) \cdot 0.01 = \sqrt{4} + \frac{1}{2\sqrt{4}} \cdot 0.01 = 2 + \frac{1}{4} \cdot 0.01 = 2 + 0.0025 = 2.0025$.</li>
+<li><strong>Teorie chyb a odhad chyb měření:</strong> Umožňuje odhadnout absolutní nebo relativní chybu měření. Pokud známe chybu měření veličiny $x$ (jako $dx$), pomocí diferenciálu určíme, jak se tato chyba promítne do vypočítané veličiny $y=f(x)$. Například, pokud měříme stranu čtverce s chybou $dx$, diferenciál $dA = 2x \cdot dx$ nám řekne, jaká bude přibližná chyba v ploše $A=x^2$.</li>
+<li><strong>Numerické metody:</strong> Základ pro mnoho numerických algoritmů, kde se složité funkce aproximují lineárními funkcemi.</li>
+<li><strong>Lokální linearizace:</strong> Diferenciál představuje nejlepší lineární aproximaci funkce v daném bodě.</li>
+</ul>
+<h2>C. Integrál</h2>
+<p>Integrály dělíme na dva základní typy: neurčitý a určitý.</p>
+<h3>Definice</h3>
+<ul>
+<li>
+<p><strong>Neurčitý integrál:</strong> Je inverzní operací k derivování. Hledáme tzv. primitivní funkci $F(x)$, pro kterou platí $F'(x)=f(x)$. Píšeme:
+    $$\int f(x) dx = F(x) + C$$
+    kde $C \in \mathbb{R}$ je integrační konstanta (protože derivace konstanty je nula). Množina všech primitivních funkcí k dané funkci $f(x)$ se nazývá neurčitý integrál.</p>
+</li>
+<li>
+<p><strong>Určitý integrál (Riemannův):</strong> Geometricky představuje orientovaný obsah plochy pod křivkou funkce $f(x)$ na intervalu $\langle a,b \rangle$. Definujeme ho jako limitu integrálních součtů (Riemannových součtů), kde plochu rozdělíme na nekonečně mnoho úzkých obdélníků.</p>
+<p>K propojení neurčitého a určitého integrálu slouží <strong>Newton-Leibnizova formule</strong>:
+$$\int_a^b f(x) dx = [F(x)]_a^b = F(b) - F(a)$$
+kde $F(x)$ je libovolná primitivní funkce k $f(x)$.</p>
+</li>
+</ul>
+<h3>Výpočty</h3>
+<p>Kromě základních tabulkových vzorců se používají dvě hlavní metody:</p>
+<ul>
+<li>
+<p><strong>Integrace základních funkcí:</strong></p>
+<ul>
+<li>$\int c \, dx = cx + C$</li>
+<li>$\int x^n \, dx = \frac{x^{n+1}}{n+1} + C$, pro $n \neq -1$</li>
+<li>$\int \frac{1}{x} \, dx = \ln|x| + C$</li>
+<li>$\int \sin x \, dx = -\cos x + C$</li>
+<li>$\int \cos x \, dx = \sin x + C$</li>
+<li>$\int e^x \, dx = e^x + C$</li>
+<li>$\int a^x \, dx = \frac{a^x}{\ln a} + C$</li>
+</ul>
+</li>
+<li>
+<p><strong>Pravidla pro integrování:</strong></p>
+<ul>
+<li><strong>Součet/rozdíl:</strong> $\int (f(x) \pm g(x)) \, dx = \int f(x) \, dx \pm \int g(x) \, dx$</li>
+<li><strong>Konstantní násobek:</strong> $\int c \cdot f(x) \, dx = c \cdot \int f(x) \, dx$</li>
+</ul>
+</li>
+<li>
+<p><strong>Metoda per partes (integrace po částech):</strong> Vychází z derivace součinu. Používá se, pokud je integrand součinem dvou různých typů funkcí (např. polynom $\times$ exponenciála, polynom $\times$ logaritmus, exponenciála $\times$ trigonometrická funkce):
+    $$\int u(x) \cdot v'(x) \, dx = u(x) \cdot v(x) - \int u'(x) \cdot v(x) \, dx$$
+    Často se zkráceně píše: $\int u \, dv = uv - \int v \, du$.</p>
+</li>
+<li>
+<p><strong>Substituční metoda:</strong> Vychází z derivace složené funkce. Používá se k transformaci složitého integrálu na jednodušší zavedením nové proměnné $t$.
+    Pokud máme integrál ve tvaru $\int f(g(x)) \cdot g'(x) \, dx$, zavedeme substituci $t = g(x)$, pak $dt = g'(x) \, dx$. Integrál se transformuje na $\int f(t) \, dt$.</p>
+</li>
+</ul>
+<p><strong>Příklad výpočtu:</strong>
+$$ \int (3x^2 - 2) \, dx = x^3 - 2x + C $$</p>
+<h3>Praktický význam</h3>
+<ul>
+<li><strong>Geometrie:</strong><ul>
+<li>Výpočet obsahů rovinných útvarů (plocha pod křivkou, plocha mezi křivkami).</li>
+<li>Výpočet délek křivek.</li>
+<li>Výpočet objemů a povrchů rotačních těles.</li>
+<li>Výpočet těžiště a momentů setrvačnosti.</li>
+</ul>
+</li>
+<li><strong>Fyzika:</strong><ul>
+<li>Výpočet dráhy z rychlosti ($s = \int v(t) \, dt$).</li>
+<li>Výpočet vykonané práce proměnlivé síly ($W = \int F(x) \, dx$).</li>
+<li>Výpočet impulsu síly.</li>
+<li>Výpočet celkového náboje z proudu.</li>
+</ul>
+</li>
+<li><strong>Signály a data (velmi důležité pro informatiku):</strong><ul>
+<li><strong>Integrální transformace:</strong> Základem transformací jako je Fourierova transformace (rozkládá signály na frekvenční složky), Laplaceova transformace (analýza LTI systémů) a Z-transformace (analýza diskrétních systémů). Tyto transformace jsou klíčové v digitálním zpracování signálů, telekomunikacích a řízení systémů.</li>
+<li><strong>Filtrace a vyhlazování dat:</strong> Integrace se používá při návrhu a analýze filtrů (např. integrátor v PID regulátoru, kumulativní součet pro vyhlazování).</li>
+<li><strong>Pravděpodobnost a statistika:</strong> Výpočet pravděpodobností pro spojité náhodné veličiny (plocha pod hustotou pravděpodobnosti), střední hodnoty a rozptylu.</li>
+</ul>
+</li>
+<li><strong>Ekonomie:</strong> Celkové náklady/příjmy z mezních nákladů/příjmů.</li>
+<li><strong>Strojové učení:</strong> Výpočet kumulativních distribucí, odhadování parametrů modelů.</li>
+</ul>
+<h2>D. Numerická integrace</h2>
+<p>Numerická integrace se používá, když analytické řešení integrálu není možné nebo je příliš složité. Cílem je aproximovat hodnotu určitého integrálu.</p>
+<h3>Lichoběžníkové pravidlo</h3>
+<p>Jedna z nejjednodušších metod numerické integrace. Interval $\langle a,b \rangle$ se rozdělí na $n$ podintervalů a plocha pod křivkou se aproximuje součtem ploch lichoběžníků.</p>
+<p>Vzorec pro lichoběžníkové pravidlo:
+$$\int_a^b f(x) \, dx \approx h \left( \frac{f(x_0) + f(x_n)}{2} + \sum_{i=1}^{n-1} f(x_i) \right)$$
+kde $h = \frac{b-a}{n}$ je šířka podintervalu a $x_i = a + i \cdot h$.</p>
+<h3>Praktický význam</h3>
+<ul>
+<li><strong>Inženýrství a věda:</strong> Výpočet integrálů funkcí, které nemají analytickou primitivní funkci nebo jsou dány pouze tabulkou dat (např. měření ze senzorů).</li>
+<li><strong>Simulace:</strong> V simulacích se často používá k aproximaci kumulativních efektů v čase.</li>
+<li><strong>Zpracování signálů:</strong> Pro numerickou integraci diskrétních signálů.</li>
+</ul>
+<h2>Typické zkouškové otázky</h2>
+<h3>1. Definujte derivaci pomocí limity a vysvětlete její geometrický význam.</h3>
+<p><strong>Odpověď:</strong>
+Derivace funkce $f$ v bodě $x_0$ je definována jako limita:
+$$f'(x_0) = \lim_{h \to 0} \frac{f(x_0 + h) - f(x_0)}{h}$$
+Tato limita, pokud existuje a je vlastní, vyjadřuje okamžitou rychlost změny funkční hodnoty $f(x)$ v bodě $x_0$.</p>
+<p><strong>Geometrický význam:</strong>
+Geometricky derivace $f'(x_0)$ představuje směrnici tečny ke grafu funkce $f(x)$ v bodě $(x_0, f(x_0))$.
+Představme si sečnu procházející body $(x_0, f(x_0))$ a $(x_0+h, f(x_0+h))$. Směrnice této sečny je $\frac{f(x_0 + h) - f(x_0)}{h}$. Když se $h$ blíží k nule, bod $(x_0+h, f(x_0+h))$ se blíží k bodu $(x_0, f(x_0))$, a sečna se stává tečnou. Limita směrnic sečen je tedy směrnice tečny.</p>
+<h3>2. Jak souvisí derivace a integrál podle Newtonovy-Leibnizovy věty?</h3>
+<p><strong>Odpověď:</strong>
+Newton-Leibnizova věta (také známá jako základní věta integrálního počtu) propojuje neurčitý a určitý integrál a ukazuje, že integrace a derivace jsou inverzní operace.</p>
+<p>Věta říká, že pokud je funkce $f(x)$ spojitá na intervalu $\langle a,b \rangle$ a $F(x)$ je libovolná primitivní funkce k $f(x)$ na tomto intervalu (tj. $F'(x) = f(x)$), pak platí:
+$$\int_a^b f(x) \, dx = F(b) - F(a)$$
+Tato věta nám umožňuje vypočítat určitý integrál (který geometricky představuje plochu pod křivkou) jednoduše tak, že najdeme primitivní funkci $F(x)$ a vyhodnotíme rozdíl jejích hodnot v horní a dolní mezi integračního intervalu. Bez této věty bychom museli určitý integrál počítat složitě pomocí limit Riemannových součtů.</p>
+<h3>3. Uveďte praktický příklad použití diferenciálu.</h3>
+<p><strong>Odpověď:</strong>
+Praktickým příkladem použití diferenciálu je <strong>odhad chyby měření</strong>.</p>
+<p>Představme si, že měříme poloměr $r$ kruhové desky a chceme vypočítat její plochu $A$. Víme, že vzorec pro plochu je $A(r) = \pi r^2$.
+Předpokládejme, že naměřený poloměr je $r_0 = 10 \text{ cm}$, ale měření má určitou chybu, řekněme $dr = \pm 0.1 \text{ cm}$. Chceme odhadnout, jaká bude maximální chyba ve vypočítané ploše.</p>
+<ol>
+<li>
+<p><strong>Funkce a její derivace:</strong>
+    Funkce je $A(r) = \pi r^2$.
+    Derivace funkce $A(r)$ podle $r$ je $A'(r) = 2\pi r$.</p>
+</li>
+<li>
+<p><strong>Diferenciál:</strong>
+    Diferenciál $dA$ nám aproximuje změnu plochy $\Delta A$ pro malou změnu poloměru $dr$:
+    $$dA = A'(r_0) \cdot dr$$
+    Dosadíme naměřené hodnoty:
+    $$dA = (2\pi \cdot 10) \cdot (\pm 0.1)$$
+    $$dA = 20\pi \cdot (\pm 0.1)$$
+    $$dA = \pm 2\pi \text{ cm}^2$$</p>
+</li>
+<li>
+<p><strong>Interpretace:</strong>
+    Původní plocha pro $r_0 = 10 \text{ cm}$ je $A(10) = \pi (10)^2 = 100\pi \text{ cm}^2$.
+    Odhadovaná chyba v ploše je $\pm 2\pi \text{ cm}^2$. To znamená, že skutečná plocha desky se bude pohybovat v intervalu přibližně od $98\pi \text{ cm}^2$ do $102\pi \text{ cm}^2$.</p>
+</li>
+</ol>
+<p>Tento příklad ukazuje, jak diferenciál umožňuje rychle a efektivně odhadnout, jak se chyba vstupní veličiny promítne do chyby vypočítané výstupní veličiny, aniž bychom museli provádět složité výpočty pro horní a dolní mez intervalu. Je to klíčové v inženýrství, vědě a všude tam, kde se pracuje s měřenými daty.</p>
+<hr />
+            </div>
+            
+            <div id="otazka-2" class="question-section">
+                <p>Následující studijní materiál je připraven pro státní závěrečné zkoušky (SZZ) z okruhu "Soustava lineárních rovnic a metody jejich řešení". Materiál doplňuje a rozšiřuje váš text s důrazem na přesnost, úplnost a správné formátování.</p>
+<hr />
+<h1>2. Soustava lineárních rovnic a metody jejich řešení</h1>
+<h2>Klíčové pojmy</h2>
+<ul>
+<li><strong>Lineární rovnice:</strong> Rovnice, kde neznámé jsou pouze v první mocnině a nejsou násobeny mezi sebou.</li>
+<li><strong>Soustava lineárních rovnic (SLR):</strong> Množina lineárních rovnic, které mají být splněny současně.</li>
+<li><strong>Matice koeficientů ($A$):</strong> Matice obsahující koeficienty u neznámých.</li>
+<li><strong>Vektor neznámých ($x$):</strong> Sloupcový vektor obsahující neznámé proměnné.</li>
+<li><strong>Vektor pravých stran ($b$):</strong> Sloupcový vektor obsahující absolutní členy rovnic.</li>
+<li><strong>Rozšířená matice soustavy ($A_R$ nebo $(A|b)$):</strong> Matice koeficientů s přidaným sloupcem vektoru pravých stran.</li>
+<li><strong>Hodnost matice ($h(A)$):</strong> Maximální počet lineárně nezávislých řádků (nebo sloupců) matice.</li>
+<li><strong>Frobeniova věta:</strong> Kritérium pro řešitelnost soustavy lineárních rovnic na základě hodností matic.</li>
+<li><strong>Elementární řádkové úpravy:</strong> Operace, které nemění množinu řešení soustavy (prohození řádků, vynásobení řádku nenulovým číslem, přičtení násobku jednoho řádku k jinému).</li>
+<li><strong>Gaussova eliminační metoda (GEM):</strong> Přímá metoda pro řešení SLR převodem na horní stupňovitý tvar.</li>
+<li><strong>Gauss-Jordanova eliminace:</strong> Varianta GEM, která převádí matici na redukovaný řádkově stupňovitý tvar.</li>
+<li><strong>Cramerovo pravidlo:</strong> Přímá metoda pro řešení čtvercových soustav s regulární maticí pomocí determinantů.</li>
+<li><strong>Inverzní matice ($A^{-1}$):</strong> Matice, která po vynásobení původní maticí $A$ (z obou stran) dává jednotkovou matici $I$.</li>
+<li><strong>Regulární matice:</strong> Čtvercová matice, jejíž determinant je nenulový ($det(A) \neq 0$), a proto k ní existuje inverzní matice.</li>
+<li><strong>Singulární matice:</strong> Čtvercová matice, jejíž determinant je nulový ($det(A) = 0$), a proto k ní neexistuje inverzní matice.</li>
+<li><strong>Pivot:</strong> První nenulový prvek v řádku matice ve stupňovitém tvaru, který se používá k eliminaci prvků pod ním.</li>
+</ul>
+<hr />
+<h2>A. Definice a zápis soustavy</h2>
+<p>Soustava $m$ lineárních rovnic o $n$ neznámých $x_1, x_2, \ldots, x_n$ má obecný tvar:</p>
+<p>$$
+\begin{aligned}
+a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n &amp;= b_1 \
+a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n &amp;= b_2 \
+&amp;\vdots \
+a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n &amp;= b_m
+\end{aligned}
+$$</p>
+<p>Kde $a_{ij}$ jsou koeficienty (reálná nebo komplexní čísla) a $b_i$ jsou absolutní členy (pravá strana) rovnic.</p>
+<h3>Maticový zápis</h3>
+<p>Pro efektivní práci a programování soustavy vždy přepisujeme do maticového tvaru:</p>
+<p>$$Ax=b$$</p>
+<p>Kde:</p>
+<ul>
+<li>
+<p>$A$ je <strong>matice soustavy</strong> (typu $m \times n$) obsahující koeficienty $a_{ij}$:
+    $$
+    A = \begin{pmatrix}
+    a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \
+    a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} \
+    \vdots &amp; \vdots &amp; \ddots &amp; \vdots \
+    a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn}
+    \end{pmatrix}
+    $$</p>
+</li>
+<li>
+<p>$x$ je <strong>vektor neznámých</strong> (sloupcový vektor $n \times 1$):
+    $$
+    x = \begin{pmatrix}
+    x_1 \
+    x_2 \
+    \vdots \
+    x_n
+    \end{pmatrix}
+    $$</p>
+</li>
+<li>
+<p>$b$ je <strong>vektor pravých stran</strong> (sloupcový vektor $m \times 1$):
+    $$
+    b = \begin{pmatrix}
+    b_1 \
+    b_2 \
+    \vdots \
+    b_m
+    \end{pmatrix}
+    $$</p>
+</li>
+</ul>
+<p>Při řešení často využíváme <strong>rozšířenou matici soustavy</strong> $A_R = (A|b)$, kde k matici koeficientů $A$ přidáme jako poslední sloupec vektor pravých stran $b$.</p>
+<p>$$
+A_R = (A|b) = \begin{pmatrix}
+a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} &amp; b_1 \
+a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} &amp; b_2 \
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; \vdots \
+a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn} &amp; b_m
+\end{pmatrix}
+$$</p>
+<hr />
+<h2>B. Řešitelnost soustavy (Frobeniova věta)</h2>
+<p>Frobeniova věta je základním kritériem pro určení existence a počtu řešení soustavy lineárních rovnic. Vychází z konceptu <strong>hodnosti matice</strong> $h(M)$, což je maximální počet lineárně nezávislých řádků (nebo sloupců) matice $M$.</p>
+<p><strong>Frobeniova věta říká:</strong>
+Soustava lineárních rovnic $Ax=b$ má řešení právě tehdy, když se hodnost matice soustavy $A$ rovná hodnosti rozšířené matice soustavy $A_R=(A|b)$.</p>
+<p>Matematicky zapsáno:
+$$h(A) = h(A_R)$$</p>
+<p>Na základě této podmínky rozlišujeme tři případy:</p>
+<ol>
+<li>
+<p><strong>Soustava nemá řešení:</strong></p>
+<ul>
+<li>Nastává právě tehdy, když se hodnost matice soustavy $A$ <strong>nerovná</strong> hodnosti rozšířené matice soustavy $A_R$:
+    $$h(A) \neq h(A_R)$$</li>
+<li>V praxi to znamená, že při úpravě matice na stupňovitý tvar vznikne řádek, který odpovídá rovnici typu $0 = c$, kde $c \neq 0$ (např. $0x_1 + 0x_2 = 5$). Taková rovnice nemá řešení, a proto ani celá soustava nemá řešení.</li>
+</ul>
+</li>
+<li>
+<p><strong>Soustava má právě jedno řešení:</strong></p>
+<ul>
+<li>Nastává právě tehdy, když se hodnosti matice soustavy $A$ a rozšířené matice soustavy $A_R$ rovnají a jsou rovny počtu neznámých $n$:
+    $$h(A) = h(A_R) = n$$</li>
+<li>V tomto případě je každá neznámá jednoznačně určena.</li>
+</ul>
+</li>
+<li>
+<p><strong>Soustava má nekonečně mnoho řešení:</strong></p>
+<ul>
+<li>Nastává právě tehdy, když se hodnosti matice soustavy $A$ a rozšířené matice soustavy $A_R$ rovnají, ale jsou menší než počet neznámých $n$:
+    $$h(A) = h(A_R) &lt; n$$</li>
+<li>V tomto případě existují tzv. <strong>volné parametry</strong>. Počet volných parametrů (volitelných neznámých), které můžeme zvolit libovolně (např. $t \in \mathbb{R}$), je roven $n - h(A)$. Ostatní neznámé jsou pak vyjádřeny pomocí těchto parametrů.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2>C. Metody řešení soustav</h2>
+<p>Metody řešení soustav lineárních rovnic dělíme na:</p>
+<ul>
+<li><strong>Přímé metody:</strong> Vedou k přesnému řešení po konečném počtu kroků (např. Gaussova eliminace, Cramerovo pravidlo, metoda inverzní matice).</li>
+<li><strong>Iterační metody:</strong> Poskytují přibližné řešení, které se postupně zpřesňuje v opakovaných krocích. Jsou vhodné pro velké a řídké matice, kde přímé metody jsou výpočetně náročné (např. Jacobiho metoda, Gaussova-Seidelova metoda).</li>
+</ul>
+<p>U státnic se očekávají především přímé metody.</p>
+<h3>1. Gaussova eliminační metoda (GEM)</h3>
+<p>Nejuniverzálnější metoda pro řešení jakékoliv soustavy lineárních rovnic (čtvercové i obdélníkové).</p>
+<ul>
+<li>
+<p><strong>Princip:</strong> Pomocí <strong>elementárních řádkových úprav</strong> převedeme rozšířenou matici soustavy $(A|b)$ na <strong>horní stupňovitý tvar</strong>. To znamená, že všechny prvky pod hlavní diagonálou (nebo pod pivoty) jsou nulové.</p>
+<ul>
+<li><strong>Elementární řádkové úpravy:</strong><ul>
+<li>Prohození dvou řádků.</li>
+<li>Vynásobení řádku nenulovým číslem.</li>
+<li>Přičtení násobku jednoho řádku k jinému řádku.</li>
+</ul>
+</li>
+<li>Cílem je vytvořit "schody" nul, kde první nenulový prvek v každém řádku (tzv. <strong>pivot</strong>) je posunut doprava oproti pivotu v předchozím řádku.</li>
+</ul>
+</li>
+<li>
+<p><strong>Zpětný chod (zpětná substituce):</strong> Jakmile je matice ve stupňovitém tvaru, řešení se získá postupným dosazováním. Z posledního nenulového řádku (který obsahuje nejméně neznámých) přímo spočítáme jednu neznámou. Tuto hodnotu pak dosadíme do předposledního řádku a spočítáme další neznámou, a takto pokračujeme "odspodu nahoru", dokud nejsou všechny neznámé vypočítány.</p>
+</li>
+<li>
+<p><strong>Gauss-Jordanova eliminace:</strong> Je rozšířením Gaussovy eliminace. Matici se elementárními řádkovými úpravami převede až na <strong>redukovaný řádkově stupňovitý tvar</strong>, kde jsou nuly nejen pod pivoty, ale i nad nimi, a všechny pivoty jsou rovny jedné. Řešení soustavy je pak přímo viditelné v posledním sloupci rozšířené matice (vektoru pravých stran).</p>
+</li>
+</ul>
+<h3>2. Cramerovo pravidlo</h3>
+<p>Tato metoda je použitelná pouze pro <strong>čtvercové soustavy</strong> ($m=n$), kde matice soustavy $A$ je <strong>regulární</strong> (tj. $det(A) \neq 0$).</p>
+<ul>
+<li>
+<p><strong>Princip:</strong> Hodnotu každé neznámé $x_i$ určíme jako podíl dvou determinantů:
+    $$x_i = \frac{det(A_i)}{det(A)}$$
+    Kde:</p>
+<ul>
+<li>$det(A)$ je determinant matice soustavy $A$.</li>
+<li>$det(A_i)$ je determinant matice $A_i$, která vznikne z matice $A$ tak, že její $i$-tý sloupec nahradíme vektorem pravých stran $b$.</li>
+</ul>
+</li>
+<li>
+<p><strong>Nevýhoda:</strong> Výpočet determinantů je pro matice větších rozměrů ($&gt; 3 \times 3$) výpočetně extrémně drahý (složitost $O(n!)$ nebo $O(n^3)$ s efektivními algoritmy). Proto se Cramerovo pravidlo používá spíše pro malé soustavy nebo pro teoretické odvození.</p>
+</li>
+</ul>
+<h3>3. Řešení pomocí inverzní matice</h3>
+<p>Tato metoda je také použitelná pouze pro <strong>čtvercové soustavy</strong> ($m=n$) s <strong>regulární maticí</strong> soustavy $A$ ($det(A) \neq 0$).</p>
+<ul>
+<li>
+<p><strong>Princip:</strong> Vycházíme z maticového zápisu soustavy $Ax=b$. Pokud matice $A$ je regulární, existuje k ní inverzní matice $A^{-1}$. Rovnici $Ax=b$ zleva vynásobíme inverzní maticí $A^{-1}$:
+    $$A^{-1}Ax = A^{-1}b$$
+    Protože $A^{-1}A = I$ (jednotková matice) a $Ix = x$, dostaneme:
+    $$x = A^{-1}b$$
+    Řešení soustavy se tedy získá vynásobením inverzní matice $A^{-1}$ vektorem pravých stran $b$.</p>
+</li>
+<li>
+<p><strong>Nevýhoda:</strong> Výpočet inverzní matice je pro větší matice také výpočetně náročný (složitost $O(n^3)$) a často je méně efektivní než Gaussova eliminace. Používá se, pokud je potřeba inverzní matici znát pro další účely, nebo pokud je třeba řešit mnoho soustav se stejnou maticí $A$, ale různými vektory $b$.</p>
+</li>
+</ul>
+<h3>4. Iterační metody (stručně)</h3>
+<p>Pro velmi velké soustavy lineárních rovnic, zejména ty s řídkými maticemi (mnoho nulových prvků), jsou často efektivnější iterační metody.</p>
+<ul>
+<li><strong>Princip:</strong> Tyto metody začínají s počátečním odhadem řešení a postupně ho zpřesňují v opakovaných krocích, dokud není dosaženo požadované přesnosti.</li>
+<li><strong>Příklady:</strong> Jacobiho metoda, Gaussova-Seidelova metoda.</li>
+<li><strong>Využití:</strong> Numerické simulace, řešení parciálních diferenciálních rovnic, analýza sítí.</li>
+</ul>
+<hr />
+<h2>D. Praktický význam v informatice</h2>
+<p>Soustavy lineárních rovnic jsou základním matematickým nástrojem s širokým uplatněním v informatice a inženýrství:</p>
+<ul>
+<li>
+<p><strong>Počítačová grafika a herní vývoj:</strong></p>
+<ul>
+<li><strong>Transformace objektů:</strong> Rotace, posun, změna měřítka objektů ve 2D a 3D prostoru se provádí pomocí maticového násobení. Inverzní transformace (např. pro zjištění pozice objektu z pohledu kamery) vyžadují řešení soustav.</li>
+<li><strong>Ray Tracing:</strong> Při výpočtu průsečíků paprsků se scénou (např. s trojúhelníky) se často řeší soustavy lineárních rovnic.</li>
+<li><strong>Fyzikální simulace:</strong> Modelování sil a pohybů v herních enginech.</li>
+</ul>
+</li>
+<li>
+<p><strong>Zpracování signálu a obrazu:</strong></p>
+<ul>
+<li><strong>Filtrace:</strong> Návrh digitálních filtrů (FIR, IIR) pro zpracování zvuku nebo obrazu často zahrnuje řešení soustav rovnic pro určení koeficientů filtru.</li>
+<li><strong>Obnovení obrazu:</strong> Odstranění šumu, rozmazání nebo rekonstrukce obrazu z neúplných dat (např. v lékařství) vede na řešení velkých soustav.</li>
+<li><strong>Komprese dat:</strong> Některé kompresní algoritmy využívají lineární transformace.</li>
+</ul>
+</li>
+<li>
+<p><strong>Machine Learning a Data Science:</strong></p>
+<ul>
+<li><strong>Lineární regrese:</strong> Metoda nejmenších čtverců pro nalezení optimální lineární funkce, která nejlépe aproximuje daná data, vede přímo na řešení soustavy tzv. normálních rovnic.</li>
+<li><strong>Neural Networks:</strong> Optimalizace vah v neurálních sítích během tréninku často zahrnuje řešení systémů rovnic (např. při výpočtu gradientů).</li>
+<li><strong>Principal Component Analysis (PCA):</strong> Pro redukci dimenze dat se hledají vlastní vektory kovarianční matice, což je speciální případ řešení soustav.</li>
+</ul>
+</li>
+<li>
+<p><strong>Optimalizace a operační výzkum:</strong></p>
+<ul>
+<li><strong>Lineární programování:</strong> Mnoho optimalizačních problémů (např. plánování výroby, alokace zdrojů) lze formulovat jako soustavy lineárních nerovnic a rovnic. Simplexová metoda pro řešení těchto problémů je založena na maticových operacích.</li>
+</ul>
+</li>
+<li>
+<p><strong>Elektronika a řízení systémů:</strong></p>
+<ul>
+<li><strong>Analýza elektrických obvodů:</strong> Kirchhoffovy zákony vedou na soustavy lineárních rovnic pro výpočet proudů a napětí v obvodech.</li>
+<li><strong>Řídicí systémy:</strong> Návrh a analýza řídicích systémů (např. pro roboty, letadla) často zahrnuje řešení soustav pro určení stavových proměnných.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2>Nejčastější chyby u zkoušky</h2>
+<ul>
+<li><strong>Nezapisování elementárních řádkových úprav systematicky:</strong> Při Gaussově eliminaci je klíčové jasně označovat prováděné operace (např. $R_2 \leftarrow R_2 - 3R_1$).</li>
+<li><strong>Ignorování případu nekonečně mnoha řešení:</strong> Studenti často zapomenou správně vyjádřit volné parametry nebo si neuvědomí, že existuje více než jedno řešení.</li>
+<li><strong>Dělení nulovým pivotem bez výměny řádků:</strong> Pokud je pivot nulový, je nutné prohodit řádky, aby se předešlo dělení nulou a pokračovalo v eliminaci.</li>
+<li><strong>Aplikace Cramerova pravidla nebo inverzní matice na singulární nebo nečtvercové matice:</strong> Tyto metody mají přísné podmínky pro použití.</li>
+<li><strong>Chyby ve výpočtu determinantů nebo maticových operací:</strong> Časté jsou numerické chyby, zejména u znamének.</li>
+</ul>
+<hr />
+<h2>Paměťová pomůcka</h2>
+<p>"Počet řešení určujte z hodnosti, ne z dojmu z rovnic."</p>
+<hr />
+<h2>Typické zkouškové otázky</h2>
+<ol>
+<li>
+<p><strong>Popište Gaussovu eliminaci.</strong></p>
+<ul>
+<li><strong>Odpověď:</strong> Gaussova eliminační metoda je přímá metoda pro řešení soustav lineárních rovnic. Jejím principem je systematický převod rozšířené matice soustavy $(A|b)$ na horní stupňovitý tvar pomocí elementárních řádkových úprav (prohození řádků, vynásobení řádku nenulovým číslem, přičtení násobku jednoho řádku k jinému). Cílem je eliminovat neznámé tak, aby v každém řádku pod tzv. pivotem (prvním nenulovým prvkem v řádku) byly nuly. Po dosažení stupňovitého tvaru se řešení získá tzv. zpětnou substitucí, kdy se z posledního řádku vypočítá jedna neznámá a její hodnota se postupně dosazuje do předchozích řádků pro výpočet zbývajících neznámých.</li>
+</ul>
+</li>
+<li>
+<p><strong>Kdy má soustava žádné, jedno nebo nekonečně mnoho řešení?</strong></p>
+<ul>
+<li><strong>Odpověď:</strong> Řešitelnost soustavy lineárních rovnic je dána Frobeniovou větou, která porovnává hodnost matice soustavy $A$ ($h(A)$) a hodnost rozšířené matice soustavy $A_R=(A|b)$ ($h(A_R)$) s počtem neznámých $n$:<ul>
+<li><strong>Žádné řešení:</strong> Soustava nemá řešení, pokud $h(A) \neq h(A_R)$. To nastává, když se při eliminaci objeví řádek tvaru $0 = c$, kde $c \neq 0$.</li>
+<li><strong>Právě jedno řešení:</strong> Soustava má právě jedno řešení, pokud $h(A) = h(A_R) = n$. Všechny neznámé jsou jednoznačně určeny.</li>
+<li><strong>Nekonečně mnoho řešení:</strong> Soustava má nekonečně mnoho řešení, pokud $h(A) = h(A_R) &lt; n$. V tomto případě existuje $n - h(A)$ volných parametrů, které lze zvolit libovolně, a ostatní neznámé jsou vyjádřeny pomocí těchto parametrů.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Jaký je význam pivotu?</strong></p>
+<ul>
+<li><strong>Odpověď:</strong> Pivot je klíčový prvek v Gaussově eliminační metodě. Jedná se o první nenulový prvek v daném řádku matice, který se používá k eliminaci všech prvků pod ním ve stejném sloupci. Jeho význam spočívá v tom, že:<ul>
+<li>Umožňuje systematicky převádět matici na stupňovitý tvar.</li>
+<li>Zajišťuje, že v každém kroku eliminace se snižuje počet neznámých v následujících rovnicích.</li>
+<li>Jeho nenulovost je zásadní pro provedení eliminačních kroků (dělení pivotem). Pokud je pivot nulový, je nutné prohodit řádky, aby se získal nenulový pivot a eliminace mohla pokračovat.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2>Shrnutí kapitoly</h2>
+<p>Lineární soustavy jsou základní model mnoha informatických a technických problémů. Hlavním nástrojem pro jejich analýzu a řešení je maticový zápis a koncept hodnosti matice. Frobeniova věta poskytuje kritérium pro řešitelnost a počet řešení. Gaussova eliminace je univerzální a praktická metoda, zatímco Cramerovo pravidlo a metoda inverzní matice jsou vhodné pro menší čtvercové soustavy. V informatice se soustavy lineárních rovnic uplatňují v oblastech jako počítačová grafika, zpracování signálu, strojové učení a optimalizace.</p>
+<hr />
+            </div>
+            
+            <div id="otazka-3" class="question-section">
+                <p>Následující studijní materiál je připraven v souladu s oficiálním sylabem a požadavky fakulty pro státní závěrečné zkoušky (SZZ).</p>
+<hr />
+<h1>3. Maticová algebra, typy matic, inverzní matice, determinant</h1>
+<hr />
+<h3>A. Základní pojmy a operace (Maticová algebra)</h3>
+<p>Matice je obdélníkové uspořádání prvků (zpravidla čísel) do $m$ řádků a $n$ sloupců. Hovoříme o matici typu $(m \times n)$. Prvek na $i$-tém řádku a $j$-tém sloupci se značí $a_{ij}$.</p>
+<p>Základní operace:</p>
+<ul>
+<li>
+<p><strong>Sčítání a odčítání matic:</strong></p>
+<ul>
+<li>Lze provádět pouze u matic stejného typu.</li>
+<li>Sčítají (nebo odčítají) se jednotlivé odpovídající prvky na stejných pozicích.</li>
+<li>Pro matice $A = (a_{ij})$ a $B = (b_{ij})$ stejného typu $(m \times n)$ je výsledná matice $C = (c_{ij})$ definována jako:
+    $$c_{ij} = a_{ij} \pm b_{ij}$$</li>
+</ul>
+</li>
+<li>
+<p><strong>Násobení matice skalárem:</strong></p>
+<ul>
+<li>Každý prvek matice se vynásobí daným skalárem $k$.</li>
+<li>Pro matici $A = (a_{ij})$ a skalár $k$ je výsledná matice $C = (c_{ij})$ definována jako:
+    $$c_{ij} = k \cdot a_{ij}$$</li>
+</ul>
+</li>
+<li>
+<p><strong>Násobení matic ($A \cdot B$):</strong></p>
+<ul>
+<li>Lze provést pouze tehdy, když je počet sloupců první matice $A$ roven počtu řádků druhé matice $B$.</li>
+<li>Pokud má matice $A$ rozměr $(m \times p)$ a matice $B$ rozměr $(p \times n)$, výsledná matice $C$ bude mít rozměr $(m \times n)$.</li>
+<li>Výsledný prvek $c_{ij}$ na pozici $i$-tého řádku a $j$-tého sloupce matice $C$ vznikne jako skalární součin $i$-tého řádku matice $A$ a $j$-tého sloupce matice $B$.</li>
+<li>Formálně:
+    $$c_{ij} = \sum_{k=1}^{p} a_{ik} b_{kj}$$</li>
+<li><strong>POZOR:</strong> Násobení matic obecně NENÍ komutativní, tj. $A \cdot B \neq B \cdot A$.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3>B. Typy matic</h3>
+<ul>
+<li>
+<p><strong>Čtvercová matice:</strong></p>
+<ul>
+<li>Matice, která má stejný počet řádků a sloupců ($m = n$).</li>
+<li>Příklad matice $2 \times 2$:
+    $$
+    \begin{pmatrix}
+    a &amp; b \
+    c &amp; d
+    \end{pmatrix}
+    $$</li>
+</ul>
+</li>
+<li>
+<p><strong>Obdélníková matice:</strong></p>
+<ul>
+<li>Matice, která má různý počet řádků a sloupců ($m \neq n$).</li>
+<li>Příklad matice $2 \times 3$:
+    $$
+    \begin{pmatrix}
+    a &amp; b &amp; c \
+    d &amp; e &amp; f
+    \end{pmatrix}
+    $$</li>
+</ul>
+</li>
+<li>
+<p><strong>Nulová matice ($0$):</strong></p>
+<ul>
+<li>Matice, jejíž všechny prvky jsou rovny nule.</li>
+<li>Příklad matice $2 \times 2$:
+    $$
+    \begin{pmatrix}
+    0 &amp; 0 \
+    0 &amp; 0
+    \end{pmatrix}
+    $$</li>
+</ul>
+</li>
+<li>
+<p><strong>Diagonální matice:</strong></p>
+<ul>
+<li>Čtvercová matice, která má mimo hlavní diagonálu (prvky $a_{ii}$) samé nuly.</li>
+<li>Příklad matice $3 \times 3$:
+    $$
+    \begin{pmatrix}
+    a &amp; 0 &amp; 0 \
+    0 &amp; b &amp; 0 \
+    0 &amp; 0 &amp; c
+    \end{pmatrix}
+    $$</li>
+</ul>
+</li>
+<li>
+<p><strong>Jednotková matice ($I$ nebo $E$):</strong></p>
+<ul>
+<li>Speciální diagonální matice, která má na hlavní diagonále samé jedničky a mimo ni nuly.</li>
+<li>Plní roli "jedničky" při násobení matic, tj. pro libovolnou matici $A$ platí $A \cdot I = I \cdot A = A$.</li>
+<li>Příklad matice $3 \times 3$:
+    $$
+    I = \begin{pmatrix}
+    1 &amp; 0 &amp; 0 \
+    0 &amp; 1 &amp; 0 \
+    0 &amp; 0 &amp; 1
+    \end{pmatrix}
+    $$</li>
+</ul>
+</li>
+<li>
+<p><strong>Transponovaná matice ($A^T$):</strong></p>
+<ul>
+<li>Vznikne záměnou řádků za sloupce.</li>
+<li>Pokud $A$ je matice typu $(m \times n)$, pak $A^T$ je matice typu $(n \times m)$.</li>
+<li>Prvky jsou definovány jako $(A^T)<em>{ij} = a</em>{ji}$.</li>
+<li>Příklad: Pokud $A = \begin{pmatrix} 1 &amp; 2 \ 3 &amp; 4 \ 5 &amp; 6 \end{pmatrix}$, pak $A^T = \begin{pmatrix} 1 &amp; 3 &amp; 5 \ 2 &amp; 4 &amp; 6 \end{pmatrix}$.</li>
+</ul>
+</li>
+<li>
+<p><strong>Symetrická matice:</strong></p>
+<ul>
+<li>Čtvercová matice, pro kterou platí $A = A^T$.</li>
+<li>Prvky jsou zrcadlově stejné podle hlavní diagonály, tj. $a_{ij} = a_{ji}$.</li>
+<li>Příklad:
+    $$
+    \begin{pmatrix}
+    1 &amp; 2 &amp; 3 \
+    2 &amp; 4 &amp; 5 \
+    3 &amp; 5 &amp; 6
+    \end{pmatrix}
+    $$</li>
+</ul>
+</li>
+<li>
+<p><strong>Regulární matice:</strong></p>
+<ul>
+<li>Čtvercová matice, jejíž determinant je nenulový ($\det(A) \neq 0$).</li>
+<li>K regulární matici existuje inverzní matice.</li>
+</ul>
+</li>
+<li>
+<p><strong>Singulární matice:</strong></p>
+<ul>
+<li>Čtvercová matice, jejíž determinant je roven nule ($\det(A) = 0$).</li>
+<li>Řádky (a sloupce) singulární matice jsou lineárně závislé.</li>
+<li>K singulární matici neexistuje inverzní matice.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3>C. Determinant</h3>
+<p>Determinant je skalární hodnota, která je přiřazena každé čtvercové matici. Poskytuje důležité informace o matici, například zda je regulární (má inverzi) a jak ovlivňuje objem při lineární transformaci. Značí se $\det(A)$ nebo $|A|$.</p>
+<p><strong>Geometrický význam:</strong>
+Absolutní hodnota determinantu matice reprezentuje faktor, kterým se změní objem (v 3D) nebo plocha (ve 2D) jednotkového rovnoběžnostěnu (nebo čtverce) po aplikaci lineární transformace definované danou maticí. Znaménko determinantu indikuje, zda transformace zachovává nebo mění orientaci prostoru.</p>
+<p><strong>Výpočet:</strong></p>
+<ul>
+<li>
+<p><strong>Matice $1 \times 1$:</strong></p>
+<ul>
+<li>Pro $A = (a_{11})$ je $\det(A) = a_{11}$.</li>
+</ul>
+</li>
+<li>
+<p><strong>Matice $2 \times 2$:</strong></p>
+<ul>
+<li>Pro $A = \begin{pmatrix} a &amp; b \ c &amp; d \end{pmatrix}$ je determinant roven součinu prvků na hlavní diagonále mínus součin prvků na vedlejší diagonále:
+    $$\det(A) = ad - bc$$</li>
+</ul>
+</li>
+<li>
+<p><strong>Matice $3 \times 3$ (Sarrusovo pravidlo):</strong></p>
+<ul>
+<li>Pro $A = \begin{pmatrix} a_{11} &amp; a_{12} &amp; a_{13} \ a_{21} &amp; a_{22} &amp; a_{23} \ a_{31} &amp; a_{32} &amp; a_{33} \end{pmatrix}$ se pod matici symbolicky opíší první dva řádky. Poté se sečtou součiny prvků na třech diagonálách zleva doprava (s kladným znaménkem) a odečtou se součiny prvků na třech diagonálách zprava doleva (s záporným znaménkem):
+    $$\det(A) = a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32} - a_{13}a_{22}a_{31} - a_{11}a_{23}a_{32} - a_{12}a_{21}a_{33}$$</li>
+</ul>
+</li>
+<li>
+<p><strong>Matice $n \times n$ (Laplaceův rozvoj):</strong></p>
+<ul>
+<li>Pro matice vyšších řádů se používá Laplaceův rozvoj podle vybraného řádku nebo sloupce.</li>
+<li>$\det(A) = \sum_{j=1}^{n} (-1)^{i+j} a_{ij} M_{ij}$ (rozvoj podle $i$-tého řádku)</li>
+<li>$\det(A) = \sum_{i=1}^{n} (-1)^{i+j} a_{ij} M_{ij}$ (rozvoj podle $j$-tého sloupce)</li>
+<li>Kde $M_{ij}$ je determinant submatice (minoru), která vznikne z matice $A$ odstraněním $i$-tého řádku a $j$-tého sloupce. Výraz $(-1)^{i+j} M_{ij}$ se nazývá algebraický doplněk prvku $a_{ij}$.</li>
+<li><strong>Pro usnadnění:</strong> Je vhodné matici nejprve upravit pomocí Gaussovy eliminační metody (GEM) na horní trojúhelníkový tvar. Determinant takové matice je pak roven pouhému součinu prvků na hlavní diagonále.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Vlastnosti determinantu:</strong></p>
+<ul>
+<li>$\det(A) = \det(A^T)$.</li>
+<li>Pokud má matice nulový řádek (nebo sloupec), pak $\det(A) = 0$.</li>
+<li>Pokud má matice dva stejné nebo lineárně závislé řádky (nebo sloupce), pak $\det(A) = 0$.</li>
+<li>Prohození dvou řádků (nebo sloupců) změní znaménko determinantu.</li>
+<li>Vynásobení řádku (nebo sloupce) skalárem $k$ vynásobí determinant skalárem $k$.</li>
+<li>Determinant součinu matic je součin determinantů: $\det(A \cdot B) = \det(A) \cdot \det(B)$.</li>
+</ul>
+<hr />
+<h3>D. Inverzní matice</h3>
+<p>Inverzní matice k čtvercové matici $A$ je taková matice $A^{-1}$, pro kterou platí:
+$$A \cdot A^{-1} = A^{-1} \cdot A = I$$
+kde $I$ je jednotková matice stejného rozměru jako $A$.</p>
+<ul>
+<li>Inverzní matici lze najít POUZE k matici čtvercové a regulární, tj. takové, jejíž determinant je nenulový ($\det(A) \neq 0$).</li>
+</ul>
+<p><strong>Metody výpočtu:</strong></p>
+<ol>
+<li>
+<p><strong>Gauss-Jordanova eliminace:</strong></p>
+<ul>
+<li>Vedle matice $A$ se napíše jednotková matice $I$ stejného rozměru, čímž vznikne rozšířená matice $(A | I)$.</li>
+<li>Pomocí elementárních řádkových úprav (prohození řádků, vynásobení řádku nenulovým skalárem, přičtení násobku jednoho řádku k jinému) se levá strana (matice $A$) převede na jednotkovou matici $I$.</li>
+<li>Jakmile je vlevo jednotková matice, na pravé straně se objeví hledaná inverzní matice $A^{-1}$, tj. $(I | A^{-1})$.</li>
+</ul>
+</li>
+<li>
+<p><strong>Pomocí adjungované matice:</strong></p>
+<ul>
+<li>Inverzní matice $A^{-1}$ se vypočítá jako:
+    $$A^{-1} = \frac{1}{\det(A)} \cdot \text{adj}(A)$$</li>
+<li>Kde $\det(A)$ je determinant matice $A$.</li>
+<li>$\text{adj}(A)$ je adjungovaná matice, která je transponovanou maticí algebraických doplňků (kofaktorů) původní matice $A$.</li>
+<li>Algebraický doplněk $C_{ij}$ prvku $a_{ij}$ je $(-1)^{i+j} M_{ij}$, kde $M_{ij}$ je minor (determinant submatice vzniklé odstraněním $i$-tého řádku a $j$-tého sloupce).</li>
+<li>Pro matici $2 \times 2$: Pokud $A = \begin{pmatrix} a &amp; b \ c &amp; d \end{pmatrix}$, pak $A^{-1} = \frac{1}{ad-bc} \begin{pmatrix} d &amp; -b \ -c &amp; a \end{pmatrix}$.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h3>E. Praktický význam v IT</h3>
+<ul>
+<li>
+<p><strong>Transformace v 2D/3D počítačové grafice:</strong></p>
+<ul>
+<li>Matice se používají k reprezentaci geometrických transformací jako je posun (translaci), rotace, škálování a zkosení objektů nebo kamery v 2D a 3D prostoru.</li>
+<li>Násobení transformačních matic umožňuje řetězit více transformací do jedné.</li>
+<li>Inverzní matice se používají pro "zpětné" transformace, například pro převod souřadnic z lokálního prostoru objektu do globálního prostoru scény a naopak, nebo pro zrušení transformace.</li>
+</ul>
+</li>
+<li>
+<p><strong>Inverzní kinematika a herní fyzika:</strong></p>
+<ul>
+<li>V robotice a animaci (např. v herním průmyslu) se inverzní kinematika zabývá výpočtem úhlů kloubů postavy tak, aby její koncový bod (např. ruka) dosáhl na požadované místo. To často vyžaduje řešení soustav rovnic, kde inverzní matice hrají klíčovou roli pro zpětný chod transformačních řetězců.</li>
+</ul>
+</li>
+<li>
+<p><strong>Kryptografie:</strong></p>
+<ul>
+<li>Některé šifry, například Hillova šifra, používají maticové násobení k šifrování bloků textu. Každý blok textu je převeden na vektor čísel a vynásoben šifrovací maticí.</li>
+<li>Pro dešifrování je pak nutné použít inverzní matici k šifrovací matici. Existence inverzní matice je zde klíčová pro možnost dešifrování.</li>
+</ul>
+</li>
+<li>
+<p><strong>Strojové učení a analýza dat:</strong></p>
+<ul>
+<li>V lineární regresi se pro nalezení optimálních koeficientů modelu často řeší soustava normálních rovnic, která zahrnuje inverzi matice.</li>
+<li>V analýze hlavních komponent (PCA) se pro redukci dimenze dat používají vlastní čísla a vlastní vektory kovarianční matice, které jsou úzce spjaty s maticovou algebrou.</li>
+<li>V neuronových sítích se maticové operace (násobení, sčítání) používají pro výpočty v jednotlivých vrstvách.</li>
+</ul>
+</li>
+<li>
+<p><strong>Řešení soustav lineárních rovnic:</strong></p>
+<ul>
+<li>Soustavu $A \mathbf{x} = \mathbf{b}$ lze v případě regulární matice $A$ řešit pomocí inverzní matice jako $\mathbf{x} = A^{-1} \mathbf{b}$. To je sice výpočetně náročnější než Gaussova eliminace pro velké soustavy, ale konceptuálně důležité.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3>F. Typické zkouškové otázky</h3>
+<ol>
+<li>
+<p><strong>Definujte determinant a vysvětlete jeho geometrický význam.</strong></p>
+<ul>
+<li><strong>Odpověď:</strong> Determinant je skalární hodnota přiřazená každé čtvercové matici. Geometricky absolutní hodnota determinantu matice reprezentuje faktor, kterým se změní objem (v 3D) nebo plocha (ve 2D) jednotkového rovnoběžnostěnu (nebo čtverce) po aplikaci lineární transformace definované danou maticí. Znaménko determinantu indikuje, zda transformace zachovává (kladné znaménko) nebo mění (záporné znaménko) orientaci prostoru. Nenulový determinant znamená, že transformace je invertibilní a matice je regulární.</li>
+</ul>
+</li>
+<li>
+<p><strong>Kdy existuje inverzní matice?</strong></p>
+<ul>
+<li><strong>Odpověď:</strong> Inverzní matice $A^{-1}$ k matici $A$ existuje právě tehdy, když je matice $A$ čtvercová a regulární. To znamená, že matice $A$ musí mít stejný počet řádků a sloupců, a její determinant musí být nenulový ($\det(A) \neq 0$). Pokud je determinant roven nule, matice je singulární a inverzní matice neexistuje.</li>
+</ul>
+</li>
+<li>
+<p><strong>Vyjmenujte základní typy matic.</strong></p>
+<ul>
+<li><strong>Odpověď:</strong> Mezi základní typy matic patří:<ul>
+<li><strong>Čtvercová matice:</strong> Stejný počet řádků a sloupců.</li>
+<li><strong>Obdélníková matice:</strong> Různý počet řádků a sloupců.</li>
+<li><strong>Nulová matice:</strong> Všechny prvky jsou nula.</li>
+<li><strong>Diagonální matice:</strong> Čtvercová matice s nenulovými prvky pouze na hlavní diagonále.</li>
+<li><strong>Jednotková matice:</strong> Diagonální matice s jedničkami na hlavní diagonále.</li>
+<li><strong>Transponovaná matice:</strong> Vznikne záměnou řádků za sloupce.</li>
+<li><strong>Symetrická matice:</strong> Čtvercová matice, která je rovna své transponované matici ($A = A^T$).</li>
+<li><strong>Regulární matice:</strong> Čtvercová matice s nenulovým determinantem (existuje k ní inverze).</li>
+<li><strong>Singulární matice:</strong> Čtvercová matice s nulovým determinantem (neexistuje k ní inverze).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+            </div>
+            
+            <div id="otazka-4" class="question-section">
+                <h1>4. Vlastní čísla a vlastní vektory matic</h1>
+<h2>Klíčové pojmy</h2>
+<ul>
+<li><strong>Vlastní číslo (Eigenvalue)</strong>: Skalár $\lambda$, který udává, kolikrát se velikost vlastního vektoru změní při lineární transformaci maticí.</li>
+<li><strong>Vlastní vektor (Eigenvector)</strong>: Nenulový vektor $\mathbf{x}$, jehož směr se při lineární transformaci maticí $\mathbf{A}$ nezmění, pouze se natáhne, zkrátí nebo otočí znaménkem.</li>
+<li><strong>Charakteristický polynom</strong>: Polynom, jehož kořeny jsou vlastní čísla matice. Získává se z rovnice $\det(\mathbf{A} - \lambda \mathbf{I}) = 0$.</li>
+<li><strong>Diagonalizace</strong>: Proces převodu matice na diagonální tvar pomocí vlastních čísel a vektorů, pokud je to možné.</li>
+<li><strong>Spektrální rozklad</strong>: Rozklad matice na součin matic tvořených vlastními vektory a diagonální matice vlastních čísel.</li>
+</ul>
+<h2>A. Definice</h2>
+<p>Mějme čtvercovou matici $\mathbf{A}$ typu $n \times n$.</p>
+<p><strong>Vlastní vektor</strong> je nenulový vektor $\mathbf{x}$, pro který platí, že když ho vynásobíme maticí $\mathbf{A}$, výsledný vektor je pouze lineárním násobkem původního vektoru $\mathbf{x}$. To znamená, že matice $\mathbf{A}$ změní pouze jeho velikost (případně směr na opačný), ale nezmění jeho orientaci/přímku, ve které leží. Geometricky je vlastní vektor směr, který se transformací matice nezmění, pouze se natáhne, zkrátí nebo otočí znaménkem.</p>
+<p><strong>Vlastní číslo</strong> je skalár $\lambda$ (lambda), který udává, kolikrát se velikost vlastního vektoru změní. Je to faktor tohoto natažení, zkrácení nebo otočení znaménkem.</p>
+<p>Tento vztah popisuje základní rovnice:
+$$
+\mathbf{A}\mathbf{x} = \lambda\mathbf{x}
+$$
+kde $\mathbf{A}$ je matice, $\mathbf{x}$ je vlastní vektor a $\lambda$ je vlastní číslo.</p>
+<h2>B. Způsob výpočtu</h2>
+<p>Při výpočtu vlastních čísel a vektorů postupujeme tak, že rovnici převedeme na jednu stranu a upravíme:
+$$
+\mathbf{A}\mathbf{x} - \lambda\mathbf{x} = \mathbf{0}
+$$
+Abychom mohli $\lambda$ vytknout, musíme $\mathbf{x}$ vynásobit jednotkovou maticí $\mathbf{I}$ stejného rozměru jako $\mathbf{A}$:
+$$
+(\mathbf{A} - \lambda\mathbf{I})\mathbf{x} = \mathbf{0}
+$$
+Kde $\mathbf{I}$ je jednotková matice stejného rozměru jako $\mathbf{A}$. Protože hledáme nenulový vektor $\mathbf{x}$, musí být matice $(\mathbf{A} - \lambda\mathbf{I})$ singulární, což znamená, že její determinant musí být roven nule.</p>
+<ol>
+<li>
+<p><strong>Krok: Výpočet vlastních čísel ($\lambda$)</strong>
+    Vyřešíme tzv. <strong>charakteristickou rovnici</strong>:
+    $$
+    \det(\mathbf{A} - \lambda\mathbf{I}) = 0
+    $$
+    Výsledkem determinantu je polynom stupně $n$ (tzv. <strong>charakteristický polynom</strong>).
+    Kořeny tohoto polynomu jsou hledaná vlastní čísla $\lambda_1, \lambda_2, \ldots, \lambda_n$.</p>
+</li>
+<li>
+<p><strong>Krok: Výpočet vlastních vektorů ($\mathbf{x}$)</strong>
+    Pro každé nalezené vlastní číslo $\lambda_i$ dosadíme jeho hodnotu zpět do homogenní soustavy rovnic:
+    $$
+    (\mathbf{A} - \lambda_i\mathbf{I})\mathbf{x} = \mathbf{0}
+    $$
+    Tuto soustavu vyřešíme (např. Gaussovou eliminací).
+    Protože je matice $(\mathbf{A} - \lambda_i\mathbf{I})$ singulární, soustava bude mít vždy nekonečně mnoho řešení. Vlastní vektor vyjádříme pomocí parametru (báze podprostoru vlastních vektorů). Je důležité si uvědomit, že vlastní vektor nesmí být nulový.</p>
+</li>
+</ol>
+<h2>C. Praktická interpretace a význam v IT</h2>
+<p>Vlastní čísla a vektory jsou klíčové, protože umožňují rozložit složité lineární transformace na jednodušší, nezávislé složky.</p>
+<ul>
+<li>
+<p><strong>Analýza hlavních komponent (PCA - Principal Component Analysis)</strong>:</p>
+<ul>
+<li>Používá se v Data Science a strojovém učení pro redukci dimenzionality dat (např. snížení počtu příznaků při zachování maxima informací).</li>
+<li>Vlastní vektory kovarianční matice dat ukazují směry největšího rozptylu (hlavní osy) a vlastní čísla určují, jak důležitý daný směr je.</li>
+<li>Příklad: Při analýze dat o zákaznících mohou vlastní vektory odhalit hlavní trendy v chování, které vysvětlují největší variabilitu dat.</li>
+</ul>
+</li>
+<li>
+<p><strong>Rozpoznávání obličejů (Eigenfaces)</strong>:</p>
+<ul>
+<li>V počítačovém vidění (Computer Vision) se pomocí PCA nad databází obličejů vygenerují "vlastní tváře" (eigenfaces), což jsou vlastně vlastní vektory reprezentující základní rysy obličeje.</li>
+<li>Nový obličej se pak rozpoznává jako lineární kombinace těchto základních vektorů.</li>
+</ul>
+</li>
+<li>
+<p><strong>PageRank (Algoritmus Google vyhledávače)</strong>:</p>
+<ul>
+<li>Algoritmus, který hodnotí důležitost webových stránek, interpretuje internet jako obří matici přechodových pravděpodobností.</li>
+<li>Hledání výsledného hodnocení stránek je matematicky ekvivalentní hledání vlastního vektoru této matice, který přísluší největšímu vlastnímu číslu (obvykle $\lambda=1$).</li>
+</ul>
+</li>
+<li>
+<p><strong>Stabilita dynamických systémů</strong>:</p>
+<ul>
+<li>Vlastní čísla matice popisující dynamický systém (např. v řízení nebo simulacích) určují jeho stabilitu. Pokud jsou všechna vlastní čísla s reálnou částí menší než nula (pro spojité systémy) nebo s absolutní hodnotou menší než jedna (pro diskrétní systémy), systém je stabilní.</li>
+</ul>
+</li>
+<li>
+<p><strong>Komprese dat</strong>:</p>
+<ul>
+<li>Podobně jako u PCA, vlastní čísla a vektory mohou být použity pro efektivní reprezentaci dat s menším počtem dimenzí, což vede ke kompresi.</li>
+</ul>
+</li>
+<li>
+<p><strong>Módové analýzy konstrukcí</strong>:</p>
+<ul>
+<li>Ve strojírenství a fyzice (např. 3D simulace, herní enginy) určují vlastní čísla přirozené frekvence vibrací objektů (rezonanci) a vlastní vektory určují tvar deformace objektu při těchto frekvencích (tzv. vlastní tvary kmitů).</li>
+</ul>
+</li>
+</ul>
+<h2>Nejčastější chyby u zkoušky</h2>
+<ul>
+<li><strong>Zapomenutí, že vlastní vektor nesmí být nulový.</strong> Vlastní vektor je definován jako nenulový vektor.</li>
+<li><strong>Záměna algebraické a geometrické násobnosti.</strong> Algebraická násobnost je násobnost kořene charakteristického polynomu, geometrická násobnost je dimenze podprostoru vlastních vektorů. Geometrická násobnost je vždy menší nebo rovna algebraické.</li>
+<li><strong>Výklad vlastního čísla bez vztahu k odpovídajícímu vektoru.</strong> Vlastní číslo a vlastní vektor jsou neoddělitelně spjaty; vlastní číslo popisuje chování <em>konkrétního</em> vlastního vektoru.</li>
+</ul>
+<h2>Paměťová pomůcka</h2>
+<p>Vlastní vektor je "vlastní směr" matice; matice ho neotočí do jiného směru.</p>
+<h2>Typické zkouškové otázky</h2>
+<ol>
+<li>
+<p><strong>Jak se počítají vlastní čísla?</strong></p>
+<ul>
+<li><strong>Odpověď:</strong> Vlastní čísla $\lambda$ se počítají řešením charakteristické rovnice $\det(\mathbf{A} - \lambda\mathbf{I}) = 0$. Nejprve se sestaví matice $\mathbf{A} - \lambda\mathbf{I}$, kde $\mathbf{A}$ je daná matice a $\mathbf{I}$ je jednotková matice stejného rozměru. Poté se vypočítá determinant této matice, který vede k polynomu v proměnné $\lambda$ (charakteristický polynom). Kořeny tohoto polynomu jsou vlastní čísla matice.</li>
+</ul>
+</li>
+<li>
+<p><strong>Co znamená vlastní vektor geometricky?</strong></p>
+<ul>
+<li><strong>Odpověď:</strong> Geometricky vlastní vektor představuje směr v prostoru, který se při lineární transformaci dané maticí nezmění. Matice tento vektor pouze natáhne, zkrátí nebo otočí o 180 stupňů (změní znaménko), ale jeho směr (přímka, na které leží) zůstane zachován. Vlastní číslo pak udává faktor této změny velikosti.</li>
+</ul>
+</li>
+<li>
+<p><strong>Kde se používá spektrální rozklad?</strong></p>
+<ul>
+<li><strong>Odpověď:</strong> Spektrální rozklad (pokud matice je diagonalizovatelná) se používá v mnoha oblastech. Mezi hlavní patří:<ul>
+<li><strong>Analýza hlavních komponent (PCA)</strong>: Pro redukci dimenzionality a extrakci nejdůležitějších rysů z dat.</li>
+<li><strong>Zpracování obrazu a signálů</strong>: Pro analýzu frekvenčních složek nebo kompresi dat.</li>
+<li><strong>Kvantová mechanika</strong>: Pro popis stavů a energií systémů.</li>
+<li><strong>Teorie grafů</strong>: Pro analýzu vlastností grafů (např. PageRank).</li>
+<li><strong>Řešení soustav diferenciálních rovnic</strong>: Pro zjednodušení řešení dynamických systémů.</li>
+<li><strong>Numerická stabilita a analýza systémů</strong>: Pro určení stability a chování systémů v čase.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2>Shrnutí kapitoly</h2>
+<p>Vlastní čísla a vektory odhalují vnitřní směry lineární transformace. Jsou klíčové pro stabilitu, redukci dimenze a analýzu systémů. Jejich pochopení je zásadní pro mnoho algoritmů v informatice a matematice, od zpracování dat po vyhledávací enginy.</p>
+            </div>
+            
+            <div id="otazka-5" class="question-section">
+                <p>Níže je připravený studijní materiál k okruhu SZZ 5: Pravděpodobnost a náhodné veličiny.</p>
+<hr />
+<h1>5. Pravděpodobnost a náhodné veličiny</h1>
+<h2>Klíčové pojmy</h2>
+<ul>
+<li>Náhodný pokus</li>
+<li>Množina elementárních výsledků ($\Omega$)</li>
+<li>Náhodný jev ($A$)</li>
+<li>Pravděpodobnost ($P(A)$)</li>
+<li>Axiomy pravděpodobnosti (Kolmogorovovy axiomy)</li>
+<li>Podmíněná pravděpodobnost</li>
+<li>Nezávislost jevů</li>
+<li>Bayesova věta</li>
+<li>Náhodná veličina (diskrétní, spojitá)</li>
+<li>Pravděpodobnostní funkce (PMF)</li>
+<li>Hustota pravděpodobnosti (PDF)</li>
+<li>Kumulativní distribuční funkce (CDF)</li>
+<li>Střední hodnota ($E(X)$)</li>
+<li>Rozptyl ($D(X)$ nebo $Var(X)$)</li>
+<li>Směrodatná odchylka ($\sigma$)</li>
+<li>Kvantily (medián, kvartily)</li>
+</ul>
+<hr />
+<h2>A. Pravděpodobnost a náhodný jev</h2>
+<p><strong>Náhodný pokus</strong>
+Činnost, která se za stejných podmínek může opakovat, ale její výsledek závisí na náhodě.
+*   <strong>Příklady:</strong> Hod kostkou, přenos datového paketu zašuměným kanálem, měření doby odezvy serveru.</p>
+<p><strong>Množina elementárních výsledků ($\Omega$)</strong>
+Množina všech možných, vzájemně se vylučujících a nezaměnitelných výsledků náhodného pokusu.
+*   <strong>Příklady:</strong>
+    *   Hod kostkou: $\Omega = {1, 2, 3, 4, 5, 6}$
+    *   Hod mincí: $\Omega = {\text{Hlava, Orel}}$
+    *   Doba odezvy serveru: $\Omega = [0, \infty)$</p>
+<p><strong>Náhodný jev ($A$)</strong>
+Libovolná podmnožina množiny elementárních výsledků ($\text{A} \subseteq \Omega$). Jev nastane, pokud je výsledek pokusu prvkem této podmnožiny.
+*   <strong>Příklady:</strong>
+    *   Hod kostkou, jev "padne sudé číslo": $A = {2, 4, 6}$
+    *   Hod mincí, jev "padne hlava": $A = {\text{Hlava}}$
+    *   Doba odezvy serveru, jev "odezva je delší než 100 ms": $A = (100, \infty)$</p>
+<p><strong>Pravděpodobnost ($P(A)$)</strong>
+Funkce, která každému jevu $A$ přiřazuje reálné číslo z intervalu $\langle 0,1 \rangle$, vyjadřující míru očekávání, že jev nastane.</p>
+<h3>Definice pravděpodobnosti</h3>
+<ol>
+<li>
+<p><strong>Klasická definice (Laplaceova)</strong>
+    Použitelná, pokud jsou všechny elementární výsledky stejně pravděpodobné.
+    Pravděpodobnost jevu $A$ je dána poměrem počtu výsledků příznivých jevu $A$ k celkovému počtu všech možných výsledků.
+    $$P(A) = \frac{|A|}{|\Omega|}$$
+    kde $|A|$ je počet elementárních výsledků příznivých jevu $A$ a $|\Omega|$ je celkový počet všech elementárních výsledků.</p>
+<ul>
+<li><strong>Příklad:</strong> Pravděpodobnost padnutí sudého čísla při hodu kostkou je $P(A) = \frac{3}{6} = \frac{1}{2}$.</li>
+</ul>
+</li>
+<li>
+<p><strong>Axiomatická definice (Kolmogorovovy axiomy)</strong>
+    Nejobecnější a matematicky nejpřesnější definice pravděpodobnosti. Pravděpodobnostní funkce $P$ na jevovém poli $(\Omega, \mathcal{F})$ (kde $\mathcal{F}$ je $\sigma$-algebra jevů) musí splňovat následující axiomy:</p>
+<ul>
+<li><strong>Axiom 1 (Nezápornost):</strong> Pro každý jev $A \in \mathcal{F}$ platí $P(A) \ge 0$.</li>
+<li><strong>Axiom 2 (Normalizace):</strong> Pravděpodobnost jistého jevu (celé množiny elementárních výsledků) je $P(\Omega) = 1$.</li>
+<li><strong>Axiom 3 (Konečná/Spočetná aditivita):</strong> Pro každou posloupnost vzájemně se vylučujících jevů $A_1, A_2, \dots \in \mathcal{F}$ (tj. $A_i \cap A_j = \emptyset$ pro $i \ne j$) platí:
+    $$P\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} P(A_i)$$</li>
+</ul>
+</li>
+<li>
+<p><strong>Frekvenční definice</strong>
+    Pravděpodobnost jevu $A$ je limitou relativní četnosti výskytu jevu $A$ při nekonečném počtu opakování pokusu.
+    $$P(A) = \lim_{n \to \infty} \frac{n_A}{n}$$
+    kde $n_A$ je počet výskytů jevu $A$ a $n$ je celkový počet pokusů. Tato definice je intuitivní, ale má omezení v praktickém použití, protože nekonečný počet pokusů nelze realizovat.</p>
+</li>
+</ol>
+<hr />
+<h2>B. Podmíněná pravděpodobnost a nezávislost</h2>
+<p><strong>Podmíněná pravděpodobnost</strong>
+Vyjadřuje pravděpodobnost nastoupení jevu $A$ za podmínky, že už prokazatelně nastal jev $B$.
+Je definována vztahem:
+$$P(A|B) = \frac{P(A \cap B)}{P(B)}$$
+pro $P(B) &gt; 0$.
+*   $P(A \cap B)$ je pravděpodobnost, že nastanou oba jevy $A$ i $B$.
+*   <strong>Příklad:</strong> Pravděpodobnost, že padne šestka (jev $A$) za podmínky, že padlo sudé číslo (jev $B$).
+    *   $P(A \cap B) = P(\text{padne 6 a je sudé}) = P(\text{padne 6}) = \frac{1}{6}$
+    *   $P(B) = P(\text{padne sudé}) = \frac{3}{6} = \frac{1}{2}$
+    *   $P(A|B) = \frac{1/6}{1/2} = \frac{1}{3}$</p>
+<p><strong>Bayesova věta</strong>
+Umožňuje "obracet" podmíněné pravděpodobnosti, tj. vypočítat $P(B|A)$ z $P(A|B)$. Je klíčová pro statistickou inferenci a strojové učení.
+$$P(B|A) = \frac{P(A|B) \cdot P(B)}{P(A)}$$
+*   <strong>Využití:</strong> Bayesovské filtry (např. anti-spamové filtry), diagnostické systémy, strojové učení (např. Naivní Bayesův klasifikátor).</p>
+<p><strong>Nezávislost jevů</strong>
+Dva jevy $A$ a $B$ jsou nezávislé, pokud nastoupení jednoho nijak neovlivňuje pravděpodobnost nastoupení druhého.
+Matematicky to znamená, že:
+$$P(A|B) = P(A)$$
+(pokud $P(B) &gt; 0$).
+Ekvivalentně, a pro všechny případy:
+$$P(A \cap B) = P(A) \cdot P(B)$$
+*   <strong>Příklad:</strong> Dva hody mincí. Jev "první hod je hlava" a jev "druhý hod je orel" jsou nezávislé.
+*   <strong>Pozor:</strong> Nezaměňovat s neslučitelnými jevy ($A \cap B = \emptyset$), pro které platí $P(A \cap B) = 0$. Pokud jsou neslučitelné jevy $A, B$ s nenulovými pravděpodobnostmi, nemohou být nezávislé.</p>
+<hr />
+<h2>C. Náhodná veličina</h2>
+<p><strong>Náhodná veličina ($X$)</strong>
+Funkce, která každému elementárnímu výsledku náhodného pokusu přiřazuje reálné číslo. Převádí tak náhodu na matematicky zpracovatelná data.</p>
+<h3>1. Diskrétní náhodná veličina (DNV)</h3>
+<ul>
+<li><strong>Charakteristika:</strong> Nabývá spočetně mnoha hodnot (izolovaná čísla, např. celá čísla, konečný seznam hodnot).</li>
+<li><strong>Popis:</strong> Je popsána <strong>pravděpodobnostní funkcí (Probability Mass Function, PMF)</strong> $P(X=x_i)$, která každé možné hodnotě $x_i$ přiřazuje pravděpodobnost jejího nastoupení.<ul>
+<li>Pro pravděpodobnostní funkci platí:<ul>
+<li>$P(X=x_i) \ge 0$ pro všechna $x_i$.</li>
+<li>$\sum_{i} P(X=x_i) = 1$.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Typické použití:</strong> Počet chybových paketů při přenosu, počet přístupů na server za minutu, výsledek hodu kostkou, počet zákazníků v čekárně.</li>
+<li><strong>Příklady rozdělení DNV:</strong><ul>
+<li><strong>Alternativní (Bernoulliho) rozdělení:</strong> Popisuje výsledek jednoho pokusu s dvěma možnými výsledky (úspěch/neúspěch, 1/0).</li>
+<li><strong>Binomické rozdělení:</strong> Popisuje počet úspěchů v $n$ nezávislých Bernoulliho pokusech.</li>
+<li><strong>Poissonovo rozdělení:</strong> Popisuje počet výskytů jevu v pevném časovém intervalu nebo prostoru, pokud se jevy vyskytují s konstantní průměrnou frekvencí a nezávisle na čase od posledního jevu.</li>
+<li><strong>Geometrické rozdělení:</strong> Popisuje počet neúspěchů před prvním úspěchem v sérii Bernoulliho pokusů.</li>
+</ul>
+</li>
+</ul>
+<h3>2. Spojitá náhodná veličina (SNV)</h3>
+<ul>
+<li><strong>Charakteristika:</strong> Nabývá jakékoliv hodnoty z určitého intervalu (nespočetně mnoho hodnot). Pravděpodobnost, že SNV nabude jednoho konkrétního čísla, je rovna 0 ($P(X=x)=0$). Proto se určuje pravděpodobnost, že hodnota padne do určitého intervalu.</li>
+<li><strong>Popis:</strong> Je popsána <strong>hustotou pravděpodobnosti (Probability Density Function, PDF)</strong> $f(x)$.<ul>
+<li>Pro hustotu pravděpodobnosti platí:<ul>
+<li>$f(x) \ge 0$ pro všechna $x$.</li>
+<li>Celková plocha pod křivkou hustoty je rovna 1: $\int_{-\infty}^{\infty} f(x)dx = 1$.</li>
+</ul>
+</li>
+<li>Pravděpodobnost, že $X$ nabude hodnoty v intervalu $\langle a, b \rangle$, je dána integrálem:
+    $$P(a \le X \le b) = \int_{a}^{b} f(x)dx$$</li>
+</ul>
+</li>
+<li><strong>Typické použití:</strong> Doba odezvy serveru (ping), napětí v síti, šum v audio signálu, teplota procesoru, výška člověka.</li>
+<li><strong>Příklady rozdělení SNV:</strong><ul>
+<li><strong>Rovnoměrné rozdělení:</strong> Všechny hodnoty v daném intervalu mají stejnou hustotu pravděpodobnosti.</li>
+<li><strong>Normální (Gaussovo) rozdělení:</strong> Klíčové pro modelování šumu, chyb měření a statistiku. Je charakterizováno symetrickým zvonovitým tvarem.</li>
+<li><strong>Exponenciální rozdělení:</strong> Popisuje dobu čekání na událost, která se vyskytuje s konstantní průměrnou frekvencí (např. doba mezi příchody požadavků na server, životnost elektronické součástky).</li>
+</ul>
+</li>
+</ul>
+<h3>Kumulativní distribuční funkce (CDF)</h3>
+<p>Oba typy náhodných veličin (diskrétní i spojité) lze jednotně popsat pomocí <strong>kumulativní distribuční funkce (Cumulative Distribution Function, CDF)</strong> $F(x)$.
+$F(x)$ udává pravděpodobnost, že náhodná veličina $X$ nabude hodnoty menší nebo rovné $x$.
+$$F(x) = P(X \le x)$$
+*   <strong>Pro DNV:</strong> $F(x) = \sum_{x_i \le x} P(X=x_i)$
+*   <strong>Pro SNV:</strong> $F(x) = \int_{-\infty}^{x} f(t)dt$
+*   <strong>Vlastnosti CDF:</strong>
+    *   $0 \le F(x) \le 1$
+    *   $F(x)$ je neklesající funkce.
+    *   $\lim_{x \to -\infty} F(x) = 0$
+    *   $\lim_{x \to \infty} F(x) = 1$</p>
+<hr />
+<h2>D. Statistické charakteristiky náhodné veličiny</h2>
+<p>U státnic po tobě budou chtít vědět, jak z veličiny vytáhnout konkrétní popisná čísla.</p>
+<p><strong>Střední hodnota (Očekávaná hodnota, $E(X)$ nebo $\mu$)</strong>
+Představuje "těžiště" rozdělení, tedy hodnotu, kterou v průměru očekáváme při mnoha opakováních pokusu.</p>
+<ul>
+<li><strong>Pro diskrétní náhodnou veličinu:</strong>
+    $$E(X) = \sum_{i} x_i \cdot P(X=x_i)$$</li>
+<li><strong>Pro spojitou náhodnou veličinu:</strong>
+    $$E(X) = \int_{-\infty}^{\infty} x \cdot f(x)dx$$</li>
+</ul>
+<p><strong>Rozptyl (Variance, $D(X)$, $Var(X)$ nebo $\sigma^2$)</strong>
+Míra variability neboli jak moc jsou hodnoty náhodné veličiny rozptýlené kolem střední hodnoty.
+Definiční vzorec:
+$$D(X) = E[(X - E[X])^2]$$
+Často používaný výpočetní vzorec:
+$$D(X) = E(X^2) - [E(X)]^2$$
+*   <strong>Směrodatná odchylka ($\sigma$):</strong> Odmocnina z rozptylu, $\sigma = \sqrt{D(X)}$. Má stejnou jednotku jako původní náhodná veličina, což usnadňuje interpretaci.</p>
+<p><strong>Kvantily</strong>
+$p$-kvantil ($x_p$) je hodnota, pod kterou leží přesně specifikovaná část (procentní podíl $p$) dat. Matematicky je to hodnota, pro kterou platí $F(x_p) = p$.</p>
+<ul>
+<li><strong>Medián ($x_{0.5}$):</strong> 50% kvantil – rozděluje data na dvě stejně velké poloviny. Polovina hodnot je menší nebo rovna mediánu, polovina je větší nebo rovna.</li>
+<li><strong>Kvartily:</strong> Rozdělují data na čtvrtiny.<ul>
+<li><strong>Dolní kvartil ($x_{0.25}$):</strong> 25% kvantil.</li>
+<li><strong>Horní kvartil ($x_{0.75}$):</strong> 75% kvantil.</li>
+</ul>
+</li>
+<li><strong>Percentily:</strong> Obecně $k$-tý percentil je $x_{k/100}$.</li>
+</ul>
+<hr />
+<h2>E. Praktický význam v IT</h2>
+<ul>
+<li><strong>Simulace a gamedev:</strong><ul>
+<li>Generování pseudonáhodných čísel pro procedurální generování světa, mechaniky kritických zásahů (kritů) nebo umělou inteligenci.</li>
+<li>Modelování náhodných událostí (např. úspěšnost akce, poškození v boji).</li>
+</ul>
+</li>
+<li><strong>Počítačové sítě:</strong><ul>
+<li><strong>Teorie hromadné obsluhy (Queueing Theory):</strong> Využívá Poissonovo a exponenciální rozdělení k modelování zátěže routerů, propustnosti linek, doby čekání v frontách a navrhování velikosti bufferů.</li>
+<li>Analýza spolehlivosti síťových komponent a protokolů.</li>
+</ul>
+</li>
+<li><strong>Testování softwaru:</strong><ul>
+<li><strong>Zátěžové testy (Load Testing):</strong> Příchody uživatelů se simulují jako náhodná veličina (např. Poissonovo rozdělení pro počet požadavků za časovou jednotku), aby se zjistilo, kdy systém selže nebo jak se chová pod zátěží.</li>
+<li>Generování náhodných testovacích dat.</li>
+</ul>
+</li>
+<li><strong>Strojové učení a umělá inteligence:</strong><ul>
+<li><strong>Bayesovské sítě a klasifikátory:</strong> Využívají Bayesovu větu pro predikci a klasifikaci.</li>
+<li><strong>Regrese a klasifikace:</strong> Chyby modelů jsou často modelovány normálním rozdělením.</li>
+<li><strong>Generování dat:</strong> Použití pravděpodobnostních rozdělení pro generování syntetických dat.</li>
+</ul>
+</li>
+<li><strong>Kryptografie:</strong><ul>
+<li>Generování kryptograficky bezpečných náhodných čísel pro klíče, nonce a inicializační vektory.</li>
+<li>Analýza bezpečnosti algoritmů.</li>
+</ul>
+</li>
+<li><strong>Spolehlivost systémů a řízení rizik:</strong><ul>
+<li>Modelování životnosti komponent (např. exponenciální rozdělení pro bezpaměťové systémy).</li>
+<li>Výpočet pravděpodobnosti selhání systému.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2>Typické zkouškové otázky</h2>
+<ol>
+<li>
+<p><strong>Definujte pojem pravděpodobnost a vysvětlete rozdíl mezi klasickou a axiomatickou definicí.</strong></p>
+<ul>
+<li><strong>Odpověď:</strong> Pravděpodobnost je funkce $P(A)$, která každému náhodnému jevu $A$ přiřazuje reálné číslo z intervalu $\langle 0,1 \rangle$, vyjadřující míru očekávání, že jev nastane.<ul>
+<li><strong>Klasická (Laplaceova) definice:</strong> Použitelná, když jsou všechny elementární výsledky stejně pravděpodobné. Pravděpodobnost jevu $A$ je poměr počtu příznivých výsledků jevu $A$ k celkovému počtu všech možných výsledků: $P(A) = \frac{|A|}{|\Omega|}$. Je intuitivní, ale omezená na situace s konečným a stejně pravděpodobným počtem výsledků.</li>
+<li><strong>Axiomatická (Kolmogorovova) definice:</strong> Je nejobecnější a matematicky nejpřesnější. Definuje pravděpodobnost pomocí tří axiomů: nezápornost ($P(A) \ge 0$), normalizace ($P(\Omega) = 1$) a spočetná aditivita ($P(\bigcup_{i=1}^{\infty} A_i) = \sum_{i=1}^{\infty} P(A_i)$ pro vzájemně se vylučující jevy). Tato definice je základem moderní teorie pravděpodobnosti a platí pro diskrétní i spojité případy.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Vysvětlete pojmy podmíněná pravděpodobnost a nezávislost jevů. Uveďte příklad.</strong></p>
+<ul>
+<li><strong>Odpověď:</strong><ul>
+<li><strong>Podmíněná pravděpodobnost $P(A|B)$</strong> je pravděpodobnost nastoupení jevu $A$ za podmínky, že jev $B$ již nastal. Je definována jako $P(A|B) = \frac{P(A \cap B)}{P(B)}$, kde $P(B) &gt; 0$.</li>
+<li><strong>Nezávislost jevů:</strong> Dva jevy $A$ a $B$ jsou nezávislé, pokud nastoupení jednoho nijak neovlivňuje pravděpodobnost nastoupení druhého. Matematicky to znamená, že $P(A|B) = P(A)$ (pokud $P(B) &gt; 0$), nebo ekvivalentně $P(A \cap B) = P(A) \cdot P(B)$.</li>
+<li><strong>Příklad:</strong> Hodíme dvěma mincemi.<ul>
+<li>Jev $A$: "první mince padne hlava". $P(A) = 1/2$.</li>
+<li>Jev $B$: "druhá mince padne orel". $P(B) = 1/2$.</li>
+<li>Jev $A \cap B$: "první hlava a druhá orel". $P(A \cap B) = 1/4$.</li>
+<li>Protože $P(A \cap B) = 1/4 = P(A) \cdot P(B) = (1/2) \cdot (1/2)$, jsou jevy $A$ a $B$ nezávislé.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Popište rozdíl mezi diskrétní a spojitou náhodnou veličinou a uveďte příklady jejich použití v IT.</strong></p>
+<ul>
+<li><strong>Odpověď:</strong><ul>
+<li><strong>Diskrétní náhodná veličina (DNV):</strong> Nabývá spočetně mnoha hodnot (např. celá čísla). Je popsána pravděpodobnostní funkcí $P(X=x_i)$, která každé hodnotě $x_i$ přiřazuje pravděpodobnost.<ul>
+<li><strong>Použití v IT:</strong> Počet chybových paketů v síti, počet uživatelů online, počet přístupů na webovou stránku za hodinu.</li>
+</ul>
+</li>
+<li><strong>Spojitá náhodná veličina (SNV):</strong> Nabývá jakékoliv hodnoty z určitého intervalu (nespočetně mnoho hodnot). Je popsána hustotou pravděpodobnosti $f(x)$, kde pravděpodobnost, že veličina padne do intervalu $\langle a, b \rangle$, je dána integrálem $\int_{a}^{b} f(x)dx$. Pravděpodobnost, že SNV nabude jedné konkrétní hodnoty, je nulová.<ul>
+<li><strong>Použití v IT:</strong> Doba odezvy serveru, šířka pásma sítě, teplota procesoru, doba životnosti hardwarové komponenty.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Definujte střední hodnotu a rozptyl náhodné veličiny. Jaký je jejich význam?</strong></p>
+<ul>
+<li><strong>Odpověď:</strong><ul>
+<li><strong>Střední hodnota ($E(X)$ nebo $\mu$):</strong> Představuje průměrnou hodnotu, kterou náhodná veličina nabude při velkém počtu opakování pokusu. Je to "těžiště" rozdělení pravděpodobnosti.<ul>
+<li>Pro diskrétní $E(X) = \sum x_i \cdot P(X=x_i)$.</li>
+<li>Pro spojitou $E(X) = \int_{-\infty}^{\infty} x \cdot f(x)dx$.</li>
+<li><strong>Význam:</strong> Udává centrální tendenci, typickou hodnotu, kterou lze očekávat.</li>
+</ul>
+</li>
+<li><strong>Rozptyl ($D(X)$ nebo $Var(X)$ nebo $\sigma^2$):</strong> Měří míru variability nebo rozptýlení hodnot náhodné veličiny kolem její střední hodnoty. Vyšší rozptyl znamená větší rozptýlení dat.<ul>
+<li>Definice: $D(X) = E[(X - E[X])^2]$.</li>
+<li><strong>Význam:</strong> Udává, jak moc se jednotlivé výsledky liší od průměru. Jeho odmocnina, směrodatná odchylka ($\sigma$), je často preferována, protože má stejné jednotky jako původní veličina.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Co jsou kvantily a jaký je význam mediánu a kvartilů?</strong></p>
+<ul>
+<li><strong>Odpověď:</strong><ul>
+<li><strong>Kvantil ($x_p$):</strong> Je hodnota, pod kterou leží přesně specifikovaná část (procentní podíl $p$) dat. Formálně je to hodnota $x_p$ taková, že kumulativní distribuční funkce $F(x_p) = p$.</li>
+<li><strong>Medián ($x_{0.5}$):</strong> Je 50% kvantil. Rozděluje data na dvě stejně velké poloviny – polovina hodnot je menší nebo rovna mediánu a polovina je větší nebo rovna.<ul>
+<li><strong>Význam:</strong> Je robustní vůči extrémním hodnotám (outlierům) a je vhodný pro nesymetrická rozdělení, kde střední hodnota nemusí být reprezentativní.</li>
+</ul>
+</li>
+<li><strong>Kvartily:</strong> Rozdělují data na čtyři stejně velké části.<ul>
+<li><strong>Dolní kvartil ($x_{0.25}$):</strong> 25% kvantil. Pod ním leží 25% dat.</li>
+<li><strong>Horní kvartil ($x_{0.75}$):</strong> 75% kvantil. Pod ním leží 75% dat.</li>
+<li><strong>Význam:</strong> Spolu s mediánem poskytují přehled o rozložení dat a jejich variabilitě (např. mezikvartilové rozpětí $x_{0.75} - x_{0.25}$ je mírou rozptýlení).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2>Shrnutí kapitoly</h2>
+<p>Pravděpodobnost kvantifikuje nejistotu a je základem pro modelování náhodných jevů. Náhodné veličiny převádějí výsledky náhodných pokusů na číselné hodnoty, které lze dále analyzovat. Rozlišujeme diskrétní a spojité náhodné veličiny, každou s vlastním způsobem popisu (pravděpodobnostní funkce vs. hustota pravděpodobnosti). Klíčové statistické charakteristiky, jako je střední hodnota, rozptyl a kvantily, nám umožňují popsat a interpretovat chování těchto veličin, což má široké uplatnění v informatice od návrhu sítí po strojové učení.</p>
+<hr />
+            </div>
+            
+        </main>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
