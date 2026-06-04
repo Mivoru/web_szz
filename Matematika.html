@@ -302,10 +302,10 @@ Předpokládejme, že naměřený poloměr je $r_0 = 10 \text{ cm}$, ale měřen
 <p>Soustava $m$ lineárních rovnic o $n$ neznámých $x_1, x_2, \ldots, x_n$ má obecný tvar:</p>
 <p>$$
 \begin{aligned}
-a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n &amp;= b_1 \
-a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n &amp;= b_2 \
-&amp;\vdots \
-a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n &amp;= b_m
+a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n &= b_1 \\
+a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n &= b_2 \\
+&\vdots \\
+a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n &= b_m
 \end{aligned}
 $$</p>
 <p>Kde $a_{ij}$ jsou koeficienty (reálná nebo komplexní čísla) a $b_i$ jsou absolutní členy (pravá strana) rovnic.</p>
@@ -318,10 +318,10 @@ $$</p>
 <p>$A$ je <strong>matice soustavy</strong> (typu $m \times n$) obsahující koeficienty $a_{ij}$:
     $$
     A = \begin{pmatrix}
-    a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \
-    a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} \
-    \vdots &amp; \vdots &amp; \ddots &amp; \vdots \
-    a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn}
+    a_{11} & a_{12} & \cdots & a_{1n} \\
+    a_{21} & a_{22} & \cdots & a_{2n} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    a_{m1} & a_{m2} & \cdots & a_{mn}
     \end{pmatrix}
     $$</p>
 </li>
@@ -329,9 +329,9 @@ $$</p>
 <p>$x$ je <strong>vektor neznámých</strong> (sloupcový vektor $n \times 1$):
     $$
     x = \begin{pmatrix}
-    x_1 \
-    x_2 \
-    \vdots \
+    x_1 \\
+    x_2 \\
+    \vdots \\
     x_n
     \end{pmatrix}
     $$</p>
@@ -340,9 +340,9 @@ $$</p>
 <p>$b$ je <strong>vektor pravých stran</strong> (sloupcový vektor $m \times 1$):
     $$
     b = \begin{pmatrix}
-    b_1 \
-    b_2 \
-    \vdots \
+    b_1 \\
+    b_2 \\
+    \vdots \\
     b_m
     \end{pmatrix}
     $$</p>
@@ -351,10 +351,10 @@ $$</p>
 <p>Při řešení často využíváme <strong>rozšířenou matici soustavy</strong> $A_R = (A|b)$, kde k matici koeficientů $A$ přidáme jako poslední sloupec vektor pravých stran $b$.</p>
 <p>$$
 A_R = (A|b) = \begin{pmatrix}
-a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} &amp; b_1 \
-a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} &amp; b_2 \
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; \vdots \
-a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn} &amp; b_m
+a_{11} & a_{12} & \cdots & a_{1n} & b_1 \\
+a_{21} & a_{22} & \cdots & a_{2n} & b_2 \\
+\vdots & \vdots & \ddots & \vdots & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn} & b_m
 \end{pmatrix}
 $$</p>
 <hr />
