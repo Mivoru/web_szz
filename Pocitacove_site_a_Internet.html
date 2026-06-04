@@ -484,12 +484,7 @@ Má 2 vstupy ($A_1, A_0$) a 4 výstupy ($Y_0, Y_1, Y_2, Y_3$).</p>
 <h2>C. Bezdrátové sítě IEEE 802.11 (Wi-Fi)</h2>
 <p>Standard IEEE 802.11 definuje pravidla pro bezdrátové lokální sítě (WLAN), komerčně známé jako Wi-Fi. Protože rádiový prostor je z podstaty sdílené médium a stanice pracují v režimu <strong>Half-Duplex</strong>, potýkají se s odlišnými problémy než drátové sítě, zejména s efektivní detekcí kolizí.</p>
 <h3>Problém skryté stanice (Hidden Node Problem)</h3>
-<p>U bezdrátových sítí nelze použít detekci kolizí (CD) efektivně, protože stanice nemusí slyšet všechny ostatní stanice v síti. Příklad:
-*   Stanice $A$ vidí přístupový bod (AP).
-*   Stanice $C$ také vidí AP.
-*   Nicméně $A$ a $C$ jsou od sebe příliš daleko a navzájem se neslyší (jsou pro sebe "skryté").
-*   Pokud obě stanice naslouchají, usoudí, že vzduch je čistý, začnou vysílat k AP a u přístupového bodu dojde ke kolizi.
-*   Stanice $A$ ani $C$ se však o této kolizi nedozví, protože samy u sebe žádné cizí rušení nenaměří.</p>
+<p>U bezdrátových sítí nelze použít detekci kolizí (CD) efektivně, protože stanice nemusí slyšet všechny ostatní stanice v síti. Příklad:<br>• Stanice $A$ vidí přístupový bod (AP).<br>• Stanice $C$ také vidí AP.<br>• Nicméně $A$ a $C$ jsou od sebe příliš daleko a navzájem se neslyší (jsou pro sebe "skryté").<br>• Pokud obě stanice naslouchají, usoudí, že vzduch je čistý, začnou vysílat k AP a u přístupového bodu dojde ke kolizi.<br>• Stanice $A$ ani $C$ se však o této kolizi nedozví, protože samy u sebe žádné cizí rušení nenaměří.</p>
 <h3>Algoritmus CSMA/CA (Carrier Sense Multiple Access with Collision Avoidance)</h3>
 <p>Jelikož Wi-Fi neumí kolize efektivně detekovat, snaží se jim předcházet (Collision Avoidance).</p>
 <ol>
@@ -630,15 +625,7 @@ Má 2 vstupy ($A_1, A_0$) a 4 výstupy ($Y_0, Y_1, Y_2, Y_3$).</p>
 <li><strong>Fragmentace</strong>: Pokud je IP paket větší než maximální povolená velikost rámce nižší vrstvy (MTU - Maximum Transmission Unit), IP protokol ho dokáže rozdělit na menší kusy (fragmenty). Tyto fragmenty jsou na cílové stanici opět složeny. V IPv6 je fragmentace na mezilehlých routerech zakázána, fragmentaci musí provést odesílatel.</li>
 </ul>
 <h3>Struktura IP hlavičky (zjednodušeně)</h3>
-<p>IP hlavička obsahuje klíčové informace pro směrování a zpracování paketu. Mezi nejdůležitější pole patří:
-*   <strong>Verze</strong>: Určuje verzi IP protokolu (IPv4 nebo IPv6).
-*   <strong>Délka hlavičky</strong>: Délka IP hlavičky.
-*   <strong>Délka paketu</strong>: Celková délka IP paketu (hlavička + data).
-*   <strong>Time To Live (TTL)</strong>: Počet skoků (hopů), které paket může vykonat. Každý router sníží TTL o 1. Pokud TTL dosáhne 0, paket je zahozen, což zabraňuje nekonečnému putování paketů v síti.
-*   <strong>Protokol</strong>: Určuje protokol vyšší vrstvy, který je zapouzdřen v datové části IP paketu (např. 6 pro TCP, 17 pro UDP).
-*   <strong>Kontrolní součet hlavičky (Header Checksum)</strong>: Pro IPv4, slouží k detekci chyb v hlavičce. V IPv6 byl odstraněn.
-*   <strong>Zdrojová IP adresa</strong>: IP adresa odesílatele.
-*   <strong>Cílová IP adresa</strong>: IP adresa příjemce.</p>
+<p>IP hlavička obsahuje klíčové informace pro směrování a zpracování paketu. Mezi nejdůležitější pole patří:<br>• <strong>Verze</strong>: Určuje verzi IP protokolu (IPv4 nebo IPv6).<br>• <strong>Délka hlavičky</strong>: Délka IP hlavičky.<br>• <strong>Délka paketu</strong>: Celková délka IP paketu (hlavička + data).<br>• <strong>Time To Live (TTL)</strong>: Počet skoků (hopů), které paket může vykonat. Každý router sníží TTL o 1. Pokud TTL dosáhne 0, paket je zahozen, což zabraňuje nekonečnému putování paketů v síti.<br>• <strong>Protokol</strong>: Určuje protokol vyšší vrstvy, který je zapouzdřen v datové části IP paketu (např. 6 pro TCP, 17 pro UDP).<br>• <strong>Kontrolní součet hlavičky (Header Checksum)</strong>: Pro IPv4, slouží k detekci chyb v hlavičce. V IPv6 byl odstraněn.<br>• <strong>Zdrojová IP adresa</strong>: IP adresa odesílatele.<br>• <strong>Cílová IP adresa</strong>: IP adresa příjemce.</p>
 <h3>Praktické použití</h3>
 <ul>
 <li>Základ veškeré internetové komunikace.</li>

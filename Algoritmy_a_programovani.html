@@ -394,9 +394,7 @@ kde $s$ je hodnota bitu znaménka, $m$ je hodnota mantisy (zlomková část za s
 </ul>
 <h2>10.3 Jazyk symbolických adres (JSA / Assembler)</h2>
 <p><strong>Strojový kód</strong> (posloupnost binárních nul a jedniček) je pro lidi nečitelný. <strong>Jazyk symbolických adres (Assembler)</strong> ho nahrazuje textovými zkratkami (mnemoniky), které jsou pro programátora srozumitelnější.</p>
-<p><strong>Symbolická adresa (Návěští / Label):</strong>
-*   Namísto ručního vypočítávání absolutních paměťových adres (např. <code>0x004F3A</code>) v definici dat nebo při skocích používáme textové štítky (např. <code>loop_start:</code>, <code>my_variable:</code>).
-*   Překladač (Assembler) pak při generování strojového kódu tyto symbolické adresy automaticky nahradí reálnými číselnými adresami.</p>
+<p><strong>Symbolická adresa (Návěští / Label):</strong><br>• Namísto ručního vypočítávání absolutních paměťových adres (např. <code>0x004F3A</code>) v definici dat nebo při skocích používáme textové štítky (např. <code>loop_start:</code>, <code>my_variable:</code>).<br>• Překladač (Assembler) pak při generování strojového kódu tyto symbolické adresy automaticky nahradí reálnými číselnými adresami.</p>
 <h3>Sekvence instrukcí a algoritmizace základních úloh</h3>
 <p>V JSA neexistují přímo struktury jako <code>if-else</code>, <code>while</code> nebo <code>for</code>. Vše se staví pomocí instrukcí porovnání (např. <code>CMP</code>) a podmíněných nebo nepodmíněných skoků.</p>
 <p><strong>Příklad realizace <code>if (A == B)</code>:</strong></p>
@@ -619,8 +617,7 @@ typedef struct Student {
 } Student; // Nyní lze použít "Student" místo "struct Student"</p>
 <p>Student s2;
 s2.id = 2;
-<code>*   **Union (`union`):**
-*   Podobně jako `struct` seskupuje členy, ale všechny členy sdílejí stejné paměťové místo. Velikost `union` je rovna velikosti největšího člena. V daný okamžik může `union` uchovávat hodnotu pouze jednoho ze svých členů.</code>c
+<code>*   **Union (`union`):**<br>• Podobně jako `struct` seskupuje členy, ale všechny členy sdílejí stejné paměťové místo. Velikost `union` je rovna velikosti největšího člena. V daný okamžik může `union` uchovávat hodnotu pouze jednoho ze svých členů.</code>c
 union Data {
     int i;
     float f;
@@ -1317,30 +1314,20 @@ long faktorial_koncova_rekurze(int n) {
 <li>
 <p><strong>Definujte rekurzi a vysvětlete její základní principy. Uveďte příklad problému, který je přirozeně řešitelný rekurzí.</strong></p>
 <p><strong>Odpověď:</strong>
-Rekurze je programovací technika, při které funkce volá sama sebe (přímo nebo nepřímo). Její základní principy jsou:
-*   <strong>Bázový (kotevní) případ:</strong> Podmínka, při které se rekurze zastaví a vrátí přímý výsledek. Je to ukončovací podmínka.
-*   <strong>Rekurzivní krok:</strong> Funkce volá sebe sama s modifikovaným vstupem, který se postupně přibližuje k bázovému případu.
+Rekurze je programovací technika, při které funkce volá sama sebe (přímo nebo nepřímo). Její základní principy jsou:<br>• <strong>Bázový (kotevní) případ:</strong> Podmínka, při které se rekurze zastaví a vrátí přímý výsledek. Je to ukončovací podmínka.<br>• <strong>Rekurzivní krok:</strong> Funkce volá sebe sama s modifikovaným vstupem, který se postupně přibližuje k bázovému případu.
 Příkladem problému přirozeně řešitelného rekurzí je <strong>výpočet faktoriálu</strong> ($n! = n \times (n-1)!$ s bázovým případem $0! = 1$) nebo <strong>procházení stromové struktury</strong> (např. binární vyhledávací strom).</p>
 </li>
 <li>
 <p><strong>Popište, jak rekurze využívá zásobník programu (call stack). Co je aktivační záznam a jaké informace obsahuje? Jaké riziko je s tímto mechanismem spojeno?</strong></p>
 <p><strong>Odpověď:</strong>
-Při každém volání rekurzivní funkce se na vrchol zásobníku programu (call stack) přidá nový <strong>aktivační záznam (stack frame)</strong>. Tento záznam obsahuje:
-*   Lokální proměnné aktuální instance funkce.
-*   Parametry předané funkci.
-*   Návratovou adresu (kam se má program vrátit po dokončení funkce).
-*   Uložené hodnoty registrů procesoru.
+Při každém volání rekurzivní funkce se na vrchol zásobníku programu (call stack) přidá nový <strong>aktivační záznam (stack frame)</strong>. Tento záznam obsahuje:<br>• Lokální proměnné aktuální instance funkce.<br>• Parametry předané funkci.<br>• Návratovou adresu (kam se má program vrátit po dokončení funkce).<br>• Uložené hodnoty registrů procesoru.
 S každým dalším rekurzivním voláním se na zásobník přidává další aktivační záznam, což způsobuje lineární růst paměti spotřebované zásobníkem.
 Hlavním rizikem je <strong>Stack Overflow (přetečení zásobníku)</strong>. Pokud je rekurze příliš hluboká (např. chybí bázový případ nebo je vstupní data příliš velká), zásobník vyčerpá přidělenou paměť a program havaruje.</p>
 </li>
 <li>
 <p><strong>Vysvětlete rozdíl mezi rekurzivní a iterativní realizací algoritmu. Kdy je vhodnější použít jeden přístup před druhým?</strong></p>
-<p><strong>Odpověď:</strong>
-*   <strong>Rekurzivní realizace</strong> řeší problém voláním sebe sama, spoléhá na zásobník programu pro správu stavu a návratových adres. Kód je často elegantnější a přirozenější pro rekurzivně definované problémy.
-*   <strong>Iterativní realizace</strong> řeší problém pomocí cyklů (např. <code>for</code>, <code>while</code>) a explicitně spravuje svůj stav pomocí proměnných nebo vlastních datových struktur. Je obvykle paměťově efektivnější a rychlejší, protože se vyhýbá režii volání funkcí.
-<strong>Kdy je co vhodnější:</strong>
-*   <strong>Rekurze je vhodnější</strong>, když je problém přirozeně rekurzivní (např. procházení stromů, algoritmy rozděl a panuj), což vede k čistšímu a čitelnějšímu kódu.
-*   <strong>Iterace je vhodnější</strong>, když je hloubka rekurze potenciálně velmi velká (aby se předešlo Stack Overflow), nebo když je kritický výkon a paměťová efektivita. Také pro jednoduché lineární problémy (jako faktoriál) je iterace často jasnější a efektivnější.</p>
+<p><strong>Odpověď:</strong><br>• <strong>Rekurzivní realizace</strong> řeší problém voláním sebe sama, spoléhá na zásobník programu pro správu stavu a návratových adres. Kód je často elegantnější a přirozenější pro rekurzivně definované problémy.<br>• <strong>Iterativní realizace</strong> řeší problém pomocí cyklů (např. <code>for</code>, <code>while</code>) a explicitně spravuje svůj stav pomocí proměnných nebo vlastních datových struktur. Je obvykle paměťově efektivnější a rychlejší, protože se vyhýbá režii volání funkcí.
+<strong>Kdy je co vhodnější:</strong><br>• <strong>Rekurze je vhodnější</strong>, když je problém přirozeně rekurzivní (např. procházení stromů, algoritmy rozděl a panuj), což vede k čistšímu a čitelnějšímu kódu.<br>• <strong>Iterace je vhodnější</strong>, když je hloubka rekurze potenciálně velmi velká (aby se předešlo Stack Overflow), nebo když je kritický výkon a paměťová efektivita. Také pro jednoduché lineární problémy (jako faktoriál) je iterace často jasnější a efektivnější.</p>
 </li>
 <li>
 <p><strong>Co je koncová rekurze a jaká je její hlavní výhoda?</strong></p>
@@ -1445,8 +1432,7 @@ Její hlavní výhodou je, že moderní kompilátory mohou provést <strong>opti
     // Pak by se expandovalo na ((a + 1) * (a + 1)) = (6 * 6) = 36
     return 0;
 }
-<code>``
-*   **Alternativy:** V C++ se pro typově bezpečné "makra" preferují</code>inline<code>funkce nebo šablony (</code>templates`).</p>
+<code>``<br>• **Alternativy:** V C++ se pro typově bezpečné "makra" preferují</code>inline<code>funkce nebo šablony (</code>templates`).</p>
 </li>
 </ul>
 <hr />
@@ -1528,8 +1514,7 @@ Její hlavní výhodou je, že moderní kompilátory mohou provést <strong>opti
     printf("Po volani funkce: mojeCislo = %d\n", mojeCislo);   // 99
     return 0;
 }
-<code>``
-*   **</code>const<code>reference/ukazatele:** Pro efektivní předávání velkých objektů bez možnosti jejich modifikace se používají</code>const<code>reference (C++) nebo</code>const` ukazatele (C). To kombinuje efektivitu předávání odkazem s bezpečností předávání hodnotou.</p>
+<code>``<br>• **</code>const<code>reference/ukazatele:** Pro efektivní předávání velkých objektů bez možnosti jejich modifikace se používají</code>const<code>reference (C++) nebo</code>const` ukazatele (C). To kombinuje efektivitu předávání odkazem s bezpečností předávání hodnotou.</p>
 </li>
 </ul>
 </li>
@@ -1642,40 +1627,13 @@ Její hlavní výhodou je, že moderní kompilátory mohou provést <strong>opti
 <hr />
 <h2>Typické zkouškové otázky</h2>
 <h3>1. Vysvětlete rozdíl mezi funkcí, procedurou a metodou a uveďte příklady jejich použití.</h3>
-<p><strong>Odpověď:</strong>
-*   <strong>Funkce:</strong> Blok kódu, který přijímá vstupy (parametry), provádí výpočet a <strong>vrací hodnotu</strong> jako svůj výsledek (pomocí <code>return</code>). Je navržena pro výpočty a transformace dat bez vedlejších efektů.
-    *   <em>Příklad:</em> <code>int soucet(int a, int b) { return a + b; }</code>
-*   <strong>Procedura:</strong> Blok kódu, který provádí posloupnost příkazů, ale <strong>nevrací explicitně žádnou hodnotu</strong> (v C/C++ má návratový typ <code>void</code>). Jejím hlavním účelem je provádět akce s vedlejšími efekty.
-    *   <em>Příklad:</em> <code>void vypisText(const char *text) { printf("%s\n", text); }</code>
-*   <strong>Metoda:</strong> Funkce, která je <strong>přidružená k objektu nebo třídě</strong> v objektově orientovaném programování. Je volána na instanci objektu a má přístup k jeho vnitřním datům (atributům) a může měnit jeho stav.
-    *   <em>Příklad (C++):</em> <code>class Auto { public: void nastartuj() { /* ... */ } };</code></p>
+<p><strong>Odpověď:</strong><br>• <strong>Funkce:</strong> Blok kódu, který přijímá vstupy (parametry), provádí výpočet a <strong>vrací hodnotu</strong> jako svůj výsledek (pomocí <code>return</code>). Je navržena pro výpočty a transformace dat bez vedlejších efektů.<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <em>Příklad:</em> <code>int soucet(int a, int b) { return a + b; }</code><br>• <strong>Procedura:</strong> Blok kódu, který provádí posloupnost příkazů, ale <strong>nevrací explicitně žádnou hodnotu</strong> (v C/C++ má návratový typ <code>void</code>). Jejím hlavním účelem je provádět akce s vedlejšími efekty.<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <em>Příklad:</em> <code>void vypisText(const char *text) { printf("%s\n", text); }</code><br>• <strong>Metoda:</strong> Funkce, která je <strong>přidružená k objektu nebo třídě</strong> v objektově orientovaném programování. Je volána na instanci objektu a má přístup k jeho vnitřním datům (atributům) a může měnit jeho stav.<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <em>Příklad (C++):</em> <code>class Auto { public: void nastartuj() { /* ... */ } };</code></p>
 <h3>2. Popište způsoby předávání parametrů (hodnotou a odkazem/referencí) a vysvětlete, kdy který použít.</h3>
-<p><strong>Odpověď:</strong>
-*   <strong>Předávání hodnotou (Call by Value):</strong> Funkci se předá <strong>kopie hodnoty</strong> skutečného parametru. Funkce pracuje s touto kopií na zásobníku, a proto jakékoli změny uvnitř funkce neovlivní původní proměnnou ve volajícím programu.
-    *   <em>Kdy použít:</em> Pro malé datové typy (int, char, float) a vždy, když nechceme, aby funkce měnila původní data.
-*   <strong>Předávání odkazem / referencí (Call by Reference):</strong> Funkci se předá <strong>adresa paměťového místa</strong> původní proměnné. Funkce pak pracuje přímo s původními daty, a proto jakékoli změny uvnitř funkce se projeví i ve volajícím programu. V C++ se používají reference (<code>&amp;</code>), v C se simuluje předáním ukazatele (<code>*</code>).
-    *   <em>Kdy použít:</em> Když chceme, aby funkce modifikovala původní data, nebo pro efektivní předávání velkých datových struktur (objektů, polí), aby se předešlo nákladnému kopírování.</p>
+<p><strong>Odpověď:</strong><br>• <strong>Předávání hodnotou (Call by Value):</strong> Funkci se předá <strong>kopie hodnoty</strong> skutečného parametru. Funkce pracuje s touto kopií na zásobníku, a proto jakékoli změny uvnitř funkce neovlivní původní proměnnou ve volajícím programu.<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <em>Kdy použít:</em> Pro malé datové typy (int, char, float) a vždy, když nechceme, aby funkce měnila původní data.<br>• <strong>Předávání odkazem / referencí (Call by Reference):</strong> Funkci se předá <strong>adresa paměťového místa</strong> původní proměnné. Funkce pak pracuje přímo s původními daty, a proto jakékoli změny uvnitř funkce se projeví i ve volajícím programu. V C++ se používají reference (<code>&amp;</code>), v C se simuluje předáním ukazatele (<code>*</code>).<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <em>Kdy použít:</em> Když chceme, aby funkce modifikovala původní data, nebo pro efektivní předávání velkých datových struktur (objektů, polí), aby se předešlo nákladnému kopírování.</p>
 <h3>3. Vysvětlete rozdíl mezi lokálními a globálními proměnnými z hlediska rozsahu platnosti a životního cyklu. Jaká jsou rizika používání globálních proměnných?</h3>
-<p><strong>Odpověď:</strong>
-*   <strong>Lokální proměnné:</strong>
-    *   <strong>Rozsah platnosti:</strong> Viditelné a přístupné pouze uvnitř funkce nebo bloku kódu, kde jsou definovány.
-    *   <strong>Životní cyklus:</strong> Vznikají na zásobníku při vstupu do funkce/bloku a automaticky zanikají při jeho opuštění.
-*   <strong>Globální proměnné:</strong>
-    *   <strong>Rozsah platnosti:</strong> Viditelné a přístupné v celém programu (nebo v celém souboru, pokud jsou <code>static</code>).
-    *   <strong>Životní cyklus:</strong> Vznikají v datovém segmentu paměti při spuštění programu a existují po celou dobu jeho běhu.
-*   <strong>Rizika používání globálních proměnných:</strong>
-    *   <strong>Nečitelnost a obtížná údržba:</strong> Je těžké sledovat, které části kódu globální proměnnou mění.
-    *   <strong>Skryté závislosti (Side-effects):</strong> Funkce mohou mít neočekávané vedlejší efekty, které nejsou zřejmé z jejich rozhraní.
-    *   <strong>Problémy v multithreadingu (Race Conditions):</strong> Souběžný přístup k globálním proměnným z více vláken bez řádné synchronizace vede k nepředvídatelným výsledkům.
-    *   <strong>Snížená znovupoužitelnost:</strong> Funkce jsou pevně svázány s globálním stavem.</p>
+<p><strong>Odpověď:</strong><br>• <strong>Lokální proměnné:</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <strong>Rozsah platnosti:</strong> Viditelné a přístupné pouze uvnitř funkce nebo bloku kódu, kde jsou definovány.<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <strong>Životní cyklus:</strong> Vznikají na zásobníku při vstupu do funkce/bloku a automaticky zanikají při jeho opuštění.<br>• <strong>Globální proměnné:</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <strong>Rozsah platnosti:</strong> Viditelné a přístupné v celém programu (nebo v celém souboru, pokud jsou <code>static</code>).<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <strong>Životní cyklus:</strong> Vznikají v datovém segmentu paměti při spuštění programu a existují po celou dobu jeho běhu.<br>• <strong>Rizika používání globálních proměnných:</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <strong>Nečitelnost a obtížná údržba:</strong> Je těžké sledovat, které části kódu globální proměnnou mění.<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <strong>Skryté závislosti (Side-effects):</strong> Funkce mohou mít neočekávané vedlejší efekty, které nejsou zřejmé z jejich rozhraní.<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <strong>Problémy v multithreadingu (Race Conditions):</strong> Souběžný přístup k globálním proměnným z více vláken bez řádné synchronizace vede k nepředvídatelným výsledkům.<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <strong>Snížená znovupoužitelnost:</strong> Funkce jsou pevně svázány s globálním stavem.</p>
 <h3>4. Co je makro a jaké jsou jeho hlavní nevýhody oproti funkcím?</h3>
-<p><strong>Odpověď:</strong>
-*   <strong>Makro:</strong> Je to instrukce pro preprocesor, která provádí <strong>textovou substituci</strong> v kódu před samotnou kompilací. Není to skutečná funkce, ale jen náhrada textového řetězce.
-*   <strong>Hlavní nevýhody:</strong>
-    *   <strong>Není typově bezpečné:</strong> Preprocesor nekontroluje datové typy, což může vést k chybám.
-    *   <strong>Problémy s vyhodnocováním výrazů:</strong> Může vést k neočekávaným výsledkům kvůli chybějícím závorkám nebo vícenásobnému vyhodnocení argumentů.
-    *   <strong>Obtížné ladění:</strong> Chyby v makrech se těžko detekují a ladí, protože se projevují až po expanzi.
-    *   <strong>Zvětšování kódu (Code Bloat):</strong> Kód makra se vloží na každé místo použití, což může zvětšit velikost binárního souboru.</p>
+<p><strong>Odpověď:</strong><br>• <strong>Makro:</strong> Je to instrukce pro preprocesor, která provádí <strong>textovou substituci</strong> v kódu před samotnou kompilací. Není to skutečná funkce, ale jen náhrada textového řetězce.<br>• <strong>Hlavní nevýhody:</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <strong>Není typově bezpečné:</strong> Preprocesor nekontroluje datové typy, což může vést k chybám.<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <strong>Problémy s vyhodnocováním výrazů:</strong> Může vést k neočekávaným výsledkům kvůli chybějícím závorkám nebo vícenásobnému vyhodnocení argumentů.<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <strong>Obtížné ladění:</strong> Chyby v makrech se těžko detekují a ladí, protože se projevují až po expanzi.<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <strong>Zvětšování kódu (Code Bloat):</strong> Kód makra se vloží na každé místo použití, což může zvětšit velikost binárního souboru.</p>
 <hr />
 <h2>Shrnutí kapitoly</h2>
 <p>Členění programu do menších jednotek, jako jsou funkce, procedury a metody, je základem pro psaní přehledného, udržovatelného a znovupoužitelného kódu. Funkce se zaměřují na výpočty s návratovou hodnotou, procedury na akce s vedlejšími efekty a metody na chování objektů. Makra nabízejí textovou substituci, ale s rizikem typové nebezpečnosti a obtížného ladění. Způsob předávání parametrů (hodnotou vs. odkazem) určuje, zda podprogram může modifikovat původní data. Rozsah platnosti a životní cyklus proměnných (lokální na zásobníku, globální v datovém segmentu) jsou klíčové pro správu paměti a kontrolu přístupu. Zatímco lokální proměnné jsou preferované pro svou izolaci a bezpečnost, globální proměnné by měly být používány s velkou opatrností kvůli rizikům, jako jsou skryté závislosti a problémy v multithreadingovém prostředí.</p>
@@ -1989,15 +1947,11 @@ Její hlavní výhodou je, že moderní kompilátory mohou provést <strong>opti
 <ol>
 <li>
 <p><strong>Vysvětlete rozdíl mezi konzolovou a GUI aplikací z pohledu interakce s uživatelem a toku řízení.</strong></p>
-<p><strong>Odpověď:</strong>
-*   <strong>Konzolová aplikace (CLI):</strong> Interakce probíhá textově přes standardní vstup/výstup. Tok řízení je <strong>sekvenční a lineární</strong>; program se spouští, vykonává instrukce v daném pořadí, čeká na vstup a po dokončení obvykle končí.
-*   <strong>GUI aplikace:</strong> Interakce probíhá vizuálně pomocí grafických prvků (okna, tlačítka, menu). Tok řízení je <strong>událostmi řízený (Event-Driven)</strong>; program "sedí" v paměti a čeká na události (kliknutí myší, stisk klávesy, systémové zprávy) a reaguje na ně prostřednictvím callback funkcí.</p>
+<p><strong>Odpověď:</strong><br>• <strong>Konzolová aplikace (CLI):</strong> Interakce probíhá textově přes standardní vstup/výstup. Tok řízení je <strong>sekvenční a lineární</strong>; program se spouští, vykonává instrukce v daném pořadí, čeká na vstup a po dokončení obvykle končí.<br>• <strong>GUI aplikace:</strong> Interakce probíhá vizuálně pomocí grafických prvků (okna, tlačítka, menu). Tok řízení je <strong>událostmi řízený (Event-Driven)</strong>; program "sedí" v paměti a čeká na události (kliknutí myší, stisk klávesy, systémové zprávy) a reaguje na ně prostřednictvím callback funkcí.</p>
 </li>
 <li>
 <p><strong>Popište princip událostmi řízeného programování a roli smyčky zpráv (message loop) v GUI aplikacích pro Windows.</strong></p>
-<p><strong>Odpověď:</strong>
-*   <strong>Událostmi řízené programování:</strong> Je paradigma, kde program reaguje na události generované uživatelem (např. kliknutí, stisk klávesy) nebo systémem (např. překreslení okna, časovač). Místo lineárního vykonávání kódu program čeká na události a spouští příslušné obslužné rutiny.
-*   <strong>Smyčka zpráv (Message Loop):</strong> Je základním mechanismem GUI aplikací ve Windows. Jedná se o nekonečnou smyčku, která neustále:
+<p><strong>Odpověď:</strong><br>• <strong>Událostmi řízené programování:</strong> Je paradigma, kde program reaguje na události generované uživatelem (např. kliknutí, stisk klávesy) nebo systémem (např. překreslení okna, časovač). Místo lineárního vykonávání kódu program čeká na události a spouští příslušné obslužné rutiny.<br>• <strong>Smyčka zpráv (Message Loop):</strong> Je základním mechanismem GUI aplikací ve Windows. Jedná se o nekonečnou smyčku, která neustále:
     1.  <strong>Vybírá zprávy</strong> z fronty zpráv aplikace (pomocí <code>GetMessage()</code> nebo <code>PeekMessage()</code>).
     2.  Případně <strong>překládá zprávy</strong> (např. <code>TranslateMessage()</code> pro klávesové zkratky).
     3.  <strong>Předává zprávy</strong> k dalšímu zpracování příslušné proceduře okna (<code>DispatchMessage()</code>), která obsahuje logiku pro reakci na konkrétní typy zpráv.</p>
@@ -2005,47 +1959,18 @@ Její hlavní výhodou je, že moderní kompilátory mohou provést <strong>opti
 <li>
 <p><strong>Jaké jsou hlavní komponenty moderního vývojového prostředí (IDE) a k čemu slouží debugger?</strong></p>
 <p><strong>Odpověď:</strong>
-Hlavní komponenty moderního IDE jsou:
-*   <strong>Chytrý textový editor:</strong> Pro psaní kódu s funkcemi jako zvýrazňování syntaxe, automatické doplňování, refaktorování a navigace.
-*   <strong>Kompilátor / Linker (Sestavovací nástroje):</strong> Pro překlad zdrojového kódu na spustitelný program a správu závislostí projektu.
-*   <strong>Debugger (Ladicí nástroj):</strong> Pro hledání a opravu chyb v programu.</p>
-<p><strong>Debugger</strong> slouží k:
-*   <strong>Spouštění programu v kontrolovaném režimu:</strong> Umožňuje pozastavit vykonávání programu v libovolném bodě.
-*   <strong>Nastavování breakpointů:</strong> Zastaví vykonávání na konkrétním řádku kódu.
-*   <strong>Krokování kódu:</strong> Vykonávání programu po jednotlivých řádcích (<code>Step Over</code>, <code>Step Into</code>, <code>Step Out</code>).
-*   <strong>Sledování hodnot proměnných:</strong> Zobrazení a změna hodnot proměnných v reálném čase.
-*   <strong>Analýza zásobníku volání:</strong> Zobrazení posloupnosti funkcí, které vedly k aktuálnímu bodu.</p>
+Hlavní komponenty moderního IDE jsou:<br>• <strong>Chytrý textový editor:</strong> Pro psaní kódu s funkcemi jako zvýrazňování syntaxe, automatické doplňování, refaktorování a navigace.<br>• <strong>Kompilátor / Linker (Sestavovací nástroje):</strong> Pro překlad zdrojového kódu na spustitelný program a správu závislostí projektu.<br>• <strong>Debugger (Ladicí nástroj):</strong> Pro hledání a opravu chyb v programu.</p>
+<p><strong>Debugger</strong> slouží k:<br>• <strong>Spouštění programu v kontrolovaném režimu:</strong> Umožňuje pozastavit vykonávání programu v libovolném bodě.<br>• <strong>Nastavování breakpointů:</strong> Zastaví vykonávání na konkrétním řádku kódu.<br>• <strong>Krokování kódu:</strong> Vykonávání programu po jednotlivých řádcích (<code>Step Over</code>, <code>Step Into</code>, <code>Step Out</code>).<br>• <strong>Sledování hodnot proměnných:</strong> Zobrazení a změna hodnot proměnných v reálném čase.<br>• <strong>Analýza zásobníku volání:</strong> Zobrazení posloupnosti funkcí, které vedly k aktuálnímu bodu.</p>
 </li>
 <li>
 <p><strong>Porovnejte frameworky Windows Forms a WPF pro vývoj GUI aplikací v .NET.</strong></p>
-<p><strong>Odpověď:</strong>
-*   <strong>Windows Forms (WinForms):</strong>
-    *   <strong>Starší:</strong> Založen na GDI+, používá nativní ovládací prvky Windows.
-    *   <strong>Návrh:</strong> Vizuální návrhář s pixelovým pozicováním prvků.
-    *   <strong>Oddělení vzhledu a logiky:</strong> Slabší, vzhled a logika jsou často těsně provázány v kódu.
-    *   <strong>Výkon:</strong> Méně efektivní pro komplexní grafiku, nepoužívá hardwarovou akceleraci.
-    *   <strong>Použití:</strong> Rychlý vývoj jednodušších desktopových aplikací, legacy systémy.
-*   <strong>WPF (Windows Presentation Foundation):</strong>
-    *   <strong>Modernější:</strong> Založen na DirectX, používá vektorovou grafiku.
-    *   <strong>Návrh:</strong> Deklarativní pomocí XAML (Extensible Application Markup Language).
-    *   <strong>Oddělení vzhledu a logiky:</strong> Silné, XAML pro vzhled, C# pro logiku (MVVM pattern). Podporuje Data Binding.
-    *   <strong>Výkon:</strong> Využívá hardwarovou akceleraci, vhodný pro bohatá a vizuálně komplexní rozhraní.
-    *   <strong>Použití:</strong> Moderní desktopové aplikace s bohatým UI, multimediální aplikace.</p>
+<p><strong>Odpověď:</strong><br>• <strong>Windows Forms (WinForms):</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <strong>Starší:</strong> Založen na GDI+, používá nativní ovládací prvky Windows.<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <strong>Návrh:</strong> Vizuální návrhář s pixelovým pozicováním prvků.<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <strong>Oddělení vzhledu a logiky:</strong> Slabší, vzhled a logika jsou často těsně provázány v kódu.<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <strong>Výkon:</strong> Méně efektivní pro komplexní grafiku, nepoužívá hardwarovou akceleraci.<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <strong>Použití:</strong> Rychlý vývoj jednodušších desktopových aplikací, legacy systémy.<br>• <strong>WPF (Windows Presentation Foundation):</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <strong>Modernější:</strong> Založen na DirectX, používá vektorovou grafiku.<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <strong>Návrh:</strong> Deklarativní pomocí XAML (Extensible Application Markup Language).<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <strong>Oddělení vzhledu a logiky:</strong> Silné, XAML pro vzhled, C# pro logiku (MVVM pattern). Podporuje Data Binding.<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <strong>Výkon:</strong> Využívá hardwarovou akceleraci, vhodný pro bohatá a vizuálně komplexní rozhraní.<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <strong>Použití:</strong> Moderní desktopové aplikace s bohatým UI, multimediální aplikace.</p>
 </li>
 <li>
 <p><strong>Uveďte výhody a nevýhody konzolových aplikací.</strong></p>
 <p><strong>Odpověď:</strong>
-<strong>Výhody:</strong>
-*   <strong>Nízká režie:</strong> Malé nároky na systémové prostředky.
-*   <strong>Rychlý start:</strong> Spouštějí se okamžitě.
-*   <strong>Snadná automatizace a skriptování:</strong> Ideální pro dávkové zpracování, systémové utility a skripty.
-*   <strong>Jednodušší debugování:</strong> Lineární tok řízení usnadňuje sledování chyb.
-*   <strong>Multiplatformnost:</strong> Často snadno přenositelné mezi OS.
-*   <strong>Zaměření na logiku:</strong> Vývojář se soustředí na algoritmus, ne na UI.</p>
-<p><strong>Nevýhody:</strong>
-*   <strong>Omezená interakce:</strong> Pouze textová komunikace.
-*   <strong>Není intuitivní pro běžné uživatele:</strong> Vyžaduje znalost příkazového řádku.
-*   <strong>Nevhodné pro vizuální úlohy:</strong> Nelze zobrazovat grafiku, obrázky, komplexní rozvržení.</p>
+<strong>Výhody:</strong><br>• <strong>Nízká režie:</strong> Malé nároky na systémové prostředky.<br>• <strong>Rychlý start:</strong> Spouštějí se okamžitě.<br>• <strong>Snadná automatizace a skriptování:</strong> Ideální pro dávkové zpracování, systémové utility a skripty.<br>• <strong>Jednodušší debugování:</strong> Lineární tok řízení usnadňuje sledování chyb.<br>• <strong>Multiplatformnost:</strong> Často snadno přenositelné mezi OS.<br>• <strong>Zaměření na logiku:</strong> Vývojář se soustředí na algoritmus, ne na UI.</p>
+<p><strong>Nevýhody:</strong><br>• <strong>Omezená interakce:</strong> Pouze textová komunikace.<br>• <strong>Není intuitivní pro běžné uživatele:</strong> Vyžaduje znalost příkazového řádku.<br>• <strong>Nevhodné pro vizuální úlohy:</strong> Nelze zobrazovat grafiku, obrázky, komplexní rozvržení.</p>
 </li>
 </ol>
 <hr />
@@ -2182,9 +2107,7 @@ shared_counter++;
 unlock(mutex);
 </code></pre>
 <h3>2. Semafor</h3>
-<p><strong>Princip:</strong> Zobecněný mutex, který obsahuje čítač. Udává, kolik vláken může současně přistupovat ke zdroji. Operace se semaforem jsou <code>wait()</code> (nebo <code>P()</code>, <code>acquire()</code>) a <code>signal()</code> (nebo <code>V()</code>, <code>release()</code>).
-*   <code>wait()</code>: Dekrementuje čítač. Pokud je čítač záporný, vlákno se zablokuje.
-*   <code>signal()</code>: Inkrementuje čítač. Pokud jsou nějaká vlákna zablokovaná, jedno z nich probudí.</p>
+<p><strong>Princip:</strong> Zobecněný mutex, který obsahuje čítač. Udává, kolik vláken může současně přistupovat ke zdroji. Operace se semaforem jsou <code>wait()</code> (nebo <code>P()</code>, <code>acquire()</code>) a <code>signal()</code> (nebo <code>V()</code>, <code>release()</code>).<br>• <code>wait()</code>: Dekrementuje čítač. Pokud je čítač záporný, vlákno se zablokuje.<br>• <code>signal()</code>: Inkrementuje čítač. Pokud jsou nějaká vlákna zablokovaná, jedno z nich probudí.</p>
 <p><strong>Typy semaforů:</strong></p>
 <ul>
 <li><strong>Binární semafor:</strong> Má hodnotu 0 nebo 1. Chová se v podstatě jako mutex, zajišťuje vzájemné vyloučení.</li>
@@ -2192,9 +2115,7 @@ unlock(mutex);
 </ul>
 <h3>3. Podmínkové proměnné (Condition Variables)</h3>
 <p><strong>Princip:</strong> Slouží k signalizaci mezi vlákny, která čekají na splnění určité podmínky. Podmínkové proměnné se vždy používají ve spojení s mutexem. Vlákno se může uspat a čekat na splnění určité podmínky (<code>wait()</code>). Jiné vlákno, které tuto podmínku splní, pošle signál (<code>signal()</code> probudí jedno čekající vlákno, <code>broadcast()</code> probudí všechna čekající vlákna), který spící vlákno probudí.</p>
-<p><strong>Příklad použití (Producent-Konzument problém):</strong>
-*   Vlákno-producent vloží data do bufferu a probudí spící vlákno-konzumenta, aby data zpracovalo.
-*   Vlákno-konzument čeká na data v bufferu. Pokud buffer prázdný, uspí se na podmínkové proměnné.</p>
+<p><strong>Příklad použití (Producent-Konzument problém):</strong><br>• Vlákno-producent vloží data do bufferu a probudí spící vlákno-konzumenta, aby data zpracovalo.<br>• Vlákno-konzument čeká na data v bufferu. Pokud buffer prázdný, uspí se na podmínkové proměnné.</p>
 <h3>Další synchronizační mechanismy:</h3>
 <ul>
 <li><strong>Atomické operace:</strong> Jednoduché operace (např. inkrementace, dekrementace, výměna hodnoty), které jsou garantovány hardwarem jako nedělitelné. Jsou rychlejší než mutexy pro jednoduché operace.</li>

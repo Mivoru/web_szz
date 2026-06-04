@@ -95,8 +95,12 @@ Pokud tato limita existuje a je vlastní, říkáme, že funkce má v bodě $x_0
 </ul>
 </li>
 </ul>
-<p><strong>Příklad výpočtu:</strong>
-$$ \frac{d}{dx}(x^3 - 2x) = 3x^2 - 2 $$</p>
+<div style="background-color: #f0f7f4; padding: 15px; border-left: 4px solid #16a085; margin: 15px 0;">
+    <strong>Příklad: Výpočet derivace</strong><br>
+    Derivujte funkci $f(x) = x^3 \cdot \sin(x)$. Použijeme pravidlo pro derivaci součinu:<br>
+    $$f'(x) = (x^3)' \cdot \sin(x) + x^3 \cdot (\sin(x))'$$
+    $$f'(x) = 3x^2 \sin(x) + x^3 \cos(x)$$
+</div>
 <h3>Praktický význam</h3>
 <ul>
 <li><strong>Matematická analýza:</strong><ul>
@@ -129,10 +133,13 @@ Zatímco skutečný přírůstek funkce je $\Delta y = f(x_0 + dx) - f(x_0)$, di
 $$f(x_0 + \Delta x) \approx f(x_0) + f'(x_0) \Delta x$$</p>
 <h3>Výpočty</h3>
 <p>Výpočet diferenciálu spočívá v nalezení první derivace funkce a jejím vynásobení diferencí $dx$.</p>
-<p><strong>Příklad výpočtu:</strong>
-Pro funkci $f(x) = x^2$:
-1.  Najdeme derivaci: $f'(x) = 2x$.
-2.  Diferenciál je: $df = 2x \cdot dx$.</p>
+<div style="background-color: #f0f7f4; padding: 15px; border-left: 4px solid #16a085; margin: 15px 0;">
+    <strong>Příklad: Výpočet diferenciálu</strong><br>
+    Určete diferenciál funkce $f(x) = x^3$ a vypočtěte jej pro bod $x=2$ a přírůstek $dx=0.1$.<br>
+    1. Najdeme derivaci: $f'(x) = 3x^2$.<br>
+    2. Obecný tvar diferenciálu: $df = 3x^2 \, dx$.<br>
+    3. Dosadíme hodnoty: $df = 3 \cdot (2)^2 \cdot 0.1 = 3 \cdot 4 \cdot 0.1 = 1.2$.
+</div>
 <h3>Praktický význam</h3>
 <ul>
 <li><strong>Přibližné výpočty:</strong> Používá se k aproximaci složitých funkčních hodnot v blízkosti známého bodu. Například, chceme-li odhadnout $\sqrt{4.01}$, můžeme použít diferenciál funkce $f(x) = \sqrt{x}$ v bodě $x_0=4$ s $dx=0.01$.
@@ -189,8 +196,17 @@ kde $F(x)$ je libovolná primitivní funkce k $f(x)$.</p>
     Pokud máme integrál ve tvaru $\int f(g(x)) \cdot g'(x) \, dx$, zavedeme substituci $t = g(x)$, pak $dt = g'(x) \, dx$. Integrál se transformuje na $\int f(t) \, dt$.</p>
 </li>
 </ul>
-<p><strong>Příklad výpočtu:</strong>
-$$ \int (3x^2 - 2) \, dx = x^3 - 2x + C $$</p>
+<div style="background-color: #f0f7f4; padding: 15px; border-left: 4px solid #16a085; margin: 15px 0;">
+    <strong>Příklad 1: Metoda per partes</strong><br>
+    Vypočtěte $\int x e^x \, dx$.<br>
+    Zvolíme: $u = x \implies u' = 1$ a $v' = e^x \implies v = e^x$.<br>
+    $$ \int x e^x \, dx = x e^x - \int 1 \cdot e^x \, dx = x e^x - e^x + C $$
+    <br><br>
+    <strong>Příklad 2: Substituční metoda</strong><br>
+    Vypočtěte $\int 2x \cos(x^2) \, dx$.<br>
+    Zvolíme substituci $t = x^2$, z čehož derivací získáme $dt = 2x \, dx$.<br>
+    $$ \int \cos(t) \, dt = \sin(t) + C = \sin(x^2) + C $$
+</div>
 <h3>Praktický význam</h3>
 <ul>
 <li><strong>Geometrie:</strong><ul>
@@ -302,10 +318,13 @@ Předpokládejme, že naměřený poloměr je $r_0 = 10 \text{ cm}$, ale měřen
 <p>Soustava $m$ lineárních rovnic o $n$ neznámých $x_1, x_2, \ldots, x_n$ má obecný tvar:</p>
 <p>$$
 \begin{aligned}
-a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n &= b_1 \\
-a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n &= b_2 \\
-&\vdots \\
-a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n &= b_m
+a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n &amp;= b_1 \\
+ 
+a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n &amp;= b_2 \\
+ 
+&amp;\vdots \\
+ 
+a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n &amp;= b_m
 \end{aligned}
 $$</p>
 <p>Kde $a_{ij}$ jsou koeficienty (reálná nebo komplexní čísla) a $b_i$ jsou absolutní členy (pravá strana) rovnic.</p>
@@ -318,10 +337,13 @@ $$</p>
 <p>$A$ je <strong>matice soustavy</strong> (typu $m \times n$) obsahující koeficienty $a_{ij}$:
     $$
     A = \begin{pmatrix}
-    a_{11} & a_{12} & \cdots & a_{1n} \\
-    a_{21} & a_{22} & \cdots & a_{2n} \\
-    \vdots & \vdots & \ddots & \vdots \\
-    a_{m1} & a_{m2} & \cdots & a_{mn}
+    a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\
+ 
+    a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} \\
+ 
+    \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+ 
+    a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn}
     \end{pmatrix}
     $$</p>
 </li>
@@ -330,8 +352,11 @@ $$</p>
     $$
     x = \begin{pmatrix}
     x_1 \\
+ 
     x_2 \\
+ 
     \vdots \\
+ 
     x_n
     \end{pmatrix}
     $$</p>
@@ -341,8 +366,11 @@ $$</p>
     $$
     b = \begin{pmatrix}
     b_1 \\
+ 
     b_2 \\
+ 
     \vdots \\
+ 
     b_m
     \end{pmatrix}
     $$</p>
@@ -351,10 +379,13 @@ $$</p>
 <p>Při řešení často využíváme <strong>rozšířenou matici soustavy</strong> $A_R = (A|b)$, kde k matici koeficientů $A$ přidáme jako poslední sloupec vektor pravých stran $b$.</p>
 <p>$$
 A_R = (A|b) = \begin{pmatrix}
-a_{11} & a_{12} & \cdots & a_{1n} & b_1 \\
-a_{21} & a_{22} & \cdots & a_{2n} & b_2 \\
-\vdots & \vdots & \ddots & \vdots & \vdots \\
-a_{m1} & a_{m2} & \cdots & a_{mn} & b_m
+a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} &amp; b_1 \\
+ 
+a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} &amp; b_2 \\
+ 
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; \vdots \\
+ 
+a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn} &amp; b_m
 \end{pmatrix}
 $$</p>
 <hr />
@@ -417,10 +448,58 @@ $$h(A) = h(A_R)$$</p>
 <li>
 <p><strong>Zpětný chod (zpětná substituce):</strong> Jakmile je matice ve stupňovitém tvaru, řešení se získá postupným dosazováním. Z posledního nenulového řádku (který obsahuje nejméně neznámých) přímo spočítáme jednu neznámou. Tuto hodnotu pak dosadíme do předposledního řádku a spočítáme další neznámou, a takto pokračujeme "odspodu nahoru", dokud nejsou všechny neznámé vypočítány.</p>
 </li>
+</ul>
+<div style="background-color: #f0f7f4; padding: 15px; border-left: 4px solid #16a085; margin: 15px 0;">
+    <strong>Příklad: Gaussova eliminační metoda</strong><br>
+    Řešte soustavu rovnic:
+    $$ \begin{aligned} x + y + z &= 6 \\
+ 2x - y + z &= 3 \\
+ 3x + 2y - z &= 4 \end{aligned} $$
+    1. Zápis do rozšířené matice:
+    $$ \left(\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\
+ 2 & -1 & 1 & 3 \\
+ 3 & 2 & -1 & 4 \end{array}\right) $$
+    2. Převod na stupňovitý tvar: Od 2. řádku odečteme 2násobek 1. řádku, od 3. řádku 3násobek 1. řádku.
+    $$ \left(\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\
+ 0 & -3 & -1 & -9 \\
+ 0 & -1 & -4 & -14 \end{array}\right) $$
+    Vynásobíme 2. a 3. řádek číslem -1 a prohodíme je pro snazší výpočet:
+    $$ \left(\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\
+ 0 & 1 & 4 & 14 \\
+ 0 & 3 & 1 & 9 \end{array}\right) $$
+    Od 3. řádku odečteme 3násobek 2. řádku:
+    $$ \left(\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\
+ 0 & 1 & 4 & 14 \\
+ 0 & 0 & -11 & -33 \end{array}\right) $$
+    3. Zpětná substituce:<br>
+    Z 3. řádku: $-11z = -33 \implies z = 3$<br>
+    Z 2. řádku: $y + 4(3) = 14 \implies y = 2$<br>
+    Z 1. řádku: $x + 2 + 3 = 6 \implies x = 1$<br>
+    <strong>Výsledek:</strong> $(x, y, z) = (1, 2, 3)$
+</div>
+<ul>
 <li>
 <p><strong>Gauss-Jordanova eliminace:</strong> Je rozšířením Gaussovy eliminace. Matici se elementárními řádkovými úpravami převede až na <strong>redukovaný řádkově stupňovitý tvar</strong>, kde jsou nuly nejen pod pivoty, ale i nad nimi, a všechny pivoty jsou rovny jedné. Řešení soustavy je pak přímo viditelné v posledním sloupci rozšířené matice (vektoru pravých stran).</p>
 </li>
 </ul>
+<div style="background-color: #f0f7f4; padding: 15px; border-left: 4px solid #16a085; margin: 15px 0;">
+    <strong>Příklad: Gauss-Jordanova eliminace</strong><br>
+    Pokračujeme v předchozím příkladu z matice ve stupňovitém tvaru.
+    Nejprve zjednodušíme 3. řádek dělením -11.
+    $$ \left(\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\
+ 0 & 1 & 4 & 14 \\
+ 0 & 0 & 1 & 3 \end{array}\right) $$
+    Nyní nulujeme prvky nad diagonálou (odspodu nahoru):
+    Od 2. řádku odečteme 4násobek 3. řádku a od 1. řádku odečteme 3. řádek.
+    $$ \left(\begin{array}{ccc|c} 1 & 1 & 0 & 3 \\
+ 0 & 1 & 0 & 2 \\
+ 0 & 0 & 1 & 3 \end{array}\right) $$
+    Nakonec od 1. řádku odečteme 2. řádek.
+    $$ \left(\begin{array}{ccc|c} 1 & 0 & 0 & 1 \\
+ 0 & 1 & 0 & 2 \\
+ 0 & 0 & 1 & 3 \end{array}\right) $$
+    <strong>Výsledek</strong> je přímo ve 4. sloupci: $(x, y, z) = (1, 2, 3)$.
+</div>
 <h3>2. Cramerovo pravidlo</h3>
 <p>Tato metoda je použitelná pouze pro <strong>čtvercové soustavy</strong> ($m=n$), kde matice soustavy $A$ je <strong>regulární</strong> (tj. $det(A) \neq 0$).</p>
 <ul>
@@ -598,7 +677,8 @@ $$h(A) = h(A_R)$$</p>
 <li>Příklad matice $2 \times 2$:
     $$
     \begin{pmatrix}
-    a &amp; b \
+    a &amp; b \\
+ 
     c &amp; d
     \end{pmatrix}
     $$</li>
@@ -611,7 +691,8 @@ $$h(A) = h(A_R)$$</p>
 <li>Příklad matice $2 \times 3$:
     $$
     \begin{pmatrix}
-    a &amp; b &amp; c \
+    a &amp; b &amp; c \\
+ 
     d &amp; e &amp; f
     \end{pmatrix}
     $$</li>
@@ -624,7 +705,8 @@ $$h(A) = h(A_R)$$</p>
 <li>Příklad matice $2 \times 2$:
     $$
     \begin{pmatrix}
-    0 &amp; 0 \
+    0 &amp; 0 \\
+ 
     0 &amp; 0
     \end{pmatrix}
     $$</li>
@@ -637,8 +719,10 @@ $$h(A) = h(A_R)$$</p>
 <li>Příklad matice $3 \times 3$:
     $$
     \begin{pmatrix}
-    a &amp; 0 &amp; 0 \
-    0 &amp; b &amp; 0 \
+    a &amp; 0 &amp; 0 \\
+ 
+    0 &amp; b &amp; 0 \\
+ 
     0 &amp; 0 &amp; c
     \end{pmatrix}
     $$</li>
@@ -652,8 +736,10 @@ $$h(A) = h(A_R)$$</p>
 <li>Příklad matice $3 \times 3$:
     $$
     I = \begin{pmatrix}
-    1 &amp; 0 &amp; 0 \
-    0 &amp; 1 &amp; 0 \
+    1 &amp; 0 &amp; 0 \\
+ 
+    0 &amp; 1 &amp; 0 \\
+ 
     0 &amp; 0 &amp; 1
     \end{pmatrix}
     $$</li>
@@ -676,8 +762,10 @@ $$h(A) = h(A_R)$$</p>
 <li>Příklad:
     $$
     \begin{pmatrix}
-    1 &amp; 2 &amp; 3 \
-    2 &amp; 4 &amp; 5 \
+    1 &amp; 2 &amp; 3 \\
+ 
+    2 &amp; 4 &amp; 5 \\
+ 
     3 &amp; 5 &amp; 6
     \end{pmatrix}
     $$</li>
@@ -722,9 +810,17 @@ Absolutní hodnota determinantu matice reprezentuje faktor, kterým se změní o
 <li>
 <p><strong>Matice $3 \times 3$ (Sarrusovo pravidlo):</strong></p>
 <ul>
-<li>Pro $A = \begin{pmatrix} a_{11} &amp; a_{12} &amp; a_{13} \ a_{21} &amp; a_{22} &amp; a_{23} \ a_{31} &amp; a_{32} &amp; a_{33} \end{pmatrix}$ se pod matici symbolicky opíší první dva řádky. Poté se sečtou součiny prvků na třech diagonálách zleva doprava (s kladným znaménkem) a odečtou se součiny prvků na třech diagonálách zprava doleva (s záporným znaménkem):
+<li>Pro $A = \begin{pmatrix} a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33} \end{pmatrix}$ se pod matici symbolicky opíší první dva řádky. Poté se sečtou součiny prvků na třech diagonálách zleva doprava (s kladným znaménkem) a odečtou se součiny prvků na třech diagonálách zprava doleva (s záporným znaménkem):
     $$\det(A) = a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32} - a_{13}a_{22}a_{31} - a_{11}a_{23}a_{32} - a_{12}a_{21}a_{33}$$</li>
 </ul>
+<div style="background-color: #f0f7f4; padding: 15px; border-left: 4px solid #16a085; margin: 15px 0;">
+    <strong>Příklad: Výpočet determinantu $3 \times 3$</strong><br>
+    $$ A = \begin{pmatrix} 1 & 2 & 3 \\
+ 0 & 1 & 4 \\
+ 5 & 6 & 0 \end{pmatrix} $$
+    $\det(A) = (1 \cdot 1 \cdot 0 + 2 \cdot 4 \cdot 5 + 3 \cdot 0 \cdot 6) - (3 \cdot 1 \cdot 5 + 1 \cdot 4 \cdot 6 + 2 \cdot 0 \cdot 0)$<br>
+    $\det(A) = (0 + 40 + 0) - (15 + 24 + 0) = 40 - 39 = 1$
+</div>
 </li>
 <li>
 <p><strong>Matice $n \times n$ (Laplaceův rozvoj):</strong></p>
@@ -772,10 +868,29 @@ kde $I$ je jednotková matice stejného rozměru jako $A$.</p>
 <li>Kde $\det(A)$ je determinant matice $A$.</li>
 <li>$\text{adj}(A)$ je adjungovaná matice, která je transponovanou maticí algebraických doplňků (kofaktorů) původní matice $A$.</li>
 <li>Algebraický doplněk $C_{ij}$ prvku $a_{ij}$ je $(-1)^{i+j} M_{ij}$, kde $M_{ij}$ je minor (determinant submatice vzniklé odstraněním $i$-tého řádku a $j$-tého sloupce).</li>
-<li>Pro matici $2 \times 2$: Pokud $A = \begin{pmatrix} a &amp; b \ c &amp; d \end{pmatrix}$, pak $A^{-1} = \frac{1}{ad-bc} \begin{pmatrix} d &amp; -b \ -c &amp; a \end{pmatrix}$.</li>
+<li>Pro matici $2 \times 2$: Pokud $A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$, pak $A^{-1} = \frac{1}{ad-bc} \begin{pmatrix} d & -b \\ -c & a \end{pmatrix}$.</li>
 </ul>
 </li>
 </ol>
+<div style="background-color: #f0f7f4; padding: 15px; border-left: 4px solid #16a085; margin: 15px 0;">
+    <strong>Příklad: Výpočet inverzní matice ($2 \times 2$)</strong><br>
+    Mějme matici $A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$. Její determinant je $\det(A) = (1\cdot4) - (2\cdot3) = -2$.
+    <br><br>
+    <strong>A) Gauss-Jordanovou eliminací:</strong>
+    $$ \left(\begin{array}{cc|cc} 1 & 2 & 1 & 0 \\
+ 3 & 4 & 0 & 1 \end{array}\right) \xrightarrow{R_2 - 3R_1} \left(\begin{array}{cc|cc} 1 & 2 & 1 & 0 \\
+ 0 & -2 & -3 & 1 \end{array}\right) \xrightarrow{R_2 / -2} $$
+    $$ \left(\begin{array}{cc|cc} 1 & 2 & 1 & 0 \\
+ 0 & 1 & 1.5 & -0.5 \end{array}\right) \xrightarrow{R_1 - 2R_2} \left(\begin{array}{cc|cc} 1 & 0 & -2 & 1 \\
+ 0 & 1 & 1.5 & -0.5 \end{array}\right) $$
+    Inverzní matice je tedy $\begin{pmatrix} -2 & 1 \\ 1.5 & -0.5 \end{pmatrix}$.
+    <br><br>
+    <strong>B) Pomocí adjungované matice (pro $2 \times 2$):</strong>
+    $$ A^{-1} = \frac{1}{\det(A)} \begin{pmatrix} d & -b \\
+ -c & a \end{pmatrix} = \frac{1}{-2} \begin{pmatrix} 4 & -2 \\
+ -3 & 1 \end{pmatrix} = \begin{pmatrix} -2 & 1 \\
+ 1.5 & -0.5 \end{pmatrix} $$
+</div>
 <hr />
 <h3>E. Praktický význam v IT</h3>
 <ul>
@@ -899,6 +1014,28 @@ Kde $\mathbf{I}$ je jednotková matice stejného rozměru jako $\mathbf{A}$. Pro
     Protože je matice $(\mathbf{A} - \lambda_i\mathbf{I})$ singulární, soustava bude mít vždy nekonečně mnoho řešení. Vlastní vektor vyjádříme pomocí parametru (báze podprostoru vlastních vektorů). Je důležité si uvědomit, že vlastní vektor nesmí být nulový.</p>
 </li>
 </ol>
+<div style="background-color: #f0f7f4; padding: 15px; border-left: 4px solid #16a085; margin: 15px 0;">
+    <strong>Příklad: Výpočet vlastních čísel a vektorů</strong><br>
+    Najděte vlastní čísla a vektory pro matici $ \mathbf{A} = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix} $.<br><br>
+    <strong>1. Výpočet vlastních čísel:</strong><br>
+    Sestavíme charakteristickou rovnici $\det(\mathbf{A} - \lambda\mathbf{I}) = 0$:
+    $$ \det \begin{pmatrix} 2 - \lambda & 1 \\
+ 1 & 2 - \lambda \end{pmatrix} = (2 - \lambda)(2 - \lambda) - 1 \cdot 1 = \lambda^2 - 4\lambda + 3 = 0 $$
+    Kořeny této kvadratické rovnice (např. rozkladem na $(\lambda - 3)(\lambda - 1) = 0$) jsou vlastní čísla: $\lambda_1 = 3, \lambda_2 = 1$.<br><br>
+    <strong>2. Výpočet vlastních vektorů:</strong><br>
+    <strong>Pro $\lambda_1 = 3$:</strong> Řešíme rovnici $(\mathbf{A} - 3\mathbf{I})\mathbf{x} = \mathbf{0}$:
+    $$ \begin{pmatrix} -1 & 1 \\
+ 1 & -1 \end{pmatrix} \begin{pmatrix} x_1 \\
+ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\
+ 0 \end{pmatrix} $$
+    Z první rovnice plyne $-x_1 + x_2 = 0 \implies x_1 = x_2$. Zvolíme například $x_1 = 1$, pak vlastní vektor je $\mathbf{v}_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}$. Všechny násobky (kromě nulového) jsou také vlastními vektory pro toto vlastní číslo.<br><br>
+    <strong>Pro $\lambda_2 = 1$:</strong> Řešíme rovnici $(\mathbf{A} - 1\mathbf{I})\mathbf{x} = \mathbf{0}$:
+    $$ \begin{pmatrix} 1 & 1 \\
+ 1 & 1 \end{pmatrix} \begin{pmatrix} x_1 \\
+ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\
+ 0 \end{pmatrix} $$
+    Z rovnice plyne $x_1 + x_2 = 0 \implies x_1 = -x_2$. Zvolíme například $x_1 = 1$, pak vlastní vektor je $\mathbf{v}_2 = \begin{pmatrix} 1 \\ -1 \end{pmatrix}$.
+</div>
 <h2>C. Praktická interpretace a význam v IT</h2>
 <p>Vlastní čísla a vektory jsou klíčové, protože umožňují rozložit složité lineární transformace na jednodušší, nezávislé složky.</p>
 <ul>
@@ -1010,20 +1147,11 @@ Kde $\mathbf{I}$ je jednotková matice stejného rozměru jako $\mathbf{A}$. Pro
 <hr />
 <h2>A. Pravděpodobnost a náhodný jev</h2>
 <p><strong>Náhodný pokus</strong>
-Činnost, která se za stejných podmínek může opakovat, ale její výsledek závisí na náhodě.
-*   <strong>Příklady:</strong> Hod kostkou, přenos datového paketu zašuměným kanálem, měření doby odezvy serveru.</p>
+Činnost, která se za stejných podmínek může opakovat, ale její výsledek závisí na náhodě.<br>• <strong>Příklady:</strong> Hod kostkou, přenos datového paketu zašuměným kanálem, měření doby odezvy serveru.</p>
 <p><strong>Množina elementárních výsledků ($\Omega$)</strong>
-Množina všech možných, vzájemně se vylučujících a nezaměnitelných výsledků náhodného pokusu.
-*   <strong>Příklady:</strong>
-    *   Hod kostkou: $\Omega = {1, 2, 3, 4, 5, 6}$
-    *   Hod mincí: $\Omega = {\text{Hlava, Orel}}$
-    *   Doba odezvy serveru: $\Omega = [0, \infty)$</p>
+Množina všech možných, vzájemně se vylučujících a nezaměnitelných výsledků náhodného pokusu.<br>• <strong>Příklady:</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;◦ Hod kostkou: $\Omega = {1, 2, 3, 4, 5, 6}$<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ Hod mincí: $\Omega = {\text{Hlava, Orel}}$<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ Doba odezvy serveru: $\Omega = [0, \infty)$</p>
 <p><strong>Náhodný jev ($A$)</strong>
-Libovolná podmnožina množiny elementárních výsledků ($\text{A} \subseteq \Omega$). Jev nastane, pokud je výsledek pokusu prvkem této podmnožiny.
-*   <strong>Příklady:</strong>
-    *   Hod kostkou, jev "padne sudé číslo": $A = {2, 4, 6}$
-    *   Hod mincí, jev "padne hlava": $A = {\text{Hlava}}$
-    *   Doba odezvy serveru, jev "odezva je delší než 100 ms": $A = (100, \infty)$</p>
+Libovolná podmnožina množiny elementárních výsledků ($\text{A} \subseteq \Omega$). Jev nastane, pokud je výsledek pokusu prvkem této podmnožiny.<br>• <strong>Příklady:</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;◦ Hod kostkou, jev "padne sudé číslo": $A = {2, 4, 6}$<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ Hod mincí, jev "padne hlava": $A = {\text{Hlava}}$<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ Doba odezvy serveru, jev "odezva je delší než 100 ms": $A = (100, \infty)$</p>
 <p><strong>Pravděpodobnost ($P(A)$)</strong>
 Funkce, která každému jevu $A$ přiřazuje reálné číslo z intervalu $\langle 0,1 \rangle$, vyjadřující míru očekávání, že jev nastane.</p>
 <h3>Definice pravděpodobnosti</h3>
@@ -1061,25 +1189,26 @@ Funkce, která každému jevu $A$ přiřazuje reálné číslo z intervalu $\lan
 Vyjadřuje pravděpodobnost nastoupení jevu $A$ za podmínky, že už prokazatelně nastal jev $B$.
 Je definována vztahem:
 $$P(A|B) = \frac{P(A \cap B)}{P(B)}$$
-pro $P(B) &gt; 0$.
-*   $P(A \cap B)$ je pravděpodobnost, že nastanou oba jevy $A$ i $B$.
-*   <strong>Příklad:</strong> Pravděpodobnost, že padne šestka (jev $A$) za podmínky, že padlo sudé číslo (jev $B$).
-    *   $P(A \cap B) = P(\text{padne 6 a je sudé}) = P(\text{padne 6}) = \frac{1}{6}$
-    *   $P(B) = P(\text{padne sudé}) = \frac{3}{6} = \frac{1}{2}$
-    *   $P(A|B) = \frac{1/6}{1/2} = \frac{1}{3}$</p>
+pro $P(B) &gt; 0$.<br>• $P(A \cap B)$ je pravděpodobnost, že nastanou oba jevy $A$ i $B$.<br>• <strong>Příklad:</strong> Pravděpodobnost, že padne šestka (jev $A$) za podmínky, že padlo sudé číslo (jev $B$).<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ $P(A \cap B) = P(\text{padne 6 a je sudé}) = P(\text{padne 6}) = \frac{1}{6}$<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ $P(B) = P(\text{padne sudé}) = \frac{3}{6} = \frac{1}{2}$<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ $P(A|B) = \frac{1/6}{1/2} = \frac{1}{3}$</p>
 <p><strong>Bayesova věta</strong>
 Umožňuje "obracet" podmíněné pravděpodobnosti, tj. vypočítat $P(B|A)$ z $P(A|B)$. Je klíčová pro statistickou inferenci a strojové učení.
-$$P(B|A) = \frac{P(A|B) \cdot P(B)}{P(A)}$$
-*   <strong>Využití:</strong> Bayesovské filtry (např. anti-spamové filtry), diagnostické systémy, strojové učení (např. Naivní Bayesův klasifikátor).</p>
+$$P(B|A) = \frac{P(A|B) \cdot P(B)}{P(A)}$$<br>• <strong>Využití:</strong> Bayesovské filtry (např. anti-spamové filtry), diagnostické systémy, strojové učení (např. Naivní Bayesův klasifikátor).</p>
+<div style="background-color: #f0f7f4; padding: 15px; border-left: 4px solid #16a085; margin: 15px 0;">
+    <strong>Příklad: Bayesova věta</strong><br>
+    Předpokládejme test na vzácnou nemoc (výskyt u 1% populace, $P(N)=0.01$). Test je z 99% citlivý: pokud jste nemocní, test je pozitivní s 99% pravděpodobností ($P(T+|N)=0.99$). Pokud jste zdraví (z 99%, $P(Z)=0.99$), test je falešně pozitivní u 5% lidí ($P(T+|Z)=0.05$).<br>
+    Jaká je pravděpodobnost, že člověk má nemoc, pokud mu vyšel pozitivní test ($P(N|T+)$)?<br>
+    Pravděpodobnost jakéhokoliv pozitivního testu $P(T+) = P(T+|N) \cdot P(N) + P(T+|Z) \cdot P(Z)$<br>
+    $$P(N|T+) = \frac{P(T+|N) \cdot P(N)}{P(T+)}$$<br>
+    $$P(N|T+) = \frac{0.99 \cdot 0.01}{0.99 \cdot 0.01 + 0.05 \cdot 0.99} = \frac{0.0099}{0.0099 + 0.0495} = \frac{0.0099}{0.0594} \approx 0.1667$$<br>
+    Přestože je test velmi spolehlivý, pravděpodobnost, že jste skutečně nemocní po jednom pozitivním testu, je jen cca 16.7%.
+</div>
 <p><strong>Nezávislost jevů</strong>
 Dva jevy $A$ a $B$ jsou nezávislé, pokud nastoupení jednoho nijak neovlivňuje pravděpodobnost nastoupení druhého.
 Matematicky to znamená, že:
 $$P(A|B) = P(A)$$
 (pokud $P(B) &gt; 0$).
 Ekvivalentně, a pro všechny případy:
-$$P(A \cap B) = P(A) \cdot P(B)$$
-*   <strong>Příklad:</strong> Dva hody mincí. Jev "první hod je hlava" a jev "druhý hod je orel" jsou nezávislé.
-*   <strong>Pozor:</strong> Nezaměňovat s neslučitelnými jevy ($A \cap B = \emptyset$), pro které platí $P(A \cap B) = 0$. Pokud jsou neslučitelné jevy $A, B$ s nenulovými pravděpodobnostmi, nemohou být nezávislé.</p>
+$$P(A \cap B) = P(A) \cdot P(B)$$<br>• <strong>Příklad:</strong> Dva hody mincí. Jev "první hod je hlava" a jev "druhý hod je orel" jsou nezávislé.<br>• <strong>Pozor:</strong> Nezaměňovat s neslučitelnými jevy ($A \cap B = \emptyset$), pro které platí $P(A \cap B) = 0$. Pokud jsou neslučitelné jevy $A, B$ s nenulovými pravděpodobnostmi, nemohou být nezávislé.</p>
 <hr />
 <h2>C. Náhodná veličina</h2>
 <p><strong>Náhodná veličina ($X$)</strong>
@@ -1128,14 +1257,7 @@ Funkce, která každému elementárnímu výsledku náhodného pokusu přiřazuj
 <h3>Kumulativní distribuční funkce (CDF)</h3>
 <p>Oba typy náhodných veličin (diskrétní i spojité) lze jednotně popsat pomocí <strong>kumulativní distribuční funkce (Cumulative Distribution Function, CDF)</strong> $F(x)$.
 $F(x)$ udává pravděpodobnost, že náhodná veličina $X$ nabude hodnoty menší nebo rovné $x$.
-$$F(x) = P(X \le x)$$
-*   <strong>Pro DNV:</strong> $F(x) = \sum_{x_i \le x} P(X=x_i)$
-*   <strong>Pro SNV:</strong> $F(x) = \int_{-\infty}^{x} f(t)dt$
-*   <strong>Vlastnosti CDF:</strong>
-    *   $0 \le F(x) \le 1$
-    *   $F(x)$ je neklesající funkce.
-    *   $\lim_{x \to -\infty} F(x) = 0$
-    *   $\lim_{x \to \infty} F(x) = 1$</p>
+$$F(x) = P(X \le x)$$<br>• <strong>Pro DNV:</strong> $F(x) = \sum_{x_i \le x} P(X=x_i)$<br>• <strong>Pro SNV:</strong> $F(x) = \int_{-\infty}^{x} f(t)dt$<br>• <strong>Vlastnosti CDF:</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;◦ $0 \le F(x) \le 1$<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ $F(x)$ je neklesající funkce.<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ $\lim_{x \to -\infty} F(x) = 0$<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ $\lim_{x \to \infty} F(x) = 1$</p>
 <hr />
 <h2>D. Statistické charakteristiky náhodné veličiny</h2>
 <p>U státnic po tobě budou chtít vědět, jak z veličiny vytáhnout konkrétní popisná čísla.</p>
@@ -1152,8 +1274,19 @@ Míra variability neboli jak moc jsou hodnoty náhodné veličiny rozptýlené k
 Definiční vzorec:
 $$D(X) = E[(X - E[X])^2]$$
 Často používaný výpočetní vzorec:
-$$D(X) = E(X^2) - [E(X)]^2$$
-*   <strong>Směrodatná odchylka ($\sigma$):</strong> Odmocnina z rozptylu, $\sigma = \sqrt{D(X)}$. Má stejnou jednotku jako původní náhodná veličina, což usnadňuje interpretaci.</p>
+$$D(X) = E(X^2) - [E(X)]^2$$<br>• <strong>Směrodatná odchylka ($\sigma$):</strong> Odmocnina z rozptylu, $\sigma = \sqrt{D(X)}$. Má stejnou jednotku jako původní náhodná veličina, což usnadňuje interpretaci.</p>
+<div style="background-color: #f0f7f4; padding: 15px; border-left: 4px solid #16a085; margin: 15px 0;">
+    <strong>Příklad: Střední hodnota a rozptyl</strong><br>
+    Hod standardní šestistěnnou kostkou. Náhodná veličina $X$ (hozené číslo) nabývá hodnot 1, 2, 3, 4, 5, 6, každá s pravděpodobností $P(X=x_i) = \frac{1}{6}$.<br><br>
+    <strong>Střední hodnota:</strong><br>
+    $$E(X) = 1\cdot\frac{1}{6} + 2\cdot\frac{1}{6} + 3\cdot\frac{1}{6} + 4\cdot\frac{1}{6} + 5\cdot\frac{1}{6} + 6\cdot\frac{1}{6} = \frac{21}{6} = 3.5$$<br>
+    <strong>Rozptyl:</strong><br>
+    Nejprve vypočteme $E(X^2)$:
+    $$E(X^2) = 1^2\frac{1}{6} + 2^2\frac{1}{6} + 3^2\frac{1}{6} + 4^2\frac{1}{6} + 5^2\frac{1}{6} + 6^2\frac{1}{6} = \frac{1+4+9+16+25+36}{6} = \frac{91}{6} \approx 15.17$$<br>
+    Nyní rozptyl:
+    $$D(X) = E(X^2) - [E(X)]^2 = \frac{91}{6} - (3.5)^2 = 15.167 - 12.25 \approx 2.917$$<br>
+    Směrodatná odchylka je $\sigma = \sqrt{2.917} \approx 1.71$.
+</div>
 <p><strong>Kvantily</strong>
 $p$-kvantil ($x_p$) je hodnota, pod kterou leží přesně specifikovaná část (procentní podíl $p$) dat. Matematicky je to hodnota, pro kterou platí $F(x_p) = p$.</p>
 <ul>
