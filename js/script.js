@@ -21,10 +21,19 @@
         const hamburger = document.getElementById('hamburger');
         const sidebar = document.querySelector('.sidebar');
         if (hamburger && sidebar) {
+            // Create overlay
+            const overlay = document.createElement('div');
+            overlay.className = 'sidebar-overlay';
+            sidebar.parentNode.insertBefore(overlay, sidebar.nextSibling);
+
             hamburger.addEventListener('click', () => {
                 sidebar.classList.toggle('active');
             });
             
+            overlay.addEventListener('click', () => {
+                sidebar.classList.remove('active');
+            });
+
             // Close sidebar on link click (mobile)
             const links = sidebar.querySelectorAll('a');
             links.forEach(link => {
