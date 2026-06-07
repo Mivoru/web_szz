@@ -3,15 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signály a zpracování informace - SZZ</title>
+    <title>[6, 7, 8] - SZZ</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <script>
-    MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']]
-      }
-    };
+    MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
@@ -19,9 +15,9 @@
     <header>
         <div class="brand">
             <button id="hamburger" class="hamburger">☰</button>
-            <a href="index.html" style="color:inherit; text-decoration:none;">⬅ SZZ Portál</a>
+            <a href="index.html" style="color:inherit; text-decoration:none;">⬅ Zpět</a>
         </div>
-        <div style="font-weight:600;">Signály a zpracování informace</div>
+        <div style="font-weight:600;">[6, 7, 8]</div>
         <button id="theme-toggle" class="theme-toggle">🌙</button>
     </header>
 
@@ -29,10 +25,7 @@
         <aside class="sidebar">
             <div class="toc-title">Obsah okruhů</div>
             <ul class="toc-list">
-                <li><a href="#otazka-6">6. Signály a systémy. LTI systémy. Přenosová funkce, impulsní odezva.</a></li>
-<li><a href="#otazka-7">7. Fourierovy řady. Diskrétní Fourierova transformace, její použití a interpretace. Spektrum signálu, FFT. Číslicové filtry FIR a IIR.</a></li>
-<li><a href="#otazka-8">8. Vzorkování, kvantování. Vzorkovací teorém. Aliasing. Práce se zvukem na počítači</a></li>
-
+                <li><a href="#otazka-6">6. Signály a systémy. LTI systémy. Přenosová funkce, impulsní odezva.</a></li>\n<li><a href="#otazka-7">7. Fourierovy řady. Diskrétní Fourierova transformace, její použití a interpretace. Spektrum signálu, FFT. Číslicové filtry FIR a IIR.</a></li>\n<li><a href="#otazka-8">8. Vzorkování, kvantování. Vzorkovací teorém. Aliasing. Práce se zvukem na počítači</a></li>\n
             </ul>
         </aside>
 
@@ -41,8 +34,9 @@
                 📄 Stáhnout jako PDF
             </a>
             
-            <div id="otazka-6" class="question-section">
-                <p>Zde je hotový studijní materiál pro okruh "6. Signály a systémy. LTI systémy. Přenosová funkce, impulsní odezva. Konvoluce u číslicových signálů", doplněný a naformátovaný dle přísných pravidel:</p>
+        <div id="otazka-6" class="question-section">
+            
+    <p>Zde je hotový studijní materiál pro okruh "6. Signály a systémy. LTI systémy. Přenosová funkce, impulsní odezva. Konvoluce u číslicových signálů", doplněný a naformátovaný dle přísných pravidel:</p>
 <hr />
 <h1>6. Signály a systémy. LTI systémy. Přenosová funkce, impulsní odezva. Konvoluce u číslicových signálů</h1>
 <h2>Klíčové pojmy</h2>
@@ -212,10 +206,12 @@
 <h2>Shrnutí kapitoly</h2>
 <p>Signály a systémy jsou základem pro pochopení, jak se informace zpracovává. LTI systémy jsou klíčovou třídou systémů díky jejich analytické jednoduchosti. Jsou plně popsány svou impulsní odezvou, která umožňuje vypočítat výstup pro jakýkoli vstup pomocí konvoluce. Konvoluce v časové oblasti se transformuje na násobení v Z-doméně nebo frekvenční oblasti, což vede k konceptu přenosové funkce. Přenosová funkce je nezbytná pro návrh a analýzu filtrů a má široké uplatnění v audio, obrazovém zpracování a strojovém učení.</p>
 <hr />
-            </div>
+
+        </div>
+        
+        <div id="otazka-7" class="question-section">
             
-            <div id="otazka-7" class="question-section">
-                <p>Zde je dokonalý studijní materiál k okruhu "7. Fourierovy řady. Diskrétní Fourierova transformace, její použití a interpretace. Spektrum signálu, FFT. Číslicové filtry FIR a IIR. Filtrace v čase nebo prostoru." doplněný a naformátovaný dle vašich přísných pravidel.</p>
+    <p>Zde je dokonalý studijní materiál k okruhu "7. Fourierovy řady. Diskrétní Fourierova transformace, její použití a interpretace. Spektrum signálu, FFT. Číslicové filtry FIR a IIR. Filtrace v čase nebo prostoru." doplněný a naformátovaný dle vašich přísných pravidel.</p>
 <hr />
 <h1>7. Fourierovy řady, DFT, FFT, spektrum, FIR a IIR filtry</h1>
 <h2>Klíčové pojmy</h2>
@@ -352,10 +348,12 @@ kde $b_k$ a $a_m$ jsou koeficienty filtru a $M, N$ jsou řády filtru.</p>
 </ol>
 <h2>Shrnutí kapitoly</h2>
 <p>Fourierovy metody převádějí signál z časové do frekvenční oblasti, což umožňuje analyzovat jeho frekvenční složky. DFT je základní nástroj pro digitální signály, zatímco FFT je rychlý algoritmus pro její výpočet. Číslicové filtry (FIR a IIR) upravují spektrum signálu podle požadované frekvenční charakteristiky, přičemž se liší svými vlastnostmi stability, fázového zkreslení a výpočetní náročnosti. Filtrace se aplikuje jak v časové (1D signály), tak v prostorové (2D obrazy) doméně.</p>
-            </div>
+
+        </div>
+        
+        <div id="otazka-8" class="question-section">
             
-            <div id="otazka-8" class="question-section">
-                <p>Dobře, připravíme dokonalý studijní materiál pro okruh SZZ č. 8: "Vzorkování, kvantování. Vzorkovací teorém. Aliasing. Práce se zvukem na počítači."</p>
+    <p>Dobře, připravíme dokonalý studijní materiál pro okruh SZZ č. 8: "Vzorkování, kvantování. Vzorkovací teorém. Aliasing. Práce se zvukem na počítači."</p>
 <hr />
 <h1>8. Vzorkování, kvantování. Vzorkovací teorém. Aliasing. Práce se zvukem na počítači</h1>
 <h2>A. Převod analogového signálu na digitální (A/D převod)</h2>
@@ -435,8 +433,9 @@ Proces převodu analogového signálu na digitální (A/D převod) zahrnuje dva 
 <p><strong>Odpověď:</strong><br>• <strong>Nekomprimované formáty (PCM - Pulse Code Modulation):</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <strong>Popis:</strong> Ukládají surová digitalizovaná data (vzorky) bez jakékoli komprese. Každý vzorek je uložen nezávisle.<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <strong>Vlastnosti:</strong> Nejvyšší možná kvalita zvuku, ale také největší velikost souboru.<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <strong>Příklady:</strong> WAV, AIFF.<br>• <strong>Bezztrátově komprimované formáty:</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <strong>Popis:</strong> Zmenšují velikost souboru odstraněním redundance v datech, ale bez ztráty jakékoli zvukové informace. Z komprimovaného souboru lze plně rekonstruovat původní nekomprimovaná PCM data.<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <strong>Vlastnosti:</strong> Kvalita zvuku je identická s nekomprimovanými formáty, ale velikost souboru je menší (typicky o 30-60 %).<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <strong>Příklady:</strong> FLAC, ALAC.<br>• <strong>Ztrátově komprimované formáty:</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <strong>Popis:</strong> Zmenšují velikost souboru odstraněním zvukové informace, která je považována za méně důležitou nebo pro lidské ucho nepostřehnutelnou.<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <strong>Princip ztrátové komprese:</strong> Využívá psychoakustické modely lidského sluchu. Algoritmus analyzuje frekvenční obsah zvuku (často pomocí Fourierovy transformace) a identifikuje složky, které jsou:<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <strong>Maskovány:</strong> Tiché zvuky, které jsou přehlušeny hlasitějšími zvuky ve stejné frekvenční oblasti.<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <strong>Mimo rozsah slyšitelnosti:</strong> Velmi vysoké nebo velmi nízké frekvence, které lidské ucho neregistruje.<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ Tyto "nepotřebné" informace jsou poté ze signálu odstraněny, což vede k nevratné ztrátě dat, ale výraznému zmenšení souboru.<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <strong>Vlastnosti:</strong> Výrazně menší velikost souboru než bezztrátové formáty, za cenu určité (často nepostřehnutelné) ztráty kvality.<br>&nbsp;&nbsp;&nbsp;&nbsp;◦ <strong>Příklady:</strong> MP3, AAC, Ogg Vorbis.</p>
 <hr />
 <p>Máme za sebou matematický i signálový blok. Až napíšeš "další", přesuneme se do velké sekce Algoritmy a programování, kde začneme otázkou č. 9: Číselné soustavy, kódování pevné a pohyblivé řádové tečky a kódování záporných čísel. Navrhni tempo, jak ti to vyhovuje!</p>
-            </div>
-            
+
+        </div>
+        
         </main>
     </div>
     <script src="js/script.js"></script>

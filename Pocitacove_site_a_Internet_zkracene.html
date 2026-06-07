@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[20, 21, 22, 23, 24, 25, 26] (Zkrácené) - SZZ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+    MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <header>
+        <div class="brand">
+            <button id="hamburger" class="hamburger">☰</button>
+            <a href="index_zkracene.html" style="color:inherit; text-decoration:none;">⬅ Zpět</a>
+        </div>
+        <div style="font-weight:600;">[20, 21, 22, 23, 24, 25, 26] (Zkráceně)</div>
+        <button id="theme-toggle" class="theme-toggle">🌙</button>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="toc-title">Obsah okruhů</div>
+            <ul class="toc-list">
+                <li><a href="#otazka-20">20. Principy vrstvené architektury počítačových sítí, referenční model OSI. Charakteristika lokálních počítačových sítí.</a></li>\n<li><a href="#otazka-21">21. Technologie Ethernet, její principy a vývoj, algoritmus CSMA_CD. Bezdrátové lokální sítě standardu IEEE 802.11.</a></li>\n<li><a href="#otazka-22">22. Základní principy činnosti protokolů sítě Internet - IP, TCP, UDP. Domain Name System, jeho role a činnost, DNS servery, postup řešení dotazu, reverzní DNS.</a></li>\n<li><a href="#otazka-23">23. Základní principy WWW, HTTP, HTML.</a></li>\n<li><a href="#otazka-24">24. CSS vlastnosti, hodnoty, dědění, kaskádování.</a></li>\n<li><a href="#otazka-25">25. Webové aplikace_ charakteristika programování na straně serveru a klienta. Základy jazyka JavaScript. DOM a přístup k prvkům stránky.</a></li>\n<li><a href="#otazka-26">26. Jazyk PHP. Problematika uchovávání stavových informací, cookies.</a></li>\n
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <a href="pdfs/Pocitacove_site_a_Internet_zkracene.pdf" target="_blank" class="pdf-btn">
+                📄 Stáhnout jako PDF
+            </a>
+            
+        <div id="otazka-20" class="question-section">
+            <h1>20. Principy vrstvené architektury počítačových sítí, referenční model OSI. Charakteristika lokálních počítačových sítí.</h1>
+<h2>Principy vrstvené architektury</h2>
+<p>Síťová komunikace je komplexní. <strong>Vrstvená architektura</strong> ji rozděluje na menší, spravovatelné vrstvy, z nichž každá má specifické funkce.</p>
+<p><strong>Hlavní principy a výhody:</strong>
+*   <strong>Dekompozice problému:</strong> Rozdělení složitého úkolu na jednodušší vrstvy.
+*   <strong>Abstrakce a rozhraní:</strong> Každá vrstva poskytuje služby vyšší vrstvě a využívá služby nižší. Interní detaily jsou skryté. Standardizovaná rozhraní umožňují nezávislý vývoj.
+*   <strong>Peer-to-peer komunikace:</strong> Stejné vrstvy protilehlých systémů komunikují virtuálně pomocí <strong>protokolů</strong>.
+*   <strong>Zjednodušení údržby:</strong> Snadnější identifikace a řešení problémů.</p>
+<p><strong>Zapouzdření (Encapsulation) a Odpouzdření (Decapsulation):</strong>
+*   <strong>Zapouzdření:</strong> Při odesílání dat (shora dolů) každá vrstva přidá svou řídicí informaci – <strong>hlavičku (Header)</strong>, případně <strong>patičku (Trailer)</strong>. Vzniká <strong>Protocol Data Unit (PDU)</strong>.
+*   <strong>Odpouzdření:</strong> Na přijímací straně (zdola nahoru) každá vrstva svou hlavičku/patičku odřízne a zpracuje.</p>
+<p><strong>Příklad zapouzdření:</strong>
+1.  Aplikační data: <code>DATA</code>
+2.  Transportní vrstva: <code>[TCP_H] DATA</code> (Segment)
+3.  Síťová vrstva: <code>[IP_H] [TCP_H] DATA</code> (Paket)
+4.  Linková vrstva: <code>[ETH_H] [IP_H] [TCP_H] DATA [ETH_T]</code> (Rámec)
+5.  Fyzická vrstva: Převede na bity a odešle.</p>
+<h2>Referenční model OSI (Open Systems Interconnection)</h2>
+<p>Teoretický, sedmivrstvý model ISO pro standardizaci síťových protokolů. V reálném Internetu se používá model TCP/IP, ale OSI je klíčový pro výuku.</p>
+<p><strong>Vrstvy modelu OSI (od nejvyšší po nejnižší):</strong></p>
+<ol>
+<li><strong>7. Aplikační vrstva (Application Layer)</strong><ul>
+<li><strong>Účel:</strong> Poskytuje síťové služby přímo uživatelským aplikacím.</li>
+<li><strong>Protokoly:</strong> HTTP, FTP, SMTP, DNS.</li>
+<li><strong>PDU:</strong> Data.</li>
+</ul>
+</li>
+<li><strong>6. Prezentační vrstva (Presentation Layer)</strong><ul>
+<li><strong>Účel:</strong> Zajišťuje, že data jsou pro aplikaci čitelná (formát, kódování, komprese, šifrování).</li>
+<li><strong>Protokoly:</strong> JPEG, MPEG, TLS/SSL.</li>
+<li><strong>PDU:</strong> Data.</li>
+</ul>
+</li>
+<li><strong>5. Relační vrstva (Session Layer)</strong><ul>
+<li><strong>Účel:</strong> Správa, navazování, udržování a ukončování dialogů (relací) mezi aplikacemi.</li>
+<li><strong>Protokoly:</strong> NetBIOS, RPC.</li>
+<li><strong>PDU:</strong> Data.</li>
+</ul>
+</li>
+<li><strong>4. Transportní vrstva (Transport Layer)</strong><ul>
+<li><strong>Účel:</strong> Zajišťuje transparentní přenos dat mezi koncovými aplikacemi (End-to-End).</li>
+<li><strong>Funkce:</strong> Adresování aplikací pomocí <strong>portů</strong>. Poskytuje spolehlivý (TCP) nebo nespolehlivý (UDP) přenos.</li>
+<li><strong>Protokoly:</strong> TCP (Transmission Control Protocol), UDP (User Datagram Protocol).</li>
+<li><strong>PDU:</strong> Segment (TCP) / Datagram (UDP).</li>
+</ul>
+</li>
+<li><strong>3. Síťová vrstva (Network Layer)</strong><ul>
+<li><strong>Účel:</strong> Zajišťuje doručení dat mezi dvěma uzly v různých sítích (inter-network).</li>
+<li><strong>Funkce:</strong> Logické adresování pomocí <strong>IP adres</strong>, <strong>směrování (Routing)</strong>.</li>
+<li><strong>Protokoly:</strong> IP (IPv4, IPv6), ICMP.</li>
+<li><strong>Zařízení:</strong> Router (směrovač).</li>
+<li><strong>PDU:</strong> Paket.</li>
+</ul>
+</li>
+<li><strong>2. Linková vrstva (Data Link Layer)</strong><ul>
+<li><strong>Účel:</strong> Zajišťuje spolehlivý přenos dat v rámci jedné lokální sítě (LAN) mezi přímo sousedícími uzly (intra-network).</li>
+<li><strong>Funkce:</strong> Fyzické adresování pomocí <strong>MAC adres</strong>, řízení přístupu k médiu, detekce chyb.</li>
+<li><strong>Protokoly:</strong> Ethernet (IEEE 802.3), Wi-Fi (IEEE 802.11), PPP.</li>
+<li><strong>Zařízení:</strong> Switch (přepínač), síťová karta (NIC).</li>
+<li><strong>PDU:</strong> Rámec (Frame).</li>
+</ul>
+</li>
+<li><strong>1. Fyzická vrstva (Physical Layer)</strong><ul>
+<li><strong>Účel:</strong> Specifikuje fyzické, elektrické, optické a funkční vlastnosti přenosového média.</li>
+<li><strong>Funkce:</strong> Převádí rámce na bity a moduluje je do fyzických signálů.</li>
+<li><strong>Média:</strong> Kroucená dvojlinka, optický kabel, rádiový prostor.</li>
+<li><strong>Zařízení:</strong> Hub (rozbočovač), repeater (opakovač), síťová karta (NIC).</li>
+<li><strong>PDU:</strong> Bit.</li>
+</ul>
+</li>
+</ol>
+<h2>Charakteristika lokálních počítačových sítí (LAN)</h2>
+<p><strong>LAN (Local Area Network):</strong> Síť pro omezenou geografickou oblast (budova, kampus).</p>
+<p><strong>Klíčové vlastnosti:</strong>
+*   Vysoká rychlost přenosu dat.
+*   Nízká chybovost.
+*   Sdílené přenosové médium.</p>
+<p><strong>Klíčové prvky a pojmy:</strong>
+*   <strong>MAC adresa (Media Access Control):</strong> Fyzická adresa síťové karty (48 bitů), unikátní, používá se na linkové vrstvě (L2).
+*   <strong>IP adresa (Internet Protocol):</strong> Logická adresa zařízení v síti, používá se na síťové vrstvě (L3) pro směrování.
+*   <strong>Port:</strong> Číslo identifikující konkrétní aplikaci/službu na hostiteli, používá se na transportní vrstvě.
+*   <strong>Switch (přepínač):</strong> Zařízení linkové vrstvy (L2), přeposílá datové rámce na základě MAC adresy cíle, učí se MAC adresy připojených zařízení.
+*   <strong>Router (směrovač):</strong> Zařízení síťové vrstvy (L3), směruje datové pakety mezi různými sítěmi na základě IP adres.
+*   <strong>Topologie sítě:</strong> Fyzické nebo logické uspořádání prvků sítě (např. hvězda, sběrnice, kruh). Dnes převládá hvězda se switchem.</p>
+        </div>
+        
+        <div id="otazka-21" class="question-section">
+            <h1>21. Technologie Ethernet, její principy a vývoj, algoritmus CSMA/CD. Bezdrátové lokální sítě standardu IEEE 802.11.</h1>
+<h2>Klíčové pojmy</h2>
+<ul>
+<li><strong>Ethernet (IEEE 802.3)</strong>: Drátové LAN, vrstvy 1 a 2 OSI.</li>
+<li><strong>MAC adresa</strong>: Unikátní 48bitová fyzická adresa síťového adaptéru.</li>
+<li><strong>Rámec</strong>: Základní datová jednotka Ethernetu.</li>
+<li><strong>CSMA/CD</strong>: Přístupový mechanismus pro sdílený Ethernet (detekce a řešení kolizí).</li>
+<li><strong>Wi-Fi (IEEE 802.11)</strong>: Bezdrátové LAN (WLAN).</li>
+<li><strong>CSMA/CA</strong>: Přístupový mechanismus pro Wi-Fi (předcházení kolizím).</li>
+<li><strong>Half-Duplex</strong>: Vysílání nebo příjem, ne současně.</li>
+<li><strong>Full-Duplex</strong>: Současné vysílání i příjem.</li>
+<li><strong>Kolizní doména</strong>: Segment sítě, kde může dojít ke kolizím.</li>
+</ul>
+<h2>A. Technologie Ethernet a její vývoj</h2>
+<p>Ethernet (IEEE 802.3) je dominantní drátová LAN technologie.</p>
+<ul>
+<li><strong>MAC adresa</strong>: 48bitový identifikátor síťového rozhraní.</li>
+<li><strong>Rámec</strong>: Datová jednotka s hlavičkou (MAC adresy), daty a zápatím (FCS).</li>
+</ul>
+<h3>Vývoj Ethernetu:</h3>
+<ol>
+<li><strong>Klasický (sdílený) Ethernet (s Hubem)</strong>:<ul>
+<li>Sdílené médium, jedna kolizní doména.</li>
+<li><strong>Half-Duplex</strong> provoz.</li>
+<li>Používal <strong>CSMA/CD</strong> pro řízení přístupu a řešení kolizí.</li>
+</ul>
+</li>
+<li><strong>Moderní (přepínaný) Ethernet (se Switchem)</strong>:<ul>
+<li>Switch izoluje provoz, každý port je samostatná kolizní doména.</li>
+<li><strong>Full-Duplex</strong> komunikace, eliminuje kolize.</li>
+<li>CSMA/CD se aktivně nepoužívá.</li>
+</ul>
+</li>
+</ol>
+<h2>B. Algoritmus CSMA/CD (Carrier Sense Multiple Access with Collision Detection)</h2>
+<p>Používán v klasickém sdíleném Ethernetu.</p>
+<h3>Jak funguje:</h3>
+<ol>
+<li><strong>CS (Carrier Sense)</strong>: Stanice naslouchá médiu, zda je volné. Pokud ne, čeká.</li>
+<li><strong>MA (Multiple Access)</strong>: Více stanic má stejné právo k přístupu.</li>
+<li><strong>CD (Collision Detection)</strong>: Během vysílání stanice monitoruje médium. Pokud dojde ke kolizi (současné vysílání), detekuje ji.</li>
+</ol>
+<h3>Řešení kolize:</h3>
+<ol>
+<li><strong>Jam Signal</strong>: Stanice vyšle varovný signál.</li>
+<li><strong>Exponential Backoff</strong>: Stanice si vygeneruje náhodný časový interval čekání.</li>
+<li><strong>Opakování vysílání</strong>: Po uplynutí čekací doby se pokusí vysílat znovu.</li>
+</ol>
+<h2>C. Bezdrátové sítě IEEE 802.11 (Wi-Fi)</h2>
+<p>Standard pro WLAN. Rádiový prostor je sdílené médium, <strong>Half-Duplex</strong> provoz.</p>
+<h3>Problém skryté stanice (Hidden Node Problem)</h3>
+<p>Stanice se navzájem neslyší, ale obě slyší AP. Mohou vysílat současně k AP, což způsobí kolizi u AP, o které se vysílající stanice nedozví.</p>
+<h3>Algoritmus CSMA/CA (Carrier Sense Multiple Access with Collision Avoidance)</h3>
+<p>Snaží se kolizím předcházet, protože detekce je obtížná.
+1.  <strong>Naslouchání kanálu</strong>: Zda je volný.
+2.  <strong>Čekání a náhodný odstup</strong>: Po zjištění volného kanálu se čeká povinná doba (IFS) a náhodná doba (Contention Window).
+3.  <strong>Potvrzování (ACK)</strong>: Příjemce musí potvrdit doručení rámce. Pokud odesílatel neobdrží ACK, předpokládá kolizi/ztrátu a zkusí vysílat znovu (s Exponential Backoff).</p>
+<h3>Volitelný mechanismus RTS/CTS (Request to Send / Clear to Send)</h3>
+<p>Řeší problém skryté stanice.
+1.  <strong>RTS</strong>: Vysílající stanice pošle AP dotaz.
+2.  <strong>CTS</strong>: AP odpoví CTS, který slyší všechny stanice v dosahu AP.
+3.  <strong>Rezervace média</strong>: CTS explicitně přikáže ostatním stanicím ztichnout, čímž se médium rezervuje pro vysílající stanici.</p>
+<h3>Přehled základních generací Wi-Fi:</h3>
+<ul>
+<li><strong>802.11n (Wi-Fi 4)</strong>: $2.4/5\text{ GHz}$, MIMO, stovky $\text{Mb/s}$.</li>
+<li><strong>802.11ac (Wi-Fi 5)</strong>: $5\text{ GHz}$, MU-MIMO, až $\text{Gb/s}$.</li>
+<li><strong>802.11ax (Wi-Fi 6)</strong>: $2.4/5/6\text{ GHz}$, OFDMA, vylepšené MU-MIMO, efektivita v zahuštěných prostorech.</li>
+</ul>
+<h2>Nejčastější chyby u zkoušky</h2>
+<ul>
+<li><strong>Moderní switchovaný Ethernet NEPOUŽÍVÁ kolize.</strong> CSMA/CD je pro half-duplex na sdíleném médiu.</li>
+<li><strong>MAC adresa</strong> (vrstva 2, fyzická) vs. <strong>IP adresa</strong> (vrstva 3, logická).</li>
+<li><strong>Wi-Fi médium je VŽDY sdílené</strong>, proto CSMA/CA a RTS/CTS.</li>
+</ul>
+<h2>Typické zkouškové otázky</h2>
+<ol>
+<li>
+<p><strong>Popište Ethernetový rámec.</strong></p>
+<ul>
+<li>Základní datová jednotka linkové vrstvy. Obsahuje: Preambule, Cílová MAC, Zdrojová MAC, Typ/Délka, Data ($46-1500$ bytů), FCS (kontrola chyb).</li>
+</ul>
+</li>
+<li>
+<p><strong>Jak funguje CSMA/CD?</strong></p>
+<ul>
+<li>Mechanismus pro sdílený Ethernet. Stanice:<ol>
+<li><strong>Carrier Sense</strong>: Naslouchá, zda je médium volné.</li>
+<li><strong>Multiple Access</strong>: Více stanic má přístup.</li>
+<li><strong>Collision Detection</strong>: Detekuje kolizi během vysílání.</li>
+<li><strong>Řešení kolize</strong>: Vyšle <strong>JAM signal</strong>, počká náhodný čas (<strong>Exponential Backoff</strong>) a zkusí znovu.</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Proč Wi-Fi používá CSMA/CA?</strong></p>
+<ul>
+<li>Efektivní detekce kolizí je v bezdrátovém prostředí obtížná kvůli:<ul>
+<li><strong>Problému skryté stanice</strong>: Stanice se navzájem neslyší, ale kolize mohou nastat u AP.</li>
+<li><strong>Half-Duplex provozu</strong>: Nelze současně vysílat a detekovat kolize.</li>
+</ul>
+</li>
+<li>CSMA/CA kolizím předchází (naslouchání, náhodné čekání, ACK, volitelně RTS/CTS).</li>
+</ul>
+</li>
+</ol>
+        </div>
+        
+        <div id="otazka-22" class="question-section">
+            <h1>22. Základní principy činnosti protokolů sítě Internet</h1>
+<h2>A. Protokol IP (Internet Protocol)</h2>
+<ul>
+<li><strong>Síťová vrstva (3. OSI)</strong>.</li>
+<li><strong>Úkol</strong>: Nespolehlivé, bezspojové doručování datových paketů mezi uzly.</li>
+<li><strong>Bezspojový</strong>: Bez navázání spojení, pakety nezávislé.</li>
+<li><strong>Nespolehlivý (Best-Effort)</strong>: Negarantuje doručení, pořadí, integritu. Ztracené pakety se zahodí.</li>
+<li><strong>Funkce</strong>:<ul>
+<li><strong>Logické adresování</strong>: Unikátní IP adresa.<ul>
+<li><strong>IPv4</strong>: 32bit, např. <code>192.168.1.1</code>.</li>
+<li><strong>IPv6</strong>: 128bit, např. <code>2001:db8::1</code>. Větší adresní prostor, zjednodušená hlavička.</li>
+</ul>
+</li>
+<li><strong>Směrování (Routing)</strong>: Routery předávají pakety dle cílové IP.</li>
+<li><strong>Fragmentace</strong>: Rozdělení paketu (IPv6 jen odesílatel).</li>
+</ul>
+</li>
+<li><strong>IP hlavička (klíčová pole)</strong>:<ul>
+<li><strong>Verze</strong>: IPv4/IPv6.</li>
+<li><strong>TTL (Time To Live)</strong>: Počet skoků. Každý router sníží o 1. Při $TTL=0$ paket zahozen (prevence smyček).</li>
+<li><strong>Protokol</strong>: Protokol vyšší vrstvy (6=TCP, 17=UDP).</li>
+<li><strong>Zdrojová/Cílová IP adresa</strong>.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Typické zkouškové otázky:</strong>
+1.  <strong>Úkol IP, vrstva OSI?</strong> Nespolehlivé, bezspojové doručování paketů. Síťová vrstva (3.).
+2.  <strong>"Bezspojový" a "nespolehlivý" u IP?</strong> Bez navázání spojení, pakety nezávislé; negarantuje doručení, pořadí, integritu.
+3.  <strong>Rozdíl IPv4 a IPv6?</strong> IPv4 32bit, IPv6 128bit. IPv6 větší adresní prostor, zjednodušená hlavička, fragmentace jen u odesílatele.</p>
+<hr />
+<h2>B. Transportní protokoly: TCP vs. UDP</h2>
+<ul>
+<li><strong>Transportní vrstva (4. OSI)</strong>.</li>
+<li><strong>Porty</strong>: 16bit čísla pro identifikaci aplikací (HTTP 80, DNS 53).</li>
+</ul>
+<h3>1. TCP (Transmission Control Protocol)</h3>
+<ul>
+<li><strong>Charakteristika</strong>: Spolehlivý, spojovaný protokol. Zajišťuje doručení, pořadí, integritu.</li>
+<li><strong>Mechanizmy</strong>:<ul>
+<li><strong>Three-Way Handshake</strong>: Navázání spojení.<ol>
+<li>Klient: <code>SYN</code></li>
+<li>Server: <code>SYN-ACK</code></li>
+<li>Klient: <code>ACK</code></li>
+</ol>
+</li>
+<li><strong>Potvrzování (ACK)</strong>: Příjemce potvrzuje segmenty. Bez ACK se data opakují.</li>
+<li><strong>Řazení (Sequencing)</strong>: Sekvenční čísla pro správné pořadí.</li>
+<li><strong>Řízení toku (Flow Control)</strong>: Okno příjemce (<code>Window Size</code>) zabraňuje zahlcení.</li>
+<li><strong>Řízení zahlcení (Congestion Control)</strong>: Zpomalení přenosu při zahlcení sítě.</li>
+</ul>
+</li>
+<li><strong>Použití</strong>: HTTP/HTTPS, SMTP, FTP, SSH (kde je spolehlivost klíčová).</li>
+</ul>
+<h3>2. UDP (User Datagram Protocol)</h3>
+<ul>
+<li><strong>Charakteristika</strong>: Nespolehlivý, bezspojový protokol s minimální režií.</li>
+<li><strong>Princip</strong>: Odesílá data bez záruk.</li>
+<li><strong>Výhody</strong>: Extrémní rychlost, nízká latence, nízká režie.</li>
+<li><strong>Použití</strong>: Streamování (video/audio), online hry, VoIP, DNS dotazy (kde je rychlost klíčová, ztráta dat přijatelná).</li>
+</ul>
+<p><strong>Typické zkouškové otázky:</strong>
+1.  <strong>TCP vs UDP (spolehlivost, spojení, režie)?</strong> TCP spolehlivý, spojovaný, vyšší režie. UDP nespolehlivý, bezspojový, minimální režie.
+2.  <strong>Three-Way Handshake u TCP?</strong> <code>SYN</code> (klient) -&gt; <code>SYN-ACK</code> (server) -&gt; <code>ACK</code> (klient).
+3.  <strong>Příklady aplikací TCP/UDP a proč?</strong>
+    -   <strong>TCP</strong>: Web, e-mail (vyžadují kompletní data).
+    -   <strong>UDP</strong>: Streamování, hry, VoIP, DNS (klíčová nízká latence, ztráta dat přijatelná).</p>
+<hr />
+<h2>C. Domain Name System (DNS)</h2>
+<ul>
+<li><strong>Role</strong>: Distribuovaná, hierarchická databáze pro překlad doménových jmen na IP adresy a naopak.</li>
+<li>
+<p><strong>Hierarchie</strong>:</p>
+<ul>
+<li><strong>Kořenové servery (<code>.</code>)</strong>: Vrchol, znají TLD servery.</li>
+<li><strong>TLD servery (<code>.cz</code>, <code>.com</code>)</strong>: Znají autoritativní servery pro domény 2. řádu.</li>
+<li><strong>Autoritativní servery</strong>: Drží finální záznamy pro konkrétní doménu.</li>
+<li><strong>Local DNS Resolver (Caching Name Server)</strong>: Klientův server (ISP, Google DNS). Provádí rekurzivní dotazy od klientů a iterativní do hierarchie. Cache.</li>
+</ul>
+</li>
+<li>
+<p><strong>Postup řešení DNS dotazu</strong>:</p>
+<ol>
+<li>Klient kontroluje lokální cache.</li>
+<li>Klient pošle <strong>rekurzivní dotaz</strong> na Local DNS Resolver.</li>
+<li>Local DNS Resolver provádí <strong>iterativní dotazy</strong>:<ul>
+<li>Dotaz na Kořenový server -&gt; odkaz na TLD server.</li>
+<li>Dotaz na TLD server -&gt; odkaz na Autoritativní server.</li>
+<li>Dotaz na Autoritativní server -&gt; vrátí IP adresu.</li>
+</ul>
+</li>
+<li>Local DNS Resolver uloží výsledek do cache (dle TTL) a předá klientovi.</li>
+</ol>
+</li>
+<li>
+<p><strong>Typy DNS záznamů (Resource Records)</strong>:</p>
+<ul>
+<li><strong>A</strong>: Doména na <strong>IPv4</strong> (<code>tul.cz IN A 147.230.1.2</code>).</li>
+<li><strong>AAAA</strong>: Doména na <strong>IPv6</strong> (<code>tul.cz IN AAAA 2001:db8::1</code>).</li>
+<li><strong>CNAME</strong>: Alias pro jinou doménu (<code>www.tul.cz IN CNAME tul.cz</code>).</li>
+<li><strong>MX</strong>: Poštovní servery pro doménu (<code>tul.cz IN MX 10 mail.tul.cz</code>).</li>
+<li><strong>NS</strong>: Autoritativní DNS servery pro doménu (<code>tul.cz IN NS ns1.tul.cz</code>).</li>
+<li><strong>PTR</strong>: Pro reverzní DNS (IP na doménu).</li>
+<li><strong>TXT</strong>: Libovolný text (SPF, DKIM).</li>
+</ul>
+</li>
+<li>
+<p><strong>Reverzní DNS (Reverse DNS lookup)</strong>:</p>
+<ul>
+<li><strong>Úkol</strong>: Překlad IP adresy na doménové jméno.</li>
+<li><strong>Princip</strong>: Používá speciální domény <code>in-addr.arpa</code> (IPv4) / <code>ip6.arpa</code> (IPv6) a hledá <strong>PTR záznam</strong>.</li>
+<li><strong>Využití</strong>: Anti-spam (ověření odesílatele e-mailu), logování, diagnostika sítě.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Typické zkouškové otázky:</strong>
+1.  <strong>Role a hierarchie DNS?</strong> Překlad domén/IP. Hierarchie: Kořenové -&gt; TLD -&gt; Autoritativní -&gt; Local Resolver.
+2.  <strong>Postup řešení DNS dotazu?</strong> Klient cache -&gt; rekurzivní dotaz na Local DNS -&gt; Local DNS iterativně (Kořen -&gt; TLD -&gt; Autoritativní) -&gt; Autoritativní odpoví Local DNS -&gt; Local DNS odpoví klientovi.
+3.  <strong>Reverzní DNS a využití?</strong> Překlad IP na doménu (PTR záznamy v <code>in-addr.arpa</code>/<code>ip6.arpa</code>). Použití: Anti-spam, logování, diagnostika.
+4.  <strong>3 typy DNS záznamů?</strong> A (IPv4), AAAA (IPv6), CNAME (alias), MX (mail), NS (name servery).</p>
+        </div>
+        
+        <div id="otazka-23" class="question-section">
+            <h1>23. Základní principy WWW, HTTP, HTML</h1>
+<h2>A. Základní principy WWW (World Wide Web)</h2>
+<ul>
+<li><strong>Definice:</strong> Globální, distribuovaný informační systém pro sdílení hypertextových dokumentů a zdrojů přes internet. Vytvořen Timem Bernersem-Leem (1989, CERN).</li>
+<li><strong>Architektura (Klient-Server):</strong><ul>
+<li><strong>Klient (Webový prohlížeč):</strong> Odesílá požadavky, přijímá data, vykresluje.</li>
+<li><strong>Server (Webový server):</strong> Naslouchá, zpracovává požadavky, posílá odpovědi.</li>
+</ul>
+</li>
+<li><strong>Tři pilíře WWW:</strong><ul>
+<li><strong>URI / URL:</strong> Jednotné adresování a lokalizace zdrojů (např. <code>https://tul.cz/index.html</code>).</li>
+<li><strong>HTTP / HTTPS:</strong> Protokol pro přenos webových zdrojů mezi klientem a serverem.</li>
+<li><strong>HTML:</strong> Značkovací jazyk pro strukturu a sémantiku webových dokumentů.</li>
+</ul>
+</li>
+</ul>
+<h2>B. Protokol HTTP (Hypertext Transfer Protocol)</h2>
+<ul>
+<li><strong>Definice:</strong> Aplikační protokol (7. vrstva OSI) pro přenos hypertextových dokumentů a dat, pracuje nad TCP.</li>
+<li><strong>Charakteristiky:</strong><ul>
+<li><strong>Bezstavový (Stateless):</strong> Server si nepamatuje předchozí interakce. Stav se udržuje pomocí <strong>Cookies</strong> a <strong>Sessions</strong>.</li>
+<li><strong>Textový (HTTP/1.1):</strong> Lidsky čitelná komunikace.</li>
+<li><strong>Binární (HTTP/2, HTTP/3):</strong> Efektivnější přenos, multiplexing.</li>
+</ul>
+</li>
+<li><strong>Struktura komunikace:</strong> <strong>Požadavek (Request)</strong> a <strong>Odpověď (Response)</strong>. Obě části obsahují úvodní řádek, hlavičky (metadata) a volitelné tělo (data).</li>
+<li><strong>HTTP Metody (v požadavku):</strong> Určují typ operace.<ul>
+<li><code>GET</code>: Získání dat (idempotentní, bezpečný).</li>
+<li><code>POST</code>: Odeslání dat ke zpracování (není idempotentní/bezpečný).</li>
+<li><code>PUT</code>: Nahrazení celého zdroje (idempotentní).</li>
+<li><code>PATCH</code>: Částečná aktualizace zdroje.</li>
+<li><code>DELETE</code>: Smazání zdroje (idempotentní).</li>
+<li><code>HEAD</code>: Získání pouze hlaviček odpovědi.</li>
+<li><code>OPTIONS</code>: Zjištění podporovaných metod.</li>
+</ul>
+</li>
+<li><strong>HTTP Stavové kódy (v odpovědi):</strong> Číselně vyjadřují výsledek operace.<ul>
+<li><code>1xx</code>: Informativní.</li>
+<li><code>2xx</code>: Úspěch (např. <code>200 OK</code>, <code>201 Created</code>).</li>
+<li><code>3xx</code>: Přesměrování (např. <code>301 Moved Permanently</code>, <code>304 Not Modified</code>).</li>
+<li><code>4xx</code>: Chyba klienta (např. <code>400 Bad Request</code>, <code>404 Not Found</code>, <code>403 Forbidden</code>).</li>
+<li><code>5xx</code>: Chyba serveru (např. <code>500 Internal Server Error</code>, <code>503 Service Unavailable</code>).</li>
+</ul>
+</li>
+<li><strong>REST:</strong> HTTP metody jsou základem pro návrh RESTful API.</li>
+</ul>
+<h2>C. Jazyk HTML a (X)HTML</h2>
+<ul>
+<li><strong>Definice:</strong> Značkovací jazyk pro definici struktury a sémantiky webové stránky pomocí tagů (např. <code>&lt;h1&gt;</code>, <code>&lt;p&gt;</code>).</li>
+<li><strong><code>&lt;!DOCTYPE html&gt;</code>:</strong> Deklarace typu dokumentu, zajišťuje "standards mode".</li>
+<li><strong>Vývoj:</strong><ul>
+<li><strong>Klasické HTML (do 4.01):</strong> Tolerantní k chybám, nekonzistentní vykreslování.</li>
+<li><strong>XHTML:</strong> Striktní XML varianta HTML. Vyžadovalo precizní syntaxi (malá písmena, uvozovky pro atributy, uzavřené tagy jako <code>&lt;br /&gt;</code>). Cíl: robustnost, strojové zpracování. V praxi příliš rigidní.</li>
+<li><strong>HTML5:</strong> Moderní standard, kombinuje pragmatismus s novými funkcemi.<ul>
+<li>Méně striktní než XHTML, podporuje validní kód.</li>
+<li><strong>Sémantické tagy:</strong> <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;aside&gt;</code> – zlepšují přístupnost, SEO, čitelnost.</li>
+<li>Nativní podpora multimédií (<code>&lt;audio&gt;</code>, <code>&lt;video&gt;</code>).</li>
+<li>Nová API pro JavaScript (<code>&lt;canvas&gt;</code>, Geolocation, Web Storage).</li>
+<li>Vylepšené formuláře.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Document Object Model (DOM):</strong> Stromová struktura HTML dokumentu, kterou prohlížeč vytvoří a kterou lze manipulovat pomocí JavaScriptu.</li>
+<li><strong>Možnosti HTML:</strong><ul>
+<li>Definuje logickou strukturu textu (nadpisy, odstavce, seznamy, tabulky).</li>
+<li>Vytváří hypertextové odkazy (<code>&lt;a href="..."&gt;</code>).</li>
+<li>Umožňuje vkládat externí objekty (obrázky, videa) a formuláře.</li>
+</ul>
+</li>
+<li><strong>Omezení HTML (Separace zájmů):</strong><ul>
+<li><strong>Není programovací jazyk:</strong> Nemá logiku, proměnné, podmínky.</li>
+<li><strong>Neřeší vzhled:</strong> Vizuální prezentace je role <strong>CSS</strong>.</li>
+<li><strong>Statičnost:</strong> Pro dynamiku na straně klienta je nutný <strong>JavaScript</strong>.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2>Typické zkouškové otázky (Zkrácené odpovědi)</h2>
+<ol>
+<li>
+<p><strong>Základní pilíře WWW a princip klient-server architektury:</strong></p>
+<ul>
+<li><strong>Pilíře:</strong> URI/URL (adresování), HTTP/HTTPS (přenos), HTML (struktura).</li>
+<li><strong>Klient-Server:</strong> Klient (prohlížeč) posílá požadavky, server (webový server) je zpracovává a posílá odpovědi.</li>
+</ul>
+</li>
+<li>
+<p><strong>Protokol HTTP, jeho charakteristiky a struktura komunikace:</strong></p>
+<ul>
+<li><strong>HTTP:</strong> Aplikační protokol pro přenos hypertextu.</li>
+<li><strong>Charakteristiky:</strong> Bezstavový (stav přes Cookies/Sessions), textový (HTTP/1.1) / binární (HTTP/2, HTTP/3).</li>
+<li><strong>Struktura:</strong> Požadavek (metoda: GET, POST, PUT, DELETE; hlavičky) a Odpověď (stavový kód: 2xx úspěch, 4xx chyba klienta, 5xx chyba serveru; hlavičky).</li>
+</ul>
+</li>
+<li>
+<p><strong>Porovnání HTML, XHTML a HTML5:</strong></p>
+<ul>
+<li><strong>HTML (do 4.01):</strong> Tolerantní k chybám, nekonzistentní.</li>
+<li><strong>XHTML:</strong> Striktní XML syntaxe, rigidní.</li>
+<li><strong>HTML5:</strong> Moderní, pragmatický, sémantické tagy, multimédia, API.</li>
+<li><strong>Možnosti HTML:</strong> Struktura, odkazy, vkládání objektů, formuláře.</li>
+<li><strong>Omezení HTML:</strong> Není programovací jazyk, neřeší vzhled (CSS), statické (JS).</li>
+</ul>
+</li>
+<li>
+<p><strong>Bezstavovost HTTP a udržení stavu:</strong></p>
+<ul>
+<li><strong>Bezstavovost:</strong> Každý požadavek je nezávislý, server si nepamatuje kontext.</li>
+<li><strong>Udržení stavu:</strong> Řeší se pomocí <strong>Cookies</strong> (data na klientovi) a <strong>Sessions</strong> (stav na serveru s ID na klientovi).</li>
+</ul>
+</li>
+<li>
+<p><strong>Sémantické vs. nesémantické HTML tagy a jejich důležitost v HTML5:</strong></p>
+<ul>
+<li><strong>Nesémantické:</strong> <code>&lt;div&gt;</code>, <code>&lt;span&gt;</code> – bez významu pro obsah.</li>
+<li><strong>Sémantické:</strong> <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;footer&gt;</code> – dodávají obsahu význam a strukturu.</li>
+<li><strong>Důležitost:</strong> Zlepšují přístupnost (čtečky obrazovky), SEO (vyhledávače), čitelnost kódu a stylování.</li>
+</ul>
+</li>
+</ol>
+        </div>
+        
+        <div id="otazka-24" class="question-section">
+            <h1>24. CSS vlastnosti, hodnoty, dědění, kaskádování. Blokový model CSS.</h1>
+<h2>Klíčové pojmy</h2>
+<p>selektor, vlastnost, hodnota, kaskáda, specificita, dědění, blokový model (box model), margin, padding, border, content, <code>box-sizing</code>, <code>display</code> (block, inline, flex)</p>
+<hr />
+<h2>A. CSS Vlastnosti a Hodnoty</h2>
+<p>CSS (Cascading Style Sheets) popisuje vzhled HTML dokumentů.
+<strong>Struktura pravidla:</strong> <code>selektor { vlastnost: hodnota; }</code>
+*   <strong>Selektor:</strong> Určuje elementy (<code>p</code>, <code>.trida</code>, <code>#identifikator</code>).
+*   <strong>Deklarace:</strong> <code>vlastnost: hodnota;</code> (např. <code>color: red;</code>).</p>
+<p><strong>Typy hodnot:</strong>
+*   <strong>Délkové jednotky:</strong>
+    *   <strong>Absolutní:</strong> <code>px</code>.
+    *   <strong>Relativní:</strong> <code>em</code> (k rodiči), <code>rem</code> (k <code>&lt;html&gt;</code>), <code>%</code>, <code>vw</code>/<code>vh</code> (k oknu).
+*   <strong>Barvy:</strong> Klíčová slova (<code>red</code>), Hex (<code>#FF0000</code>), RGB/RGBA (<code>rgba(255, 0, 0, 0.5)</code>).
+*   <strong>Jiné:</strong> Klíčová slova (<code>auto</code>, <code>none</code>), URL (<code>url('obrazek.png')</code>).</p>
+<hr />
+<h2>B. Dědění (Inheritance) a Kaskádování (Cascading)</h2>
+<p>Řeší, jak se styly šíří a jak se řeší konflikty.</p>
+<h3>1. Dědění (Inheritance)</h3>
+<p>Některé vlastnosti rodiče se automaticky přenášejí na potomky.
+*   <strong>Dědí se:</strong> <code>font-family</code>, <code>color</code>, <code>line-height</code>, <code>text-align</code>, <code>font-size</code>.
+*   <strong>Nedědí se:</strong> <code>margin</code>, <code>padding</code>, <code>border</code>, <code>width</code>, <code>height</code>, <code>background-color</code>.</p>
+<h3>2. Kaskádování (Cascading)</h3>
+<p>Proces řešení konfliktů, když se na prvek vztahuje více pravidel pro stejnou vlastnost. Rozhoduje se dle priority:</p>
+<ol>
+<li><strong>Původ a důležitost (Origin &amp; Importance):</strong><ul>
+<li><code>!important</code> přebije téměř vše (nedoporučuje se).</li>
+<li>Autorské styly &gt; Výchozí styly prohlížeče.</li>
+<li>Pořadí priority (od nejnižší): Uživatelské styly prohlížeče &lt; Uživatelské styly &lt; Autorské styly &lt; Autorské styly s <code>!important</code> &lt; Uživatelské styly s <code>!important</code>.</li>
+</ul>
+</li>
+<li><strong>Specificita (Specificity):</strong><ul>
+<li>Čím přesnější selektor, tím vyšší váha.</li>
+<li>Váha se počítá:<ul>
+<li>Inline styl: $(1,0,0,0)$</li>
+<li>ID selektor (<code>#id</code>): $(0,1,0,0)$</li>
+<li>Třída, pseudotřída, atribut (<code>.class</code>, <code>:hover</code>, <code>[type="text"]</code>): $(0,0,1,0)$</li>
+<li>Element/Tag, pseudoelement (<code>div</code>, <code>::before</code>): $(0,0,0,1)$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Pořadí v kódu (Order of Appearance):</strong><ul>
+<li>Při stejné důležitosti a specificitě vyhrává pravidlo napsané později v kódu.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2>C. Blokový model CSS (Box Model)</h2>
+<p>Každý HTML element je obdélníkový box složený ze čtyř vrstev (od středu ven):</p>
+<ol>
+<li><strong>Obsah (Content):</strong> Vnitřek elementu (text, obrázky). Rozměry určují <code>width</code> a <code>height</code>.</li>
+<li><strong>Vnitřní okraj (Padding):</strong> Průhledný prostor mezi obsahem a rámečkem.</li>
+<li><strong>Rámeček (Border):</strong> Čára kolem paddingu.</li>
+<li><strong>Vnější okraj (Margin):</strong> Průhledný prostor vně rámečku, vytváří mezery mezi boxy.</li>
+</ol>
+<h3>Vlastnost <code>box-sizing</code></h3>
+<p>Určuje, jak se počítají <code>width</code> a <code>height</code>.
+*   <strong><code>box-sizing: content-box;</code> (výchozí):</strong>
+    Celková šířka = <code>width</code> (obsah) + <code>padding</code> + <code>border</code>.
+    $$ \text{Celková šířka} = \text{width} + \text{padding-left} + \text{padding-right} + \text{border-left-width} + \text{border-right-width} $$
+*   <strong><code>box-sizing: border-box;</code> (moderní):</strong>
+    <code>width</code> je celková šířka elementu (obsah + padding + border). Padding a border se "vtlačí" dovnitř.
+    Doporučuje se globálně: <code>* { box-sizing: border-box; }</code>.</p>
+<hr />
+<h2>D. Typy zobrazení (Display Property)</h2>
+<p>Vlastnost <code>display</code> určuje chování elementu v toku dokumentu.</p>
+<ul>
+<li><strong><code>display: block;</code></strong><ul>
+<li>Zabírá celou šířku, začíná na novém řádku.</li>
+<li>Respektuje <code>width</code>, <code>height</code>, <code>margin</code>, <code>padding</code>, <code>border</code>.</li>
+<li>Příklady: <code>div</code>, <code>p</code>, <code>h1</code>.</li>
+</ul>
+</li>
+<li><strong><code>display: inline;</code></strong><ul>
+<li>Zabírá jen šířku obsahu, nezpůsobuje zalomení řádku (vedle sebe).</li>
+<li>Ignoruje <code>width</code>, <code>height</code>, vertikální <code>margin</code> a <code>padding</code>.</li>
+<li>Příklady: <code>span</code>, <code>a</code>, <code>strong</code>.</li>
+</ul>
+</li>
+<li><strong><code>display: inline-block;</code></strong><ul>
+<li>Zobrazuje se vedle sebe (jako <code>inline</code>).</li>
+<li>Respektuje <code>width</code>, <code>height</code>, <code>margin</code>, <code>padding</code>, <code>border</code> (jako <code>block</code>).</li>
+</ul>
+</li>
+<li><strong><code>display: flex;</code></strong><ul>
+<li>Nastaví element jako flex kontejner. Umožňuje flexibilní uspořádání potomků (flex položek) v jednom rozměru (řádek/sloupec).</li>
+<li>Výkonný nástroj pro responzivní layouty.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2>E. Praktické použití</h2>
+<ul>
+<li>Responzivní layout, typografie, vizuální identita, přístupnost webu, oddělení vzhledu od struktury.</li>
+</ul>
+<h2>F. Nejčastější chyby u zkoušky</h2>
+<ul>
+<li>Neznalost rozdílu mezi <code>margin</code> a <code>padding</code>.</li>
+<li>Přepisování stylů bez pochopení kaskády/specificity.</li>
+<li>Zapomenutí na <code>box-sizing</code>.</li>
+<li>Záměna chování <code>display: block;</code> a <code>display: inline;</code>.</li>
+<li>Považování CSS za programovací jazyk.</li>
+</ul>
+<hr />
+<h2>G. Typické zkouškové otázky</h2>
+<ol>
+<li>
+<p><strong>Vysvětlete CSS kaskádu a specificitu.</strong></p>
+<ul>
+<li><strong>Kaskáda:</strong> Mechanismus, který určuje, které CSS pravidlo se aplikuje při konfliktu. Rozhoduje se dle: Původu (<code>!important</code>), Specificity selektoru, Pořadí v kódu.</li>
+<li><strong>Specificita:</strong> Váha selektoru. Čím přesnější selektor, tím vyšší priorita. Počítá se: Inline (1,0,0,0) &gt; ID (0,1,0,0) &gt; Třída (0,0,1,0) &gt; Element (0,0,0,1).</li>
+</ul>
+</li>
+<li>
+<p><strong>Popište box model.</strong></p>
+<ul>
+<li>Každý HTML element je obdélníkový box se 4 vrstvami (od středu ven): Content (obsah), Padding (vnitřní okraj), Border (rámeček), Margin (vnější okraj).</li>
+<li><code>box-sizing</code>: Ovlivňuje výpočet <code>width</code>/<code>height</code>. <code>content-box</code> (výchozí) znamená, že <code>width</code> je jen šířka obsahu. <code>border-box</code> znamená, že <code>width</code> zahrnuje obsah, padding i border.</li>
+</ul>
+</li>
+<li>
+<p><strong>Jak funguje <code>display: block</code>, <code>inline</code> a <code>flex</code>?</strong></p>
+<ul>
+<li><strong><code>display: block;</code></strong>: Zabírá celou šířku, začíná na novém řádku, respektuje <code>width</code>, <code>height</code>, <code>margin</code>, <code>padding</code>.</li>
+<li><strong><code>display: inline;</code></strong>: Zabírá jen šířku obsahu, zobrazuje se vedle sebe, ignoruje <code>width</code>, <code>height</code> a vertikální <code>margin</code>/<code>padding</code>.</li>
+<li><strong><code>display: flex;</code></strong>: Nastaví element jako flex kontejner, umožňující flexibilní uspořádání jeho přímých potomků (flex položek) v jednom rozměru (řádek/sloupec).</li>
+</ul>
+</li>
+</ol>
+        </div>
+        
+        <div id="otazka-25" class="question-section">
+            <h1>25. Webové aplikace: Klient, Server, JavaScript a DOM</h1>
+<h3>Klíčové pojmy</h3>
+<ul>
+<li>webová aplikace, frontend, backend</li>
+<li>JavaScript, DOM, event listener</li>
+<li>AJAX, JSON, SPA, HTTP API</li>
+<li>dynamické typování, prototypová dědičnost, jednovláknové, asynchronní, Event Loop</li>
+<li>selektor (CSS)</li>
+</ul>
+<hr />
+<h3>A. Programování na straně serveru (Backend) vs. klienta (Frontend)</h3>
+<p>Moderní webové aplikace jsou distribuované systémy Klient-Server.</p>
+<ol>
+<li>
+<p><strong>Programování na straně klienta (Frontend)</strong></p>
+<ul>
+<li><strong>Kde:</strong> Běží v prohlížeči uživatele.</li>
+<li><strong>Tech:</strong> HTML (struktura), CSS (vzhled), JavaScript (chování).</li>
+<li><strong>Charakteristika:</strong> Stará se o UI, validaci vstupů, animace, dynamické překreslování bez načítání stránky.</li>
+<li><strong>Omezení:</strong> Kód je viditelný, nemá přímý přístup k souborům počítače ani k databázi.</li>
+</ul>
+</li>
+<li>
+<p><strong>Programování na straně serveru (Backend)</strong></p>
+<ul>
+<li><strong>Kde:</strong> Běží na vzdáleném webovém serveru.</li>
+<li><strong>Tech:</strong> PHP, Python, Node.js, Java, C#, databáze (SQL, NoSQL).</li>
+<li><strong>Charakteristika:</strong> Zpracovává HTTP požadavky, provádí business logiku (ověření, DB operace), generuje HTML/JSON.</li>
+<li><strong>Výhody:</strong> Kód je skrytý, bezpečný, má plný přístup k databázi a souborům na serveru.</li>
+</ul>
+</li>
+<li>
+<p><strong>Komunikace mezi klientem a serverem</strong></p>
+<ul>
+<li><strong>HTTP API:</strong> Klient posílá HTTP požadavky (GET, POST) na server.</li>
+<li><strong>JSON (JavaScript Object Notation):</strong> Běžný formát pro výměnu dat.</li>
+<li><strong>AJAX (Asynchronous JavaScript and XML):</strong> Umožňuje asynchronní komunikaci se serverem na pozadí bez nutnosti znovu načítat celou stránku, zlepšuje UX. Dnes primárně s JSON.</li>
+</ul>
+</li>
+<li>
+<p><strong>Single Page Application (SPA)</strong></p>
+<ul>
+<li>Webová aplikace, která načte jednu HTML stránku a dynamicky mění obsah pomocí JavaScriptu a AJAXu (API). Poskytuje plynulejší uživatelský zážitek.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h3>B. Základy jazyka JavaScript (JS)</h3>
+<p>Multiparadigmatický, interpretovaný, dynamicky typovaný programovací jazyk, nativně podporovaný prohlížeči.</p>
+<ul>
+<li><strong>Dynamické typování:</strong> Typ proměnné (deklarované pomocí <code>let</code> nebo <code>const</code>) se určuje automaticky za běhu podle přiřazené hodnoty.
+    <code>javascript
+    let vek = 30; // number
+    vek = "třicet"; // string</code></li>
+<li><strong>Prototypová dědičnost:</strong> Objekty dědí vlastnosti přímo od jiných objektů (prototypů), ne od tříd (klíčové slovo <code>class</code> je syntaktický cukr).</li>
+<li><strong>Jednovláknové a asynchronní:</strong><ul>
+<li>JS běží v prohlížeči v jediném hlavním vlákně (Main Thread).</li>
+<li>Asynchronní programování zabraňuje zablokování UI při dlouhých operacích (např. AJAX):<ul>
+<li><strong>Callback funkce:</strong> Spustí se po dokončení asynchronní operace.</li>
+<li><strong>Promises:</strong> Objekty reprezentující budoucí výsledek (pending, fulfilled, rejected).</li>
+<li><strong><code>async/await</code>:</strong> Syntaktický cukr nad Promises pro čitelnější asynchronní kód.</li>
+</ul>
+</li>
+<li>Vše řídí <strong>Event Loop</strong>, který neustále kontroluje frontu událostí a callbacků a spouští je, když je hlavní vlákno volné.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3>C. DOM (Document Object Model) a přístup k prvkům</h3>
+<ul>
+<li>
+<p><strong>DOM:</strong> Stromová struktura objektů v paměti prohlížeče, vytvořená z HTML/XML dokumentu. Poskytuje programové rozhraní (API) pro přístup a manipulaci se strukturou, obsahem a styly dokumentu pomocí JavaScriptu.</p>
+</li>
+<li>
+<p><strong>Přístup k prvkům stránky (Selekce uzlů):</strong></p>
+<ul>
+<li><code>document.getElementById('id_prvku')</code></li>
+<li><code>document.getElementsByClassName('nazev_tridy')</code> (HTMLCollection)</li>
+<li><code>document.querySelector('.css_selektor')</code> (první odpovídající prvek)</li>
+<li><code>document.querySelectorAll('div.polozka')</code> (NodeList všech odpovídajících prvků)</li>
+</ul>
+</li>
+<li>
+<p><strong>Manipulace s elementy:</strong>
+    <code>javascript
+    const nadpis = document.querySelector('#hlavni-nadpis');
+    nadpis.textContent = 'Nový text'; // Změna textu
+    nadpis.innerHTML = '&lt;em&gt;Nový&lt;/em&gt; text'; // Změna HTML
+    nadpis.style.color = 'blue'; // Změna inline CSS
+    nadpis.classList.add('aktivni-styl'); // Správa CSS tříd
+    nadpis.setAttribute('data-info', 'value'); // Přidání atributu</code></p>
+</li>
+<li>
+<p><strong>Reakce na události (Event Handling):</strong></p>
+<ul>
+<li>JS reaguje na akce uživatele (klik, stisk klávesy) pomocí posluchačů událostí.
+<code>javascript
+const tlacitko = document.querySelector('#odesilaci-tlacitko');
+tlacitko.addEventListener('click', function(event) {
+    alert('Kliknuto!');
+});</code></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3>Typické zkouškové otázky</h3>
+<ol>
+<li>
+<p><strong>Co je DOM?</strong>
+    Programové API pro HTML/XML dokumenty. Reprezentuje dokument jako strom uzlů (elementy, atributy, text), umožňuje JS manipulovat se strukturou, obsahem a styly.</p>
+</li>
+<li>
+<p><strong>Jak JavaScript reaguje na události?</strong>
+    Pomocí "event handlingu". Programátor registruje <code>event listener</code> (např. <code>addEventListener()</code>) k DOM elementům. Při události (klik, stisk klávesy) prohlížeč spustí asociovanou JS funkci (callback).</p>
+</li>
+<li>
+<p><strong>Jak webová aplikace komunikuje se serverem?</strong>
+    Přes HTTP protokol. Klient posílá HTTP požadavky (GET, POST) na server. Server zpracuje a odpoví HTTP odpovědí (HTML, CSS, JS, JSON). Moderní aplikace využívají AJAX pro asynchronní komunikaci s REST API, dynamicky aktualizují obsah bez načítání stránky.</p>
+</li>
+</ol>
+        </div>
+        
+        <div id="otazka-26" class="question-section">
+            <p>Zde je zkrácená verze (tahák) k otázce 26:</p>
+<h1>26. Jazyk PHP. Problematika uchovávání stavových informací, cookies.</h1>
+<h2>A. Jazyk PHP</h2>
+<ul>
+<li><strong>Klíčové pojmy:</strong> PHP (Hypertext Preprocessor), server-side, dynamicky typovaný, interpretovaný, Zend Engine, PHP-FPM, HTML embedding.</li>
+<li><strong>Definice:</strong> Open-source skriptovací jazyk pro dynamické webové stránky. Dynamicky typovaný, interpretovaný (Zend Engine kompiluje do bytecode).</li>
+<li><strong>Princip fungování:</strong><ol>
+<li>Klient požádá <code>.php</code> soubor. Webový server předá PHP interpretu (PHP-FPM).</li>
+<li>PHP kód v <code>&lt;?php ... ?&gt;</code> se zpracuje.</li>
+<li>Generuje dynamický obsah (DB interakce, formuláře) a vkládá do HTML (<code>echo</code>/<code>print</code>).</li>
+<li>Server odešle finální HTML (bez PHP kódu) klientovi.</li>
+</ol>
+</li>
+<li><strong>Využití:</strong> WordPress, Laravel, Symfony.</li>
+</ul>
+<h2>B. Uchovávání stavových informací</h2>
+<ul>
+<li><strong>Klíčové pojmy:</strong> Bezstavový protokol (HTTP), stavová informace, session management.</li>
+<li><strong>Problém:</strong> HTTP je bezstavový – server si nepamatuje předchozí interakce s klientem.</li>
+<li><strong>Nutnost stavu:</strong> Autentizace, nákupní košík, personalizace obsahu.</li>
+<li><strong>Řešení:</strong> Cookies a Relace (Sessions).</li>
+</ul>
+<h2>C. Cookies</h2>
+<ul>
+<li><strong>Klíčové pojmy:</strong> <code>Set-Cookie</code>, <code>Cookie</code>, klient-side, <code>Max-Age</code>, <code>Expires</code>, <code>Path</code>, <code>Domain</code>, <code>HttpOnly</code>, <code>Secure</code>, <code>SameSite</code>, XSS, Session Hijacking, velikostní limit.</li>
+<li><strong>Definice:</strong> Malý textový záznam (klíč=hodnota) uložený klientem (webovým prohlížečem).</li>
+<li><strong>Fungování:</strong><ol>
+<li><strong>Zápis (server -&gt; klient):</strong> Server pošle <code>Set-Cookie</code> hlavičku v HTTP odpovědi. Prohlížeč uloží.</li>
+<li><strong>Odesílání (klient -&gt; server):</strong> Prohlížeč automaticky přibalí uložené cookie do <code>Cookie</code> hlavičky HTTP požadavku.</li>
+</ol>
+</li>
+<li><strong>Vlastnosti a omezení:</strong><ul>
+<li><strong>Klient-side:</strong> Uživatel může mazat, zakázat, manipulovat.</li>
+<li><strong>Bezpečnostní rizika:</strong> Neukládat citlivé údaje. Náchylné k XSS (útok na cookie), Session Hijacking.</li>
+<li><strong>Velikost:</strong> Max $4\text{ KB}$ na cookie.</li>
+<li><strong>Metadata (příznaky):</strong><ul>
+<li><code>Max-Age</code> / <code>Expires</code>: Doba platnosti.</li>
+<li><code>HttpOnly</code>: Zabraňuje JavaScriptu v přístupu (ochrana před XSS).</li>
+<li><code>Secure</code>: Jen přes HTTPS spojení.</li>
+<li><code>SameSite</code>: Ochrana před CSRF (např. <code>Lax</code>, <code>Strict</code>).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>D. Relace (Sessions) v PHP</h2>
+<ul>
+<li><strong>Klíčové pojmy:</strong> Server-side úložiště, Session ID, <code>session_start()</code>, <code>PHPSESSID</code>, <code>$_SESSION</code>, session fixation.</li>
+<li><strong>Definice:</strong> Uchovávání stavových dat na straně serveru. Cookie slouží pouze k uložení <strong>identifikátoru relace (Session ID)</strong>.</li>
+<li><strong>Fungování:</strong><ol>
+<li><strong>Inicializace:</strong> <code>session_start()</code>: PHP vygeneruje unikátní Session ID (pokud neexistuje).</li>
+<li><strong>Server-side úložiště:</strong> Server uloží data relace (např. do souboru) pod Session ID. Přístupná přes superglobální pole <code>$_SESSION</code>.</li>
+<li><strong>Propojení s klientem:</strong> Server pošle Session ID klientovi jako speciální cookie (<code>PHPSESSID</code>).</li>
+<li><strong>Obnovení:</strong> Klient pošle <code>PHPSESSID</code> zpět. PHP najde data na serveru a obnoví <code>$_SESSION</code>.</li>
+</ol>
+</li>
+<li><strong>Výhody:</strong><ul>
+<li><strong>Bezpečnost:</strong> Surová data jsou na serveru, klient má jen ID.</li>
+<li><strong>Kapacita:</strong> Bez limitu $4\text{ KB}$ jako u cookies.</li>
+<li><strong>Životní cyklus:</strong> Spravován serverem (garbage collection).</li>
+</ul>
+</li>
+<li><strong>Zabezpečení:</strong><ul>
+<li><code>session_regenerate_id()</code>: Pravidelná změna Session ID (ochrana před Session Fixation).</li>
+<li>Použití <code>HttpOnly</code> a <code>Secure</code> pro <code>PHPSESSID</code> cookie.</li>
+<li>Dostatečná entropie Session ID.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2>Typické zkouškové otázky</h2>
+<ol>
+<li>
+<p><strong>Jak PHP zpracuje formulář?</strong></p>
+<ul>
+<li>Po odeslání formuláře (GET/POST) server přijme HTTP požadavek.</li>
+<li>PHP skript (definovaný v <code>action</code> atributu) se spustí.</li>
+<li>Data formuláře jsou automaticky naplněna do superglobálních polí <code>$_GET</code> nebo <code>$_POST</code>.</li>
+<li>Skript data validuje, zpracuje (např. uloží do DB) a vygeneruje dynamickou HTML odpověď pro klienta.</li>
+</ul>
+</li>
+<li>
+<p><strong>Jaký je rozdíl mezi cookie a session?</strong></p>
+<ul>
+<li><strong>Cookie:</strong> Malý datový záznam uložený na straně <strong>klienta</strong> (v prohlížeči). Server ji nastaví (<code>Set-Cookie</code>), prohlížeč ji automaticky posílá zpět (<code>Cookie</code>). Omezená velikost ($4\text{ KB}$), náchylné k manipulaci uživatelem nebo útokům (XSS).</li>
+<li><strong>Session (relace):</strong> Mechanismus pro uchování stavových dat na straně <strong>serveru</strong>. Klient u sebe v cookie (<code>PHPSESSID</code>) uchovává pouze unikátní <strong>Session ID</strong>. Server podle ID najde příslušná data relace (uložená na serveru) a zpřístupní je PHP skriptu (v <code>$_SESSION</code>). Sessions jsou bezpečnější pro citlivá data a nemají tak přísné velikostní omezení. Cookie tedy <strong>identifikuje</strong> relaci, zatímco relace <strong>uchovává</strong> skutečná data.</li>
+</ul>
+</li>
+<li>
+<p><strong>Jak zabezpečit autentizační cookie?</strong></p>
+<ul>
+<li><code>HttpOnly</code> příznak: Zabraňuje JavaScriptu v přístupu k cookie (ochrana před XSS).</li>
+<li><code>Secure</code> příznak: Zajišťuje, že cookie bude odeslána pouze přes šifrované HTTPS spojení.</li>
+<li><code>SameSite</code> příznak (<code>Lax</code> nebo <code>Strict</code>): Chrání před CSRF útoky.</li>
+<li>Krátká doba platnosti (<code>Max-Age</code>): Snižuje okno pro potenciální zneužití.</li>
+<li><code>session_regenerate_id()</code>: Pravidelná změna Session ID (ochrana před Session Fixation).</li>
+<li>Ukládat pouze Session ID, ne citlivé informace přímo do cookie.</li>
+<li>Volitelně: Validace IP adresy/User-Agenta na serveru.</li>
+</ul>
+</li>
+</ol>
+        </div>
+        
+        </main>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>

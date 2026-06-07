@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[34, 35, 36, 37] (Zkrácené) - SZZ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+    MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <header>
+        <div class="brand">
+            <button id="hamburger" class="hamburger">☰</button>
+            <a href="index_zkracene.html" style="color:inherit; text-decoration:none;">⬅ Zpět</a>
+        </div>
+        <div style="font-weight:600;">[34, 35, 36, 37] (Zkráceně)</div>
+        <button id="theme-toggle" class="theme-toggle">🌙</button>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="toc-title">Obsah okruhů</div>
+            <ul class="toc-list">
+                <li><a href="#otazka-34">34. Kombinační logické obvody</a></li>\n<li><a href="#otazka-35">35. Sekvenční logické obvody</a></li>\n<li><a href="#otazka-36">36. Aritmetické obvody</a></li>\n<li><a href="#otazka-37">37. Procesory, FPGA obvody</a></li>\n
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <a href="pdfs/Hardware_a_elektronika_zkracene.pdf" target="_blank" class="pdf-btn">
+                📄 Stáhnout jako PDF
+            </a>
+            
+        <div id="otazka-34" class="question-section">
+            <h1>34. Kombinační logické obvody (TAHÁK)</h1>
+<h2>Klíčové pojmy</h2>
+<p>Kombinační logický obvod, Logické hradlo, Booleova algebra, Pravdivostní tabulka, Minterm, Maxterm, Úplná disjunktivní normální forma (UDNF), Úplná konjunktivní normální forma (UKNF), Karnaughova mapa (K-mapa), Propagační zpoždění, Univerzální logický člen, Multiplexor (MUX), Demultiplexor (DEMUX), Dekodér (DEC), Kodér (ENC), Sčítačka, Komparátor.</p>
+<hr />
+<h2>A. Charakteristika kombinačních logických obvodů</h2>
+<p>Digitální obvod, jehož výstupní hodnoty závisí <strong>výhradně na aktuálních hodnotách vstupů</strong>. Nemá vnitřní paměť ani zpětnou vazbu.</p>
+<p><strong>Hlavní rysy:</strong>
+*   <strong>Bezpaměťovost:</strong> Výstupy jsou funkcí pouze aktuálních vstupů.
+*   <strong>Absence zpětné vazby:</strong> Žádné smyčky vracející výstupy na vstupy.
+*   <strong>Matematický popis:</strong> Booleovy funkce nebo pravdivostní tabulka.
+*   <strong>Propagační zpoždění:</strong> Nenulový čas mezi změnou vstupu a výstupu.
+*   <strong>Příklady:</strong> Sčítačka, Multiplexor, Demultiplexor, Kodér, Dekodér, Komparátor.</p>
+<p><strong>Rozdíl od sekvenčních obvodů:</strong> Sekvenční obvody (klopné obvody, registry, čítače) mají paměť – výstup závisí i na předchozím stavu.</p>
+<h2>B. Realizace pomocí logických hradel</h2>
+<p>Logická hradla realizují elementární Booleovy operace.</p>
+<p><strong>Základní logická hradla:</strong>
+*   <strong>AND:</strong> $Y = A \cdot B$ (výstup 1, jen když všechny vstupy 1)
+*   <strong>OR:</strong> $Y = A + B$ (výstup 1, když alespoň jeden vstup 1)
+*   <strong>NOT:</strong> $Y = \overline{A}$ (výstup opačný než vstup)
+*   <strong>NAND:</strong> $Y = \overline{A \cdot B}$ (výstup 0, jen když všechny vstupy 1)
+*   <strong>NOR:</strong> $Y = \overline{A + B}$ (výstup 1, jen když všechny vstupy 0)
+*   <strong>XOR:</strong> $Y = A \oplus B = A \cdot \overline{B} + \overline{A} \cdot B$ (výstup 1, když vstupy různé)
+*   <strong>XNOR:</strong> $Y = \overline{A \oplus B} = A \cdot B + \overline{A} \cdot \overline{B}$ (výstup 1, když vstupy stejné)</p>
+<p><strong>Postup návrhu obvodu z hradel:</strong>
+1.  <strong>Pravdivostní tabulka:</strong> Určení výstupů pro všechny kombinace vstupů.
+2.  <strong>Booleova funkce (UDNF):</strong> Součet mintermů (řádky s výstupem 1). Minterm je součin vstupů, negovaných pro hodnotu 0.
+    *   <em>Příklad XOR:</em> $Y = \overline{A} \cdot B + A \cdot \overline{B}$
+3.  <strong>Minimalizace funkce:</strong> Zjednodušení pro snížení počtu hradel, nákladů, spotřeby a zpoždění.
+    *   <strong>Metody:</strong> Booleova algebra, Karnaughova mapa (pro 2-5 proměnných).
+4.  <strong>Nakreslení schématu:</strong> Realizace zjednodušené funkce pomocí hradel.</p>
+<p><strong>Univerzálnost hradel NAND / NOR:</strong>
+Pomocí samotných hradel NAND (nebo samotných NOR) lze realizovat jakoukoliv logickou funkci (NOT, AND, OR, XOR).
+*   <em>Příklad NOT z NAND:</em> $A \text{ NAND } A = \overline{A \cdot A} = \overline{A}$</p>
+<h2>C. Realizace pomocí Multiplexorů (MUX)</h2>
+<p><strong>MUX:</strong> Digitální přepínač s $2^n$ datovými vstupy ($D_i$), $n$ selekčními vstupy ($S_j$) a jedním výstupem ($Y$). Výstup $Y$ je roven datovému vstupu, jehož index odpovídá binární hodnotě na selekčních vstupech.
+*   <em>Funkce MUX 4:1:</em> $Y = \overline{S_1} \cdot \overline{S_0} \cdot D_0 + \overline{S_1} \cdot S_0 \cdot D_1 + S_1 \cdot \overline{S_0} \cdot D_2 + S_1 \cdot S_0 \cdot D_3$</p>
+<p><strong>Realizace libovolné logické funkce pomocí MUX:</strong>
+1.  <strong>Proměnné na selekční vstupy:</strong> $n$ proměnných funkce na $n$ selekčních vstupů MUX ($2^n$ datových vstupů).
+2.  <strong>Logické hodnoty na datové vstupy:</strong> Na $D_0$ až $D_{2^n-1}$ se přivede 0 nebo 1 dle pravdivostní tabulky funkce pro danou kombinaci selekčních vstupů.
+    *   <em>Příklad XOR (MUX 4:1, $S_1=A, S_0=B$):</em> $D_0=0, D_1=1, D_2=1, D_3=0$.</p>
+<h2>D. Realizace pomocí Dekodérů (DEC)</h2>
+<p><strong>Dekodér:</strong> Obvod s $n$ vstupy a $2^n$ výstupy. Aktivuje právě jeden výstup ($Y_k$), jehož index odpovídá binárnímu číslu na vstupech. Každý výstup $Y_k$ odpovídá jednomu mintermu.
+*   <em>Příklad DEC 2:4 ($A_1, A_0$):</em> $Y_0 = \overline{A_1} \cdot \overline{A_0}$, $Y_1 = \overline{A_1} \cdot A_0$, $Y_2 = A_1 \cdot \overline{A_0}$, $Y_3 = A_1 \cdot A_0$.</p>
+<p><strong>Realizace libovolné logické funkce pomocí DEC:</strong>
+1.  <strong>Vstupy na dekodér:</strong> $n$ proměnných funkce na vstupy dekodéru ($2^n$ výstupů).
+2.  <strong>Identifikace mintermů:</strong> Najít řádky v pravdivostní tabulce, kde je výstup funkce 1.
+3.  <strong>Zapojení hradla OR:</strong> Výstupy dekodéru odpovídající těmto mintermům se zapojí do vícevstupového hradla OR. Výstup OR je výsledná funkce.
+    *   <em>Příklad XOR (DEC 2:4, $A, B$):</em> Výstup 1 pro $AB=01$ ($Y_1$) a $AB=10$ ($Y_2$). Funkce je $Y = Y_1 + Y_2$.</p>
+<hr />
+<h2>Shrnutí možností realizace</h2>
+<ul>
+<li><strong>Hradla:</strong> Nejzákladnější, flexibilní pro jednoduché funkce. Vyžaduje minimalizaci (K-mapy, Booleova algebra).</li>
+<li><strong>Multiplexor:</strong> Univerzální, přímé mapování pravdivostní tabulky na datové vstupy. Bez minimalizace. Pro mnoho vstupů může být velký.</li>
+<li><strong>Dekodér:</strong> Generuje všechny mintermy. Ideální pro více funkcí z jedněch vstupů (s přidáním OR hradel). Pro jednu funkci méně efektivní než MUX.</li>
+</ul>
+<h2>Praktické použití</h2>
+<p>ALU (sčítačky, komparátory), Adresování paměti, Datové směrování (MUX/DEMUX), Řízení displejů, Kódování/dekódování, Řadiče.</p>
+<h2>Nejčastější chyby u zkoušky</h2>
+<ul>
+<li>Přidání paměti do kombinačního obvodu (záměna se sekvenčním).</li>
+<li>Chyby v De Morganových zákonech.</li>
+<li>Neúplná pravdivostní tabulka.</li>
+<li>Neznalost univerzálnosti NAND/NOR hradel.</li>
+<li>Nepochopení principu MUX/DEC pro realizaci funkcí.</li>
+</ul>
+<hr />
+<h2>Typické zkouškové otázky (zkrácené odpovědi)</h2>
+<ol>
+<li>
+<p><strong>Co je kombinační obvod a jak se liší od sekvenčního obvodu?</strong>
+    Kombinační obvod: Výstup závisí <strong>jen na aktuálních vstupech</strong>, nemá paměť ani zpětnou vazbu.
+    Sekvenční obvod: Výstup závisí na aktuálních vstupech <strong>i na předchozím stavu</strong> (má paměť), často řízen hodinovým signálem.</p>
+</li>
+<li>
+<p><strong>Popište základní logická hradla a uveďte jejich Booleovy funkce a pravdivostní tabulky.</strong>
+    Základní hradla: AND ($Y = A \cdot B$), OR ($Y = A + B$), NOT ($Y = \overline{A}$), NAND ($Y = \overline{A \cdot B}$), NOR ($Y = \overline{A + B}$), XOR ($Y = A \oplus B$), XNOR ($Y = \overline{A \oplus B}$). Pro každé hradlo je nutné uvést jeho pravdivostní tabulku.</p>
+</li>
+<li>
+<p><strong>Jak se navrhuje kombinační obvod z pravdivostní tabulky a jakou roli hraje minimalizace?</strong>
+    Návrh: 1. Pravdivostní tabulka. 2. Zápis Booleovy funkce (UDNF z mintermů). 3. <strong>Minimalizace</strong> (Booleova algebra, K-mapy) – klíčová pro zjednodušení obvodu, snížení hradel, nákladů, spotřeby a zpoždění. 4. Nakreslení schématu.</p>
+</li>
+<li>
+<p><strong>Vysvětlete, jak lze libovolnou logickou funkci realizovat pomocí multiplexoru nebo dekodéru.</strong></p>
+<ul>
+<li><strong>Multiplexor (MUX):</strong> Vstupní proměnné funkce na selekční vstupy MUX. Na datové vstupy MUX se přivedou pevné logické hodnoty (0/1) odpovídající výstupům funkce z pravdivostní tabulky.</li>
+<li><strong>Dekodér (DEC):</strong> Vstupní proměnné funkce na vstupy dekodéru. Výstupy dekodéru, které odpovídají mintermům s výstupem 1 v pravdivostní tabulce, se zapojí do vícevstupového hradla OR.</li>
+</ul>
+</li>
+</ol>
+        </div>
+        
+        <div id="otazka-35" class="question-section">
+            <h1>35. Sekvenční logické obvody (TAHÁK)</h1>
+<h2>Klíčové pojmy</h2>
+<p>Sekvenční obvod, Klopný obvod (Flip-Flop, Latch), Synchronní/Asynchronní, Hodiny (CLK), Registry, Posuvný registr, Čítač, Konečný automat (FSM), Moore, Mealy, Graf stavů, Tabulka přechodů, Kódování stavů.</p>
+<h2>A. Základní vlastnosti sekvenčních obvodů</h2>
+<p>Digitální obvod, jehož výstup závisí na aktuálních vstupech <strong>a předchozím vnitřním stavu</strong>.
+*   <strong>Paměť:</strong> Obsahuje paměťové prvky (klopné obvody) pro uchování stavu.
+*   <strong>Zpětná vazba:</strong> Výstupy paměťových prvků ovlivňují budoucí stav.</p>
+<h3>Rozdělení podle synchronizace:</h3>
+<ul>
+<li><strong>Asynchronní:</strong> Reagují okamžitě na změnu vstupů. Náchylné na hazardy.</li>
+<li><strong>Synchronní (řízené hodinami):</strong> Změna stavu jen na definované hraně $CLK$. Koordinované, standard.</li>
+</ul>
+<h2>B. Typy klopných obvodů (Flip-Flops / Latches)</h2>
+<p>Základní jednobitový paměťový prvek ($Q, \bar{Q}$).</p>
+<ol>
+<li>
+<p><strong>RS (Reset-Set):</strong></p>
+<ul>
+<li>Vstupy: $S, R$.</li>
+<li>Chování: $S=1, R=0 \rightarrow Q=1$; $S=0, R=1 \rightarrow Q=0$; $S=0, R=0 \rightarrow Q_{prev}$.</li>
+<li>Zakázaný stav: $S=1, R=1$.</li>
+<li>Char. rovnice (pro $SR \neq 11$): $Q_{next} = S + \bar{R}Q_{prev}$</li>
+</ul>
+</li>
+<li>
+<p><strong>D (Data / Delay):</strong></p>
+<ul>
+<li>Vstupy: $D, CLK$.</li>
+<li>Chování: Na aktivní hraně $CLK$ převezme $D$ na výstup $Q$.</li>
+<li>Char. rovnice: $Q_{next} = D$. Základní prvek registrů.</li>
+</ul>
+</li>
+<li>
+<p><strong>JK:</strong></p>
+<ul>
+<li>Vstupy: $J, K, CLK$.</li>
+<li>Chování (na aktivní hraně $CLK$):<ul>
+<li>$J=0, K=0 \rightarrow Q_{prev}$</li>
+<li>$J=0, K=1 \rightarrow Q=0$</li>
+<li>$J=1, K=0 \rightarrow Q=1$</li>
+<li>$J=1, K=1 \rightarrow \bar{Q}_{prev}$</li>
+</ul>
+</li>
+<li>Char. rovnice: $Q_{next} = J\bar{Q}<em>{prev} + \bar{K}Q</em>{prev}$</li>
+</ul>
+</li>
+<li>
+<p><strong>T (Toggle):</strong></p>
+<ul>
+<li>Vstupy: $T, CLK$.</li>
+<li>Chování (na aktivní hraně $CLK$):<ul>
+<li>$T=0 \rightarrow Q_{prev}$</li>
+<li>$T=1 \rightarrow \bar{Q}_{prev}$</li>
+</ul>
+</li>
+<li>Char. rovnice: $Q_{next} = T \oplus Q_{prev}$. Základ čítačů.</li>
+</ul>
+</li>
+</ol>
+<h2>C. Registry a posuvné registry</h2>
+<p>Sdružení klopných obvodů (typicky D) pro uchování vícebitového slova.</p>
+<ol>
+<li><strong>Paralelní registr (Buffer):</strong> Společný $CLK$. Data zapisována/čtena paralelně (PIPO).</li>
+<li><strong>Posuvný registr (Shift):</strong> Klopné obvody sériově. S každým $CLK$ se info posune.<ul>
+<li>Využití: Převod sériový/paralelní (SIPO/PISO), mat. operace ($*2, /2$).</li>
+</ul>
+</li>
+</ol>
+<h2>D. Čítače (Counters)</h2>
+<p>Sekvenční obvody pro počítání hodinových impulsů. Výstup inkrementuje/dekrementuje.</p>
+<ol>
+<li><strong>Asynchronní (Ripple):</strong> Výstup $FF_i$ budí $CLK_{FF_{i+1}}$. Sčítá se zpoždění, nevhodné pro vysoké frekvence.</li>
+<li><strong>Synchronní:</strong> Všechny $FF$ řízeny společným $CLK$. Změna stavu všech bitů současně. Řízeno kombinační logikou.</li>
+</ol>
+<h2>E. Návrh konečných automatů (FSM)</h2>
+<p>Složitější sekvenční obvody (řadiče). Popsán: vstupy, výstupy, stavy, přechodová funkce.</p>
+<ol>
+<li><strong>Automat typu Moore:</strong> Výstup je funkcí <strong>pouze aktuálního stavu</strong>. Stabilní výstupy, výstup ve stavu (kroužku).</li>
+<li><strong>Automat typu Mealy:</strong> Výstup je funkcí aktuálního stavu <strong>i aktuálních vstupů</strong>. Okamžitá reakce na vstup, výstup na přechodu (šipce). Méně stavů, náchylnější na glitche.</li>
+</ol>
+<h3>Postup návrhu synchronního automatu:</h3>
+<ol>
+<li><strong>Graf stavů / Tabulka přechodů:</strong> Specifikace chování.</li>
+<li><strong>Kódování stavů:</strong> Binární kód pro každý stav ($\lceil \log_2 N \rceil$ FF pro $N$ stavů).</li>
+<li><strong>Zakódovaná tabulka přechodů a výstupů:</strong> $Q_{actual}$, vstupy $\rightarrow Q_{next}$, výstupy.</li>
+<li><strong>Minimalizace kombinační logiky:</strong> Karnaughovy mapy pro buzení FF a výstupy.</li>
+<li><strong>Realizace:</strong> Zapojení hradel a FF (společný $CLK$).</li>
+</ol>
+<h2>Praktické použití</h2>
+<p>Paměťové prvky CPU, Časovače/Čítače, Řadiče protokolů (UART, SPI), FSM v FPGA, Řízení sekvencí.</p>
+<h2>Nejčastější chyby u zkoušky</h2>
+<ul>
+<li>Zaměňování kombinačního/sekvenčního.</li>
+<li>Ignorování hodin/synchronizace.</li>
+<li>Neřešení počátečního stavu.</li>
+<li>Neznalost zakázaných stavů (RS).</li>
+<li>Nerozlišování Moore/Mealy.</li>
+</ul>
+<h2>Typické zkouškové otázky</h2>
+<ol>
+<li>
+<p><strong>Co je sekvenční obvod?</strong></p>
+<ul>
+<li>Výstup závisí na aktuálních vstupech a předchozím stavu. Obsahuje paměť (FF) a zpětnou vazbu.</li>
+</ul>
+</li>
+<li>
+<p><strong>Jak funguje registr a čítač?</strong></p>
+<ul>
+<li><strong>Registr:</strong> Skupina FF pro uchování vícebitového slova. Společný $CLK$. Paralelní (PIPO) nebo posuvný (sériový posun).</li>
+<li><strong>Čítač:</strong> Počítá $CLK$ impulsy, výstup inkrementuje. Asynchronní (řetězové zpoždění) nebo synchronní (společný $CLK$, řízený logikou).</li>
+</ul>
+</li>
+<li>
+<p><strong>Jak se popisuje konečný automat?</strong></p>
+<ul>
+<li>Množiny: vstupy, výstupy, stavy. Funkce: přechodová (stav, vstup $\rightarrow$ nový stav) a výstupní (stav $\rightarrow$ výstup (Moore); stav, vstup $\rightarrow$ výstup (Mealy)). Graficky: graf stavů; Formálně: tabulka přechodů.</li>
+</ul>
+</li>
+</ol>
+        </div>
+        
+        <div id="otazka-36" class="question-section">
+            <h1>36. Aritmetické obvody (TAHÁK)</h1>
+<p><strong>Klíčové pojmy:</strong> binární kód, dvojkový doplněk, znaménkový bit, MSB, LSB, poloviční sčítačka (HA), úplná sčítačka (FA), sčítačka s řetězovým přenosem (RCA), sčítačka s předpovědí přenosu (CLA), násobička, sériová násobička, paralelní násobička, přetečení (Overflow), přenos (Carry), výpůjčka (Borrow).</p>
+<hr />
+<h2>A. Reprezentace čísel v počítači</h2>
+<ul>
+<li><strong>Neznaménková čísla (Unsigned):</strong> Přímý binární kód. Rozsah pro $n$ bitů: $0$ až $2^n - 1$.</li>
+<li><strong>Znaménková čísla (Signed):</strong><ul>
+<li><strong>Přímý kód:</strong> MSB = znaménko ($0=+, 1=-$). Nevýhoda: Dvě reprezentace nuly ($+0, -0$).</li>
+<li><strong>Inverzní kód (Jedničkový doplněk):</strong> Záporné = negace všech bitů kladného. Nevýhoda: Dvě nuly.</li>
+<li><strong>Doplňkový kód (Dvojkový doplněk):</strong> <strong>Dominantní.</strong> Záporné = negace všech bitů kladného + 1.<ul>
+<li><strong>Výhody:</strong> Jedna reprezentace nuly, sčítání i odčítání pomocí téže sčítačky.</li>
+<li>Rozsah pro $n$ bitů: $-2^{n-1}$ až $2^{n-1} - 1$.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>B. Sčítačky (Adders)</h2>
+<h3>1. Poloviční sčítačka (HA - Half Adder)</h3>
+<p>Sčítá $A, B$. Generuje součet $S$ a přenos $C$.
+*   <strong>Rovnice:</strong> $S = A \oplus B$, $C = A \cdot B$.
+*   <strong>Omezení:</strong> Nelze zpracovat přenos $C_{in}$ z nižšího řádu.</p>
+<h3>2. Úplná sčítačka (FA - Full Adder)</h3>
+<p>Sčítá $A, B, C_{in}$. Generuje součet $S$ a přenos $C_{out}$.
+*   <strong>Rovnice:</strong> $S = A \oplus B \oplus C_{in}$, $C_{out} = (A \cdot B) + (C_{in} \cdot (A \oplus B))$.</p>
+<h3>3. Vícebitové sčítačky</h3>
+<ul>
+<li><strong>Sčítačka s řetězovým přenosem (RCA):</strong><ul>
+<li><strong>Konstrukce:</strong> Sériové zapojení $n$ FA. $C_{out}$ jedné FA je $C_{in}$ další.</li>
+<li><strong>Nevýhoda:</strong> Pomalá, zpoždění přenosu se šíří postupně.</li>
+<li><strong>Časová složitost:</strong> $O(n)$.</li>
+</ul>
+</li>
+<li><strong>Sčítačka s předpovědí přenosu (CLA):</strong><ul>
+<li><strong>Konstrukce:</strong> Speciální logika paralelně "předpoví" přenosy pro všechny bity.</li>
+<li><strong>Výhoda:</strong> Extrémně rychlá, eliminuje řetězové zpoždění.</li>
+<li><strong>Nevýhoda:</strong> Složitá struktura, vysoká hardwarová náročnost.</li>
+<li><strong>Časová složitost:</strong> $O(\log n)$ nebo téměř $O(1)$ pro bloky.</li>
+</ul>
+</li>
+</ul>
+<h2>C. Odčítačky a doplňkový kód</h2>
+<p>Odčítání $A - B$ se realizuje jako sčítání $A + (-B)$.
+*   <strong>Rovnice:</strong> $A - B = A + \bar{B} + 1$ (kde $\bar{B}$ je bitová negace $B$).
+*   <strong>Realizace:</strong>
+    *   Vstup $A$ přímo.
+    *   Vstup $B$ přes XOR hradla řízená signálem <code>SUB</code>.
+    *   Signál <code>SUB</code> je zároveň $C_{in}$ pro nejnižší bit.
+    *   <code>SUB = 0</code> (sčítání): $B \oplus 0 = B$, $C_{in}=0 \implies A+B$.
+    *   <code>SUB = 1</code> (odčítání): $B \oplus 1 = \bar{B}$, $C_{in}=1 \implies A+\bar{B}+1$.</p>
+<h2>D. Násobičky (Multipliers)</h2>
+<p>Násobení = generování částečných součinů a jejich sčítání s posunem.
+*   <strong>Sériová násobička:</strong>
+    *   <strong>Princip:</strong> Algoritmus posunu a sčítání. Jeden registr, posuvný registr, jedna sčítačka.
+    *   <strong>Výhoda:</strong> Prostorově nenáročná.
+    *   <strong>Nevýhoda:</strong> Pomalá ($n$ taktů pro $n$-bitové násobení).
+*   <strong>Paralelní (Pole) násobička:</strong>
+    *   <strong>Konstrukce:</strong> Matice AND hradel (částečné součiny) a síť sčítaček (např. Wallaceův strom).
+    *   <strong>Výhoda:</strong> Extrémně rychlá (jeden takt).
+    *   <strong>Nevýhoda:</strong> Velká hardwarová náročnost, spotřeba.</p>
+<h2>E. Detekce přetečení (Overflow)</h2>
+<p>Výsledek se nevejde do bitů.
+*   <strong>Neznaménková čísla:</strong> Přetečení, pokud $C_{out}$ z MSB je $1$.
+*   <strong>Znaménková čísla (doplňkový kód):</strong> Přetečení, pokud sečteme dvě čísla stejného znaménka a výsledek má znaménko opačné.
+    *   <strong>Hardwarová detekce:</strong>
+        $$\text{Overflow Flag} = C_{in_{MSB}} \oplus C_{out_{MSB}}$$
+        (XOR přenosu do MSB a z MSB).</p>
+<hr />
+<p><strong>Praktické použití:</strong> Procesory (CPU), Mikrořadiče, DSP, FPGA akcelerátory, GPU.</p>
+<p><strong>Nejčastější chyby u zkoušky:</strong> Nezohlednění přenosu, záměna přetečení signed/unsigned, neznalost odčítání v doplňkovém kódu, špatná složitost CLA, neznalost kompromisů násobiček.</p>
+<p><strong>Paměťová pomůcka:</strong> Aritmetické obvody: Sčítačka je základ, dvojkový doplněk zjednodušuje, přetečení je past.</p>
+<hr />
+<h2>Typické zkouškové otázky (Zkrácené odpovědi)</h2>
+<ol>
+<li>
+<p><strong>Proč dvojkový doplněk?</strong></p>
+<ul>
+<li>Jednoznačná reprezentace nuly.</li>
+<li>Zjednodušení aritmetiky: Sčítání i odčítání stejnou sčítačkou ($A-B = A+\bar{B}+1$).</li>
+</ul>
+</li>
+<li>
+<p><strong>RCA vs CLA (rychlost, složitost)?</strong></p>
+<ul>
+<li><strong>RCA:</strong> Sériové FA, pomalá ($O(n)$), nízká složitost.</li>
+<li><strong>CLA:</strong> Paralelní výpočet přenosů, rychlá ($O(\log n)$), vysoká složitost.</li>
+</ul>
+</li>
+<li>
+<p><strong>Odčítání $A-B$ pomocí sčítačky v doplňkovém kódu?</strong></p>
+<ul>
+<li>Rovnice: $A - B = A + \bar{B} + 1$.</li>
+<li>Realizace: Bity $B$ přes XOR řízené <code>SUB</code>, <code>SUB</code> jako $C_{in}$ nejnižšího bitu.</li>
+</ul>
+</li>
+<li>
+<p><strong>Detekce přetečení (overflow) pro znaménková čísla?</strong></p>
+<ul>
+<li>Nastává, když (kladné+kladné=záporné) nebo (záporné+záporné=kladné).</li>
+<li>Detekce: $\text{Overflow Flag} = C_{in_{MSB}} \oplus C_{out_{MSB}}$.</li>
+</ul>
+</li>
+<li>
+<p><strong>Sériová vs Paralelní násobička (rychlost, HW náročnost)?</strong></p>
+<ul>
+<li><strong>Sériová:</strong> Pomalá ($n$ taktů), nízká HW náročnost.</li>
+<li><strong>Paralelní:</strong> Velmi rychlá (1 takt), vysoká HW náročnost.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<p><strong>Shrnutí:</strong> Aritmetické obvody jsou základem CPU. Dvojkový doplněk zjednodušuje sčítání/odčítání. Sčítačky se liší rychlostí (RCA vs CLA). Násobičky mají kompromisy mezi rychlostí a HW (sériová vs paralelní). Klíčová je detekce přetečení, která se liší pro znaménková a neznaménková čísla.</p>
+        </div>
+        
+        <div id="otazka-37" class="question-section">
+            <h1>37. Procesory, FPGA obvody (TAHÁK)</h1>
+<h2>Klíčové pojmy</h2>
+<p>Procesor (CPU, MCU), instrukční soubor, registr (PC, SP), ALU, pipeline, cache, přerušení, konečný automat (FSM), FPGA, CLB/LE, LUT, klopný obvod (D-Flip-Flop), propojovací matice, I/O bloky, HDL (VHDL, Verilog), syntéza, bitstream, paralelismus, SoC.</p>
+<hr />
+<h2>A. Procesory (CPU / MCU)</h2>
+<p><strong>Definice:</strong> Univerzální programovatelné sekvenční obvody. Sekvenčně čtou a provádějí strojové instrukce z paměti.
+<strong>Architektura:</strong> Řadič provádí <strong>Fetch-Decode-Execute cyklus</strong>:
+*   <strong>Fetch:</strong> Načtení instrukce z paměti (adresa z <strong>PC</strong> - Program Counter). PC se inkrementuje.
+*   <strong>Decode:</strong> Dekódování instrukce (operace, operandy).
+*   <strong>Execute:</strong> Provedení operace (<strong>ALU</strong> - Aritmeticko-logická jednotka, paměť, I/O, skok).
+*   <strong>Výkon:</strong> Zvyšován technikami jako <strong>pipeline</strong> (překrývání fází instrukcí) a <strong>cache</strong> (rychlá paměť pro často používaná data/instrukce).
+<strong>Realizace FSM:</strong> Softwarově. Stav v proměnné, logika <code>switch-case</code> v nekonečné smyčce. Striktně sekvenční, časová režie, omezený paralelismus.
+<strong>Použití:</strong> Běžné počítače, OS, embedded systémy (mikrokontroléry).
+<strong>Typické chyby:</strong> Ignorování pipeline/cache. Představa pravého paralelismu v rámci jednoho vlákna.</p>
+<hr />
+<h2>B. FPGA obvody (Field Programmable Gate Array)</h2>
+<p><strong>Definice:</strong> Rekonfigurovatelná polovodičová součástka. Po výrobě neobsahuje pevnou funkci. Umožňuje implementovat vlastní, vysoce paralelní hardware.
+<strong>Vnitřní architektura:</strong>
+*   <strong>CLB / LE (Configurable Logic Blocks / Logic Elements):</strong> Základní buňky. Obsahují:
+    *   <strong>LUT (Look-Up Table):</strong> Malá RAM pro kombinační logiku (pravdivostní tabulka).
+    *   <strong>Klopný obvod (D-Flip-Flop):</strong> Paměťový prvek pro sekvenční logiku (uložení stavu).
+*   <strong>Propojovací matice:</strong> Síť programovatelných spínačů pro propojení logických bloků.
+*   <strong>I/O Bloky:</strong> Rozhraní s fyzickými piny čipu.
+*   (Moderní FPGA mají i DSP a paměťové bloky.)
+<strong>Realizace FSM:</strong> Hardwarově. LUT pro přechodovou/výstupní logiku, klopné obvody pro fyzické držení stavu. Masivní paralelismus, real-time, nízká latence.
+<strong>Použití:</strong> Zpracování signálů, měření/řízení, akcelerátory (kryptografie, AI), prototypování ASIC.
+<strong>Typické chyby:</strong> Tvrzení, že FPGA "spouští program". Ignorování hodinových signálů a synchronizace.</p>
+<hr />
+<h2>C. Srovnání realizace automatů: Procesor vs. FPGA</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Vlastnost</th>
+<th style="text-align: left;">Procesor (CPU / MCU)</th>
+<th style="text-align: left;">FPGA (Field Programmable Gate Array)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Povaha</strong></td>
+<td style="text-align: left;">Univerzální instrukční stroj</td>
+<td style="text-align: left;">Rekonfigurovatelný hardware</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Princip činnosti</strong></td>
+<td style="text-align: left;">Sekvenční vykonávání instrukcí</td>
+<td style="text-align: left;">Paralelní implementace logiky</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Realizace FSM</strong></td>
+<td style="text-align: left;">Softwarová (<code>switch-case</code>)</td>
+<td style="text-align: left;">Hardwarová (LUT, klopné obvody)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Paralelismus</strong></td>
+<td style="text-align: left;">Omezený (pipeline, více jader)</td>
+<td style="text-align: left;">Masivní, skutečně souběžné operace</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Latence</strong></td>
+<td style="text-align: left;">Vyšší</td>
+<td style="text-align: left;">Velmi nízká</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Flexibilita</strong></td>
+<td style="text-align: left;">Vysoká (snadná změna SW)</td>
+<td style="text-align: left;">Střední (změna vyžaduje syntézu)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Vývoj</strong></td>
+<td style="text-align: left;">Jednodušší (běžné jazyky)</td>
+<td style="text-align: left;">Složitější (HDL, časování)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>D. Jazyky pro popis hardwaru (HDL)</h2>
+<p><strong>Popis:</strong> <strong>HDL (Hardware Description Language)</strong>, např. <strong>VHDL</strong> nebo <strong>Verilog</strong>, definuje, jak se mají hradla a paměťové prvky propojit a chovat. Nejedná se o program, který se spouští.
+<strong>Kompilační proces pro FPGA:</strong>
+1.  <strong>Syntéza:</strong> HDL kód se přeloží do sítě logických hradel a klopných obvodů (Netlist).
+2.  <strong>Implementation (Place &amp; Route):</strong> Mapování Netlistu na fyzické bloky FPGA a jejich propojení.
+3.  <strong>Generování bitstreamu:</strong> Vytvoření konfiguračního souboru, který se nahraje do FPGA a fyzicky vytvoří hardware.
+<strong>Typické chyby:</strong> Zaměňování HDL s běžným programovacím jazykem. Ignorování časování a kritické cesty.</p>
+<hr />
+<h2>E. Koncept SoC (System on Chip)</h2>
+<p><strong>Definice a výhody:</strong> Integrovaný obvod, který kombinuje CPU a FPGA na jediném čipu. Nabízí flexibilitu softwaru (CPU) pro obecné úlohy a výkon/paralelismus hardwaru (FPGA) pro specifické akcelerované úlohy.
+<strong>Příklady použití:</strong> Vestavěné systémy, síťová zařízení, zpracování obrazu/videa, akcelerace v datových centrech.</p>
+<hr />
+<h2>Typické zkouškové otázky</h2>
+<h3>1. Jaký je rozdíl mezi CPU a FPGA?</h3>
+<ul>
+<li><strong>CPU:</strong> Univerzální sekvenční stroj, vykonává instrukce (software). Flexibilní, ale operace jsou sekvenční. Chování se mění změnou softwaru.</li>
+<li><strong>FPGA:</strong> Rekonfigurovatelný hardware, fyzicky implementuje logiku (hardware). Umožňuje masivní paralelismus a nízkou latenci. Chování se mění rekonfigurací hardwaru (nový bitstream).</li>
+</ul>
+<h3>2. Co je pipeline a cache?</h3>
+<ul>
+<li><strong>Pipeline (instrukční roura):</strong> Technika v CPU, která překrývá fáze vykonávání instrukcí (Fetch, Decode, Execute) pro zvýšení propustnosti procesoru.</li>
+<li><strong>Cache (vyrovnávací paměť):</strong> Malá, velmi rychlá paměť blízko CPU. Ukládá často používaná data/instrukce z hlavní paměti, čímž zkracuje dobu čekání procesoru a zvyšuje výkon.</li>
+</ul>
+<h3>3. Kdy zvolit FPGA místo procesoru?</h3>
+<p>FPGA je vhodnější pro úlohy vyžadující:
+*   <strong>Masivní paralelismus:</strong> Mnoho souběžných operací (zpracování obrazu, DSP).
+*   <strong>Velmi nízkou latenci a determinismus:</strong> Rychlá a předvídatelná odezva (řízení v reálném čase).
+*   <strong>Vysokou propustnost:</strong> Pro objem dat nebo rychlost operací, kde CPU nestačí.
+*   <strong>Hardwarovou akceleraci:</strong> Specifické algoritmy mapované na paralelní hardware.
+*   <strong>Flexibilitu hardwaru po výrobě:</strong> Možnost změnit hardwarovou funkci čipu.</p>
+        </div>
+        
+        </main>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>

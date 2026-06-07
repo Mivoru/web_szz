@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[27, 28, 29, 30, 31, 32, 33] (Zkrácené) - SZZ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+    MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <header>
+        <div class="brand">
+            <button id="hamburger" class="hamburger">☰</button>
+            <a href="index_zkracene.html" style="color:inherit; text-decoration:none;">⬅ Zpět</a>
+        </div>
+        <div style="font-weight:600;">[27, 28, 29, 30, 31, 32, 33] (Zkráceně)</div>
+        <button id="theme-toggle" class="theme-toggle">🌙</button>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="toc-title">Obsah okruhů</div>
+            <ul class="toc-list">
+                <li><a href="#otazka-27">27. Konceptuální návrh relačních databází, základní konstrukty, ER diagram, kardinalita, parcialita, závislost.</a></li>\n<li><a href="#otazka-28">28. Normalizace, normální formy, funkční závislosti, aktualizační anomálie.</a></li>\n<li><a href="#otazka-29">29. Relační model, základní konstrukty, realizace vztahů v relačním modelu, integritní omezení.</a></li>\n<li><a href="#otazka-30">30. CRUD operace, SQL DDL, SQL DML, SQL dotazy selekce, projekce, agregační funkce, množinové operace, typy spojení, vnořené dotazy.</a></li>\n<li><a href="#otazka-31">31. Spouště a uložené procedury</a></li>\n<li><a href="#otazka-32">32. Pohledy, přístupová práva. Transakce, princip, vlastnosti transakcí.</a></li>\n<li><a href="#otazka-33">33. Indexování a optimalizace dotazů</a></li>\n
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <a href="pdfs/Databazove_systemy_zkracene.pdf" target="_blank" class="pdf-btn">
+                📄 Stáhnout jako PDF
+            </a>
+            
+        <div id="otazka-27" class="question-section">
+            <h2>27. Konceptuální návrh relačních databází, základní konstrukty, ER diagram, kardinalita, parcialita, závislost</h2>
+<h3>Klíčové pojmy</h3>
+<ul>
+<li>entita</li>
+<li>atribut</li>
+<li>vztah</li>
+<li>kardinalita</li>
+<li>parcialita</li>
+<li>závislost (slabé entity)</li>
+<li>primární klíč</li>
+<li>cizí klíč</li>
+</ul>
+<h3>A. Konceptuální návrh relačních databází</h3>
+<p>První fáze návrhu DB. Cíl: zachytit informační požadavky uživatelů, vytvořit model dat nezávislý na konkrétním DBMS.
+Hlavní nástroj: <strong>Entity-Relationship model (ER model)</strong>, graficky <strong>ER diagram (ERD)</strong>. Poskytuje abstraktní pohled na data a jejich vztahy.</p>
+<h3>B. Základní konstrukty ER modelu</h3>
+<ol>
+<li><strong>Entita:</strong> Reálný objekt, osoba, místo nebo koncept, o kterém chceme ukládat data (např. <code>Student</code>, <code>Kniha</code>). V ERD: obdélník.</li>
+<li><strong>Atribut:</strong> Vlastnost nebo charakteristika entity (např. <code>Jméno</code> studenta, <code>E-mail</code>). V ERD: elipsa.<ul>
+<li><strong>Klíčový atribut (Primární klíč):</strong> Atribut/skupina atributů, který jednoznačně identifikuje každou instanci entity (např. <code>ID_studenta</code>). V ERD: podtržený.</li>
+</ul>
+</li>
+<li><strong>Vztah:</strong> Logická vazba nebo asociace mezi dvěma nebo více entitami (např. <code>Student</code> <em>studuje</em> <code>Předmět</code>). V ERD: kosočtverec.</li>
+</ol>
+<h3>C. Kardinalita, Parcialita a Závislost</h3>
+<p>Vztahy mezi entitami se řídí strukturálními omezeními:</p>
+<ol>
+<li>
+<p><strong>Kardinalita (Strukturální poměr vztahu):</strong> Určuje max. počet instancí jednoho entitního typu, které se mohou účastnit vztahu s instancí druhého entitního typu.</p>
+<ul>
+<li><strong>1:1 (Jeden k jednomu):</strong> Jedna instance A je svázána s max. jednou B a naopak (např. <code>Občan</code> má <code>Cestovní pas</code>).</li>
+<li><strong>1:N (Jeden k mnoha):</strong> Jedna instance A s mnoha B, ale B s max. jednou A (např. <code>Fakulta</code> má <code>Studentů</code>).</li>
+<li><strong>M:N (Mnoha k mnoha):</strong> Jedna instance A s mnoha B a naopak (např. <code>Student</code> navštěvuje <code>Předmětů</code>).</li>
+</ul>
+</li>
+<li>
+<p><strong>Parcialita (Členství / Účast ve vztahu):</strong> Určuje, zda je účast entity ve vztahu povinná, nebo volitelná.</p>
+<ul>
+<li><strong>Totální (Povinná) účast:</strong> Každá instance entity se <em>musí</em> účastnit vztahu (např. každá <code>Objednávka</code> musí mít <code>Zákazníka</code>).</li>
+<li><strong>Parciální (Volitelná) účast:</strong> Instance entity se vztahu účastnit <em>může, ale nemusí</em> (např. <code>Zákazník</code> nemusí mít <code>Objednávku</code>).</li>
+</ul>
+</li>
+<li>
+<p><strong>Závislost (Slabé entitní typy):</strong> Popisuje situaci, kdy entita nemůže existovat sama o sobě.</p>
+<ul>
+<li><strong>Silná entita:</strong> Existuje nezávisle, má vlastní primární klíč.</li>
+<li><strong>Slabá entita (Identifikačně/Existenčně závislá):</strong> Nemůže existovat bez své nadřízené (silné) entity. Její identifikátor je složen z klíče nadřízené entity a vlastního parciálního klíče (např. <code>Místnost</code> je slabá entita závislá na <code>Budova</code>).</li>
+</ul>
+</li>
+</ol>
+<h3>Praktické použití</h3>
+<ul>
+<li>Návrh informačních systémů</li>
+<li>Komunikace se zákazníkem</li>
+<li>Dokumentace databáze</li>
+<li>Prevence redundance</li>
+</ul>
+<h3>Nejčastější chyby u zkoušky</h3>
+<ul>
+<li>Příliš brzké řešení SQL bez konceptuálního návrhu.</li>
+<li>Nejasné kardinality.</li>
+<li>Entita zaměněná za atribut.</li>
+</ul>
+<h3>Typické zkouškové otázky</h3>
+<ol>
+<li><strong>Co je entita, atribut a vztah?</strong><ul>
+<li><strong>Entita:</strong> Reálný objekt/koncept, o kterém ukládáme data (např. <code>Student</code>). ERD: obdélník.</li>
+<li><strong>Atribut:</strong> Vlastnost entity (např. <code>Jméno</code>). ERD: elipsa.</li>
+<li><strong>Vztah:</strong> Logická vazba mezi entitami (např. <code>Student</code> <em>studuje</em> <code>Předmět</code>). ERD: kosočtverec.</li>
+</ul>
+</li>
+<li><strong>Jak se převádí M:N vztah do tabulek?</strong><ul>
+<li>M:N vztah se převádí na <strong>spojovací (asociační) tabulku</strong>. Tato tabulka obsahuje jako primární klíč složený klíč z primárních klíčů obou původních entit, které se stávají cizími klíči. Může mít i vlastní atributy.</li>
+</ul>
+</li>
+<li><strong>Co je primární a cizí klíč?</strong><ul>
+<li><strong>Primární klíč (PK):</strong> Atribut/skupina atributů, jednoznačně identifikuje každý záznam v tabulce. Musí být jedinečný a <code>NOT NULL</code>. Zajišťuje entitní integritu.</li>
+<li><strong>Cizí klíč (FK):</strong> Atribut/skupina atributů v jedné tabulce odkazující na primární klíč v jiné tabulce. Propojuje tabulky a zajišťuje referenční integritu (hodnota FK musí existovat jako PK v odkazované tabulce, nebo být <code>NULL</code>, je-li povoleno).</li>
+</ul>
+</li>
+</ol>
+<h3>Shrnutí kapitoly</h3>
+<p>ER model je první krok dobrého návrhu databáze. Pomáhá pochopit doménu před tvorbou tabulek.</p>
+        </div>
+        
+        <div id="otazka-28" class="question-section">
+            <h1>28. Normalizace, normální formy, funkční závislosti, aktualizační anomálie</h1>
+<h2>Klíčové pojmy</h2>
+<ul>
+<li><strong>Redundance</strong>: Opakování dat.</li>
+<li><strong>Anomálie</strong>: Nežádoucí efekty při DML operacích (vkládání, mazání, úpravy).</li>
+<li><strong>Funkční závislost ($X \rightarrow Y$)</strong>: Hodnota $X$ jednoznačně určuje $Y$.</li>
+<li><strong>Determinant</strong>: Atribut(y) na levé straně funkční závislosti ($X$).</li>
+<li><strong>Kandidátní klíč</strong>: Minimální sada atributů jednoznačně identifikující řádek.</li>
+<li><strong>Primární klíč</strong>: Vybraný kandidátní klíč.</li>
+<li><strong>1NF</strong>: Atomické atributy, PK, žádné duplicitní řádky.</li>
+<li><strong>2NF</strong>: 1NF + neklíčové atributy plně závislé na celém PK.</li>
+<li><strong>3NF</strong>: 2NF + žádné tranzitivní závislosti neklíčových atributů na PK.</li>
+<li><strong>BCNF</strong>: 3NF + každý determinant je kandidátní klíč.</li>
+</ul>
+<h2>A. Aktualizační anomálie</h2>
+<p>Problémy v špatně navržené tabulce:
+*   <strong>Vkládání</strong>: Nelze vložit data o entitě bez dat o jiné, na které je závislá.
+*   <strong>Mazání</strong>: Smazání dat o jedné entitě nechtěně smaže data o jiné.
+*   <strong>Úprava</strong>: Nutnost aktualizovat stejná data na více místech, riziko nekonzistence.</p>
+<h2>B. Funkční závislosti</h2>
+<p>$Y$ je funkčně závislé na $X$ ($X \rightarrow Y$), pokud pro každou hodnotu $X$ existuje právě jedna hodnota $Y$.
+*   <strong>Plná funkční závislost</strong>: $Y$ závisí na celém složeném klíči $X$, ne jen na jeho části.
+*   <strong>Tranzitivní funkční závislost</strong>: Pokud $X \rightarrow Y$ a $Y \rightarrow Z$, pak $Z$ závisí na $X$ tranzitivně.</p>
+<h2>C. Normální formy (1NF, 2NF, 3NF, BCNF)</h2>
+<p>Normalizace: Proces převodu datové struktury do vyšších NF pro odstranění anomálií a duplicit.</p>
+<h3>1. První normální forma (1NF)</h3>
+<ul>
+<li>Všechny atributy atomické (nedělitelné).</li>
+<li>Definovaný primární klíč, žádné duplicitní řádky.</li>
+<li><em>Porušení</em>: Více hodnot v jednom sloupci (např. "tel1, tel2").</li>
+</ul>
+<h3>2. Druhá normální forma (2NF)</h3>
+<ul>
+<li>Splňuje 1NF.</li>
+<li>Všechny neklíčové atributy jsou plně funkčně závislé na celém primárním klíči (relevantní pro složený PK).</li>
+<li><em>Porušení</em>: Neklíčový atribut závisí jen na části složeného PK.</li>
+</ul>
+<h3>3. Třetí normální forma (3NF)</h3>
+<ul>
+<li>Splňuje 2NF.</li>
+<li>Žádný neklíčový atribut není tranzitivně závislý na primárním klíči (žádný neklíčový na jiném neklíčovém).</li>
+<li><em>Porušení</em>: $A \rightarrow B \rightarrow C$, kde $B, C$ jsou neklíčové atributy.</li>
+</ul>
+<h3>4. Boyce-Coddova normální forma (BCNF)</h3>
+<ul>
+<li>Splňuje 3NF.</li>
+<li>Každý determinant je kandidátním klíčem.</li>
+<li>Přísnější než 3NF, řeší specifické případy s překrývajícími se kandidátními klíči.</li>
+<li><em>Porušení</em>: Determinant funkční závislosti není kandidátní klíč.</li>
+</ul>
+<h2>D. Výhody a nevýhody normalizace</h2>
+<h3>Výhody</h3>
+<ul>
+<li>Odstranění redundance.</li>
+<li>Zajištění konzistence dat.</li>
+<li>Zlepšení datové kvality.</li>
+<li>Snazší údržba a jasná struktura.</li>
+<li>Dlouhodobá udržitelnost IS.</li>
+</ul>
+<h3>Nevýhody (Denormalizace)</h3>
+<ul>
+<li>Snížení výkonu při čtení (více JOINů).</li>
+<li>Zvýšená složitost dotazů.</li>
+<li>Denormalizace se využívá v OLAP (datové sklady) pro rychlost čtení.</li>
+</ul>
+<h2>Nejčastější chyby u zkoušky</h2>
+<ul>
+<li>Mechanické dělení tabulek bez pochopení závislostí.</li>
+<li>Neznalost kandidátních klíčů.</li>
+<li>Zaměňování normalizace a indexace.</li>
+<li>Ignorování BCNF.</li>
+</ul>
+<h2>Typické zkouškové otázky</h2>
+<h3>1. Co je funkční závislost?</h3>
+<p>$X \rightarrow Y$: Hodnota atributu $X$ jednoznačně určuje hodnotu atributu $Y$. $X$ je determinant.</p>
+<h3>2. Vysvětlete 1NF, 2NF a 3NF.</h3>
+<ul>
+<li><strong>1NF</strong>: Atomické atributy, definovaný PK, žádné duplicitní řádky.</li>
+<li><strong>2NF</strong>: 1NF + neklíčové atributy plně funkčně závislé na celém PK (pro složený PK).</li>
+<li><strong>3NF</strong>: 2NF + žádné tranzitivní závislosti neklíčových atributů na PK.</li>
+</ul>
+<h3>3. Jaké anomálie normalizace odstraňuje?</h3>
+<p>Aktualizační anomálie: Vkládání (nelze vložit bez závislých dat), Mazání (nechtěné smazání závislých dat), Úprava (nutnost více aktualizací, riziko nekonzistence).</p>
+<h3>4. Co je BCNF a jaký je její hlavní rozdíl oproti 3NF?</h3>
+<p>BCNF je 3NF + každý determinant je kandidátní klíč. Je přísnější než 3NF a řeší případy, kdy 3NF nestačí (např. u tabulek s více překrývajícími se kandidátními klíči).</p>
+<h2>Shrnutí kapitoly</h2>
+<p>Normalizace v relačních DB pomocí funkčních závislostí odstraňuje redundanci a aktualizační anomálie (vkládání, mazání, úpravy) pro datovou konzistenci a integritu. Může snížit výkon při čtení (více JOINů), ale zlepšuje datovou kvalitu a udržitelnost. V OLAP systémech se pro rychlost dotazů využívá denormalizace.</p>
+        </div>
+        
+        <div id="otazka-29" class="question-section">
+            <h1>29. Relační model, základní konstrukty, realizace vztahů, integritní omezení</h1>
+<p>Relační datový model (E. F. Codd, 1970) je základem většiny moderních databázových systémů. Je založen na matematickém pojmu relace, v praxi reprezentované jako tabulka.</p>
+<h2>A. Základní konstrukty relačního modelu</h2>
+<ul>
+<li><strong>Relace (Tabulka):</strong> Dvourozměrná datová struktura s pojmenovanými sloupci (atributy) a neuspořádanou množinou řádků (n-tic). Každá relace má unikátní název a neobsahuje duplicitní řádky.</li>
+<li><strong>Atribut (Sloupec):</strong> Pojmenovaná vlastnost uchovávající data. Každý atribut má definovanou <strong>doménu</strong> (množinu povolených hodnot, datový typ). Hodnoty atributů by měly být atomické.</li>
+<li><strong>N-tice (Řádek, Záznam):</strong> Konkrétní instance dat v tabulce, představující jeden záznam. Každá n-tice je unikátní. Pořadí řádků je teoreticky nedůležité.</li>
+<li><strong>Doména:</strong> Množina všech povolených hodnot pro daný atribut (datový typ, rozsah, formát).</li>
+<li><strong>Schéma relace:</strong> Logická definice struktury relace (název, seznam atributů s doménami). Příklad: <code>Student (ID: INT, Jméno: VARCHAR(100))</code>.</li>
+<li><strong>Instance relace:</strong> Aktuální obsah relace (množina n-tic) v daném čase.</li>
+<li><strong>Stupeň relace (Arity):</strong> Počet atributů (sloupců) v tabulce.</li>
+<li><strong>Kardinalita relace:</strong> Počet n-tic (řádků) v tabulce.</li>
+</ul>
+<h2>B. Realizace vztahů v relačním modelu</h2>
+<p>Vztahy se realizují pomocí provázání hodnot klíčů v tabulkách.</p>
+<ol>
+<li>
+<p><strong>Primární klíč (PK - Primary Key):</strong></p>
+<ul>
+<li>Atribut nebo minimální množina atributů, která jednoznačně identifikuje každý řádek v tabulce.</li>
+<li><strong>Vlastnosti:</strong> Unikátnost, <code>NOT NULL</code>, stabilita.</li>
+<li><strong>Kandidátní klíč:</strong> Jakákoli minimální množina atributů, která může jednoznačně identifikovat řádek.</li>
+<li><strong>Složený PK:</strong> PK tvořený dvěma nebo více atributy.</li>
+</ul>
+</li>
+<li>
+<p><strong>Cizí klíč (FK - Foreign Key):</strong></p>
+<ul>
+<li>Atribut (nebo skupina atributů) v jedné tabulce (odkazující), který odkazuje na primární klíč (nebo kandidátní klíč) v tabulce jiné (odkazovaná/rodičovská).</li>
+<li>Propojuje tabulky a zajišťuje referenční integritu.</li>
+</ul>
+</li>
+<li>
+<p><strong>Přepis vztahů z ER diagramu do tabulek:</strong></p>
+<ul>
+<li><strong>Vztah 1:N (Jeden k mnoha):</strong> PK z tabulky na straně "1" (rodičovská) se vloží jako FK do tabulky na straně "N" (potomkovská).<ul>
+<li>Příklad: <code>Fakulta (id_fakulty PK, nazev)</code>, <code>Student (id_studenta PK, jmeno, id_fakulty_fk FK)</code>.</li>
+</ul>
+</li>
+<li><strong>Vztah M:N (Mnoha k mnoha):</strong> Vytvoří se <strong>vazební (asociativní) tabulka</strong>. Obsahuje minimálně dva FK, které odkazují na PK obou původních tabulek. Tyto FK obvykle tvoří <strong>složený PK</strong> vazební tabulky.<ul>
+<li>Příklad: <code>Student (id_studenta PK, jmeno)</code>, <code>Predmet (id_predmetu PK, nazev)</code>, <code>Zapis_Predmetu (id_studenta_fk FK, id_predmetu_fk FK, znamka)</code>. Složený PK: <code>(id_studenta_fk, id_predmetu_fk)</code>.</li>
+</ul>
+</li>
+<li><strong>Vztah 1:1 (Jeden k jednomu):</strong> PK jedné tabulky se vloží jako FK do druhé tabulky. Na tento FK se navíc uvalí podmínka <strong>unikátnosti (<code>UNIQUE</code>)</strong>.<ul>
+<li>Příklad: <code>Osoba (id_osoby PK, jmeno)</code>, <code>DetailOsoby (id_osoby_fk PK, UNIQUE, adresa)</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2>C. Integritní omezení</h2>
+<p>Pravidla, která databáze vynucuje pro zajištění přesnosti a konzistence dat.</p>
+<ol>
+<li>
+<p><strong>Entitní integrita:</strong></p>
+<ul>
+<li><strong>Pravidlo:</strong> Každá tabulka musí mít PK. Hodnota PK musí být unikátní a <code>NOT NULL</code>.</li>
+<li><strong>Význam:</strong> Zajišťuje jednoznačnou identifikaci každého záznamu.</li>
+</ul>
+</li>
+<li>
+<p><strong>Referenční integrita:</strong></p>
+<ul>
+<li><strong>Pravidlo:</strong> Hodnota FK v odkazující tabulce musí buď odpovídat existující hodnotě PK v odkazované tabulce, nebo musí být <code>NULL</code> (pokud je povoleno).</li>
+<li><strong>Význam:</strong> Zabraňuje vzniku "osiřelých" záznamů.</li>
+<li><strong>Referenční akce (ON DELETE/ON UPDATE):</strong><ul>
+<li><code>RESTRICT</code> / <code>NO ACTION</code>: Zakáže smazání/aktualizaci rodičovského záznamu, pokud na něj existují odkazy.</li>
+<li><code>CASCADE</code>: Smazání/aktualizace rodiče se kaskádově šíří na potomky.</li>
+<li><code>SET NULL</code>: Smazání/aktualizace rodiče nastaví FK potomků na <code>NULL</code> (pokud není <code>NOT NULL</code>).</li>
+<li><code>SET DEFAULT</code>: Smazání/aktualizace rodiče nastaví FK potomků na výchozí hodnotu.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Doménová integrita:</strong></p>
+<ul>
+<li><strong>Pravidlo:</strong> Hodnoty ve sloupci musí odpovídat definovanému datovému typu, rozsahu nebo seznamu hodnot.</li>
+<li><strong>Nástroje:</strong> Datové typy, <code>NOT NULL</code>, <code>CHECK</code> podmínky, <code>DEFAULT</code> hodnota.</li>
+</ul>
+</li>
+<li>
+<p><strong>Uživatelská (Business) integrita:</strong></p>
+<ul>
+<li><strong>Pravidlo:</strong> Specifická pravidla definovaná na základě obchodní logiky, která nelze vyjádřit základními integritními omezeními.</li>
+<li><strong>Realizace:</strong> <code>UNIQUE</code> constraint, Spouště (Triggery), Uložené procedury.</li>
+<li><strong>Příklad:</strong> "Student si může zapsat maximálně 5 předmětů za semestr."</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2>Typické zkouškové otázky (zkrácené odpovědi)</h2>
+<ol>
+<li>
+<p><strong>Popište základní konstrukty relačního modelu a vysvětlete jejich význam.</strong></p>
+<ul>
+<li><strong>Relace (Tabulka):</strong> Dvourozměrná struktura dat (sloupce, řádky).</li>
+<li><strong>Atribut (Sloupec):</strong> Pojmenovaná vlastnost, má doménu.</li>
+<li><strong>N-tice (Řádek):</strong> Konkrétní záznam.</li>
+<li><strong>Doména:</strong> Množina povolených hodnot pro atribut.</li>
+<li><strong>Schéma relace:</strong> Struktura relace (název, atributy, domény).</li>
+<li><strong>Instance relace:</strong> Aktuální obsah relace.</li>
+</ul>
+</li>
+<li>
+<p><strong>Jak se realizují vztahy 1:N a M:N v relačním modelu? Uveďte příklady.</strong></p>
+<ul>
+<li><strong>1:N:</strong> PK z "1" tabulky jako FK do "N" tabulky.<ul>
+<li>Schéma: <code>Fakulta (id_fakulty PK)</code>, <code>Student (id_studenta PK, id_fakulty_fk FK)</code>.</li>
+</ul>
+</li>
+<li><strong>M:N:</strong> Vazební tabulka s FK na PK obou tabulek, tvořící složený PK.<ul>
+<li>Schéma: <code>Student (id_studenta PK)</code>, <code>Predmet (id_predmetu PK)</code>, <code>Zapis_Predmetu (id_studenta_fk FK, id_predmetu_fk FK)</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Vyjmenujte a vysvětlete základní typy integritních omezení v relačním modelu.</strong></p>
+<ul>
+<li><strong>Entitní integrita:</strong> PK unikátní a <code>NOT NULL</code>.</li>
+<li><strong>Referenční integrita:</strong> FK odkazuje na existující PK nebo je <code>NULL</code>.</li>
+<li><strong>Doménová integrita:</strong> Hodnoty odpovídají datovému typu/rozsahu.</li>
+<li><strong>Uživatelská (Business) integrita:</strong> Specifická obchodní pravidla (např. <code>UNIQUE</code>, triggery).</li>
+</ul>
+</li>
+<li>
+<p><strong>Vysvětlete referenční akce <code>CASCADE</code>, <code>SET NULL</code> a <code>RESTRICT</code> při definici cizího klíče.</strong></p>
+<ul>
+<li><strong><code>CASCADE</code>:</strong> Smazání/aktualizace rodiče se šíří na potomky.</li>
+<li><strong><code>SET NULL</code>:</strong> Smazání/aktualizace rodiče nastaví FK potomků na <code>NULL</code>.</li>
+<li><strong><code>RESTRICT</code> / <code>NO ACTION</code>:</strong> Zakáže smazání/aktualizaci rodiče, pokud existují potomci.</li>
+</ul>
+</li>
+</ol>
+        </div>
+        
+        <div id="otazka-30" class="question-section">
+            <h1>30. CRUD operace, SQL DDL, SQL DML, SQL dotazy, Indexy, Pohledy, Uložené procedury a funkce, Triggery. Transakce, ACID vlastnosti, úrovně izolace transakcí.</h1>
+<h3>CRUD Operace</h3>
+<p>Základní operace pro interakci s daty v perzistentních datových strukturách:
+*   <strong>C</strong>reate: Vytvoření nového záznamu. SQL: <code>INSERT</code>
+*   <strong>R</strong>ead: Čtení existujících záznamů. SQL: <code>SELECT</code>
+*   <strong>U</strong>pdate: Modifikace existujících záznamů. SQL: <code>UPDATE</code>
+*   <strong>D</strong>elete: Smazání existujících záznamů. SQL: <code>DELETE</code></p>
+<h3>Rozdělení jazyka SQL</h3>
+<ul>
+<li><strong>SQL DDL (Data Definition Language)</strong>: Definuje a spravuje strukturu databázových objektů (schéma).<ul>
+<li><code>CREATE</code>: Vytvoří nový objekt (tabulka, index, pohled). Příklad: <code>CREATE TABLE student (id INT PRIMARY KEY);</code></li>
+<li><code>ALTER</code>: Změní strukturu existujícího objektu. Příklad: <code>ALTER TABLE student ADD COLUMN email VARCHAR(255);</code></li>
+<li><code>DROP</code>: Kompletně smaže objekt i s daty. Příklad: <code>DROP TABLE student;</code></li>
+<li><code>TRUNCATE</code>: Rychle odstraní všechny řádky z tabulky, zachová strukturu.</li>
+</ul>
+</li>
+<li><strong>SQL DML (Data Manipulation Language)</strong>: Manipuluje s daty uvnitř již definovaných struktur.<ul>
+<li><code>SELECT</code>: Dotazování a čtení dat. Příklad: <code>SELECT jmeno FROM student WHERE vek &gt; 20;</code></li>
+<li><code>INSERT</code>: Vkládání nových řádků. Příklad: <code>INSERT INTO student (id, jmeno) VALUES (1, 'Jan');</code></li>
+<li><code>UPDATE</code>: Modifikace existujících řádků. Příklad: <code>UPDATE student SET vek = 23 WHERE id = 1;</code></li>
+<li><code>DELETE</code>: Mazání konkrétních řádků. Příklad: <code>DELETE FROM student WHERE vek &lt; 20;</code></li>
+</ul>
+</li>
+</ul>
+<h3>Základní operace relační algebry v SQL</h3>
+<ul>
+<li><strong>Selekce (Restrikce)</strong>: Výběr řádků, které splňují podmínku. SQL: Klauzule <code>WHERE</code>.<ul>
+<li>Příklad: <code>SELECT * FROM student WHERE mesto = 'Praha';</code></li>
+</ul>
+</li>
+<li><strong>Projekce</strong>: Výběr konkrétních sloupců. SQL: Výpis sloupců za <code>SELECT</code>.<ul>
+<li>Příklad: <code>SELECT jmeno, email FROM student;</code></li>
+</ul>
+</li>
+</ul>
+<h3>Typy spojení tabulek (JOINs)</h3>
+<p>Propojení dat z více tabulek přes relace (PK/FK).
+*   <code>INNER JOIN</code>: Vrátí pouze řádky se shodou v obou tabulkách.
+*   <code>LEFT JOIN</code> (<code>LEFT OUTER JOIN</code>): Všechny řádky z levé tabulky, shodné z pravé. Bez shody <code>NULL</code> vpravo.
+*   <code>RIGHT JOIN</code> (<code>RIGHT OUTER JOIN</code>): Všechny řádky z pravé tabulky, shodné z levé. Bez shody <code>NULL</code> vlevo.
+*   <code>FULL JOIN</code> (<code>FULL OUTER JOIN</code>): Všechny řádky z obou tabulek. Bez shody <code>NULL</code> na chybějící straně.
+*   <code>CROSS JOIN</code>: Kartézský součin (každý řádek z první s každým z druhé).</p>
+<h3>Agregační funkce a seskupování</h3>
+<p>Agregační funkce zpracovávají skupinu řádků a vrací jednu souhrnnou hodnotu.
+*   <code>COUNT()</code>: Počet řádků/ne-NULL hodnot.
+*   <code>SUM()</code>: Součet hodnot.
+*   <code>AVG()</code>: Aritmetický průměr.
+*   <code>MIN()</code>: Minimální hodnota.
+*   <code>MAX()</code>: Maximální hodnota.
+*   <code>GROUP BY</code>: Seskupuje řádky s identickými hodnotami pro aplikaci agregačních funkcí.
+    *   Příklad: <code>SELECT ID_Fakulty, COUNT(ID_Studenta) FROM Studenti GROUP BY ID_Fakulty;</code>
+*   <code>HAVING</code>: Filtruje skupiny vytvořené <code>GROUP BY</code> na základě podmínek na agregační funkce.
+    *   Příklad: <code>... HAVING COUNT(ID_Studenta) &gt; 500;</code></p>
+<h3>Množinové operace</h3>
+<p>Kombinují výsledky dvou <code>SELECT</code> dotazů (musí mít stejný počet a kompatibilní typy sloupců).
+*   <code>UNION</code>: Sjednocení, odstraní duplicity.
+*   <code>UNION ALL</code>: Sjednocení, zachová duplicity.
+*   <code>INTERSECT</code>: Průnik (řádky, které jsou v obou dotazech).
+*   <code>EXCEPT</code> (<code>MINUS</code>): Rozdíl (řádky v prvním, ale ne ve druhém dotazu).</p>
+<h3>Vnořené dotazy (Subqueries)</h3>
+<p><code>SELECT</code> příkaz umístěný uvnitř jiného SQL příkazu.
+*   <strong>Nekorelovaný</strong>: Vnitřní dotaz je nezávislý, provede se jednou.
+    *   Příklad: <code>SELECT jmeno FROM student WHERE prumer &gt; (SELECT AVG(prumer) FROM student);</code>
+*   <strong>Korelovaný</strong>: Vnitřní dotaz se odkazuje na vnější, provede se pro každý řádek vnějšího dotazu.</p>
+<h3>Indexy, Pohledy, Uložené procedury a funkce, Triggery</h3>
+<ul>
+<li><strong>Indexy</strong>: Speciální vyhledávací struktury pro zrychlení <code>SELECT</code> dotazů (zejména s <code>WHERE</code>, <code>JOIN</code>, <code>ORDER BY</code>). Zpomalují <code>INSERT/UPDATE/DELETE</code>.<ul>
+<li><strong>Clustered Index</strong>: Určuje fyzické pořadí dat, tabulka má jen jeden (často na PK).</li>
+<li><strong>Non-clustered Index</strong>: Neovlivňuje fyzické pořadí, obsahuje ukazatele na data, tabulka může mít více.</li>
+<li><code>CREATE INDEX idx_jmeno ON student (jmeno);</code></li>
+</ul>
+</li>
+<li><strong>Pohledy (Views)</strong>: Virtuální tabulky založené na výsledku SQL dotazu. Neobsahují data.<ul>
+<li>Význam: Zjednodušení složitých dotazů, bezpečnost (omezení přístupu), konzistence.</li>
+<li><code>CREATE VIEW studenti_praha AS SELECT jmeno FROM student WHERE mesto = 'Praha';</code></li>
+</ul>
+</li>
+<li><strong>Uložené procedury a funkce</strong>: Předkompilované bloky SQL příkazů uložené v databázi.<ul>
+<li><strong>Procedura</strong>: Může přijímat parametry, nemusí vracet hodnotu. Pro provádění akcí.</li>
+<li><strong>Funkce</strong>: Musí vrátit skalární hodnotu (nebo tabulku). Lze použít v SQL dotazech.</li>
+<li>Význam: Zvýšení výkonu, modularita, bezpečnost, snížení síťového provozu.</li>
+<li><code>CREATE PROCEDURE/FUNCTION ...</code></li>
+</ul>
+</li>
+<li><strong>Triggery (Spouštěče)</strong>: Speciální uložené procedury, které se automaticky spustí v reakci na událost (<code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>) na tabulce.<ul>
+<li>Význam: Vynucování komplexních obchodních pravidel, auditování změn, udržování integrity.</li>
+<li><code>CREATE TRIGGER po_vlozeni_studenta AFTER INSERT ON student FOR EACH ROW ...</code></li>
+</ul>
+</li>
+</ul>
+<h3>Transakce, ACID vlastnosti, úrovně izolace transakcí</h3>
+<ul>
+<li><strong>Transakce</strong>: Logická jednotka práce (jedna nebo více SQL operací). Buď se všechny operace provedou (<code>COMMIT</code>), nebo se žádná (<code>ROLLBACK</code>).<ul>
+<li>Příkazy: <code>BEGIN TRANSACTION;</code>, <code>COMMIT;</code>, <code>ROLLBACK;</code>, <code>SAVEPOINT;</code></li>
+</ul>
+</li>
+<li><strong>ACID vlastnosti</strong>: Zaručují spolehlivost transakcí.<ul>
+<li><strong>Atomicity</strong>: Transakce je nedělitelná; vše nebo nic.</li>
+<li><strong>Consistency</strong>: Převede databázi z jednoho konzistentního stavu do jiného.</li>
+<li><strong>Isolation</strong>: Souběžné transakce se navzájem neovlivňují.</li>
+<li><strong>Durability</strong>: Potvrzené změny jsou trvalé a přežijí selhání systému.</li>
+</ul>
+</li>
+<li><strong>Problémy souběžnosti</strong>:<ul>
+<li><strong>Dirty Read</strong>: Čtení nepotvrzených změn jiné transakce.</li>
+<li><strong>Non-repeatable Read</strong>: Opakované čtení stejného řádku dává různé hodnoty.</li>
+<li><strong>Phantom Read</strong>: Opakovaný dotaz vrací jiný počet řádků.</li>
+</ul>
+</li>
+<li><strong>Úrovně izolace (od nejnižší po nejvyšší)</strong>:<ol>
+<li><code>READ UNCOMMITTED</code>: Povoluje Dirty Read, Non-repeatable Read, Phantom Read.</li>
+<li><code>READ COMMITTED</code>: Zabraňuje Dirty Read. Povoluje Non-repeatable Read, Phantom Read.</li>
+<li><code>REPEATABLE READ</code>: Zabraňuje Dirty Read, Non-repeatable Read. Povoluje Phantom Read.</li>
+<li><code>SERIALIZABLE</code>: Zabraňuje všem problémům. Nejnižší souběžnost.</li>
+<li>Nastavení: <code>SET TRANSACTION ISOLATION LEVEL READ COMMITTED;</code></li>
+</ol>
+</li>
+</ul>
+<hr />
+<h3>Typické zkouškové otázky (Zkrácené odpovědi)</h3>
+<ol>
+<li><strong>CRUD operace a SQL mapování</strong>: Create (<code>INSERT</code>), Read (<code>SELECT</code>), Update (<code>UPDATE</code>), Delete (<code>DELETE</code>). Základní interakce s daty.</li>
+<li><strong>SQL DDL vs. SQL DML</strong>:<ul>
+<li>DDL: Definuje strukturu (<code>CREATE TABLE</code>, <code>ALTER TABLE</code>, <code>DROP TABLE</code>).</li>
+<li>DML: Manipuluje s daty (<code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>).</li>
+</ul>
+</li>
+<li><strong>Selekce a Projekce</strong>:<ul>
+<li>Selekce: Výběr řádků dle podmínky (<code>WHERE</code>).</li>
+<li>Projekce: Výběr sloupců (<code>SELECT sloupce</code>).</li>
+</ul>
+</li>
+<li><strong>Typy JOIN operací</strong>:<ul>
+<li><code>INNER JOIN</code>: Jen shody v obou.</li>
+<li><code>LEFT JOIN</code>: Vše zleva, shody zprava (jinak <code>NULL</code>).</li>
+<li><code>RIGHT JOIN</code>: Vše zprava, shody zleva (jinak <code>NULL</code>).</li>
+<li><code>FULL JOIN</code>: Vše z obou (jinak <code>NULL</code>).</li>
+</ul>
+</li>
+<li><strong>Agregační funkce, GROUP BY, HAVING</strong>:<ul>
+<li>Agregační funkce (<code>COUNT</code>, <code>SUM</code>): Zpracují skupinu řádků na jednu hodnotu.</li>
+<li><code>GROUP BY</code>: Seskupuje řádky pro agregaci.</li>
+<li><code>HAVING</code>: Filtruje skupiny po agregaci.</li>
+<li>Příklad: <code>SELECT fakulta, COUNT(*) FROM studenti GROUP BY fakulta HAVING COUNT(*) &gt; 100;</code></li>
+</ul>
+</li>
+<li><strong>Transakce a ACID vlastnosti</strong>:<ul>
+<li>Transakce: Logická jednotka práce (vše <code>COMMIT</code> nebo nic <code>ROLLBACK</code>).</li>
+<li>ACID: <strong>A</strong>tomicity (vše/nic), <strong>C</strong>onsistency (z konzistentního do konzistentního), <strong>I</strong>solation (nezávislost transakcí), <strong>D</strong>urability (trvalost změn).</li>
+</ul>
+</li>
+<li><strong>Indexy, Pohledy, Triggery</strong>:<ul>
+<li>Indexy: Zrychlují čtení dat.</li>
+<li>Pohledy: Virtuální tabulky pro zjednodušení a bezpečnost.</li>
+<li>Triggery: Automaticky spouštěné procedury při událostech pro vynucení pravidel/audit.</li>
+</ul>
+</li>
+</ol>
+        </div>
+        
+        <div id="otazka-31" class="question-section">
+            <p>Zde je zkrácená verze (tahák) k otázce "Spouště a uložené procedury":</p>
+<hr />
+<h2>31. Spouště a uložené procedury</h2>
+<h3>Klíčové pojmy</h3>
+<ul>
+<li><strong>Uložená procedura (Stored Procedure):</strong> Pojmenovaný blok SQL kódu, uložený a zkompilovaný v databázi, explicitně volaný.</li>
+<li><strong>Uložená funkce (Stored Function):</strong> Jako procedura, ale musí vracet skalární hodnotu a lze ji použít v SQL výrazech.</li>
+<li><strong>Spoušť (Trigger):</strong> Speciální typ uložené procedury, automaticky aktivovaná DML událostí (<code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>) na tabulce.</li>
+<li><strong>Audit:</strong> Záznam změn dat, často realizovaný pomocí spouští.</li>
+<li><strong><code>BEFORE</code> / <code>AFTER</code>:</strong> Časování spouště (kód se provede před/po DML operaci).</li>
+<li><strong><code>IN</code> / <code>OUT</code> / <code>INOUT</code>:</strong> Typy parametrů procedur (vstupní / výstupní / kombinovaný).</li>
+<li><strong><code>OLD</code> / <code>NEW</code>:</strong> Pseudotabulární reference ve spouštích pro přístup k původním / novým hodnotám řádku.</li>
+</ul>
+<h3>A. Uložené procedury (Stored Procedures)</h3>
+<ul>
+<li><strong>Definice:</strong> Pojmenovaný, zkompilovaný SQL kód uložený v DB. Obsahuje deklarace, podmínky (<code>IF</code>), cykly (<code>WHILE</code>).</li>
+<li><strong>Volání:</strong> Explicitně z aplikace nebo konzole pomocí <code>CALL nazev_procedury(parametry);</code>.</li>
+<li><strong>Parametry:</strong><ul>
+<li><code>IN</code>: Vstupní, výchozí. Procedura hodnotu přijímá.</li>
+<li><code>OUT</code>: Výstupní. Procedura do něj zapíše výsledek pro volajícího.</li>
+<li><code>INOUT</code>: Vstupní i výstupní. Procedura hodnotu přijímá, modifikuje a vrací upravenou.</li>
+</ul>
+</li>
+<li><strong>Návratová hodnota:</strong> Procedura nemusí vracet nic, nebo vrací celou výslednou množinu řádků (<code>SELECT</code>). Uložené funkce <code>musí</code> vracet jednu skalární hodnotu.</li>
+<li><strong>Výhody:</strong><ul>
+<li><strong>Snížení síťového provozu:</strong> Jediný <code>CALL</code> místo mnoha dotazů.</li>
+<li><strong>Vyšší výkon:</strong> Kompilace a optimalizace DB při uložení.</li>
+<li><strong>Zvýšení bezpečnosti:</strong> Omezení přímých práv k tabulkám, povolení jen volání procedur.</li>
+<li><strong>Centralizace logiky:</strong> Konzistentní obchodní pravidla napříč aplikacemi.</li>
+<li><strong>Modularita a znovupoužitelnost:</strong> Rozdělení komplexních operací.</li>
+</ul>
+</li>
+<li><strong>Příklad (MySQL):</strong>
+    <code>sql
+    CREATE PROCEDURE GetStudentInfo (IN student_id INT, OUT student_name VARCHAR(100))
+    BEGIN
+        SELECT jmeno INTO student_name FROM student WHERE id = student_id;
+    END;
+    -- Volání: CALL GetStudentInfo(1, @name); SELECT @name;</code></li>
+</ul>
+<h3>B. Spouště (Triggery)</h3>
+<ul>
+<li><strong>Definice:</strong> Speciální procedura, nelze volat ručně. Navázána na tabulku, automaticky se aktivuje na DML událost (<code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>).</li>
+<li><strong>Specifikace:</strong><ul>
+<li><strong>Událost:</strong> <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>.</li>
+<li><strong>Časování:</strong><ul>
+<li><code>BEFORE</code>: Před DML. Pro validaci, úpravu dat. Může zabránit operaci.</li>
+<li><code>AFTER</code>: Po DML. Pro logování, audit, kaskádové aktualizace.</li>
+</ul>
+</li>
+<li><strong>Úroveň:</strong><ul>
+<li><code>FOR EACH ROW</code>: Spustí se pro každý ovlivněný řádek.</li>
+<li><code>FOR EACH STATEMENT</code>: Spustí se jednou pro celý příkaz (ne vždy podporováno, např. MySQL jen řádkové).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Speciální proměnné:</strong><ul>
+<li><code>OLD</code>: Hodnoty řádku <em>před</em> úpravou (v <code>UPDATE</code>, <code>DELETE</code>).</li>
+<li><code>NEW</code>: Hodnoty řádku, které se <em>budou zapisovat</em> (v <code>INSERT</code>, <code>UPDATE</code>).</li>
+</ul>
+</li>
+<li><strong>Typické použití:</strong><ul>
+<li>Vynucování komplexních integritních omezení.</li>
+<li>Auditování a logování změn dat.</li>
+<li>Generování odvozených hodnot.</li>
+<li>Kaskádové operace.</li>
+</ul>
+</li>
+<li><strong>Příklad (MySQL):</strong>
+    <code>sql
+    CREATE TRIGGER audit_student_update
+    AFTER UPDATE ON student
+    FOR EACH ROW
+    BEGIN
+        INSERT INTO audit_log (entity, action, old_value, new_value)
+        VALUES ('student', 'UPDATE', OLD.jmeno, NEW.jmeno);
+    END;</code></li>
+</ul>
+<h3>C. Porovnání a Kdy použít</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Vlastnost</th>
+<th style="text-align: left;">Uložená procedura (Stored Procedure)</th>
+<th style="text-align: left;">Spoušť (Trigger)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Aktivace</strong></td>
+<td style="text-align: left;">Explicitní volání (<code>CALL</code>)</td>
+<td style="text-align: left;">Automaticky na DML událost</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Účel</strong></td>
+<td style="text-align: left;">Komplexní logika, transakce, data</td>
+<td style="text-align: left;">Integrita, audit, logování, kaskády</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Závislost</strong></td>
+<td style="text-align: left;">Nezávislá na tabulce</td>
+<td style="text-align: left;">Pevně navázaná na jednu tabulku</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Vstup/Výstup</strong></td>
+<td style="text-align: left;"><code>IN</code>, <code>OUT</code>, <code>INOUT</code> parametry</td>
+<td style="text-align: left;"><code>OLD</code>, <code>NEW</code> pseudoproměnné</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Kontrola toku</strong></td>
+<td style="text-align: left;">Plná kontrola</td>
+<td style="text-align: left;">Spouští se automaticky, bez přímé kontroly</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Kdy použít proceduru:</strong> Složitá obchodní logika, transakce, vracení dat, zvýšení bezpečnosti/výkonu, volání na vyžádání.</li>
+<li><strong>Kdy použít spoušť:</strong> Automatické vynucování komplexních integritních omezení, auditování, logování, kaskádové akce, logika, která se má provést <em>vždy</em> při DML operaci.</li>
+</ul>
+<h3>Nejčastější chyby u zkoušky</h3>
+<ul>
+<li><strong>Nadměrná aplikační logika v triggerech:</strong> Triggery mají být jednoduché, pro integritu. Složitá logika patří do procedur/aplikace.</li>
+<li><strong>Neřešení transakčního kontextu:</strong> Chyba v triggeru může způsobit rollback celé transakce.</li>
+<li><strong>Těžko dohledatelné automatické změny dat:</strong> Triggery mění data "na pozadí", nutná dobrá dokumentace.</li>
+<li><strong>Ignorování výkonnostních dopadů:</strong> Složité triggery zpomalují DML operace.</li>
+</ul>
+<h3>Typické zkouškové otázky</h3>
+<ol>
+<li><strong>Co je trigger a kdy se spouští?</strong><ul>
+<li>Speciální kód, automaticky aktivovaný DML událostí (<code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>) na tabulce. Spouští se <code>BEFORE</code> nebo <code>AFTER</code>, <code>FOR EACH ROW</code> nebo <code>FOR EACH STATEMENT</code>.</li>
+</ul>
+</li>
+<li><strong>Jak se liší trigger a stored procedure?</strong><ul>
+<li><strong>Procedura:</strong> Explicitní <code>CALL</code>, komplexní logika, transakce, <code>IN/OUT/INOUT</code> parametry, vrací data, nezávislá na tabulce.</li>
+<li><strong>Trigger:</strong> Automaticky na DML událost, integrita, audit, <code>OLD/NEW</code> pseudoproměnné, pevně na tabulku.</li>
+</ul>
+</li>
+<li><strong>Jaké jsou výhody a nevýhody databázové logiky (procedur a triggerů)?</strong><ul>
+<li><strong>Výhody:</strong> Vyšší výkon, bezpečnost, centralizace logiky, integrita dat, modularita.</li>
+<li><strong>Nevýhody:</strong> Závislost na DB, obtížnější ladění/testování, skryté chování, zátěž DB.</li>
+</ul>
+</li>
+</ol>
+        </div>
+        
+        <div id="otazka-32" class="question-section">
+            <h1>32. Pohledy, přístupová práva. Transakce, princip, vlastnosti transakcí.</h1>
+<h2>A. Pohledy (Views)</h2>
+<p><strong>Pohled (View)</strong> je <strong>virtuální tabulka</strong>, která nemá fyzicky uložená data. Je definována uloženým SQL dotazem <code>SELECT</code>. Při dotazu na pohled databáze vykoná definovaný dotaz nad podkladovými tabulkami.</p>
+<h3>Vytvoření a odstranění pohledu</h3>
+<ul>
+<li><strong>Vytvoření:</strong>
+    <code>sql
+    CREATE VIEW v_student_info AS
+    SELECT s.id, s.jmeno, s.prijmeni, k.nazev AS obor
+    FROM student s JOIN katedra k ON s.katedra_id = k.id
+    WHERE s.aktivni = TRUE;</code></li>
+<li><strong>Odstranění:</strong> <code>DROP VIEW v_student_info;</code></li>
+</ul>
+<h3>Výhody a využití pohledů</h3>
+<ul>
+<li><strong>Zjednodušení komplexních dotazů:</strong> Zapouzdřuje složité <code>JOIN</code>y a agregace.</li>
+<li><strong>Zvýšení bezpečnosti (Abstrakce dat):</strong> Skrývá citlivá data, zpřístupňuje jen relevantní podmnožinu.</li>
+<li><strong>Logická nezávislost dat:</strong> Změny v podkladových tabulkách nemusí ovlivnit klientské aplikace (stačí upravit definici pohledu).</li>
+<li><strong>Updatovatelné pohledy:</strong> Některé jednoduché pohledy (z jedné tabulky, bez agregací) umožňují <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code> do podkladové tabulky. Většina je jen pro čtení.</li>
+</ul>
+<h3>Materiálové (Materializované) pohledy</h3>
+<ul>
+<li>Mají data <strong>reálně zkopírovaná a uložená na disku</strong>.</li>
+<li>Používají se pro zrychlení analytických dotazů (datové sklady).</li>
+<li>Nevýhoda: Musí se periodicky aktualizovat (<code>REFRESH MATERIALIZED VIEW</code>), data nemusí být real-time aktuální.</li>
+</ul>
+<h2>B. Přístupová práva</h2>
+<p>Databázový systém řídí přístup k datům pomocí <strong>DCL (Data Control Language)</strong> příkazů.</p>
+<h3>Uživatelé a role</h3>
+<ul>
+<li><strong>Uživatel (User):</strong> Konkrétní entita připojující se k databázi.</li>
+<li><strong>Role (Role):</strong> Skupina oprávnění přidělovaná uživatelům. Zjednodušuje správu práv (RBAC - Role-Based Access Control).</li>
+</ul>
+<h3>Příkazy DCL</h3>
+<ul>
+<li><strong><code>GRANT</code> (Udělení práv):</strong><ul>
+<li>Umožňuje uživateli/roli provádět operace nad objektem.</li>
+<li><strong>Příklad:</strong> <code>GRANT SELECT, INSERT ON student TO 'sekretariat';</code></li>
+<li>Běžná oprávnění: <code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>, <code>EXECUTE</code>.</li>
+</ul>
+</li>
+<li><strong><code>REVOKE</code> (Odebrání práv):</strong><ul>
+<li>Odstraní dříve udělená práva.</li>
+<li><strong>Příklad:</strong> <code>REVOKE INSERT ON student FROM 'sekretariat';</code></li>
+</ul>
+</li>
+</ul>
+<h2>C. Transakce a jejich vlastnosti (ACID)</h2>
+<p><strong>Transakce</strong> je <strong>nedělitelná posloupnost jednoho nebo více SQL příkazů (DML)</strong>, tvořící jednu logickou jednotku práce. Garantuje, že se provede buď vše, nebo nic.</p>
+<h3>Řízení transakcí v SQL</h3>
+<ul>
+<li><strong><code>START TRANSACTION</code> / <code>BEGIN</code>:</strong> Označuje začátek transakce. Změny jsou dočasné.</li>
+<li><strong><code>COMMIT</code>:</strong> Úspěšné dokončení transakce. Změny se trvale zapíší na disk a stanou se viditelnými pro ostatní.</li>
+<li><strong><code>ROLLBACK</code>:</strong> Zrušení transakce. Všechny dočasné změny se stornují, databáze se vrátí do stavu před transakcí.</li>
+<li><strong><code>SAVEPOINT</code>:</strong> Definuje bod v transakci, ke kterému se lze vrátit pomocí <code>ROLLBACK TO SAVEPOINT</code>.</li>
+</ul>
+<h3>Vlastnosti transakcí: Koncept ACID</h3>
+<p>Každý transakční databázový systém musí splňovat vlastnosti <strong>ACID</strong>:</p>
+<ul>
+<li><strong>Atomarita (Atomicity - Nedělitelnost):</strong> Transakce je atomický krok. Buď se provedou všechny operace (<code>COMMIT</code>), nebo žádná (<code>ROLLBACK</code>).</li>
+<li><strong>Konzistence (Consistency - Soudržnost):</strong> Transakce převede databázi z jednoho validního stavu do jiného validního stavu. Nesmí porušit integritní omezení.</li>
+<li><strong>Izolovanost (Isolation):</strong> Souběžně běžící transakce se nesmí navzájem ovlivňovat. Navenek se chovají, jako by běžely sekvenčně.<ul>
+<li><strong>Anomálie:</strong> Dirty Read, Non-repeatable Read, Phantom Read.</li>
+<li>Zajišťuje se zamykáním (locking) nebo MVCC (Multi-Version Concurrency Control).</li>
+</ul>
+</li>
+<li><strong>Trvalost (Durability - Stálost):</strong> Jakmile je transakce potvrzena (<code>COMMIT</code>), její změny jsou trvale zapsány na disk a přežijí i výpadek systému (pomocí transakčního logu - WAL).</li>
+</ul>
+<hr />
+<h2>Typické zkouškové otázky</h2>
+<ol>
+<li>
+<p><strong>Co je view a k čemu slouží?</strong></p>
+<ul>
+<li><strong>Odpověď:</strong> Pohled (View) je virtuální tabulka definovaná SQL dotazem. Slouží ke zjednodušení komplexních dotazů, zvýšení bezpečnosti (skrytí citlivých dat) a zajištění logické nezávislosti dat.</li>
+</ul>
+</li>
+<li>
+<p><strong>Vysvětlete ACID.</strong></p>
+<ul>
+<li><strong>Odpověď:</strong> ACID je akronym pro 4 vlastnosti transakcí:<ul>
+<li><strong>Atomarita:</strong> Všechny operace transakce se provedou, nebo žádná.</li>
+<li><strong>Konzistence:</strong> Transakce převádí DB z validního stavu do validního, bez porušení integritních omezení.</li>
+<li><strong>Izolovanost:</strong> Souběžné transakce se navzájem neovlivňují, každá se jeví jako jediná běžící.</li>
+<li><strong>Trvalost:</strong> Potvrzené změny jsou trvale uloženy a přežijí selhání systému.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Jak funguje COMMIT a ROLLBACK?</strong></p>
+<ul>
+<li><strong>Odpověď:</strong><ul>
+<li><strong><code>COMMIT</code>:</strong> Trvale uloží všechny změny provedené v aktuální transakci do databáze. Změny se stanou viditelnými pro ostatní uživatele a jsou garantovány jako trvalé.</li>
+<li><strong><code>ROLLBACK</code>:</strong> Zruší všechny změny provedené v aktuální transakci. Databáze se vrátí do stavu před zahájením transakce. Používá se při chybě nebo nekonzistenci.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+        </div>
+        
+        <div id="otazka-33" class="question-section">
+            <h1>33. Indexování a optimalizace dotazů</h1>
+<h2>Klíčové pojmy</h2>
+<ul>
+<li><strong>Index:</strong> Pomocná datová struktura pro zrychlení vyhledávání.</li>
+<li><strong>Full Table Scan:</strong> Prohledávání celé tabulky.</li>
+<li><strong>B-strom (B+Tree):</strong> Vyvážená stromová struktura, nejčastější typ indexu.</li>
+<li><strong>Hašovací index (Hash Index):</strong> Index založený na hašovací funkci, rychlý pro přesné shody.</li>
+<li><strong>Clustered Index:</strong> Fyzicky určuje pořadí řádků na disku, max. jeden.</li>
+<li><strong>Non-Clustered Index:</strong> Uložen odděleně, odkazuje na řádky.</li>
+<li><strong>Composite Index:</strong> Index nad více sloupci.</li>
+<li><strong>Query Optimizer:</strong> Komponenta DB, která vybírá nejefektivnější prováděcí plán.</li>
+<li><strong>Execution Plan:</strong> Sekvence operací pro vykonání dotazu.</li>
+<li><strong>EXPLAIN:</strong> SQL příkaz pro zobrazení prováděcího plánu.</li>
+<li><strong>Covering Index:</strong> Index obsahuje všechny sloupce pro dotaz, není nutné sahat do tabulky.</li>
+</ul>
+<h2>A. Indexy: Účel a cena</h2>
+<p><strong>Index</strong> zrychluje <code>SELECT</code> (WHERE), <code>ORDER BY</code>, <code>JOIN</code>.
+*   <strong>Výhody:</strong> Dramatické zrychlení čtení.
+*   <strong>Nevýhody:</strong> Zpomaluje <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code> (nutná aktualizace indexů); zabírá místo na disku/RAM.
+*   <strong>Full Table Scan:</strong> Pomalé prohledání celé tabulky, pokud není index použit.</p>
+<h2>B. Vnitřní struktury indexů</h2>
+<ol>
+<li><strong>B-Strom (B+Tree):</strong><ul>
+<li>Vyvážený strom. Listové uzly obsahují klíče a ukazatele na data, propojeny pro efektivní rozsahové dotazy.</li>
+<li>Složitost: $O(\log n)$.</li>
+<li>Vhodný pro: Přesné shody (<code>=</code>), rozsahové dotazy (<code>&lt;</code>, <code>&gt;</code>, <code>BETWEEN</code>), řazení (<code>ORDER BY</code>).</li>
+</ul>
+</li>
+<li><strong>Hašovací index (Hash Index):</strong><ul>
+<li>Využívá hašovací funkci pro mapování hodnot na adresy (buckety).</li>
+<li>Složitost: $O(1)$ (ideálně).</li>
+<li>Omezení: Pouze pro přesnou shodu (<code>=</code>, <code>IN</code>). Nepoužitelný pro rozsahové dotazy nebo řazení.</li>
+</ul>
+</li>
+</ol>
+<h2>C. Typy indexů</h2>
+<ul>
+<li><strong>Clustered Index (Primární index):</strong> Fyzicky určuje pořadí řádků na disku. Listy obsahují přímo data řádků. Max. jeden na tabulku (často nad primárním klíčem).</li>
+<li><strong>Non-Clustered Index (Sekundární index):</strong> Samostatná datová struktura, uložená odděleně. Obsahuje klíče a ukazatele na řádky (PK nebo fyzická adresa). Více na tabulku.</li>
+<li><strong>Composite Index (Složený index):</strong> Index vytvořený nad více sloupci (např. <code>(prijmeni, jmeno)</code>). Pořadí sloupců je klíčové pro využití (prefix matching).</li>
+</ul>
+<h2>D. Optimalizace dotazů a prováděcí plán</h2>
+<ul>
+<li><strong>Query Optimizer:</strong> Analyzuje dotaz, statistiky o datech, generuje a vybírá nejefektivnější <strong>Execution Plan</strong>.</li>
+<li><strong>EXPLAIN:</strong> Zobrazí prováděcí plán. Klíčové sloupce:<ul>
+<li><code>type</code>: Způsob prohledávání (např. <code>ALL</code> - Full Table Scan, <code>range</code> - indexový rozsah, <code>ref</code>/<code>eq_ref</code> - PK/FK, <code>const</code>).</li>
+<li><code>key</code>: Název použitého indexu.</li>
+<li><code>rows</code>: Odhadovaný počet prohledaných řádků.</li>
+</ul>
+</li>
+<li><strong>Pravidla pro optimalizaci:</strong><ul>
+<li>Indexujte cizí klíče (<code>JOIN</code>).</li>
+<li>Vyhněte se <code>SELECT *</code> (umožňuje využití <strong>Covering Indexu</strong>).</li>
+<li><code>LIKE 'prefix%'</code> může použít index, <code>LIKE '%suffix%'</code> ne.</li>
+<li>Nepoužívejte funkce nad indexovanými sloupci v <code>WHERE</code> (např. <code>WHERE YEAR(datum) = 2000</code> -&gt; <code>WHERE datum BETWEEN '2000-01-01' AND '2000-12-31'</code>).</li>
+</ul>
+</li>
+</ul>
+<h2>Typické zkouškové otázky</h2>
+<ol>
+<li><strong>Index: definice, výhody, nevýhody.</strong><ul>
+<li><strong>Def:</strong> Pomocná DS pro zrychlení vyhledávání.</li>
+<li><strong>Výhody:</strong> Zrychluje čtení (<code>SELECT</code>, <code>ORDER BY</code>, <code>JOIN</code>).</li>
+<li><strong>Nevýhody:</strong> Zpomaluje zápis (<code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>), zabírá místo.</li>
+</ul>
+</li>
+<li><strong>B-strom vs. hašovací index: rozdíly, vhodnost.</strong><ul>
+<li><strong>B-strom:</strong> Vyvážený strom, $O(\log n)$. Pro <code>=</code>, rozsahy, řazení.</li>
+<li><strong>Hašovací:</strong> Hašovací funkce, $O(1)$. Jen pro přesnou shodu (<code>=</code>, <code>IN</code>). Nevhodný pro rozsahy/řazení.</li>
+</ul>
+</li>
+<li><strong>Clustered vs. non-clustered index. Počet clustered indexů.</strong><ul>
+<li><strong>Clustered:</strong> Fyzicky řadí řádky, listy = data. Max. 1/tabulka.</li>
+<li><strong>Non-Clustered:</strong> Samostatná DS, odkazuje na řádky. Více/tabulka.</li>
+</ul>
+</li>
+<li><strong>Optimalizátor: výběr plánu, analýza. Pravidla optimalizace.</strong><ul>
+<li><strong>Výběr:</strong> Optimalizátor analyzuje dotaz/statistiky, vybírá nejefektivnější plán.</li>
+<li><strong>Analýza:</strong> <code>EXPLAIN</code> (sleduje <code>type</code>, <code>key</code>, <code>rows</code>).</li>
+<li><strong>Pravidla:</strong> Indexujte FK; vyhněte se <code>SELECT *</code>; žádné funkce nad index. sloupci v <code>WHERE</code>.</li>
+</ul>
+</li>
+</ol>
+        </div>
+        
+        </main>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>

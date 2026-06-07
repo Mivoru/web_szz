@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[6, 7, 8] (Zkrácené) - SZZ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+    MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <header>
+        <div class="brand">
+            <button id="hamburger" class="hamburger">☰</button>
+            <a href="index_zkracene.html" style="color:inherit; text-decoration:none;">⬅ Zpět</a>
+        </div>
+        <div style="font-weight:600;">[6, 7, 8] (Zkráceně)</div>
+        <button id="theme-toggle" class="theme-toggle">🌙</button>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="toc-title">Obsah okruhů</div>
+            <ul class="toc-list">
+                <li><a href="#otazka-6">6. Signály a systémy. LTI systémy. Přenosová funkce, impulsní odezva.</a></li>\n<li><a href="#otazka-7">7. Fourierovy řady. Diskrétní Fourierova transformace, její použití a interpretace. Spektrum signálu, FFT. Číslicové filtry FIR a IIR.</a></li>\n<li><a href="#otazka-8">8. Vzorkování, kvantování. Vzorkovací teorém. Aliasing. Práce se zvukem na počítači</a></li>\n
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <a href="pdfs/Signaly_a_zpracovani_informace_zkracene.pdf" target="_blank" class="pdf-btn">
+                📄 Stáhnout jako PDF
+            </a>
+            
+        <div id="otazka-6" class="question-section">
+            <h1>6. Signály a systémy. LTI systémy. Přenosová funkce, impulsní odezva. Konvoluce u číslicových signálů</h1>
+<h2>Klíčové pojmy</h2>
+<p>Signál, Systém, LTI systém, Linearita, Časová invariance, Impulsní odezva ($h[n]$), Kroneckerovo delta ($\delta[n]$), Konvoluce, Z-transformace, Přenosová funkce ($H(z)$), Frekvenční odezva, Filtry (FIR, IIR).</p>
+<hr />
+<h2>A. Signály a systémy</h2>
+<ul>
+<li><strong>Signál:</strong> Fyzikální veličina nesoucí informaci.<ul>
+<li><strong>Spojitý:</strong> Definován pro všechny hodnoty času $t$, nabývá libovolných reálných hodnot.</li>
+<li><strong>Diskrétní:</strong> Definován v diskrétních okamžicích $n$, značí se $x[n]$.</li>
+<li><strong>Číslicový:</strong> Diskrétní signál, jehož hodnoty jsou navíc kvantovány.</li>
+</ul>
+</li>
+<li><strong>Systém:</strong> Transformace, která zpracovává vstupní signál $x[n]$ na výstupní signál $y[n]$. Zápis: $y[n] = \mathcal{T}{x[n]}$.</li>
+</ul>
+<hr />
+<h2>B. LTI systémy (Lineární Časově Invariantní)</h2>
+<p>Většina digitálních systémů je navrhována jako LTI pro snadnou analýzu. Musí splňovat:
+*   <strong>Linearita:</strong> Splňuje princip superpozice.
+    $$ \mathcal{T}{a \cdot x_1[n] + b \cdot x_2[n]} = a \cdot y_1[n] + b \cdot y_2[n] $$
+*   <strong>Časová invariance:</strong> Vlastnosti systému se v čase nemění. Posun vstupu o $k$ kroků posune výstup o $k$ kroků.
+    $$ \mathcal{T}{x[n-k]} = y[n-k] $$</p>
+<hr />
+<h2>C. Impulsní odezva ($h[n]$)</h2>
+<p>Výstup LTI systému, pokud na jeho vstup přivedeme jednotkový impuls (Kroneckerovo delta $\delta[n]$).
+$$ \delta[n] = \begin{cases} 1 &amp; \text{pro } n = 0 \ 0 &amp; \text{pro } n \neq 0 \end{cases} $$
+Impulsní odezva $h[n]$ plně charakterizuje LTI systém.</p>
+<hr />
+<h2>D. Konvoluce u číslicových signálů</h2>
+<p>Matematická operace, která kombinuje vstupní signál $x[n]$ s impulsní odezvou $h[n]$ pro získání výstupu $y[n]$.
+$$ y[n] = x[n] * h[n] = \sum_{k=-\infty}^{\infty} x[k] \cdot h[n-k] $$
+<strong>Algoritmus:</strong>
+1.  Otoč $h[k]$ na $h[-k]$.
+2.  Posuň $h[-k]$ o $n$ kroků na $h[n-k]$.
+3.  Vynásob $x[k]$ a $h[n-k]$ a sečti součiny pro $y[n]$.
+4.  Opakuj pro další $n$.
+Výpočetní složitost: $O(N \cdot M)$.</p>
+<hr />
+<h2>E. Přenosová funkce ($H(z)$ nebo $H(e^{j\omega})$)</h2>
+<p>Konvoluce v časové oblasti je výpočetně náročná. V Z-doméně se konvoluce mění na násobení.
+*   <strong>Definice:</strong> Poměr Z-transformace výstupu $Y(z)$ k Z-transformaci vstupu $X(z)$, nebo Z-transformace impulsní odezvy $h[n]$.
+    $$ H(z) = \frac{Y(z)}{X(z)} = \mathcal{Z}{h[n]} = \sum_{n=-\infty}^{\infty} h[n] z^{-n} $$
+*   <strong>Frekvenční odezva:</strong> Dosazením $z = e^{j\omega}$ získáme $H(e^{j\omega})$. Popisuje, jak systém mění amplitudu ($|H(e^{j\omega})|$) a fázi ($\arg(H(e^{j\omega}))$) jednotlivých frekvencí. Klíčová pro návrh digitálních filtrů.</p>
+<hr />
+<h2>F. Praktický význam v IT</h2>
+<ul>
+<li><strong>Audio efekty:</strong> Reverb (konvoluce zvuku s impulsní odezvou prostoru), ekvalizace, filtrace šumu.</li>
+<li><strong>Zpracování obrazu (2D konvoluce):</strong> Rozmazání, doostření, detekce hran (konvoluce obrazu s konvolučním jádrem/kernelem).</li>
+<li><strong>Konvoluční neuronové sítě (CNN):</strong> Konvoluční filtry v prvních vrstvách se učí detekovat rysy v obraze.</li>
+</ul>
+<hr />
+<h2>Nejčastější chyby u zkoušky</h2>
+<ul>
+<li>Záměna spojitých a diskrétních signálů.</li>
+<li>Nepochopení linearity (např. $y[n] = x[n] + C$ není lineární).</li>
+<li>Chybné limity konvoluční sumy pro praktické signály.</li>
+<li>Neznalost vztahu mezi časovou a frekvenční oblastí (konvoluce $\leftrightarrow$ násobení).</li>
+<li>Ignorování fázové odezvy.</li>
+</ul>
+<hr />
+<h2>Typické zkouškové otázky</h2>
+<ol>
+<li>
+<p><strong>Definujte signál a systém. Jaký je rozdíl mezi spojitým a číslicovým signálem?</strong></p>
+<ul>
+<li><strong>Signál:</strong> Fyz. veličina nesoucí info. <strong>Systém:</strong> Transformace $x[n] \to y[n]$. <strong>Spojitý:</strong> Def. pro $t$, lib. hodnoty. <strong>Číslicový:</strong> Diskrétní + kvantované.</li>
+</ul>
+</li>
+<li>
+<p><strong>Vysvětlete vlastnosti linearity a časové invariance. Proč jsou LTI systémy tak důležité?</strong></p>
+<ul>
+<li><strong>Linearita:</strong> Splňuje superpozici. <strong>Časová invariance:</strong> Vlastnosti systému se nemění s časem. <strong>LTI důležité:</strong> Mat. popsatelné (konvoluce, transformace), zjednodušuje návrh filtrů.</li>
+</ul>
+</li>
+<li>
+<p><strong>Co je impulsní odezva LTI systému a jak souvisí s konvolucí? Napište vzorec konvoluční sumy.</strong></p>
+<ul>
+<li><strong>Impulsní odezva ($h[n]$):</strong> Výstup LTI pro $\delta[n]$. Plně charakterizuje systém. <strong>Souvislost:</strong> $y[n]$ je konvoluce $x[n]$ s $h[n]$. <strong>Vzorec:</strong> $y[n] = \sum_{k=-\infty}^{\infty} x[k] \cdot h[n-k]$.</li>
+</ul>
+</li>
+<li>
+<p><strong>Co je přenosová funkce a jak se získá z impulsní odezvy? Jaký je její význam ve frekvenční oblasti?</strong></p>
+<ul>
+<li><strong>Přenosová funkce ($H(z)$):</strong> Z-transformace $h[n]$ ($H(z) = Y(z)/X(z)$). <strong>Význam:</strong> $H(e^{j\omega})$ (frekvenční odezva) ukazuje změnu amplitudy a fáze frekvencí. Konvoluce v čase = násobení v Z-doméně.</li>
+</ul>
+</li>
+<li>
+<p><strong>Uveďte alespoň dva praktické příklady použití konvoluce v IT.</strong></p>
+<ul>
+<li><strong>Zpracování obrazu:</strong> Blur, sharpen, detekce hran 2D konvolucí s kernelem.</li>
+<li><strong>Audio efekty:</strong> Reverb konvolucí s impulsní odezvou prostoru.</li>
+<li><strong>CNN:</strong> Konvoluční filtry pro extrakci rysů.</li>
+</ul>
+</li>
+</ol>
+        </div>
+        
+        <div id="otazka-7" class="question-section">
+            <h1>7. Fourierovy řady, DFT, FFT, spektrum, FIR a IIR filtry</h1>
+<h2>Klíčové pojmy</h2>
+<ul>
+<li><strong>Fourierova řada:</strong> Rozklad periodického signálu na součet sinusových a kosinusových složek.</li>
+<li><strong>DFT (Diskrétní Fourierova transformace):</strong> Převádí konečnou posloupnost vzorků z časové do frekvenční oblasti.</li>
+<li><strong>FFT (Fast Fourier Transform):</strong> Rychlý algoritmus pro výpočet DFT.</li>
+<li><strong>Amplitudové spektrum:</strong> Zobrazuje velikost (sílu) frekvenčních složek.</li>
+<li><strong>Fázové spektrum:</strong> Zobrazuje fázový posun frekvenčních složek.</li>
+<li><strong>FIR filtr (Finite Impulse Response):</strong> Číslicový filtr s konečnou impulsní odezvou, bez zpětné vazby.</li>
+<li><strong>IIR filtr (Infinite Impulse Response):</strong> Číslicový filtr s nekonečnou impulsní odezvou, se zpětnou vazbou.</li>
+<li><strong>Konvoluce:</strong> Matematická operace popisující vztah vstup-impulsní odezva-výstup systému.</li>
+</ul>
+<h2>A. Fourierovy řady</h2>
+<p>Rozklad periodického spojitého signálu $x(t)$ s periodou $T$ na harmonické komponenty s frekvencemi $n\omega_0$, kde $\omega_0 = \frac{2\pi}{T}$.</p>
+<p><strong>Goniometrický tvar:</strong>
+$$x(t) = \frac{a_0}{2} + \sum_{n=1}^{\infty} (a_n \cos(n\omega_0 t) + b_n \sin(n\omega_0 t))$$
+$a_0, a_n, b_n$ jsou Fourierovy koeficienty.</p>
+<p><strong>Komplexní exponenciální tvar:</strong> (pomocí $e^{j\omega} = \cos\omega + j\sin\omega$)
+$$x(t) = \sum_{n=-\infty}^{\infty} c_n e^{j n \omega_0 t}$$
+$c_n$ jsou komplexní Fourierovy koeficienty (amplituda a fáze).</p>
+<h2>B. Diskrétní Fourierova transformace (DFT) a spektrum</h2>
+<p>Transformace konečné posloupnosti $N$ vzorků $x[n]$ z časové do frekvenční oblasti $X[k]$.</p>
+<p><strong>Definice DFT:</strong>
+$$X[k] = \sum_{n=0}^{N-1} x[n] e^{-j \frac{2\pi}{N} k n}, \quad k = 0, 1, \dots, N-1$$
+Výpočetní složitost: $\mathcal{O}(N^2)$.</p>
+<p><strong>Interpretace a spektrum:</strong>
+$X[k]$ je komplexní číslo.
+*   <strong>Amplitudové spektrum:</strong> $|X[k]| = \sqrt{\operatorname{Re}(X[k])^2 + \operatorname{Im}(X[k])^2}$ – síla frekvenční složky.
+*   <strong>Fázové spektrum:</strong> $\arg(X[k]) = \operatorname{atan2}(\operatorname{Im}(X[k]), \operatorname{Re}(X[k]))$ – časový posun frekvenční složky.</p>
+<h2>C. Rychlá Fourierova transformace (FFT)</h2>
+<p>Efektivní algoritmus pro výpočet DFT.
+*   <strong>Složitost:</strong> Snižuje z $\mathcal{O}(N^2)$ na $\mathcal{O}(N \log N)$.
+*   <strong>Princip:</strong> Využívá symetrie a periodicity, metoda "rozděl a panuj" (např. Cooley-Tukeyho algoritmus pro $N$ mocninu dvojky).
+*   Umožňuje zpracování signálu v reálném čase.</p>
+<h2>D. Číslicové filtry: FIR a IIR</h2>
+<p>LTI systémy pro potlačení/propouštění frekvenčních pásem.</p>
+<h3>1. FIR filtry (Finite Impulse Response)</h3>
+<ul>
+<li><strong>Princip:</strong> Výstup závisí jen na současném a předchozích vstupech $x[n]$. Bez zpětné vazby (nerekurzivní).</li>
+<li><strong>Rovnice:</strong> $y[n] = \sum_{k=0}^{M} b_k x[n-k]$</li>
+<li><strong>Vlastnosti:</strong><ul>
+<li>Impulsní odezva: Konečná.</li>
+<li>Stabilita: Vždy stabilní.</li>
+<li>Fáze: Mohou mít striktně lineární fázi (bez fázového zkreslení).</li>
+<li>Efektivita: Pro ostré odříznutí vyžadují vysoký řád $M$ (více koeficientů), vyšší latence.</li>
+</ul>
+</li>
+</ul>
+<h3>2. IIR filtry (Infinite Impulse Response)</h3>
+<ul>
+<li><strong>Princip:</strong> Výstup závisí na vstupech i předchozích výstupech $y[n]$. Se zpětnou vazbou (rekurzivní).</li>
+<li><strong>Rovnice:</strong> $y[n] = \sum_{k=0}^{M} b_k x[n-k] - \sum_{m=1}^{N} a_m y[n-m]$</li>
+<li><strong>Vlastnosti:</strong><ul>
+<li>Impulsní odezva: Nekonečná.</li>
+<li>Stabilita: Mohou být nestabilní (nutno hlídat póly).</li>
+<li>Fáze: Nemají lineární fázi (způsobují fázové zkreslení).</li>
+<li>Efektivita: Pro ostré odříznutí stačí nízký řád (méně koeficientů), výpočetně efektivnější, nižší latence.</li>
+</ul>
+</li>
+</ul>
+<h2>E. Filtrace v čase nebo prostoru</h2>
+<ul>
+<li><strong>V čase (1D):</strong> Pro jednorozměrné signály (audio, telemetrie). Filtr zpracovává historii časových okamžiků.</li>
+<li><strong>V prostoru (2D):</strong> Pro digitální obrazy. Aplikuje se 2D konvoluce s konvolučním jádrem (maskou).<ul>
+<li>Příklad: Gaussovo rozmazání (low-pass), detekce hran (high-pass).</li>
+<li>Průměrovací maska 3x3:
+    $$\frac{1}{9}\begin{pmatrix} 1 &amp; 1 &amp; 1 \ 1 &amp; 1 &amp; 1 \ 1 &amp; 1 &amp; 1 \end{pmatrix}$$</li>
+</ul>
+</li>
+</ul>
+<h2>F. Praktické použití</h2>
+<ul>
+<li><strong>Audio/Video:</strong> Ekvalizéry, komprese (MP3, JPEG), analýza hlasu.</li>
+<li><strong>Počítačové vidění:</strong> Předzpracování obrazu (OpenCV).</li>
+<li><strong>Inženýrství:</strong> Analýza vibrací, detekce periodicity.</li>
+</ul>
+<h2>Nejčastější chyby u zkoušky</h2>
+<ul>
+<li><strong>FFT vs. DFT:</strong> FFT je algoritmus pro výpočet DFT, ne jiná transformace.</li>
+<li><strong>Ignorování fáze spektra:</strong> Fázové spektrum je klíčové pro rekonstrukci signálu a pochopení časových posunů.</li>
+<li><strong>Záměna FIR a IIR:</strong> Nerozlišování rekurzivního IIR a nerekurzivního FIR filtru.</li>
+</ul>
+<h2>Typické zkouškové otázky</h2>
+<ol>
+<li>
+<p><strong>Jaký je rozdíl mezi DFT a FFT?</strong></p>
+<ul>
+<li><strong>DFT:</strong> Matematická definice transformace (čas -&gt; frekvence), složitost $\mathcal{O}(N^2)$.</li>
+<li><strong>FFT:</strong> Rychlý algoritmus pro výpočet DFT, složitost $\mathcal{O}(N \log N)$.</li>
+</ul>
+</li>
+<li>
+<p><strong>Co znamená amplitudové a fázové spektrum?</strong></p>
+<ul>
+<li><strong>Amplitudové spektrum:</strong> Velikost $|X[k]|$ – síla/energie dané frekvenční složky v signálu.</li>
+<li><strong>Fázové spektrum:</strong> Argument $\arg(X[k])$ – časový posun (fáze) dané frekvenční složky. Klíčové pro správnou rekonstrukci signálu.</li>
+</ul>
+</li>
+<li>
+<p><strong>Porovnejte FIR a IIR filtry.</strong></p>
+<ul>
+<li><strong>FIR:</strong> Konečná impulsní odezva, bez zpětné vazby, vždy stabilní, může mít lineární fázi, pro ostrost vyžaduje vysoký řád.</li>
+<li><strong>IIR:</strong> Nekonečná impulsní odezva, se zpětnou vazbou, může být nestabilní, nemá lineární fázi, pro ostrost stačí nízký řád.</li>
+</ul>
+</li>
+</ol>
+        </div>
+        
+        <div id="otazka-8" class="question-section">
+            <h1>8. Vzorkování, kvantování. Vzorkovací teorém. Aliasing. Práce se zvukem na počítači</h1>
+<h2>A. Převod analogového signálu na digitální (A/D převod)</h2>
+<p>Reálný zvuk je analogový signál (spojitý v čase i amplitudě). Pro zpracování v počítači se digitalizuje ve dvou krocích:</p>
+<h3>1. Vzorkování (Sampling)</h3>
+<ul>
+<li><strong>Princip:</strong> Diskretizace v čase. Odebírání okamžitých hodnot signálu v pravidelných intervalech $T_s$.</li>
+<li><strong>Vzorkovací frekvence ($f_s$):</strong> Počet vzorků za sekundu.
+    $$f_s = \frac{1}{T_s}$$
+    Vyšší $f_s$ = přesnější zachycení časového průběhu.</li>
+</ul>
+<h3>2. Kvantování (Quantization)</h3>
+<ul>
+<li><strong>Princip:</strong> Diskretizace v amplitudě. Zaokrouhlení vzorku na nejbližší povolenou úroveň z konečného počtu hladin.</li>
+<li><strong>Bitová hloubka ($b$):</strong> Počet bitů pro vzorek. Počet diskrétních hladin je $2^b$.<ul>
+<li><em>Příklad:</em> 16bitové audio má $2^{16} = 65536$ hladin.</li>
+</ul>
+</li>
+<li><strong>Kvantizační šum:</strong> Chyba vzniklá zaokrouhlením. Vyšší $b$ = menší šum, větší objem dat.</li>
+</ul>
+<h2>B. Vzorkovací teorém (Nyquist-Shannon-Kotelnikov)</h2>
+<p>Klíčové pravidlo pro digitalizaci signálů.</p>
+<ul>
+<li><strong>Věta:</strong> Spojitý signál s $f_{max}$ lze přesně rekonstruovat, pokud je vzorkovací frekvence $f_s$ striktně větší než dvojnásobek $f_{max}$.
+    $$f_s &gt; 2 \cdot f_{max}$$</li>
+<li><strong>Nyquistova frekvence ($f_N$):</strong> $f_N = \frac{f_s}{2}$. Nejvyšší frekvence, kterou systém dokáže korektně zachytit.</li>
+</ul>
+<h2>C. Aliasing</h2>
+<p>Jev vznikající porušením vzorkovacího teorému ($f_s \le 2 \cdot f_{max}$).</p>
+<ul>
+<li><strong>Princip:</strong> Vysokofrekvenční složky signálu ($f &gt; f_N$) se chybně interpretují jako nižší frekvence.</li>
+<li><strong>Projev:</strong><ul>
+<li><strong>Audio:</strong> Zkreslený zvuk, nepřirozené tóny.</li>
+<li><strong>Video/grafika:</strong> Stroboskopický efekt (kola točící se pozpátku), Moiré efekt.</li>
+</ul>
+</li>
+<li><strong>Obrana:</strong> Před vzorkováním se použije analogový Anti-aliasing filtr (dolní propust), který odřízne frekvence vyšší než $f_N$.</li>
+</ul>
+<h2>D. Práce se zvukem na počítači</h2>
+<h3>Standardní parametry pro audio (např. CD kvalita)</h3>
+<ul>
+<li><strong>Vzorkovací frekvence:</strong> $44.1\text{ kHz}$ (nebo $48\text{ kHz}$). Lidské ucho slyší do $20\text{ kHz}$, $f_s &gt; 2 \cdot 20\text{ kHz} = 40\text{ kHz}$. Rezerva pro filtry.</li>
+<li><strong>Bitová hloubka:</strong> $16\text{ bitů}$ (CD). $24\text{/ }32\text{ bitů}$ pro profesionální použití.</li>
+</ul>
+<h3>Formáty uložení zvuku</h3>
+<ul>
+<li><strong>Nekomprimované (PCM - Pulse Code Modulation):</strong><ul>
+<li><strong>Princip:</strong> Surová data, vzorky uloženy za sebou.</li>
+<li><strong>Vlastnosti:</strong> Nejvyšší kvalita, největší velikost.</li>
+<li><strong>Příklad:</strong> WAV, AIFF.</li>
+</ul>
+</li>
+<li><strong>Bezztrátová komprese:</strong><ul>
+<li><strong>Princip:</strong> Odstranění redundance bez ztráty informace (jako ZIP). Plná rekonstrukce PCM dat.</li>
+<li><strong>Vlastnosti:</strong> Kvalita identická s PCM, menší velikost.</li>
+<li><strong>Příklad:</strong> FLAC, ALAC.</li>
+</ul>
+</li>
+<li><strong>Ztrátová komprese:</strong><ul>
+<li><strong>Princip:</strong> Využívá psychoakustické modely. Odstraní frekvence maskované silnějšími zvuky nebo neslyšitelné pro lidské ucho. Nevratná ztráta dat.</li>
+<li><strong>Vlastnosti:</strong> Výrazně menší velikost, za cenu ztráty kvality.</li>
+<li><strong>Příklad:</strong> MP3, AAC, Ogg Vorbis.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2>Typické zkouškové otázky</h2>
+<h3>1. Vysvětlete proces převodu analogového signálu na digitální. Jaké jsou jeho hlavní kroky?</h3>
+<p><strong>Odpověď:</strong> A/D převod má dva kroky:
+*   <strong>Vzorkování:</strong> Diskretizace v čase. Odebírání vzorků v intervalech $T_s$ ($f_s = 1/T_s$). Signál je diskrétní v čase, spojitý v amplitudě.
+*   <strong>Kvantování:</strong> Diskretizace v amplitudě. Zaokrouhlení vzorků na $2^b$ diskrétních úrovní. Vzniká kvantizační šum.</p>
+<h3>2. Formulujte Nyquist-Shannonův vzorkovací teorém a vysvětlete jeho význam pro digitalizaci signálů. Co je Nyquistova frekvence?</h3>
+<p><strong>Odpověď:</strong>
+*   <strong>Teorém:</strong> Signál s $f_{max}$ lze přesně rekonstruovat, pokud $f_s &gt; 2 \cdot f_{max}$.
+*   <strong>Význam:</strong> Definuje minimální $f_s$ pro zachování veškeré informace. Nízká $f_s$ vede k aliasingu a ztrátě informací.
+*   <strong>Nyquistova frekvence ($f_N$):</strong> $f_N = f_s/2$. Nejvyšší frekvence, kterou lze správně zachytit.</p>
+<h3>3. Co je aliasing, jak vzniká a jaké má praktické projevy? Jak se proti němu bráníme?</h3>
+<p><strong>Odpověď:</strong>
+*   <strong>Aliasing:</strong> Vysokofrekvenční složky ($f &gt; f_N$) se po digitalizaci chybně interpretují jako nižší frekvence.
+*   <strong>Vznik:</strong> Porušení teorému ($f_s \le 2 \cdot f_{max}$).
+*   <strong>Projevy:</strong> Audio - zkreslení, pískání. Video - stroboskopický efekt, Moiré.
+*   <strong>Obrana:</strong> Před vzorkováním použít Anti-aliasing filtr (dolní propust), který odstraní frekvence nad $f_N$.</p>
+<h3>4. Popište rozdíly mezi nekomprimovanými, bezztrátově komprimovanými a ztrátově komprimovanými audio formáty. Uveďte příklady a vysvětlete princip ztrátové komprese.</h3>
+<p><strong>Odpověď:</strong>
+*   <strong>Nekomprimované (PCM):</strong> Surová data, nejvyšší kvalita, největší velikost (WAV, AIFF).
+*   <strong>Bezztrátové:</strong> Odstraní redundanci, kvalita PCM, menší velikost, plná rekonstrukce (FLAC, ALAC).
+*   <strong>Ztrátové:</strong>
+    *   <strong>Popis:</strong> Odstraní neslyšitelnou/méně důležitou informaci. Nevratná ztráta, nejmenší velikost (MP3, AAC).
+    *   <strong>Princip:</strong> Využívá psychoakustické modely. Analyzuje frekvence (FFT) a odstraňuje maskované nebo mimo rozsah slyšitelnosti.</p>
+        </div>
+        
+        </main>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>

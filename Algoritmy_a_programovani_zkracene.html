@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19] (Zkrácené) - SZZ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+    MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <header>
+        <div class="brand">
+            <button id="hamburger" class="hamburger">☰</button>
+            <a href="index_zkracene.html" style="color:inherit; text-decoration:none;">⬅ Zpět</a>
+        </div>
+        <div style="font-weight:600;">[9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19] (Zkráceně)</div>
+        <button id="theme-toggle" class="theme-toggle">🌙</button>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="toc-title">Obsah okruhů</div>
+            <ul class="toc-list">
+                <li><a href="#otazka-9">9. Číselné soustavy a převody mezi nimi. Způsoby kódování čísel s pevnou a s pohyblivou řádovou tečkou.</a></li>\n<li><a href="#otazka-10">10. Programátorský model procesoru, instrukce, instrukční soubor, symbolická adresa, operace v registrech, s pamětí, I_O operace. Sekvence instrukcí, algoritmizace základních úloh v jazyku symbolických adres. Časo</a></li>\n<li><a href="#otazka-11">11. Jazyk C_ základní datové typy a strukturovaný datový typ. Pole a ukazatele, dynamická alokace paměti.</a></li>\n<li><a href="#otazka-12">12. Algoritmy pro vyhledávání a řazení, složitost algoritmů</a></li>\n<li><a href="#otazka-13">13. Rekurze a její použití. Rekurzivní a nerekurzivní realizace vybraných algoritmů.</a></li>\n<li><a href="#otazka-14">14. Členění programu v jazyce vyšší úrovně. Metody, funkce, procedury, makra. Parametry metod, procedur a funkcí a způsoby jejich předávání. Globální a lokální proměnné.</a></li>\n<li><a href="#otazka-15">15. Objektově orientované programování, význam a základní principy_ zapouzdření, dědičnost a polymorfismus, správa přístupu. Abstraktní třídy a rozhraní. Genericita a její využití.</a></li>\n<li><a href="#otazka-16">16. Tvorba aplikací v prostředí konzole a MS Windows. Vývojová prostředí.</a></li>\n<li><a href="#otazka-17">17. Programátorské rozhraní operačního systému. Pokročilejší programátorské techniky jako zpracování zpráv, programování vláken, synchronizace procesů.</a></li>\n<li><a href="#otazka-18">18. Operační systém, vysvětlení pojmu, typy, poskytované funkce</a></li>\n<li><a href="#otazka-19">19. Správa procesů v operačním systému, vztah programu a procesu, životní cyklus procesu</a></li>\n
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <a href="pdfs/Algoritmy_a_programovani_zkracene.pdf" target="_blank" class="pdf-btn">
+                📄 Stáhnout jako PDF
+            </a>
+            
+        <div id="otazka-9" class="question-section">
+            <h1>9. Číselné soustavy a převody. Kódování čísel s pevnou a pohyblivou řádovou tečkou. Kódování záporných čísel.</h1>
+<h2>A. Číselné soustavy a převody</h2>
+<p>Čísla v poziční soustavě o základu $b$:
+$$ (a_n \dots a_0 . a_{-1} \dots a_{-m})<em>b = \sum</em>{i=-m}^{n} a_i b^i $$</p>
+<p><strong>Základní soustavy:</strong>
+*   <strong>Binární ($b=2$):</strong> Cifry 0, 1. Základ pro digitální systémy.
+*   <strong>Oktalová ($b=8$):</strong> Cifry 0-7. Historicky pro kompaktní binární zápis (3 bity = 1 cifra).
+*   <strong>Decimální ($b=10$):</strong> Cifry 0-9. Pro lidi, vstup/výstup.
+*   <strong>Hexadecimální ($b=16$):</strong> Cifry 0-9, A-F (A=10, ..., F=15). 1 cifra = 4 bity. Pro adresy, barvy, kompaktní binární data.</p>
+<h3>Převody mezi soustavami</h3>
+<ul>
+<li><strong>Z libovolné do desítkové:</strong> Polynomický rozvoj.<ul>
+<li>$(1101)<em>2 = 1 \cdot 2^3 + 1 \cdot 2^2 + 0 \cdot 2^1 + 1 \cdot 2^0 = (13)</em>{10}$</li>
+</ul>
+</li>
+<li><strong>Z desítkové do libovolné:</strong><ul>
+<li><strong>Celá část:</strong> Postupné dělení základem, zbytky zdola nahoru.</li>
+<li><strong>Desetinná část:</strong> Postupné násobení základem, celé části shora dolů.</li>
+</ul>
+</li>
+<li><strong>Mezi binární a hexadecimální:</strong> Skupiny po 4 bitech od řádové tečky.<ul>
+<li>$(11001011)<em>2 \rightarrow (1100)_2 (1011)_2 \rightarrow (CB)</em>{16}$</li>
+</ul>
+</li>
+</ul>
+<h2>B. Kódování záporných čísel</h2>
+<p>Pro celá čísla (integers) se používají:</p>
+<ol>
+<li>
+<p><strong>Přímý kód (Sign-and-Magnitude):</strong></p>
+<ul>
+<li><strong>Princip:</strong> Nejvyšší bit = znaménko (0=+, 1=-). Zbytek bitů = absolutní hodnota.</li>
+<li><strong>Nevýhody:</strong> Dvě nuly ($+0, -0$), složitá aritmetika.</li>
+</ul>
+</li>
+<li>
+<p><strong>Inverzní kód (Ones' Complement):</strong></p>
+<ul>
+<li><strong>Princip:</strong> Záporné číslo = bitová inverze kladného čísla.</li>
+<li><strong>Nevýhody:</strong> Dvě nuly ($+0, -0$), složitější aritmetika (end-around carry).</li>
+</ul>
+</li>
+<li>
+<p><strong>Doplňkový kód (Two's Complement) – Standard v moderních CPU:</strong></p>
+<ul>
+<li><strong>Princip:</strong> Záporné číslo = (bitová inverze kladného čísla) + 1.</li>
+<li><strong>Příklad (-3 pro 4 bity):</strong> $(0011)_2 \xrightarrow{\text{invert}} (1100)_2 \xrightarrow{+1} (1101)_2$.</li>
+<li><strong>Výhody:</strong><ul>
+<li><strong>Jedna unikátní nula:</strong> Pouze $(0000)_2$.</li>
+<li><strong>Jednotný hardware pro aritmetiku:</strong> Sčítání/odčítání funguje stejně pro kladná i záporná čísla ($A-B = A+(-B)$).</li>
+<li><strong>Rozsah pro $n$ bitů:</strong> $\langle -2^{n-1}, 2^{n-1} - 1 \rangle$.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2>C. Čísla s pevnou řádovou tečkou (Fixed-point)</h2>
+<ul>
+<li><strong>Princip:</strong> Pozice řádové tečky je pevně daná. Bity pro celou část, bity pro desetinnou část.</li>
+<li><strong>Formát:</strong> Q$I.F$ ($I$ bitů celá část, $F$ bitů desetinná část).</li>
+<li><strong>Výhody:</strong> Rychlé výpočty (Integer ALU), konstantní přesnost.</li>
+<li><strong>Nevýhody:</strong> Omezený dynamický rozsah, nutnost ručního škálování.</li>
+<li><strong>Použití:</strong> Mikrokontroléry bez FPU, DSP, embedded systémy.</li>
+</ul>
+<h2>D. Čísla s pohyblivou řádovou tečkou (Floating-point)</h2>
+<ul>
+<li><strong>Princip:</strong> Vědecký zápis, standard IEEE 754.</li>
+<li><strong>Hodnota:</strong>
+    $$ \text{Hodnota} = (-1)^s \cdot (1 + m) \cdot 2^{e - \text{bias}} $$<ul>
+<li>$s$: Znaménko (1 bit).</li>
+<li>$e$: Exponent (kódován s posunutou nulou - bias).</li>
+<li>$m$: Mantisa (zlomková část, skrytá jednička $1.mmmm$).</li>
+</ul>
+</li>
+</ul>
+<h3>Standardní formáty IEEE 754</h3>
+<ul>
+<li><strong>Single Precision (float):</strong> 32 bitů (1s, 8e, 23m). $\text{bias}=127$. Rozsah $\approx \pm 10^{38}$, přesnost $\approx 7$ desetinných míst.</li>
+<li><strong>Double Precision (double):</strong> 64 bitů (1s, 11e, 52m). $\text{bias}=1023$. Rozsah $\approx \pm 10^{308}$, přesnost $\approx 15-17$ desetinných míst.</li>
+</ul>
+<h3>Speciální hodnoty IEEE 754</h3>
+<ul>
+<li><strong>Nula:</strong> Kladná i záporná (exponent i mantisa 0).</li>
+<li><strong>Nekonečno ($\pm\infty$):</strong> Exponent samé 1, mantisa samé 0.</li>
+<li><strong>NaN (Not a Number):</strong> Exponent samé 1, mantisa nenulová.</li>
+</ul>
+<hr />
+<h2>Typické zkouškové otázky</h2>
+<ol>
+<li>
+<p><strong>Převody:</strong></p>
+<ul>
+<li>$(25)<em>{10} = (11001)_2 = (19)</em>{16}$</li>
+<li>$(1A)<em>{16} = (00011010)_2 = (26)</em>{10}$</li>
+</ul>
+</li>
+<li>
+<p><strong>Dvojkový doplněk:</strong></p>
+<ul>
+<li><strong>Princip:</strong> Kladné číslo invertovat bity a přičíst 1.</li>
+<li><strong>Výhody:</strong> Jedna nula, jednotná aritmetika (sčítání/odčítání), větší rozsah záporných čísel.</li>
+</ul>
+</li>
+<li>
+<p><strong>Bit, nibble, byte, word:</strong></p>
+<ul>
+<li><strong>Bit:</strong> Základní jednotka (0 nebo 1).</li>
+<li><strong>Nibble:</strong> 4 bity (jedna hexadecimální cifra).</li>
+<li><strong>Byte:</strong> 8 bitů (nejmenší adresovatelná jednotka).</li>
+<li><strong>Word:</strong> Skupina bitů zpracovávaná procesorem (velikost dle architektury, např. 32/64 bitů).</li>
+</ul>
+</li>
+</ol>
+        </div>
+        
+        <div id="otazka-10" class="question-section">
+            <h1>10. Programátorský model procesoru (TAHÁK)</h1>
+<h2>Klíčové pojmy</h2>
+<p>Instrukce, registr, ALU, Program Counter (PC), Stack Pointer (SP), paměť, přerušení, instrukční soubor (ISA), symbolická adresa, fetch-decode-execute cyklus, adresní režimy, konvence volání, zásobníkový rámec, návratová adresa, obslužná rutina přerušení (ISR), kontext procesu.</p>
+<h2>10.1 Programátorský model procesoru a registry</h2>
+<p><strong>Programátorský model procesoru</strong> je abstrakce hardwaru viditelná programátorovi (Assembler). Zahrnuje <strong>registry</strong>, <strong>instrukční sadu</strong>, <strong>adresní režimy</strong> a <strong>viditelný stav procesoru</strong>.</p>
+<p><strong>Fetch-Decode-Execute cyklus:</strong>
+1.  <strong>Fetch:</strong> Načtení instrukce z paměti (adresa z PC).
+2.  <strong>Decode:</strong> Dekódování instrukce (operace, operandy).
+3.  <strong>Execute:</strong> Provedení operace (ALU, přesun dat, skok).</p>
+<p><strong>Registry</strong> (rychlé paměti v CPU):
+*   <strong>Všeobecné registry (GPR):</strong> Ukládání operandů a mezivýsledků. Např. <code>$EAX$/$RAX$</code>, <code>$EBX$/$RBX$</code> (x86/x64).
+*   <strong>Ukazatel instrukcí (IP/PC):</strong> Adresa následující instrukce. Automaticky inkrementován.
+*   <strong>Ukazatel zásobníku (SP):</strong> Ukazuje na vrchol zásobníku (Stack) v RAM. Pro návratové adresy, lokální proměnné.
+*   <strong>Stavový registr (Flags):</strong> Bity reflektující výsledek operace (ALU). Klíčové: <code>$ZF$</code> (nula), <code>$CF$</code> (přenos), <code>$OF$</code> (přetečení znaménkového), <code>$SF$</code> (záporný).</p>
+<h2>10.2 Instrukce a instrukční soubor (ISA)</h2>
+<p><strong>Instrukční soubor (ISA)</strong>: Sada všech instrukcí, kterým procesor rozumí (např. x86, ARM).
+<strong>Strojová instrukce</strong>: Binární slovo.
+*   <strong>Operační znak (Opcode):</strong> Typ operace.
+*   <strong>Operandy:</strong> Data pro operaci (registry, literály, adresy).</p>
+<p><strong>Typy operací:</strong>
+*   Aritmetické a logické (ALU): <code>$ADD$</code>, <code>$SUB$</code>, <code>$AND$</code>.
+*   Přesuny dat: <code>$MOV$</code> (registr-registr, registr-paměť).
+*   Skoky a volání podprogramů: <code>$JMP$</code>, <code>$CALL$</code>.
+*   I/O operace: Komunikace s periferiemi (např. <code>$IN$</code>, <code>$OUT$</code> nebo Memory-Mapped I/O).</p>
+<h2>10.3 Jazyk symbolických adres (JSA / Assembler)</h2>
+<p><strong>Assembler</strong>: Textové zkratky (mnemoniky) pro strojový kód.
+<strong>Symbolická adresa (Návěští/Label)</strong>: Textový štítek místo číselné adresy (např. <code>loop_start:</code>). Překladač nahradí reálnou adresou.
+<strong>Algoritmizace</strong>: <code>$if-else$</code>, <code>$while$</code>, <code>$for$</code> se realizují pomocí instrukcí porovnání (<code>$CMP$</code>) a podmíněných/nepodmíněných skoků (<code>$JNE$</code>, <code>$JMP$</code>).
+Příklad <code>$if (A == B)$</code>: <code>$CMP EAX, EBX; JNE rovno_ne; ... (A==B); JMP konec_if; rovno_ne: ... (else); konec_if: ...</code></p>
+<h2>10.4 Časování programu, podprogramy a přerušení</h2>
+<h3>Časování programu</h3>
+<ul>
+<li>Instrukce trvají určitý počet taktů CPU.</li>
+<li>Operace s registry: obvykle 1 takt.</li>
+<li>Přístup do paměti: výrazně dražší.</li>
+</ul>
+<h3>Podprogramy (Funkce)</h3>
+<p>Využívají <strong>programový zásobník (Stack)</strong>.
+*   <strong><code>CALL podprogram</code></strong>: Uloží <strong>návratovou adresu</strong> (aktuální PC) na zásobník, změní PC na adresu podprogramu.
+*   <strong><code>RET</code></strong>: Vyzvedne návratovou adresu ze zásobníku do PC.
+*   <strong>Zásobníkový rámec</strong>: Na zásobníku pro parametry, lokální proměnné, návratovou adresu.
+*   <strong>Konvence volání</strong>: Určují předávání parametrů a úklid zásobníku.</p>
+<h3>Přerušení (Interrupt)</h3>
+<p>Mechanismus pro asynchronní přerušení programu (hardware/software).
+*   <strong>Hardwarové</strong>: Periferie (klávesa, síť).
+*   <strong>Softwarové (Exception/Trap)</strong>: Instrukce (<code>Syscall</code>), chyba (dělení nulou).</p>
+<p><strong>Průběh zpracování přerušení:</strong>
+1.  Dokončení aktuální instrukce.
+2.  Uložení <strong>kontextu</strong> (Flags, PC) na zásobník.
+3.  Skok na <strong>obslužnou rutinu (ISR)</strong> dle <strong>tabulky vektorů přerušení</strong>.
+4.  Obsluha události v ISR.
+5.  Návrat instrukcí <code>$IRET$</code> (obnoví kontext ze zásobníku).</p>
+<h2>Praktické použití</h2>
+<p>Optimalizace kódu, embedded systémy, ladění chyb paměti, pochopení OS a ovladačů.</p>
+<h2>Nejčastější chyby u zkoušky</h2>
+<ul>
+<li>Zaměňování registru a paměťové adresy.</li>
+<li>Přerušení není totéž co funkční volání (asynchronní, ukládá více kontextu).</li>
+<li>Ignorování uloženého kontextu procesu.</li>
+</ul>
+<h2>Typické zkouškové otázky</h2>
+<ol>
+<li>
+<p><strong>Popište fetch-decode-execute cyklus.</strong></p>
+<ul>
+<li><strong>Fetch:</strong> Načtení instrukce z paměti (adresa z PC).</li>
+<li><strong>Decode:</strong> Dekódování instrukce (operace, operandy).</li>
+<li><strong>Execute:</strong> Provedení operace. PC se aktualizuje.</li>
+</ul>
+</li>
+<li>
+<p><strong>Jakou roli mají registry PC a SP?</strong></p>
+<ul>
+<li><strong>PC (Program Counter):</strong> Adresa následující instrukce. Řídí tok programu.</li>
+<li><strong>SP (Stack Pointer):</strong> Ukazuje na vrchol zásobníku v RAM. Pro návratové adresy, lokální proměnné, parametry.</li>
+</ul>
+</li>
+<li>
+<p><strong>Co se děje při přerušení?</strong></p>
+<ul>
+<li>Procesor dokončí instrukci.</li>
+<li>Uloží <strong>kontext</strong> (PC, Flags) na zásobník.</li>
+<li>Skočí na <strong>obslužnou rutinu (ISR)</strong> z <strong>tabulky vektorů přerušení</strong>.</li>
+<li>ISR obslouží událost.</li>
+<li>Instrukce <code>$IRET$</code> obnoví kontext ze zásobníku, program pokračuje.</li>
+</ul>
+</li>
+</ol>
+<h2>Shrnutí kapitoly</h2>
+<p>Programátorský model procesoru je základní abstrakce pro nízkoúrovňové programování. Klíčové je pochopení fetch-decode-execute cyklu, rolí registrů (PC, SP, Flags), instrukčního souboru a mechanismů podprogramů a přerušení pro efektivní programování a porozumění OS/hardwaru.</p>
+        </div>
+        
+        <div id="otazka-11" class="question-section">
+            <h1>Jazyk C: Základní datové typy, struktury, pole, ukazatele a dynamická alokace</h1>
+<h2>Klíčové pojmy</h2>
+<p>Datový typ, Celočíselný typ (<code>char</code>, <code>int</code>, <code>long</code>), Desetinný typ (<code>float</code>, <code>double</code>), Logický typ (<code>_Bool</code>), <code>void</code>, <code>enum</code>, <code>struct</code>, <code>union</code>, Pole, Ukazatel, Adresa (<code>&amp;</code>), Dereference (<code>*</code>), Ukazatelová aritmetika, Dynamická paměť, Zásobník (Stack), Halda (Heap), <code>malloc</code>, <code>calloc</code>, <code>realloc</code>, <code>free</code>, Memory leak, Dangling pointer, <code>NULL</code> pointer, Padding, Typová konverze (casting).</p>
+<hr />
+<h2>A. Základní a strukturované datové typy</h2>
+<h3>1. Základní (skalární) datové typy</h3>
+<p>Uchovávají jednu hodnotu.</p>
+<ul>
+<li><strong>Celočíselné:</strong><ul>
+<li><code>char</code>: 1 bajt (8 bitů), znaky/malá čísla. <code>signed</code> (-128 až 127), <code>unsigned</code> (0 až 255).</li>
+<li><code>short</code>: Min. 16 bitů.</li>
+<li><code>int</code>: Min. 16 bitů (často 32 bitů).</li>
+<li><code>long</code>: Min. 32 bitů.</li>
+<li><code>long long</code>: Min. 64 bitů (C99).</li>
+<li>Modifikátory: <code>signed</code> (výchozí), <code>unsigned</code>.</li>
+</ul>
+</li>
+<li><strong>Desetinné (IEEE 754):</strong><ul>
+<li><code>float</code>: Jednoduchá přesnost (32 bitů), cca 7 desetinných míst.</li>
+<li><code>double</code>: Dvojitá přesnost (64 bitů), cca 15-17 desetinných míst.</li>
+<li><code>long double</code>: Rozšířená přesnost (implementačně závislá).</li>
+</ul>
+</li>
+<li><strong>Logický:</strong><ul>
+<li>C89: <code>0</code> = false, nenulová = true.</li>
+<li>C99: <code>_Bool</code> (s <code>&lt;stdbool.h&gt;</code> jako <code>bool</code>, <code>true</code>, <code>false</code>).</li>
+</ul>
+</li>
+<li><strong><code>void</code>:</strong> Neúplný typ. Pro funkce bez návratové hodnoty/parametrů, generické ukazatele (<code>void*</code>).</li>
+<li><strong>Výčtový typ (<code>enum</code>):</strong> Sada pojmenovaných celočíselných konstant. Zvyšuje čitelnost.
+    <code>c
+    enum Barva { CERVENA, ZELENA, MODRA };</code></li>
+</ul>
+<h3>2. Strukturované datové typy</h3>
+<p>Seskupují více proměnných pod jedno jméno.</p>
+<ul>
+<li><strong>Struktura (<code>struct</code>):</strong><ul>
+<li>Seskupuje členy (různých typů) do jednoho celku. Každý člen má vlastní paměť.</li>
+<li>Velikost: Součet velikostí členů + případný <em>padding</em> (zarovnání).
+<code>c
+struct Bod { int x, y; };
+struct Bod b = {10, 20};
+// typedef struct Bod { int x, y; } Bod;</code></li>
+</ul>
+</li>
+<li><strong>Unie (<code>union</code>):</strong><ul>
+<li>Členové sdílejí stejné paměťové místo. Velikost je rovna velikosti největšího člena.</li>
+<li>V daný okamžik platí hodnota jen jednoho člena.
+<code>c
+union Data { int i; float f; };
+union Data d; d.i = 5; // d.f je neplatné</code></li>
+</ul>
+</li>
+<li><strong>Hlavní rozdíl:</strong> <code>struct</code> = oddělená paměť pro všechny členy; <code>union</code> = sdílená paměť pro všechny členy.</li>
+</ul>
+<hr />
+<h2>B. Pole (array) a Ukazatele (pointer)</h2>
+<h3>1. Pole</h3>
+<p>Homogenní, souvislá paměť pro pevný počet prvků stejného typu.</p>
+<ul>
+<li><strong>Deklarace:</strong> <code>int pole[5];</code></li>
+<li><strong>Indexování:</strong> Od <code>0</code> do <code>N-1</code>. <code>pole[0]</code>.</li>
+<li><strong>Jméno pole:</strong> Ve většině výrazů se chová jako konstantní ukazatel na první prvek (<code>&amp;pole[0]</code>).</li>
+<li><strong>Vícerozměrná pole:</strong> Pole polí, uloženo po řádcích. <code>int matice[3][4];</code></li>
+<li><strong>Pole jako parametry:</strong> "Rozpadne se" na ukazatel na první prvek. Velikost je nutné předat zvlášť.</li>
+</ul>
+<h3>2. Ukazatele (Pointery)</h3>
+<p>Proměnná, jejíž hodnotou je paměťová adresa.</p>
+<ul>
+<li><strong>Deklarace:</strong> <code>int *p;</code></li>
+<li><strong>Operátory:</strong><ul>
+<li><strong><code>&amp;</code> (adresa z):</strong> Získá adresu proměnné. <code>int x = 10; int *p = &amp;x;</code></li>
+<li><strong><code>*</code> (hodnota na adrese / dereference):</strong> Přistoupí k hodnotě na adrese, kam ukazatel ukazuje. <code>*p = 20;</code></li>
+</ul>
+</li>
+<li><strong><code>NULL</code> ukazatel:</strong> Neukazuje na platnou paměť. <code>int *ptr = NULL;</code></li>
+<li><strong><code>void*</code> (generický ukazatel):</strong> Může uchovávat adresu jakéhokoli typu. Pro dereferenci/aritmetiku nutný <em>casting</em>.
+    <code>c
+    int i = 5; void *gen_ptr = &amp;i;
+    int val = *(int*)gen_ptr; // Casting nutný</code></li>
+<li><strong>Ukazatelová aritmetika a vztah k polím (Array-pointer duality):</strong><ul>
+<li><code>p + 1</code> posune ukazatel o <code>sizeof(*p)</code> bajtů (tj. o velikost typu, na který ukazuje).</li>
+<li><code>pole[i]</code> je syntaktický cukr pro <code>*(pole + i)</code>.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2>C. Dynamická alokace paměti</h2>
+<h3>Zásobník (Stack) vs. Halda (Heap)</h3>
+<ul>
+<li><strong>Zásobník:</strong> Automatická správa, pro lokální proměnné/parametry. Velikost známá v kompilaci. Rychlá alokace/dealokace. Paměť zaniká s opuštěním bloku.</li>
+<li><strong>Halda:</strong> Manuální správa programátorem. Pro data s runtime velikostí nebo delší životností. Pomalejší alokace. Programátor musí explicitně uvolnit paměť.</li>
+</ul>
+<h3>Funkce pro dynamickou alokaci (<code>&lt;stdlib.h&gt;</code>)</h3>
+<ul>
+<li><code>void* malloc(size_t size)</code>: Alokuje <code>size</code> bajtů. Paměť neinicializuje. Vrací <code>void*</code> nebo <code>NULL</code> při selhání.
+    <code>c
+    int *arr = (int*) malloc(10 * sizeof(int));</code></li>
+<li><code>void* calloc(size_t num, size_t size)</code>: Alokuje <code>num * size</code> bajtů. <strong>Vynuluje</strong> paměť. Vrací <code>void*</code> nebo <code>NULL</code>.
+    <code>c
+    int *arr_zero = (int*) calloc(10, sizeof(int));</code></li>
+<li><code>void* realloc(void* ptr, size_t new_size)</code>: Změní velikost bloku na <code>new_size</code>. Může přesunout data. Vrací <code>void*</code> nebo <code>NULL</code>.
+    <code>c
+    arr = (int*) realloc(arr, 20 * sizeof(int));</code></li>
+<li><code>void free(void* ptr)</code>: Uvolní paměť alokovanou <code>malloc</code>/<code>calloc</code>/<code>realloc</code>. <strong>Kriticky důležité</strong> pro prevenci úniků paměti.
+    <code>c
+    free(arr);</code></li>
+</ul>
+<h3>Správa paměti a rizika</h3>
+<ul>
+<li><strong>Memory Leak:</strong> Dynamicky alokovaná paměť není uvolněna a program ztratí odkaz.</li>
+<li><strong>Dangling Pointer:</strong> Ukazatel míří na již uvolněnou paměť. Přístup vede k nedefinovanému chování. <strong>Prevence:</strong> Po <code>free(ptr);</code> vždy nastavit <code>ptr = NULL;</code>.</li>
+<li><strong>Double Free:</strong> Pokus o uvolnění již uvolněné paměti. Nedefinované chování.</li>
+<li><strong>Buffer Overflow:</strong> Zápis dat za hranice alokovaného bloku.</li>
+<li><strong>Kontrola <code>NULL</code>:</strong> Vždy kontrolovat návratové hodnoty alokačních funkcí.</li>
+</ul>
+<hr />
+<h2>Typické zkouškové otázky (zkrácené odpovědi)</h2>
+<ol>
+<li>
+<p><strong>Co je ukazatel a jak souvisí s adresou? Operátory <code>&amp;</code> a <code>*</code>.</strong></p>
+<ul>
+<li>Ukazatel je proměnná, jejíž hodnota je paměťová adresa jiné proměnné.</li>
+<li><code>&amp;</code> (adresa z): Získá adresu proměnné (např. <code>&amp;x</code>).</li>
+<li><code>*</code> (dereference): Přistoupí k hodnotě na adrese, kam ukazatel ukazuje (např. <code>*p</code>).</li>
+</ul>
+</li>
+<li>
+<p><strong>Rozdíl mezi Stack a Heap? Použití <code>malloc</code> a <code>free</code>.</strong></p>
+<ul>
+<li><strong>Stack:</strong> Automatická správa, lokální proměnné, kompilace-časová velikost, rychlé, paměť zaniká s funkcí.</li>
+<li><strong>Heap:</strong> Manuální správa, runtime velikost, delší životnost, pomalejší, programátor zodpovídá za <code>free()</code>.</li>
+<li><code>malloc(size)</code>: Alokuje <code>size</code> bajtů na haldě, neinicializuje, vrací <code>void*</code> nebo <code>NULL</code>.</li>
+<li><code>free(ptr)</code>: Uvolní paměť na haldě, na kterou ukazuje <code>ptr</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>"Array-pointer duality" a ukazatelová aritmetika s poli.</strong></p>
+<ul>
+<li>Jméno pole se ve většině kontextů "rozpadne" na ukazatel na svůj první prvek (<code>pole</code> se chová jako <code>&amp;pole[0]</code>).</li>
+<li>Ukazatelová aritmetika: <code>p + 1</code> posune ukazatel o <code>sizeof(*p)</code> bajtů (tj. o velikost typu, na který ukazuje).</li>
+<li><code>pole[i]</code> je ekvivalentní <code>*(pole + i)</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Strukturované datové typy (<code>struct</code>, <code>union</code>) a jejich rozdíl.</strong></p>
+<ul>
+<li><strong><code>struct</code>:</strong> Seskupuje členy (různých typů), každý má vlastní paměť. Velikost je součet členů (+ padding). Všechny členy jsou platné současně.</li>
+<li><strong><code>union</code>:</strong> Seskupuje členy, ale všichni sdílejí stejné paměťové místo. Velikost je rovna největšímu členu. V daný okamžik je platný jen jeden člen.</li>
+<li><strong>Rozdíl:</strong> <code>struct</code> = oddělená paměť; <code>union</code> = sdílená paměť.</li>
+</ul>
+</li>
+<li>
+<p><strong>"Memory Leak" a "Dangling Pointer" a prevence.</strong></p>
+<ul>
+<li><strong>Memory Leak:</strong> Dynamicky alokovaná paměť není uvolněna a program ztratí odkaz. Vede k vyčerpání paměti.</li>
+<li><strong>Dangling Pointer:</strong> Ukazatel míří na již uvolněnou paměť. Přístup vede k nedefinovanému chování.</li>
+<li><strong>Prevence:</strong><ul>
+<li><strong>Memory Leak:</strong> Vždy uvolnit alokovanou paměť pomocí <code>free()</code>.</li>
+<li><strong>Dangling Pointer:</strong> Po <code>free(ptr);</code> vždy nastavit <code>ptr = NULL;</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+        </div>
+        
+        <div id="otazka-12" class="question-section">
+            <h1>12. Algoritmy pro vyhledávání a řazení, složitost algoritmů</h1>
+<h2>Klíčové pojmy</h2>
+<p>Algoritmus, časová složitost, paměťová složitost, Big-O notace, lineární vyhledávání, binární vyhledávání, quicksort, mergesort, heapsort, stabilita řazení, in-place algoritmus, pivot, halda.</p>
+<h2>A. Složitost algoritmů (Asymptotická složitost)</h2>
+<p>Porovnává efektivitu algoritmů nezávisle na hardwaru. Sleduje růst spotřeby zdrojů (čas/paměť) s velikostí vstupu $n$.
+*   <strong>Časová složitost:</strong> Počet elementárních operací.
+*   <strong>Prostorová (paměťová) složitost:</strong> Množství dodatečné paměti.</p>
+<h3>Velká O notace (Asymptotická horní mez)</h3>
+<p>Značí $O(f(n))$, definuje asymptotickou horní mez pro růst funkce (nejhorší možný případ).
+Formálně: $g(n) \in O(f(n))$, pokud existují $c, n_0 &gt; 0$ takové, že pro všechna $n \ge n_0$ platí $0 \le g(n) \le c \cdot f(n)$.
+Zanedbává aditivní konstanty a méně významné členy (např. $3n^2 + 5n + 10$ je $O(n^2)$).</p>
+<h3>Přehled základních tříd složitosti (od nejrychlejších)</h3>
+<ul>
+<li>$O(1)$ – <strong>Konstantní:</strong> Nezávisí na $n$. (Přístup k prvku pole dle indexu)</li>
+<li>$O(\log n)$ – <strong>Logaritmická:</strong> Roste logaritmicky. (Binární vyhledávání)</li>
+<li>$O(n)$ – <strong>Lineární:</strong> Roste přímo úměrně s $n$. (Lineární vyhledávání)</li>
+<li>$O(n \log n)$ – <strong>Linearitmetická:</strong> Typická pro efektivní řadicí algoritmy. (Merge Sort, Quick Sort (průměr))</li>
+<li>$O(n^2)$ – <strong>Kvadratická:</strong> Roste s druhou mocninou $n$. (Bubble Sort, Insertion Sort)</li>
+<li>$O(2^n)$ – <strong>Exponenciální:</strong> Extrémně náročné. (Naivní rekurzivní Fibonacci)</li>
+</ul>
+<h2>B. Algoritmy pro vyhledávání</h2>
+<p>Cíl: Najít pozici hledaného prvku.</p>
+<h3>1. Sekvenční (lineární) vyhledávání</h3>
+<ul>
+<li><strong>Princip:</strong> Prochází pole prvek po prvku.</li>
+<li><strong>Podmínka:</strong> Data mohou být v libovolném pořadí.</li>
+<li><strong>Časová složitost:</strong> $O(n)$ (nejhorší i průměrný případ).</li>
+</ul>
+<h3>2. Binární vyhledávání (Metoda půlení intervalu)</h3>
+<ul>
+<li><strong>Princip:</strong> Opakovaně dělí setříděné pole na poloviny, dokud prvek nenajde.</li>
+<li><strong>Podmínka:</strong> Data <strong>musí být setříděná</strong>.</li>
+<li><strong>Časová složitost:</strong> $O(\log n)$ (nejhorší i průměrný případ).</li>
+</ul>
+<h2>C. Algoritmy pro řazení (Třídění)</h2>
+<p>Cíl: Přeskládat prvky v poli podle klíče.</p>
+<h3>Vlastnosti algoritmů</h3>
+<ul>
+<li><strong>Stabilita:</strong> Zachovává původní vzájemné pořadí prvků se stejnou hodnotou klíče.</li>
+<li><strong>In-place:</strong> Potřebuje jen konstantní množství dodatečné paměti $O(1)$ (kromě rekurzivního zásobníku).</li>
+</ul>
+<h3>1. Jednoduché algoritmy ($O(n^2)$)</h3>
+<ul>
+<li><strong>Select Sort (Řazení výběrem):</strong> Najde min/max v nesetříděné části, prohodí.<ul>
+<li><strong>Vlastnosti:</strong> Nestabilní, In-place.</li>
+<li><strong>Složitost:</strong> $O(n^2)$ vždy.</li>
+</ul>
+</li>
+<li><strong>Insert Sort (Řazení vkládáním):</strong> Bere prvek, vkládá na správné místo v setříděné části.<ul>
+<li><strong>Vlastnosti:</strong> Stabilní, In-place.</li>
+<li><strong>Složitost:</strong> $O(n^2)$ (průměr/nejhorší), $O(n)$ (nejlepší – již setříděné).</li>
+</ul>
+</li>
+<li><strong>Bubble Sort (Bublinkové řazení):</strong> Opakovaně porovnává a prohazuje sousední prvky.<ul>
+<li><strong>Vlastnosti:</strong> Stabilní, In-place.</li>
+<li><strong>Složitost:</strong> $O(n^2)$ (průměr/nejhorší), $O(n)$ (nejlepší s optimalizací).</li>
+</ul>
+</li>
+</ul>
+<h3>2. Pokročilé algoritmy ($O(n \log n)$)</h3>
+<p>Využívají strategii Rozděl a panuj (Divide and Conquer).</p>
+<ul>
+<li><strong>Quick Sort (Rychlé řazení):</strong> Zvolí <strong>pivot</strong>, přeuspořádá pole (menší vlevo, větší vpravo), rekurzivně aplikuje na podpole.<ul>
+<li><strong>Vlastnosti:</strong> Nestabilní, In-place ($O(\log n)$ zásobník průměr, $O(n)$ nejhorší).</li>
+<li><strong>Složitost:</strong> $O(n \log n)$ (průměr), $O(n^2)$ (nejhorší – špatná volba pivota).</li>
+<li><strong>Poznámka:</strong> V praxi často nejrychlejší.</li>
+</ul>
+</li>
+<li><strong>Merge Sort (Řazení slučováním):</strong> Rekurzivně dělí pole na poloviny, pak setříděné úseky slučuje.<ul>
+<li><strong>Vlastnosti:</strong> Stabilní, NENÍ In-place ($O(n)$ pomocné pole).</li>
+<li><strong>Složitost:</strong> $O(n \log n)$ vždy.</li>
+<li><strong>Poznámka:</strong> Vhodný pro externí řazení.</li>
+</ul>
+</li>
+<li><strong>Heap Sort (Řazení haldou):</strong> Uspořádá prvky do binární haldy, opakovaně odebírá největší prvek z vrcholu.<ul>
+<li><strong>Vlastnosti:</strong> Nestabilní, In-place.</li>
+<li><strong>Složitost:</strong> $O(n \log n)$ vždy.</li>
+</ul>
+</li>
+</ul>
+<h2>Nejčastější chyby u zkoušky</h2>
+<ul>
+<li>Hodnocení algoritmu jen podle malého vstupu.</li>
+<li>Použití binárního vyhledávání na neseřazená data.</li>
+<li>Záměna stability a rychlosti řazení.</li>
+<li>Neznalost rozdílu mezi časovou a paměťovou složitostí.</li>
+<li>Neznalost dopadu volby pivota u Quick Sortu.</li>
+</ul>
+<h2>Typické zkouškové otázky</h2>
+<ol>
+<li>
+<p><strong>Vysvětlete notaci Big-O.</strong></p>
+<ul>
+<li><strong>Odpověď:</strong> Matematický zápis popisující asymptotickou horní mez růstu funkce (časové/paměťové složitosti) pro dostatečně velké $n$. Zanedbává konstanty a méně významné členy, zaměřuje se na dominantní člen.</li>
+</ul>
+</li>
+<li>
+<p><strong>Porovnejte quicksort a mergesort.</strong></p>
+<ul>
+<li><strong>Quick Sort:</strong> Průměr $O(n \log n)$, nejhorší $O(n^2)$. In-place ($O(\log n)$ zásobník). Nestabilní. V praxi často rychlejší.</li>
+<li><strong>Merge Sort:</strong> Vždy $O(n \log n)$. Není In-place ($O(n)$ pomocná paměť). Stabilní. Vhodný pro externí řazení.</li>
+</ul>
+</li>
+<li>
+<p><strong>Kdy lze použít binární vyhledávání?</strong></p>
+<ul>
+<li><strong>Odpověď:</strong> Pouze pokud jsou data, ve kterých se vyhledává, <strong>striktně setříděná</strong>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Vysvětlete pojmy "stabilita" a "in-place" u řadicích algoritmů.</strong></p>
+<ul>
+<li><strong>Stabilita:</strong> Algoritmus zachovává původní relativní pořadí prvků se stejnou hodnotou klíče.</li>
+<li><strong>In-place:</strong> Algoritmus potřebuje k řazení $O(1)$ dodatečné paměti (mimo rekurzivní zásobník).</li>
+</ul>
+</li>
+<li>
+<p><strong>Uveďte příklad algoritmu s $O(n^2)$ a $O(n \log n)$ časovou složitostí a vysvětlete, proč se liší.</strong></p>
+<ul>
+<li><strong>$O(n^2)$:</strong> Např. <strong>Bubble Sort</strong>. Dva vnořené cykly vedou k $n \times n$ operacím.</li>
+<li><strong>$O(n \log n)$:</strong> Např. <strong>Merge Sort</strong>. Používá "rozděl a panuj": $\log n$ úrovní dělení, na každé úrovni $O(n)$ práce pro slučování. Efektivněji rozkládá problém.</li>
+</ul>
+</li>
+</ol>
+        </div>
+        
+        <div id="otazka-13" class="question-section">
+            <h1>13. Rekurze a zásobník programu (Tahák)</h1>
+<h2>Klíčové pojmy</h2>
+<p>Rekurze, rekurzivní volání, báze rekurze, rekurzivní krok, zásobník programu (call stack), aktivační záznam (stack frame), návratová adresa, stack overflow, iterace, koncová rekurze, optimalizace koncové rekurze (TCO).</p>
+<h2>A. Pojem rekurze a její použití</h2>
+<p><strong>Rekurze:</strong> Programovací technika, kdy se funkce volá sama (přímá/nepřímá).
+<strong>Podmínky pro správnou rekurzi:</strong>
+*   <strong>Bázový (kotevní) případ:</strong> Ukončovací podmínka, při které je výsledek znám a funkce se již nevolá rekurzivně.
+*   <strong>Rekurzivní krok:</strong> Funkce volá sebe sama s modifikovaným vstupem, který se prokazatelně přibližuje k bázovému případu.</p>
+<p><strong>Typické použití rekurze:</strong>
+*   <strong>Hierarchické a stromové struktury:</strong> Procházení stromů (In-order, Pre-order, Post-order), adresářů.
+*   <strong>Algoritmy Rozděl a panuj:</strong> Quick Sort, Merge Sort, Binární vyhledávání.
+*   <strong>Kombinatorické úlohy:</strong> Generování permutací, Hanojské věže, Backtracking, Fibonacciho posloupnost.</p>
+<p><strong>Výhody rekurze:</strong> Čitelnost, elegance, kratší kód pro rekurzivně definované problémy.
+<strong>Nevýhody rekurze:</strong> Nižší výkon (režie volání funkcí), paměťová náročnost (zásobník), obtížnější ladění.</p>
+<h2>B. Využití zásobníku programu (Call Stack)</h2>
+<p><strong>Zásobník programu (Call Stack):</strong> Datová struktura typu LIFO (Last-In, First-Out), spravuje volání funkcí.
+<strong>Aktivační záznam (Stack Frame):</strong> Vytvoří se na vrcholu zásobníku při každém volání funkce. Obsahuje:
+*   Lokální proměnné
+*   Parametry funkce
+*   Návratovou adresu (kam se vrátit po dokončení funkce)
+*   Uložené registry</p>
+<p><strong>Mechanismus:</strong> Volání funkce $\rightarrow$ nový aktivační záznam na zásobník. Rekurzivní volání $\rightarrow$ další záznam. Návrat z funkce $\rightarrow$ záznam se ze zásobníku odstraní (pop), řízení se vrátí na návratovou adresu.</p>
+<p><strong>Riziko: Stack Overflow (Přetečení zásobníku):</strong> Zásobník má omezenou velikost. Příliš hluboká rekurze (chybí báze, velký vstup) vyčerpá přidělenou paměť $\rightarrow$ pád programu.</p>
+<h2>C. Rekurzivní vs. nerekurzivní (iterativní) realizace</h2>
+<p>Každý rekurzivní algoritmus lze teoreticky převést na iterativní (pomocí cyklů a případně explicitního zásobníku na haldě).</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Vlastnost</th>
+<th style="text-align: left;">Rekurzivní realizace</th>
+<th style="text-align: left;">Iterativní realizace</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Čitelnost</strong></td>
+<td style="text-align: left;">Přirozenější pro rekurzivní problémy</td>
+<td style="text-align: left;">Může být složitější</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Výkon</strong></td>
+<td style="text-align: left;">Vyšší režie (volání funkcí, správa zásobníku)</td>
+<td style="text-align: left;">Obvykle rychlejší, nižší režie</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Paměť</strong></td>
+<td style="text-align: left;">Programový zásobník (stack), riziko stack overflow</td>
+<td style="text-align: left;">Halda (heap) pro explicitní zásobník, menší riziko</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Příklad: Výpočet faktoriálu $n!$</strong>
+*   <strong>Rekurzivní:</strong>
+    <code>c
+    long faktorial_rekurzivni(int n) {
+        if (n &lt;= 1) return 1; // Bázový případ
+        return n * faktorial_rekurzivni(n - 1); // Rekurzivní krok
+    }</code>
+    Riziko Stack Overflow pro velké $n$.
+*   <strong>Iterativní:</strong>
+    <code>c
+    long faktorial_iterativni(int n) {
+        long vysledek = 1;
+        if (n &lt; 0) return -1; 
+        for (int i = 2; i &lt;= n; i++) {
+            vysledek *= i;
+        }
+        return vysledek;
+    }</code>
+    $O(1)$ paměť, robustnější.</p>
+<p><strong>Koncová rekurze (Tail Recursion):</strong> Speciální typ rekurze, kde je rekurzivní volání <strong>úplně poslední operací</strong>, kterou funkce provádí.
+<strong>Optimalizace koncové rekurze (Tail Call Optimization - TCO):</strong> Moderní kompilátory dokážou koncovou rekurzi optimalizovat. Místo vytváření nového aktivačního záznamu ji převedou na běžný cyklus, čímž eliminují režii volání a riziko Stack Overflow. Není garantováno ve všech jazycích/kompilátorech.</p>
+<h2>Typické zkouškové otázky</h2>
+<ol>
+<li>
+<p><strong>Definujte rekurzi a vysvětlete její základní principy. Uveďte příklad problému, který je přirozeně řešitelný rekurzí.</strong></p>
+<ul>
+<li><strong>Rekurze:</strong> Funkce volá sama sebe.</li>
+<li><strong>Principy:</strong> <strong>Bázový případ</strong> (ukončení, známý výsledek), <strong>Rekurzivní krok</strong> (volání sebe s menším vstupem).</li>
+<li><strong>Příklad:</strong> Faktoriál ($n! = n \times (n-1)!$, $0!=1$), procházení stromové struktury.</li>
+</ul>
+</li>
+<li>
+<p><strong>Popište, jak rekurze využívá zásobník programu (call stack). Co je aktivační záznam a jaké informace obsahuje? Jaké riziko je s tímto mechanismem spojeno?</strong></p>
+<ul>
+<li>Při každém rekurzivním volání se na zásobník přidá nový <strong>aktivační záznam (stack frame)</strong>.</li>
+<li><strong>Aktivační záznam:</strong> Obsahuje lokální proměnné, parametry, návratovou adresu, uložené registry.</li>
+<li><strong>Riziko:</strong> <strong>Stack Overflow</strong> – příliš hluboká rekurze vyčerpá omezenou paměť zásobníku, program havaruje.</li>
+</ul>
+</li>
+<li>
+<p><strong>Vysvětlete rozdíl mezi rekurzivní a iterativní realizací algoritmu. Kdy je vhodnější použít jeden přístup před druhým?</strong></p>
+<ul>
+<li><strong>Rekurzivní:</strong> Řeší problém voláním sebe sama, spoléhá na zásobník. Kód je často elegantnější pro rekurzivní problémy.</li>
+<li><strong>Iterativní:</strong> Řeší problém pomocí cyklů, explicitně spravuje stav. Obvykle paměťově efektivnější a rychlejší.</li>
+<li><strong>Kdy co:</strong> <strong>Rekurze</strong> pro přirozeně rekurzivní problémy (stromy, algoritmy rozděl a panuj). <strong>Iterace</strong> pro velké hloubky (prevence Stack Overflow), nebo když je kritický výkon a paměťová efektivita.</li>
+</ul>
+</li>
+<li>
+<p><strong>Co je koncová rekurze a jaká je její hlavní výhoda?</strong></p>
+<ul>
+<li><strong>Koncová rekurze:</strong> Rekurzivní volání je <strong>poslední operací</strong> funkce.</li>
+<li><strong>Výhoda:</strong> Kompilátory mohou provést <strong>Optimalizaci koncové rekurze (TCO)</strong>, která ji převede na iterativní kód. Tím se eliminuje režie volání funkcí a riziko Stack Overflow, zachovává se elegance rekurzivního zápisu.</li>
+</ul>
+</li>
+</ol>
+        </div>
+        
+        <div id="otazka-14" class="question-section">
+            <h1>14. Členění programu v jazyce vyšší úrovně. Metody, funkce, procedury, makra. Parametry metod, procedur a funkcí a způsoby jejich předávání. Globální a lokální proměnné.</h1>
+<h3>A. Členění programu (Modularita)</h3>
+<p>Dělení programu na menší, logicky ucelené celky pro:
+*   Zvýšená přehlednost, čitelnost
+*   Usnadnění testování
+*   Zamezení duplicitě kódu (DRY)
+*   Znovupoužitelnost, snadnější údržba
+*   Abstrakce a skrývání detailů</p>
+<p><strong>Základní podprogramové jednotky:</strong>
+*   <strong>Funkce:</strong> Blok kódu, který přijímá vstupy (parametry), provádí výpočet a <strong>vrací hodnotu</strong> (pomocí <code>return</code>). Pro výpočty, transformace dat. Ideálně bez vedlejších efektů.
+*   <strong>Procedura:</strong> Blok kódu, který provádí posloupnost příkazů, ale <strong>nevrací explicitně žádnou hodnotu</strong> (v C/C++ má návratový typ <code>void</code>). Pro akce s vedlejšími efekty (např. I/O, změna globálních proměnných).
+*   <strong>Metoda:</strong> Funkce, která je <strong>přidružená k objektu nebo třídě</strong> v objektově orientovaném programování (OOP). Volána na instanci objektu, má přístup k jeho datům (<code>this</code>). Klíčová pro zapouzdření.
+*   <strong>Makro:</strong> Instrukce pro <strong>preprocesor</strong> (<code>#define</code>), která před kompilací provede <strong>textovou substituci</strong>. Není typově bezpečné.
+    *   <strong>Nevýhody:</strong> Není typově bezpečné, problémy s vyhodnocováním výrazů (chybějící závorky!), obtížné ladění, zvětšování kódu (Code Bloat).
+    *   <strong>Alternativy (C++):</strong> <code>inline</code> funkce, šablony.</p>
+<h3>B. Způsoby předávání parametrů</h3>
+<ul>
+<li><strong>Formální parametry:</strong> Proměnné definované v hlavičce podprogramu.</li>
+<li>
+<p><strong>Skutečné parametry (argumenty):</strong> Hodnoty/proměnné předané při volání.</p>
+</li>
+<li>
+<p><strong>Předávání hodnotou (Call by Value):</strong></p>
+<ul>
+<li><strong>Princip:</strong> Do formálního parametru se <strong>zkopíruje samotná hodnota</strong> skutečného parametru.</li>
+<li><strong>Důsledek:</strong> Změny uvnitř podprogramu <strong>neovlivní</strong> původní proměnnou ve volajícím programu.</li>
+<li><strong>Kdy použít:</strong> Pro malé datové typy (int, char, float) nebo když nechceme, aby podprogram měnil původní data.</li>
+</ul>
+</li>
+<li>
+<p><strong>Předávání odkazem / referencí (Call by Reference):</strong></p>
+<ul>
+<li><strong>Princip:</strong> Podprogramu se předá <strong>odkaz na původní paměťové místo (adresa)</strong>.</li>
+<li><strong>Důsledek:</strong> Změny uvnitř podprogramu se <strong>okamžitě projeví na původní proměnné</strong>.</li>
+<li><strong>Kdy použít:</strong> Když chceme, aby podprogram modifikoval původní data; pro efektivní předávání velkých datových struktur (objektů, polí) bez nákladného kopírování.</li>
+<li><strong>Realizace:</strong> V C++ přímá podpora referencí (<code>&amp;</code>); v C se simuluje <strong>předáním ukazatele (pointeru) hodnotou</strong> (<code>*</code>).</li>
+<li><strong>Bezpečnost:</strong> <code>const</code> reference/ukazatele pro efektivní předávání bez možnosti modifikace.</li>
+</ul>
+</li>
+<li>
+<p><strong>Nejčastější chyby u zkoušky:</strong> Nepochopení rozdílu mezi hodnotou a odkazem, zapomenutí dereference ukazatele v C, předávání velkých struktur hodnotou, nezáměrná modifikace dat.</p>
+</li>
+</ul>
+<h3>C. Globální a lokální proměnné (Rozsah platnosti a životní cyklus)</h3>
+<ul>
+<li><strong>Rozsah platnosti (Scope):</strong> Oblast kódu, kde je proměnná přístupná.</li>
+<li>
+<p><strong>Životní cyklus (Lifetime):</strong> Doba, po kterou proměnná existuje v paměti.</p>
+</li>
+<li>
+<p><strong>Lokální proměnné:</strong></p>
+<ul>
+<li><strong>Definice:</strong> Deklarovány uvnitř funkce nebo bloku <code>{}</code>.</li>
+<li><strong>Rozsah platnosti:</strong> Viditelné a přístupné <strong>pouze uvnitř této funkce/bloku</strong>.</li>
+<li><strong>Životní cyklus:</strong> Vznikají na <strong>zásobníku (Stack)</strong> při vstupu do funkce/bloku a <strong>automaticky zanikají</strong> při opuštění.</li>
+</ul>
+</li>
+<li>
+<p><strong>Globální proměnné:</strong></p>
+<ul>
+<li><strong>Definice:</strong> Deklarovány mimo jakoukoliv funkci.</li>
+<li><strong>Rozsah platnosti:</strong> Viditelné a modifikovatelné v <strong>celém programu</strong> (nebo v celém souboru, pokud jsou <code>static</code>).</li>
+<li><strong>Životní cyklus:</strong> Vznikají v <strong>datovém segmentu paměti</strong> při spuštění programu a existují po celou dobu jeho běhu. Implicitně inicializovány na nulu.</li>
+</ul>
+</li>
+<li>
+<p><strong>⚠️ Rizika používání globálních proměnných (Anti-pattern):</strong></p>
+<ul>
+<li><strong>Nečitelnost a obtížná údržba:</strong> Těžké sledovat změny.</li>
+<li><strong>Skryté závislosti (Side-effects):</strong> Funkce mají neočekávané vedlejší efekty.</li>
+<li><strong>Snížená znovupoužitelnost:</strong> Funkce jsou vázány na globální stav.</li>
+<li><strong>Problémy v multithreadingu (Race Conditions):</strong> Souběžný přístup bez synchronizace vede k nepředvídatelným výsledkům.</li>
+<li><strong>Ztížené testování:</strong> Nutnost nastavit/resetovat globální stav.</li>
+<li><strong>Alternativa:</strong> Předávání dat jako parametrů, OOP (zapouzdření).</li>
+</ul>
+</li>
+<li>
+<p><strong>Nejčastější chyby u zkoušky:</strong> Záměna rozsahu platnosti a životního cyklu, nadměrné používání globálních proměnných, předpoklad, že lokální proměnná si pamatuje hodnotu mezi voláními, nepochopení inicializace.</p>
+</li>
+</ul>
+<hr />
+<h3>Typické zkouškové otázky (Zkrácené odpovědi)</h3>
+<ol>
+<li>
+<p><strong>Vysvětlete rozdíl mezi funkcí, procedurou a metodou.</strong></p>
+<ul>
+<li><strong>Funkce:</strong> Vrací hodnotu (<code>return</code>). Pro výpočty, transformace dat.</li>
+<li><strong>Procedura:</strong> Nevrací hodnotu (<code>void</code>). Pro akce s vedlejšími efekty (I/O, změna stavu).</li>
+<li><strong>Metoda:</strong> Funkce přidružená k objektu/třídě (OOP). Přístup k datům objektu (<code>this</code>).</li>
+</ul>
+</li>
+<li>
+<p><strong>Popište způsoby předávání parametrů (hodnotou a odkazem/referencí).</strong></p>
+<ul>
+<li><strong>Předávání hodnotou:</strong> Předá se <strong>kopie hodnoty</strong>. Změny uvnitř funkce <strong>neovlivní</strong> originál. Pro malé typy, bez modifikace.</li>
+<li><strong>Předávání odkazem:</strong> Předá se <strong>adresa paměti</strong>. Změny uvnitř funkce <strong>ovlivní</strong> originál. Pro modifikaci dat, efektivní předávání velkých struktur.</li>
+</ul>
+</li>
+<li>
+<p><strong>Vysvětlete rozdíl mezi lokálními a globálními proměnnými z hlediska rozsahu platnosti a životního cyklu. Jaká jsou rizika používání globálních proměnných?</strong></p>
+<ul>
+<li><strong>Lokální proměnné:</strong> <strong>Scope:</strong> Pouze uvnitř bloku. <strong>Lifetime:</strong> Vznikají na <strong>Stacku</strong> při vstupu, zanikají při opuštění.</li>
+<li><strong>Globální proměnné:</strong> <strong>Scope:</strong> Celý program/soubor. <strong>Lifetime:</strong> Vznikají v <strong>datovém segmentu</strong> při startu, existují po celou dobu běhu.</li>
+<li><strong>Rizika globálních:</strong> Nečitelnost, skryté závislosti (vedlejší efekty), <strong>Race Conditions</strong> (multithreading), snížená znovupoužitelnost, obtížné testování.</li>
+</ul>
+</li>
+<li>
+<p><strong>Co je makro a jaké jsou jeho hlavní nevýhody oproti funkcím?</strong></p>
+<ul>
+<li><strong>Makro:</strong> Instrukce pro preprocesor, provádí <strong>textovou substituci</strong> v kódu.</li>
+<li><strong>Nevýhody:</strong> Není typově bezpečné, problémy s vyhodnocováním výrazů (závorky!), obtížné ladění, zvětšování kódu (Code Bloat).</li>
+</ul>
+</li>
+</ol>
+        </div>
+        
+        <div id="otazka-15" class="question-section">
+            <p>Zde je zkrácená verze (tahák) k otázce "15. Objektově orientované programování":</p>
+<hr />
+<h1>15. Objektově orientované programování (OOP)</h1>
+<h2>Klíčové pojmy</h2>
+<ul>
+<li>třída, objekt / instance</li>
+<li>atribut, metoda</li>
+<li>zapouzdření, dědičnost, polymorfismus</li>
+<li>správa přístupu (<code>private</code>, <code>protected</code>, <code>public</code>)</li>
+<li>abstraktní třída, rozhraní (interface)</li>
+<li>genericita</li>
+<li>kompozice</li>
+<li>přetěžování metod (overloading), přepisování metod (overriding)</li>
+<li>tabulka virtuálních metod (VMT)</li>
+</ul>
+<h2>A. Význam OOP</h2>
+<p>OOP organizuje program kolem <strong>objektů</strong>, které sdružují data (atributy) a související funkčnost (metody).
+*   <strong>Výhody:</strong> Lepší modularita, znovupoužitelnost kódu, snadnější údržba.
+*   <strong>Třída:</strong> Šablona/předpis pro objekty (definuje atributy a metody).
+*   <strong>Objekt / Instance:</strong> Konkrétní zástupce třídy v paměti s vlastním stavem.
+*   <strong>Atributy:</strong> Proměnné uvnitř třídy (stav objektu).
+*   <strong>Metody:</strong> Funkce uvnitř třídy (chování objektu).</p>
+<h2>B. Tři základní pilíře OOP</h2>
+<ol>
+<li><strong>Zapouzdření (Encapsulation):</strong><ul>
+<li><strong>Princip:</strong> Sdružení dat a metod do třídy. Skrytí vnitřního stavu objektu před vnějším světem.</li>
+<li><strong>Cíl:</strong> Ochrana integrity dat, snížení komplexity.</li>
+<li><strong>Realizace:</strong> <code>private</code> atributy, přístup přes <code>public</code> Gettery a Settery.</li>
+<li><strong>Správa přístupu (Modifikátory viditelnosti):</strong><ul>
+<li><code>private</code>: Přístupné jen uvnitř třídy.</li>
+<li><code>protected</code>: Přístupné uvnitř třídy a v odvozených třídách.</li>
+<li><code>public</code>: Přístupné odkudkoliv.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Dědičnost (Inheritance):</strong><ul>
+<li><strong>Princip:</strong> Vytváření nových tříd (potomků) z existujících (rodičů). Potomek dědí atributy a metody, může je rozšiřovat/upravovat.</li>
+<li><strong>Cíl:</strong> Znovupoužitelnost kódu (DRY), tvorba logických hierarchií ("is-a" vztah).</li>
+</ul>
+</li>
+<li><strong>Polymorfismus (Mnohotvárnost):</strong><ul>
+<li><strong>Princip:</strong> Schopnost různých objektů reagovat na stejné volání metody odlišným způsobem. Umožňuje jednotný přístup k objektům různých podtříd.</li>
+<li><strong>Cíl:</strong> Zvýšení flexibility a rozšiřitelnosti kódu.</li>
+<li><strong>Typy polymorfismu:</strong><ul>
+<li><strong>Statický (Compile-time): Přetěžování metod (Method Overloading):</strong> Více metod se stejným jménem, ale různými parametry.</li>
+<li><strong>Dynamický (Runtime): Přepisování metod (Method Overriding):</strong> Potomek předefinuje metodu rodiče. Rozhoduje se za běhu (využívá VMT).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3>Dědičnost vs. Kompozice</h3>
+<ul>
+<li><strong>Dědičnost:</strong> "is-a" vztah. Silné provázání, problém "fragile base class".</li>
+<li><strong>Kompozice:</strong> "has-a" vztah. Objekt obsahuje jiné objekty. Volné provázání, flexibilita (chování lze měnit za běhu).</li>
+<li><strong>Doporučení:</strong> "Prefer composition over inheritance" pro větší flexibilitu a nižší provázanost.</li>
+</ul>
+<h2>C. Abstraktní třídy a Rozhraní (Interface)</h2>
+<ul>
+<li><strong>Abstraktní třída:</strong><ul>
+<li>Nelze instanciovat. Slouží jako základ pro dědění.</li>
+<li>Může obsahovat abstraktní metody (bez implementace, povinně implementovat potomky) i běžné metody a atributy.</li>
+<li>Vyjadřuje "is-a" vztah.</li>
+</ul>
+</li>
+<li><strong>Rozhraní (Interface):</strong><ul>
+<li>Čistý funkční kontrakt. Definuje sadu metod, které třída musí implementovat.</li>
+<li>Tradičně obsahuje jen hlavičky metod a konstanty.</li>
+<li>Třída rozhraní <strong>implementuje</strong>, nikoli dědí. Umožňuje vícenásobnou "dědičnost" chování. Vyjadřuje "can-do" vztah.</li>
+</ul>
+</li>
+</ul>
+<h2>D. Genericita</h2>
+<ul>
+<li><strong>Definice:</strong> Umožňuje psát kód (třídy/funkce) nezávisle na konkrétním datovém typu (typ jako parametr).</li>
+<li><strong>Cíl:</strong> Zvýšení znovupoužitelnosti a typové bezpečnosti (kompilátor kontroluje typy).</li>
+<li><strong>Využití:</strong> Datové kontejnery (např. <code>List&lt;T&gt;</code>), algoritmy.</li>
+</ul>
+<h2>Nejčastější chyby u zkoušky</h2>
+<ul>
+<li>Používání dědičnosti pro pouhé sdílení kódu (místo "is-a" vztahu).</li>
+<li><code>public</code> atributy místo <code>private</code> s Gettery/Settery (porušuje zapouzdření).</li>
+<li>Zaměňování třídy (šablona) a objektu (konkrétní instance).</li>
+</ul>
+<h2>Typické zkouškové otázky</h2>
+<ol>
+<li><strong>Vysvětlete zapouzdření, dědičnost a polymorfismus.</strong><ul>
+<li><strong>Zapouzdření:</strong> Sdružení dat/metod, skrytí vnitřního stavu, ochrana integrity dat.</li>
+<li><strong>Dědičnost:</strong> Nové třídy z existujících, "is-a" vztah, znovupoužitelnost.</li>
+<li><strong>Polymorfismus:</strong> Různé objekty reagují odlišně na stejné volání, flexibilita (přetěžování/přepisování metod).</li>
+</ul>
+</li>
+<li><strong>Co je rozhraní?</strong> Kontrakt definující sadu metod k implementaci. Bez implementace (tradičně). Třída implementuje, nikoli dědí. Umožňuje vícenásobnou "dědičnost" chování.</li>
+<li><strong>Kdy dát přednost kompozici?</strong> Když je vztah "has-a" a vyžaduje se vysoká flexibilita a nízká provázanost (loose coupling), např. pro snadnou změnu chování za běhu.</li>
+</ol>
+<hr />
+        </div>
+        
+        <div id="otazka-16" class="question-section">
+            <h1>16. Tvorba aplikací v prostředí konzole a MS Windows. Vývojová prostředí.</h1>
+<h2>Klíčové pojmy</h2>
+<p>Konzolová aplikace (CLI), GUI aplikace, <code>stdin</code>, <code>stdout</code>, <code>stderr</code>, událostmi řízené programování, smyčka zpráv (Message Loop), zpráva (Message), procedura okna (Window Procedure / WndProc), Win32 API, frameworky (MFC, Qt, wxWidgets, Windows Forms, WPF), XAML, vývojové prostředí (IDE), textový editor, kompilátor, linker, build systém, debugger (breakpoints, krokování, sledování proměnných), profiler, verzovací systém.</p>
+<hr />
+<h2>16.1 Tvorba aplikací v prostředí konzole (CLI)</h2>
+<p>Aplikace v textovém režimu, komunikace textem. Tok řízení je <strong>sekvenční a lineární</strong>.</p>
+<h3>Princip fungování</h3>
+<p>Spustí se, vykonává instrukce, čeká na textový vstup, zpracuje, vypíše výstup, skončí po <code>main()</code>.</p>
+<h3>Vstup a výstup</h3>
+<p>Využívá standardní proudy:
+*   <code>stdin</code> (standardní vstup): Klávesnice. C: <code>scanf()</code>, <code>getchar()</code>.
+*   <code>stdout</code> (standardní výstup): Konzole. C: <code>printf()</code>.
+*   <code>stderr</code> (standardní chybový výstup): Pro chybová hlášení. C: <code>fprintf(stderr, ...)</code>.
+Proudy lze přesměrovat (např. <code>program &lt; input.txt &gt; output.txt 2&gt; errors.log</code>) nebo propojit rourami (<code>program1 | program2</code>).</p>
+<h3>Výhody</h3>
+<ul>
+<li>Nízká režie, rychlý start.</li>
+<li>Snadná automatizace a skriptování.</li>
+<li>Jednodušší debugování (lineární tok).</li>
+<li>Zaměření na algoritmus.</li>
+<li>Multiplatformnost.</li>
+</ul>
+<h3>Nevýhody</h3>
+<ul>
+<li>Omezená textová interakce.</li>
+<li>Není intuitivní pro běžné uživatele.</li>
+</ul>
+<hr />
+<h2>16.2 Tvorba aplikací v prostředí MS Windows (GUI)</h2>
+<p>Aplikace s grafickým rozhraním. Funguje na <strong>událostmi řízeném programování</strong>. Program čeká na události.</p>
+<h3>16.2.1 Architektura Win32 API a smyčka zpráv (Message Loop)</h3>
+<ul>
+<li><strong>Zpráva (Message):</strong> Akce (klik, klávesa, překreslení) je OS převedena na strukturu <code>MSG</code> a vložena do fronty. Např. <code>WM_PAINT</code>, <code>WM_LBUTTONDOWN</code>.</li>
+<li><strong>Smyčka zpráv (Message Loop):</strong> Jádro GUI aplikace. Nekonečná smyčka:<ol>
+<li><code>GetMessage()</code>: Blokující, vybírá zprávu z fronty.</li>
+<li><code>TranslateMessage()</code>: Překládá virtuální klávesy na znakové vstupy (<code>WM_CHAR</code>).</li>
+<li><code>DispatchMessage()</code>: Předá zprávu příslušné proceduře okna.</li>
+</ol>
+</li>
+<li><strong>Procedura okna (Window Procedure / WndProc):</strong> Callback funkce, volaná OS pro zpracování zpráv. Obsahuje <code>switch-case</code> pro reakci na <code>WM_PAINT</code>, <code>WM_LBUTTONDOWN</code>, <code>WM_DESTROY</code> atd.</li>
+<li><strong>Registrace a vytvoření okna:</strong> Nutné definovat (<code>WNDCLASSEX</code>) a zaregistrovat (<code>RegisterClassEx()</code>) třídu okna, pak vytvořit okno (<code>CreateWindowEx()</code>).</li>
+</ul>
+<h3>16.2.2 Moderní frameworky pro Windows</h3>
+<p>Zjednodušují vývoj nad Win32 API.
+*   <strong>C++:</strong>
+    *   <strong>MFC:</strong> Starší objektový obal nad Win32 API.
+    *   <strong>Qt:</strong> Multiplatformní framework, vlastní signály/sloty.
+    *   <strong>wxWidgets:</strong> Multiplatformní, snaží se o nativní vzhled.
+*   <strong>C# a .NET:</strong>
+    *   <strong>Windows Forms (WinForms):</strong> Starší, rychlý vývoj, pixelové pozicování, GDI+.
+    *   <strong>WPF (Windows Presentation Foundation):</strong> Moderní, odděluje vzhled (XAML) od logiky, DirectX, Data Binding, hardwarová akcelerace.</p>
+<h3>Výhody GUI</h3>
+<ul>
+<li>Intuitivní interakce (vizuální prvky).</li>
+<li>Bohaté možnosti prezentace dat.</li>
+<li>Vhodné pro komplexní uživatelské úlohy.</li>
+</ul>
+<h3>Nevýhody GUI</h3>
+<ul>
+<li>Vyšší režie, náročnější na zdroje.</li>
+<li>Složitější vývoj a debugování (událostní tok).</li>
+<li>Závislost na OS (nativní).</li>
+<li>Potřeba asynchronního programování.</li>
+</ul>
+<hr />
+<h2>16.3 Vývojová prostředí (IDE - Integrated Development Environment)</h2>
+<p>Komplexní balík integrující nástroje pro efektivní tvorbu aplikací.</p>
+<h3>Základní součásti</h3>
+<ul>
+<li><strong>Chytrý textový editor:</strong> Zvýrazňování syntaxe, automatické doplňování, refaktorování, navigace.</li>
+<li><strong>Kompilátor / Linker (Sestavovací nástroje):</strong><ul>
+<li><strong>Kompilátor:</strong> Překládá zdrojový kód na strojový kód.</li>
+<li><strong>Linker:</strong> Spojuje objektové soubory a knihovny do spustitelného programu.</li>
+<li><strong>Build systém:</strong> Spravuje proces sestavení projektu (např. Make, MSBuild).</li>
+</ul>
+</li>
+<li><strong>Debugger (Ladicí nástroj):</strong> Pro hledání a opravu chyb.<ul>
+<li><strong>Breakpoints:</strong> Zastaví vykonávání programu.</li>
+<li><strong>Krokování:</strong> <code>Step Over</code> (další řádek), <code>Step Into</code> (vstoupí do funkce), <code>Step Out</code> (dokončí funkci).</li>
+<li><strong>Sledování proměnných:</strong> Zobrazení aktuálních hodnot.</li>
+<li><strong>Zásobník volání (Call Stack):</strong> Posloupnost volaných funkcí.</li>
+</ul>
+</li>
+<li><strong>Další integrované nástroje:</strong> Profiler, integrace s verzovacími systémy (Git), vizuální návrháře GUI.</li>
+</ul>
+<h3>Příklad relevantních IDE</h3>
+<ul>
+<li><strong>Microsoft Visual Studio:</strong> Profesionální pro C++, C#, .NET.</li>
+<li><strong>JetBrains IDEs (CLion, Rider, IntelliJ IDEA, PyCharm):</strong> Cross-platformní, pokročilá analýza kódu.</li>
+<li><strong>Visual Studio Code (VS Code):</strong> Lehký, open-source, rozšiřitelný editor s funkcemi IDE přes pluginy.</li>
+</ul>
+<hr />
+<h2>Typické zkouškové otázky</h2>
+<ol>
+<li>
+<p><strong>Rozdíl mezi konzolovou a GUI aplikací:</strong></p>
+<ul>
+<li><strong>CLI:</strong> Textová interakce (<code>stdin</code>/<code>stdout</code>). Tok řízení <strong>sekvenční a lineární</strong>.</li>
+<li><strong>GUI:</strong> Vizuální interakce (okna, tlačítka). Tok řízení <strong>událostmi řízený</strong>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Princip událostmi řízeného programování a role smyčky zpráv:</strong></p>
+<ul>
+<li><strong>Událostmi řízené programování:</strong> Program reaguje na události (uživatel, systém) spouštěním obslužných rutin.</li>
+<li><strong>Smyčka zpráv (Message Loop):</strong> Nekonečná smyčka, která: 1. Vybírá zprávy (<code>GetMessage()</code>). 2. Překládá zprávy (<code>TranslateMessage()</code>). 3. Předává zprávy <code>WndProc</code> (<code>DispatchMessage()</code>).</li>
+</ul>
+</li>
+<li>
+<p><strong>Hlavní komponenty IDE a k čemu slouží debugger:</strong></p>
+<ul>
+<li><strong>Komponenty:</strong> Chytrý textový editor, Kompilátor/Linker, Debugger.</li>
+<li><strong>Debugger:</strong> Hledá a opravuje chyby. Umožňuje: spouštět v kontrolovaném režimu, nastavovat breakpoints, krokovat kód (<code>Step Over</code>/<code>Into</code>/<code>Out</code>), sledovat hodnoty proměnných, analyzovat zásobník volání.</li>
+</ul>
+</li>
+<li>
+<p><strong>Porovnání Windows Forms a WPF:</strong></p>
+<ul>
+<li><strong>WinForms:</strong> Starší, GDI+, pixelové pozicování, slabší oddělení vzhledu/logiky. Pro rychlý vývoj jednodušších aplikací.</li>
+<li><strong>WPF:</strong> Modernější, DirectX, deklarativní XAML, silné oddělení (MVVM, Data Binding), hardwarová akcelerace. Pro bohatá a vizuálně komplexní UI.</li>
+</ul>
+</li>
+<li>
+<p><strong>Výhody a nevýhody konzolových aplikací:</strong></p>
+<ul>
+<li><strong>Výhody:</strong> Nízká režie, rychlý start, snadná automatizace/skriptování, jednodušší debugování, multiplatformnost, zaměření na logiku.</li>
+<li><strong>Nevýhody:</strong> Omezená textová interakce, není intuitivní pro běžné uživatele, nevhodné pro vizuální úlohy.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2>Shrnutí kapitoly</h2>
+<p>Kapitola rozlišuje <strong>konzolové (CLI)</strong> aplikace (sekvenční tok, textová interakce přes standardní proudy) a <strong>grafické (GUI)</strong> aplikace (událostmi řízené programování, smyčka zpráv). Pro GUI se používají frameworky jako WPF (s XAML). Klíčovým nástrojem je <strong>vývojové prostředí (IDE)</strong>, které integruje editor, kompilátor a <strong>debugger</strong> pro efektivní vývoj a ladění.</p>
+        </div>
+        
+        <div id="otazka-17" class="question-section">
+            <p>Zde je zkrácená verze (tahák) zkouškové otázky:</p>
+<h1>17. Programátorské rozhraní operačního systému, vlákna, synchronizace</h1>
+<h2>Klíčové pojmy</h2>
+<p>systémové volání (syscall), API, uživatelský režim (user space), režim jádra (kernel space), zpracování zpráv, fronta zpráv, událostní smyčka, proces, vlákno (thread), kontext procesu/vlákna, multithreading, sdílená paměť, zásobník (stack), ukazatel instrukcí (Instruction Pointer), race condition (souběh), kritická sekce, synchronizace, mutex, semafor (binary, counting), podmínková proměnná (condition variable), deadlock (uváznutí), starvation (hladovění), atomické operace, paměťové bariéry.</p>
+<hr />
+<h2>A. Programátorská rozhraní operačního systému (API / Syscalls)</h2>
+<p>Aplikace v <strong>uživatelském prostoru (User Space)</strong> nemají přímý přístup k HW. Žádají <strong>jádro (Kernel)</strong> o privilegované operace přes <strong>API</strong>, které volá <strong>systémová volání (Syscalls)</strong>.
+*   <strong>Syscall:</strong> Mechanismus, kterým program v user space žádá jádro o službu. Zahrnuje <strong>přepnutí režimu</strong> (user $\leftrightarrow$ kernel).
+*   <strong>Účel:</strong>
+    *   <strong>Bezpečnost:</strong> Izolace aplikací.
+    *   <strong>Abstrakce:</strong> Jednotné rozhraní k HW.
+    *   <strong>Správa zdrojů:</strong> Jádro alokuje zdroje.
+*   <strong>Příklady:</strong> POSIX (<code>fork()</code>, <code>open()</code>), Win32 API (<code>CreateProcess()</code>, <code>ReadFile()</code>).
+*   <strong>Kategorie:</strong> Správa procesů, souborů, zařízení, informací, komunikace.</p>
+<hr />
+<h2>B. Zpracování zpráv (Message Processing / Event-Driven)</h2>
+<p>Základní technika pro asynchronní komunikaci a <strong>programování řízené událostmi (Event-Driven Programming)</strong>.
+*   <strong>Princip:</strong> Odesílatel generuje <strong>zprávy</strong> do <strong>fronty zpráv</strong>. Příjemce v <strong>událostní smyčce (Event Loop)</strong> zprávy vybírá a zpracovává (pomocí callback funkcí).
+*   <strong>Fáze Event Loop:</strong> Čekání na událost $\to$ Vybrání události $\to$ Zpracování události.
+*   <strong>Využití:</strong> GUI aplikace, asynchronní I/O (Node.js), distribuované systémy.</p>
+<hr />
+<h2>C. Programování vláken (Multithreading)</h2>
+<ul>
+<li><strong>Proces:</strong> Spuštěná instance programu. Vlastní <strong>izolovaný paměťový prostor</strong>, kontext (registry, paměťové mapy, soubory). Komunikace přes IPC.</li>
+<li><strong>Vlákno (Thread):</strong> Nejmenší jednotka vykonávání v rámci procesu. Vlákna <strong>sdílejí paměťový prostor</strong> procesu (halda, globální proměnné, kód), ale mají vlastní <strong>zásobník (Stack)</strong>, <strong>ukazatel instrukcí (Instruction Pointer - IP)</strong> a registry.</li>
+<li><strong>Typy:</strong><ul>
+<li><strong>User-Level Threads:</strong> Spravována knihovnou, jádro o nich neví. Rychlé přepínání, ale blokující volání blokuje celý proces.</li>
+<li><strong>Kernel-Level Threads:</strong> Spravována jádrem. Jádro plánuje, blokující volání neblokuje celý proces. (Většina moderních OS).</li>
+</ul>
+</li>
+<li><strong>Stavy:</strong> Nový, Připravený, Běžící, Blokovaný/Čekající, Ukončený.</li>
+<li><strong>Výhody:</strong> Rychlejší přepínání kontextu, snadné sdílení dat, paralelismus, odezva.</li>
+<li><strong>Nevýhody:</strong> Složitost programování, Race Conditions, Deadlock, Starvation, obtížné ladění.</li>
+</ul>
+<hr />
+<h2>D. Synchronizace (Vláken a Procesů)</h2>
+<ul>
+<li><strong>Race Condition (Souběh):</strong> Více vláken/procesů přistupuje ke <strong>sdílenému zdroji</strong> (alespoň jedno zapisuje) bez synchronizace. Výsledek závisí na náhodném proložení instrukcí.</li>
+<li><strong>Kritická sekce:</strong> Část kódu, která přistupuje ke sdílenému zdroji a musí být v jeden okamžik vykonávána maximálně jedním vláknem.</li>
+</ul>
+<h3>1. Mutex (Mutual Exclusion)</h3>
+<ul>
+<li><strong>Princip:</strong> Digitální "zámek". Vlákno zamkne (<code>lock()</code>), vstoupí do kritické sekce, odemkne (<code>unlock()</code>). Pokud je zamčený, vlákno čeká. Zajišťuje <strong>exkluzivní přístup</strong> (max. jedno vlákno).</li>
+<li><strong>Pseudokód:</strong>
+    <code>c
+    lock(mutex);
+    // Kritická sekce
+    shared_counter++;
+    unlock(mutex);</code></li>
+</ul>
+<h3>2. Semafor</h3>
+<ul>
+<li><strong>Princip:</strong> Zobecněný mutex s čítačem. Udává, kolik vláken může současně přistupovat ke zdroji.<ul>
+<li><code>wait()</code>: Dekrementuje čítač. Pokud je záporný, vlákno se zablokuje.</li>
+<li><code>signal()</code>: Inkrementuje čítač. Probudí čekající vlákno.</li>
+</ul>
+</li>
+<li><strong>Typy:</strong><ul>
+<li><strong>Binární semafor:</strong> Hodnota 0 nebo 1. Chová se jako mutex.</li>
+<li><strong>Čítací semafor:</strong> Omezení přístupu na konkrétní počet vláken (např. fond připojení).</li>
+</ul>
+</li>
+</ul>
+<h3>3. Podmínkové proměnné (Condition Variables)</h3>
+<ul>
+<li><strong>Princip:</strong> Slouží k signalizaci mezi vlákny čekajícími na splnění podmínky. Vždy s mutexem.<ul>
+<li>Vlákno čeká (<code>wait()</code>) na podmínku. Jiné vlákno splní podmínku a pošle signál (<code>signal()</code> - jedno, <code>broadcast()</code> - všechna).</li>
+</ul>
+</li>
+<li><strong>Použití:</strong> Producent-Konzument problém.</li>
+</ul>
+<h3>Další synchronizační mechanismy:</h3>
+<ul>
+<li><strong>Atomické operace:</strong> Hardwarově garantované nedělitelné operace (inkrementace, dekrementace).</li>
+<li><strong>Paměťové bariéry:</strong> Zajišťují pořadí operací s pamětí.</li>
+</ul>
+<h3>Klasické problémy synchronizace:</h3>
+<ul>
+<li><strong>Deadlock (Uváznutí):</strong> Dvě+ vlákna/procesy čekají navzájem na prostředky, které drží to druhé.<ul>
+<li><strong>Coffmanovy podmínky:</strong> Vzájemné vyloučení, Držení a čekání, Žádné preempce, Kruhové čekání.</li>
+</ul>
+</li>
+<li><strong>Starvation (Hladovění):</strong> Vlákno nemůže získat přístup k požadovanému zdroji/procesoru kvůli neférovému plánování.</li>
+<li><strong>Problém spících filozofů:</strong> Klasický příklad deadlocku/starvation.</li>
+</ul>
+<hr />
+<h2>Praktické použití</h2>
+<ul>
+<li><strong>OS API:</strong> Práce se soubory, správa procesů/vláken, síťová komunikace.</li>
+<li><strong>Zpracování zpráv:</strong> GUI, asynchronní I/O, IPC.</li>
+<li><strong>Vlákna a synchronizace:</strong> Paralelní výpočty, responzivní GUI, webové servery, databáze.</li>
+</ul>
+<hr />
+<h2>Nejčastější chyby u zkoušky</h2>
+<ul>
+<li>Záměna procesu a vlákna.</li>
+<li>Ignorování režie systémových volání.</li>
+<li>Nepochopení potřeby synchronizace.</li>
+<li>Příliš široké kritické sekce.</li>
+<li>Neznalost podmínek pro deadlock.</li>
+<li>Záměna mutexu a semaforu.</li>
+<li>Blokování hlavního GUI vlákna.</li>
+</ul>
+<hr />
+<h2>Typické zkouškové otázky</h2>
+<ol>
+<li>
+<p><strong>Co je systémové volání (syscall) a proč je potřeba?</strong></p>
+<ul>
+<li><strong>Odpověď:</strong> Syscall je mechanismus, kterým user space program žádá kernel o privilegovanou službu (HW, I/O). Je potřeba pro bezpečnost a stabilitu OS, jelikož aplikace nemají přímý přístup k systémovým zdrojům.</li>
+</ul>
+</li>
+<li>
+<p><strong>Vysvětlete rozdíl mezi procesem a vláknem.</strong></p>
+<ul>
+<li><strong>Odpověď:</strong> <strong>Proces</strong> má vlastní izolovaný paměťový prostor a kontext. <strong>Vlákno</strong> je jednotka vykonávání v rámci procesu, sdílí paměť procesu (halda, globální), ale má vlastní zásobník, $IP$ a registry. Přepínání vláken je rychlejší.</li>
+</ul>
+</li>
+<li>
+<p><strong>Co je kritická sekce a jaký je její vztah k race condition?</strong></p>
+<ul>
+<li><strong>Odpověď:</strong> <strong>Kritická sekce</strong> je kód přistupující ke sdílenému zdroji, který smí vykonávat max. jedno vlákno. <strong>Race condition</strong> nastává, když více vláken přistupuje ke sdílenému zdroji bez synchronizace, což vede k nepředvídatelným výsledkům. Kritická sekce chrání před race condition.</li>
+</ul>
+</li>
+<li>
+<p><strong>Popište funkci mutexu a semaforu a uveďte, kdy byste který použili.</strong></p>
+<ul>
+<li><strong>Odpověď:</strong> <strong>Mutex</strong> je binární zámek pro <strong>exkluzivní přístup</strong> (max. jedno vlákno) do kritické sekce. <strong>Semafor</strong> je zobecněný mutex s čítačem (<code>wait()</code>/<code>signal()</code>). <strong>Binární semafor</strong> je jako mutex. <strong>Čítací semafor</strong> omezuje přístup na <strong>konkrétní počet</strong> vláken současně (např. fond připojení).</li>
+</ul>
+</li>
+<li>
+<p><strong>Vysvětlete pojmy deadlock a starvation.</strong></p>
+<ul>
+<li><strong>Odpověď:</strong> <strong>Deadlock</strong> je situace, kdy dvě+ vlákna čekají navzájem na prostředky, které drží to druhé (kruhové čekání). <strong>Starvation</strong> je situace, kdy vlákno nemůže získat zdroj/procesor po delší dobu kvůli neférovému plánování.</li>
+</ul>
+</li>
+<li>
+<p><strong>Jak funguje zpracování zpráv v GUI aplikacích?</strong></p>
+<ul>
+<li><strong>Odpověď:</strong> Uživatelské/systémové události jsou zprávy ve <strong>frontě zpráv</strong>. Hlavní vlákno v <strong>událostní smyčce</strong> zprávy vybírá a předává <strong>callbackům</strong>, zajišťujíc tak asynchronní a responzivní GUI.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2>Shrnutí kapitoly</h2>
+<p>OS API/Syscalls zajišťují bezpečnost a správu zdrojů. Zpracování zpráv (event loop) je pro responzivní GUI a asynchronní I/O. Multithreading zvyšuje výkon, ale vyžaduje synchronizaci (mutexy, semafory, podmínkové proměnné) k prevenci race conditions, deadlocků a starvation.</p>
+        </div>
+        
+        <div id="otazka-18" class="question-section">
+            <h1>18. Operační systém (OS)</h1>
+<h2>A. Vysvětlení pojmu</h2>
+<p><strong>Operační systém (OS):</strong> Komplexní programové vybavení, <strong>prostředník</strong> mezi hardwarovými prostředky počítače a aplikačním softwarem.</p>
+<p><strong>Hlavní role:</strong>
+*   <strong>Správce prostředků:</strong> Efektivně přiděluje a spravuje HW (CPU, paměť, I/O zařízení) mezi běžící programy.
+*   <strong>Rozšířený stroj:</strong> Poskytuje aplikacím zjednodušenou a abstraktní reprezentaci hardwaru.</p>
+<p><strong>Kernel (jádro):</strong> Základní jádro OS, zavádí se při <strong>bootování</strong> do RAM.
+*   <strong>Privilegovaný režim (Kernel Mode):</strong> Kernel běží s neomezeným přístupem k HW.
+*   <strong>Neprivilegovaný režim (User Mode):</strong> Běžné aplikace s omezenými oprávněními. Přístup k HW jen přes <strong>systémová volání (Syscalls)</strong> obsluhovaná jádrem.
+*   <strong>Cíl:</strong> Zajištění bezpečnosti a stability systému.</p>
+<h2>B. Poskytované funkce (Služby OS)</h2>
+<ul>
+<li><strong>Správa procesů a vláken:</strong><ul>
+<li>Vytváření, plánování, synchronizace a ukončování procesů.</li>
+<li><strong>Plánovač (Scheduler):</strong> Přepíná procesy na CPU (multitasking).</li>
+<li>Řeší synchronizaci (mutexy, semafory), deadlock, race condition.</li>
+</ul>
+</li>
+<li><strong>Správa paměti:</strong><ul>
+<li>Přidělování a uvolňování RAM.</li>
+<li><strong>Izolace paměti:</strong> Procesy si nepřepisují paměť.</li>
+<li><strong>Virtuální paměť:</strong> Umožňuje aplikacím pracovat s větším adresním prostorem než fyzická RAM, pomocí <strong>stránkování (paging)</strong> a <strong>swappingu</strong> (přesun dat mezi RAM a diskem).</li>
+</ul>
+</li>
+<li><strong>Správa souborů:</strong><ul>
+<li>Abstrakce dat na úložištích do logické struktury adresářů a souborů.</li>
+<li>Řízení přístupových práv.</li>
+</ul>
+</li>
+<li><strong>Správa periferních zařízení (I/O):</strong><ul>
+<li>Ovládání hardwaru pomocí <strong>ovladačů (drivers)</strong>.</li>
+<li>Poskytuje aplikacím jednotné rozhraní.</li>
+</ul>
+</li>
+<li><strong>Bezpečnost a ochrana:</strong> Autentizace, autorizace, ochrana před neoprávněným přístupem.</li>
+<li><strong>Uživatelské rozhraní:</strong><ul>
+<li><strong>CLI (Command Line Interface):</strong> Textové příkazy (Bash).</li>
+<li><strong>GUI (Graphical User Interface):</strong> Vizuální prvky (Windows Desktop).</li>
+</ul>
+</li>
+</ul>
+<h2>C. Typy operačních systémů</h2>
+<h3>1. Podle architektury jádra</h3>
+<ul>
+<li><strong>Monolitické jádro:</strong><ul>
+<li><strong>Princip:</strong> Celé jádro (vč. ovladačů, FS) běží jako jeden celek v privilegovaném režimu.</li>
+<li><strong>Výhody:</strong> Vysoká rychlost.</li>
+<li><strong>Nevýhody:</strong> Nízká stabilita (selhání = pád celého jádra), obtížný vývoj.</li>
+<li><strong>Příklady:</strong> Linux, Unix.</li>
+</ul>
+</li>
+<li><strong>Mikrojádro:</strong><ul>
+<li><strong>Princip:</strong> Minimum funkcí v privilegovaném režimu (správa adresního prostoru, plánování, meziprocesová komunikace – IPC). Ostatní jako uživatelské procesy.</li>
+<li><strong>Výhody:</strong> Vysoká stabilita, modularita.</li>
+<li><strong>Nevýhody:</strong> Pomalejší (režie IPC, Context Switch).</li>
+<li><strong>Příklady:</strong> QNX, MINIX.</li>
+</ul>
+</li>
+<li><strong>Hybridní jádro:</strong><ul>
+<li><strong>Princip:</strong> Kombinace obou přístupů. Některé klíčové komponenty v privilegovaném režimu pro výkon.</li>
+<li><strong>Výhody:</strong> Snaží se spojit stabilitu s výkonem.</li>
+<li><strong>Příklady:</strong> Windows NT, macOS (XNU).</li>
+</ul>
+</li>
+</ul>
+<h3>2. Podle účelu použití</h3>
+<ul>
+<li><strong>OS pro PC a servery (General-Purpose OS):</strong> Vysoký výkon, uživatelský komfort, preemptivní multitasking, virtuální paměť. (Windows, Linux, macOS).</li>
+<li><strong>Operační systémy reálného času (RTOS):</strong> <strong>Determinizmus</strong>, garantované dokončení úloh v časovém limitu. <strong>Hard/Soft Real-Time</strong>. (QNX, FreeRTOS).</li>
+<li><strong>Síťové OS (Network OS):</strong> Správa síťových prostředků, sdílení. (Windows Server, Linux).</li>
+<li><strong>Distribuované OS (Distributed OS):</strong> Kolekce PC jako jeden systém, transparentnost. (Amoeba).</li>
+<li><strong>Embedded OS:</strong> Pro specifické účely, omezené zdroje, rychlý start. (FreeRTOS, Embedded Linux).</li>
+<li><strong>Mobilní OS:</strong> Optimalizovány pro dotykové rozhraní, napájení, konektivitu. (Android, iOS).</li>
+</ul>
+<hr />
+<h2>Typické zkouškové otázky</h2>
+<ol>
+<li><strong>Definice OS, role, režimy:</strong><ul>
+<li><strong>OS:</strong> Prostředník mezi HW a SW.</li>
+<li><strong>Role:</strong> Správce prostředků (přiděluje HW), Rozšířený stroj (abstrahuje HW).</li>
+<li><strong>User Mode:</strong> Omezená oprávnění, aplikace.</li>
+<li><strong>Kernel Mode:</strong> Plný přístup k HW, jádro OS. Aplikace přes Syscalls.</li>
+</ul>
+</li>
+<li><strong>4 hlavní funkce OS:</strong><ul>
+<li><strong>Správa procesů:</strong> Plánovač (multitasking).</li>
+<li><strong>Správa paměti:</strong> Virtuální paměť (stránkování, swapping).</li>
+<li><strong>Správa souborů:</strong> Souborový systém (organizace, práva).</li>
+<li><strong>Správa I/O:</strong> Ovladače (komunikace s HW).</li>
+</ul>
+</li>
+<li><strong>Monolitické vs. Mikrojádro:</strong><ul>
+<li><strong>Monolitické:</strong> Vše v jádře (Linux). <strong>Výhoda:</strong> Rychlost. <strong>Nevýhoda:</strong> Nízká stabilita.</li>
+<li><strong>Mikrojádro:</strong> Minimum v jádře, zbytek jako uživatelské procesy (QNX). <strong>Výhoda:</strong> Stabilita. <strong>Nevýhoda:</strong> Pomalejší (IPC).</li>
+</ul>
+</li>
+<li><strong>Virtuální paměť:</strong><ul>
+<li><strong>Co je:</strong> Umožňuje programu používat více paměti než fyzická RAM. Mapuje virtuální adresy na fyzické, přesouvá stránky na disk (stránkování/swapping).</li>
+<li><strong>Důležitost:</strong> Více programů najednou, izolace paměti, zjednodušuje programování.</li>
+</ul>
+</li>
+<li><strong>RTOS:</strong><ul>
+<li><strong>Co je:</strong> Garantuje dokončení úloh v časovém limitu (<strong>determinizmus</strong>). Hard/Soft Real-Time.</li>
+<li><strong>Použití:</strong> Průmyslová automatizace, automobilový průmysl (ABS), avionika, lékařské přístroje, embedded systémy.</li>
+</ul>
+</li>
+</ol>
+        </div>
+        
+        <div id="otazka-19" class="question-section">
+            <h1>19. Správa procesů v operačním systému, vztah programu a procesu, životní cyklus procesu</h1>
+<h2>Klíčové pojmy</h2>
+<p>Proces, stav procesu, PCB (Process Control Block), plánování, kontext, fork, exec, zombie proces.</p>
+<h2>A. Vztah programu a procesu</h2>
+<ul>
+<li><strong>Program (Pasivní entita):</strong> Statický soubor na disku (např. <code>.exe</code>), obsahuje instrukce a statická data.</li>
+<li><strong>Proces (Aktivní entita):</strong> Spuštěná instance programu v RAM. Má přidělené systémové prostředky (paměť, CPU čas, soubory).<ul>
+<li><em>Příklad:</em> Jeden program Chrome na disku, tři otevřená okna = tři samostatné procesy v RAM.</li>
+</ul>
+</li>
+</ul>
+<h2>B. Struktura procesu v paměti</h2>
+<p>Adresní prostor procesu se dělí na:
+*   <strong>Textový segment (Code):</strong> Strojové instrukce, Read-Only.
+*   <strong>Datový segment (Data):</strong> Globální a statické proměnné (inicializované/neinicializované).
+*   <strong>Halda (Heap):</strong> Dynamicky alokovaná paměť za běhu ($malloc$, $new$), roste nahoru.
+*   <strong>Zásobník (Stack):</strong> Lokální proměnné, parametry funkcí, návratové adresy, roste dolů.</p>
+<h2>C. Řízení procesu: PCB (Process Control Block)</h2>
+<p>Datová struktura v jádře OS, udržuje informace o procesu:
+*   <strong>PID:</strong> Unikátní ID procesu.
+*   <strong>Stav procesu:</strong> Aktuální fáze životního cyklu.
+*   <strong>Kontext procesoru:</strong> Uložené hodnoty registrů CPU (vč. Instruction Pointeru a Stack Pointeru).
+*   <strong>Informace o správě paměti:</strong> Ukazatele na tabulky stránek.
+*   <strong>Vlastník a oprávnění:</strong> Uživatel, oprávnění.
+*   <strong>Seznam otevřených souborů a prostředků:</strong> Deskriptory souborů, socketů.</p>
+<h2>D. Životní cyklus a stavy procesu</h2>
+<ol>
+<li><strong>Nový (New):</strong> Proces se vytváří, OS alokuje paměť, zakládá PCB.</li>
+<li><strong>Připravený (Ready):</strong> Má prostředky, čeká na přidělení CPU plánovačem.</li>
+<li><strong>Běžící (Running):</strong> Procesor vykonává jeho instrukce. Na jednom jádru CPU jen jeden proces.</li>
+<li><strong>Čekající / Blokovaný (Waiting / Blocked):</strong> Čeká na externí událost (I/O, stisk klávesy, uvolnění mutexu). Nespotřebovává CPU.</li>
+<li><strong>Ukončený (Terminated / Zombie):</strong> Dokončil práci nebo byl ukončen. Prostředky uvolněny, PCB zůstává, dokud rodič nepřečte návratový kód (zombie).</li>
+</ol>
+<p><strong>Přechody mezi stavy:</strong>
+*   <strong>Ready $\rightarrow$ Running:</strong> Plánovač vybere proces (Dispatch).
+*   <strong>Running $\rightarrow$ Ready:</strong> Vypršel časový kvant (preempce) nebo vyšší priorita.
+*   <strong>Running $\rightarrow$ Waiting:</strong> Proces zažádal o I/O operaci nebo se zablokoval.
+*   <strong>Waiting $\rightarrow$ Ready:</strong> I/O operace dokončena nebo událost nastala.
+*   <strong>Running $\rightarrow$ Terminated:</strong> Proces dokončil práci nebo byl ukončen.</p>
+<h2>E. Přepínání kontextu (Context Switch)</h2>
+<p>Mechanismus pro multitasking, umožňuje střídání procesů na CPU:
+1.  OS pozastaví proces A.
+2.  Uloží registry CPU do PCB procesu A.
+3.  Načte registry z PCB procesu B do CPU.
+4.  Změní mapování virtuální paměti na adresní prostor B.
+5.  Procesor pokračuje v B.
+*   <strong>Režie:</strong> Čistá výpočetní režie, CPU nevykonává užitečný kód aplikace.</p>
+<h2>Praktické použití</h2>
+<p>Multitasking, izolace aplikací, správa prostředků, stabilita systému.</p>
+<h2>Nejčastější chyby u zkoušky</h2>
+<ul>
+<li>Zaměňování programu a procesu.</li>
+<li>Neuvědomění si režie přepínání kontextu.</li>
+<li>Neznalost stavu <em>Waiting</em> při I/O.</li>
+</ul>
+<h2>Typické zkouškové otázky</h2>
+<ol>
+<li><strong>Popište životní cyklus procesu.</strong><ul>
+<li><strong>Odpověď:</strong> Zahrnuje stavy Nový (vytváření), Připravený (čeká na CPU), Běžící (vykonává na CPU), Čekající (čeká na I/O/událost) a Ukončený (dokončil/ukončen). Přechody řídí plánovač, I/O operace nebo dokončení činnosti.</li>
+</ul>
+</li>
+<li><strong>Co obsahuje PCB?</strong><ul>
+<li><strong>Odpověď:</strong> PCB je datová struktura v jádře OS obsahující PID, stav procesu, kontext procesoru (registry), info o správě paměti, vlastníka/oprávnění a seznam otevřených prostředků.</li>
+</ul>
+</li>
+<li><strong>Jak se liší proces a vlákno?</strong><ul>
+<li><strong>Odpověď:</strong> Proces je samostatná instance programu s vlastním adresním prostorem a prostředky (izolace). Vlákno je lehčí jednotka vykonávání v rámci jednoho procesu, sdílí adresní prostor a prostředky procesu, ale má vlastní zásobník, registry a program counter (souběžnost s menší režií).</li>
+</ul>
+</li>
+</ol>
+        </div>
+        
+        </main>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
