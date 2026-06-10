@@ -42,7 +42,7 @@
 <h2>A. Číselné soustavy a převody</h2>
 <p>Počítače pracují v pozičních číselných soustavách. Hodnota čísla je dána součtem hodnot jednotlivých cifer vynásobených mocninou základu soustavy podle jejich pozice.</p>
 <p>Obecný zápis čísla v poziční soustavě o základu $b$ s $n+1$ celočíselnými ciframi a $m$ desetinnými ciframi je:
-$$ (a_n a_{n-1} \dots a_1 a_0 . a_{-1} a_{-2} \dots a_{-m})<em>b = \sum</em>{i=-m}^{n} a_i b^i $$
+$$ (a_n a_{n-1} \dots a_1 a_0 . a_{-1} a_{-2} \dots a_{-m})_b = \sum_{i=-m}^{n} a_i b^i $$
 kde $a_i$ jsou cifry v soustavě o základu $b$ a $b$ je základ soustavy.</p>
 <p>Pro státní závěrečné zkoušky je nutné perfektně ovládat čtyři základní soustavy:</p>
 <ul>
@@ -82,8 +82,8 @@ kde $a_i$ jsou cifry v soustavě o základu $b$ a $b$ je základ soustavy.</p>
 <ul>
 <li><strong>Princip:</strong> Provede se polynomický rozvoj. Cifry se vynásobí příslušnou mocninou základu podle jejich pozice a sečtou se.</li>
 <li><strong>Příklad:</strong><ul>
-<li>$(1101)<em>2 = 1 \cdot 2^3 + 1 \cdot 2^2 + 0 \cdot 2^1 + 1 \cdot 2^0 = 8 + 4 + 0 + 1 = (13)</em>{10}$</li>
-<li>$(2A)<em>{16} = 2 \cdot 16^1 + A \cdot 16^0 = 2 \cdot 16 + 10 \cdot 1 = 32 + 10 = (42)</em>{10}$</li>
+<li>$(1101)_2 = 1 \cdot 2^3 + 1 \cdot 2^2 + 0 \cdot 2^1 + 1 \cdot 2^0 = 8 + 4 + 0 + 1 = (13)_{10}$</li>
+<li>$(2A)_{16} = 2 \cdot 16^1 + A \cdot 16^0 = 2 \cdot 16 + 10 \cdot 1 = 32 + 10 = (42)_{10}$</li>
 </ul>
 </li>
 </ul>
@@ -115,8 +115,8 @@ kde $a_i$ jsou cifry v soustavě o základu $b$ a $b$ je základ soustavy.</p>
 <ul>
 <li><strong>Princip:</strong> Protože $16 = 2^4$, stačí binární číslo rozdělit od řádové tečky (doprava i doleva) do skupin po 4 bitech. Každou čtveřici bitů pak přímo přepíšeme na jednu hexadecimální cifru. Pokud na okrajích nezbývá dostatek bitů, doplní se nuly.</li>
 <li><strong>Příklad:</strong><ul>
-<li>$(11001011)<em>2 \rightarrow \underline{1100}_2\ \underline{1011}_2 \rightarrow (CB)</em>{16}$</li>
-<li>$(10110.11011)<em>2 \rightarrow \underline{0001}_2\ \underline{0110}_2 . \underline{1101}_2\ \underline{1000}_2 \rightarrow (16.D8)</em>{16}$ (doplnění nul na okrajích)</li>
+<li>$(11001011)_2 \rightarrow \underline{1100}_2\ \underline{1011}_2 \rightarrow (CB)_{16}$</li>
+<li>$(10110.11011)_2 \rightarrow \underline{0001}_2\ \underline{0110}_2 . \underline{1101}_2\ \underline{1000}_2 \rightarrow (16.D8)_{16}$ (doplnění nul na okrajích)</li>
 </ul>
 </li>
 </ul>
@@ -179,7 +179,7 @@ kde $a_i$ jsou cifry v soustavě o základu $b$ a $b$ je základ soustavy.</p>
 <li><strong>Příklad:</strong> Formát Q8.8 znamená, že z 16 bitů je 8 vyhrazeno pro celou část a 8 pro desetinnou.<ul>
 <li>Váhy bitů před tečkou jsou $2^7, 2^6, \dots, 2^0$.</li>
 <li>Váhy bitů za tečkou jsou $2^{-1} (0.5)$, $2^{-2} (0.25)$, $2^{-3} (0.125)$, ..., $2^{-8}$.</li>
-<li>Číslo $(00000001.10000000)<em>Q8.8$ by reprezentovalo $1 \cdot 2^0 + 1 \cdot 2^{-1} = 1 + 0.5 = (1.5)</em>{10}$.</li>
+<li>Číslo $(00000001.10000000)_Q8.8$ by reprezentovalo $1 \cdot 2^0 + 1 \cdot 2^{-1} = 1 + 0.5 = (1.5)_{10}$.</li>
 </ul>
 </li>
 <li><strong>Výhody:</strong><ul>
@@ -236,7 +236,7 @@ kde $s$ je hodnota bitu znaménka, $m$ je hodnota mantisy (zlomková část za s
 <h2>Typické zkouškové otázky</h2>
 <ol>
 <li>
-<p><strong>Převeďte číslo $(25)<em>{10}$ do dvojkové a šestnáctkové soustavy. Dále převedte $(1A)</em>{16}$ do dvojkové a desítkové soustavy.</strong></p>
+<p><strong>Převeďte číslo $(25)_{10}$ do dvojkové a šestnáctkové soustavy. Dále převedte $(1A)_{16}$ do dvojkové a desítkové soustavy.</strong></p>
 <ul>
 <li><strong>Odpověď:</strong><ul>
 <li><strong>$(25)_{10}$ do dvojkové:</strong><ul>
@@ -261,7 +261,7 @@ kde $s$ je hodnota bitu znaménka, $m$ je hodnota mantisy (zlomková část za s
 </ul>
 </li>
 <li><strong>$(1A)_{16}$ do desítkové:</strong><ul>
-<li>$(1A)<em>{16} = 1 \cdot 16^1 + A \cdot 16^0 = 1 \cdot 16 + 10 \cdot 1 = 16 + 10 = (26)</em>{10}$</li>
+<li>$(1A)_{16} = 1 \cdot 16^1 + A \cdot 16^0 = 1 \cdot 16 + 10 \cdot 1 = 16 + 10 = (26)_{10}$</li>
 </ul>
 </li>
 </ul>

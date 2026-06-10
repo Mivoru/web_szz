@@ -395,9 +395,9 @@
 </li>
 <li><strong>Hazardní (zakázaný) stav:</strong> Kombinace $S=1, R=1$. V tomto případě by se obvod pokoušel nastavit i nulovat zároveň, výstup by byl nestabilní a nepredikovatelný.</li>
 <li><strong>Pravdivostní tabulka (pro RS Latch):</strong>
-    | $S$ | $R$ | $Q_{next}$ | $\bar{Q}<em>{next}$ | Popis |
+    | $S$ | $R$ | $Q_{next}$ | $\bar{Q}_{next}$ | Popis |
     | :-- | :-- | :--------- | :--------------- | :---- |
-    | 0   | 0   | $Q</em>{prev}$ | $\bar{Q}_{prev}$ | Pamatuje si |
+    | 0   | 0   | $Q_{prev}$ | $\bar{Q}_{prev}$ | Pamatuje si |
     | 0   | 1   | 0          | 1                | Reset |
     | 1   | 0   | 1          | 0                | Set   |
     | 1   | 1   | ?          | ?                | Zakázaný |</li>
