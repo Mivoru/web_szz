@@ -678,7 +678,8 @@ data.i = 10; // Nyní data.i obsahuje 10
 <li>Paměť neinicializuje (obsahuje náhodná data, která v ní zbyla).</li>
 <li>V případě selhání alokace (např. nedostatek paměti) vrátí <code>NULL</code>.
 <code>c
-int *dynamicke_pole = (int*) malloc(10 * sizeof(int));
+int *dynamicke_pole = (int*) malloc(10<br>
+&bull; sizeof(int));
 // Explicitní přetypování (int*) je v C volitelné, ale dobrá praxe</code></li>
 </ul>
 </li>
@@ -696,7 +697,8 @@ int *dynamicke_pole_nulovane = (int*) calloc(10, sizeof(int));</code></li>
 <li>V případě selhání vrátí <code>NULL</code> a původní blok zůstane nezměněn.</li>
 <li>Pokud je <code>ukazatel</code> <code>NULL</code>, chová se jako <code>malloc</code>. Pokud je <code>nova_velikost</code> <code>0</code>, chová se jako <code>free</code>.
 <code>c
-int *rozsirene_pole = (int*) realloc(dynamicke_pole, 20 * sizeof(int));
+int *rozsirene_pole = (int*) realloc(dynamicke_pole, 20<br>
+&bull; sizeof(int));
 if (rozsirene_pole == NULL) { /* chyba */ }
 else { dynamicke_pole = rozsirene_pole; }</code></li>
 </ul>
@@ -750,7 +752,8 @@ int main() {
     }
 
     // Dynamická alokace pole o velikosti n prvků typu int
-    int *dynamicke_pole = (int*) malloc(n * sizeof(int));
+    int *dynamicke_pole = (int*) malloc(n<br>
+&bull; sizeof(int));
 
     if (dynamicke_pole == NULL) {
         // Kontrola, zda operační systém paměť úspěšně přidělil
@@ -760,7 +763,8 @@ int main() {
 
     // Práce s polem (úplně stejně jako s běžným polem)
     for (int i = 0; i &lt; n; ++i) {
-        dynamicke_pole[i] = i * 10;
+        dynamicke_pole[i] = i<br>
+&bull; 10;
         printf(&quot;dynamicke_pole[%d] = %d\n&quot;, i, dynamicke_pole[i]);
     }
 
@@ -1250,8 +1254,10 @@ long faktorial_rekurzivni(int n) {
     if (n &lt;= 1) {
         return 1;
     }
-    // Rekurzivní krok: n * faktoriál(n-1)
-    return n * faktorial_rekurzivni(n - 1);
+    // Rekurzivní krok: n<br>
+&bull; faktoriál(n-1)
+    return n<br>
+&bull; faktorial_rekurzivni(n - 1);
 }</code></p>
 <ul>
 <li><strong>Vysvětlení:</strong> Funkce se volá sama se zmenšeným argumentem <code>n-1</code>, dokud <code>n</code> nedosáhne 1. Poté se výsledky postupně násobí zpět nahoru.</li>
@@ -1289,7 +1295,8 @@ long faktorial_iterativni(int n) {
         return akumulator; // Bázový případ, vrací akumulovanou hodnotu
     }
     // Rekurzivní volání je poslední operací, výsledek se přímo vrací
-    return faktorial_koncova_rekurze_pomocna(n - 1, akumulator * n); 
+    return faktorial_koncova_rekurze_pomocna(n - 1, akumulator<br>
+&bull; n); 
 }
 
 long faktorial_koncova_rekurze(int n) {
@@ -1419,13 +1426,19 @@ Její hlavní výhodou je, že moderní kompilátory mohou provést <strong>opti
 <li>
 <p><strong>Příklad (C) a úskalí:</strong>
     ```c
-    #define SQUARE(x) (x * x) // Chyba! Mělo by být ( (x) * (x) )
+    #define SQUARE(x) (x<br>
+&bull; x) // Chyba! Mělo by být ( (x)<br>
+&bull; (x) )
     #define MAX(a, b) ((a) &gt; (b) ? (a) : (b)) // Správné použití závorek</p>
 <p>int main() {
     int a = 5;
-    int b = SQUARE(a + 1); // Expanduje na (a + 1 * a + 1) = (5 + 5 + 1) = 11, ne 36!
-    // Správně by mělo být: #define SQUARE(x) ((x) * (x))
-    // Pak by se expandovalo na ((a + 1) * (a + 1)) = (6 * 6) = 36
+    int b = SQUARE(a + 1); // Expanduje na (a + 1<br>
+&bull; a + 1) = (5 + 5 + 1) = 11, ne 36!
+    // Správně by mělo být: #define SQUARE(x) ((x)<br>
+&bull; (x))
+    // Pak by se expandovalo na ((a + 1)<br>
+&bull; (a + 1)) = (6<br>
+&bull; 6) = 36
     return 0;
 }
 <code>``<br>• **Alternativy:** V C++ se pro typově bezpečné "makra" preferují</code>inline<code>funkce nebo šablony (</code>templates`).</p>

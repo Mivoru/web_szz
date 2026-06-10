@@ -136,14 +136,14 @@ Hlavní nástroj: <strong>Entity-Relationship model (ER model)</strong>, grafick
 <li><strong>BCNF</strong>: 3NF + každý determinant je kandidátní klíč.</li>
 </ul>
 <h2>A. Aktualizační anomálie</h2>
-<p>Problémy v špatně navržené tabulce:
-*   <strong>Vkládání</strong>: Nelze vložit data o entitě bez dat o jiné, na které je závislá.
-*   <strong>Mazání</strong>: Smazání dat o jedné entitě nechtěně smaže data o jiné.
-*   <strong>Úprava</strong>: Nutnost aktualizovat stejná data na více místech, riziko nekonzistence.</p>
+<p>Problémy v špatně navržené tabulce:<br>
+&bull; <strong>Vkládání</strong>: Nelze vložit data o entitě bez dat o jiné, na které je závislá.<br>
+&bull; <strong>Mazání</strong>: Smazání dat o jedné entitě nechtěně smaže data o jiné.<br>
+&bull; <strong>Úprava</strong>: Nutnost aktualizovat stejná data na více místech, riziko nekonzistence.</p>
 <h2>B. Funkční závislosti</h2>
-<p>$Y$ je funkčně závislé na $X$ ($X \rightarrow Y$), pokud pro každou hodnotu $X$ existuje právě jedna hodnota $Y$.
-*   <strong>Plná funkční závislost</strong>: $Y$ závisí na celém složeném klíči $X$, ne jen na jeho části.
-*   <strong>Tranzitivní funkční závislost</strong>: Pokud $X \rightarrow Y$ a $Y \rightarrow Z$, pak $Z$ závisí na $X$ tranzitivně.</p>
+<p>$Y$ je funkčně závislé na $X$ ($X \rightarrow Y$), pokud pro každou hodnotu $X$ existuje právě jedna hodnota $Y$.<br>
+&bull; <strong>Plná funkční závislost</strong>: $Y$ závisí na celém složeném klíči $X$, ne jen na jeho části.<br>
+&bull; <strong>Tranzitivní funkční závislost</strong>: Pokud $X \rightarrow Y$ a $Y \rightarrow Z$, pak $Z$ závisí na $X$ tranzitivně.</p>
 <h2>C. Normální formy (1NF, 2NF, 3NF, BCNF)</h2>
 <p>Normalizace: Proces převodu datové struktury do vyšších NF pro odstranění anomálií a duplicit.</p>
 <h3>1. První normální forma (1NF)</h3>
@@ -351,11 +351,11 @@ Hlavní nástroj: <strong>Entity-Relationship model (ER model)</strong>, grafick
         <div id="otazka-30" class="question-section">
             <h1>30. CRUD operace, SQL DDL, SQL DML, SQL dotazy, Indexy, Pohledy, Uložené procedury a funkce, Triggery. Transakce, ACID vlastnosti, úrovně izolace transakcí.</h1>
 <h3>CRUD Operace</h3>
-<p>Základní operace pro interakci s daty v perzistentních datových strukturách:
-*   <strong>C</strong>reate: Vytvoření nového záznamu. SQL: <code>INSERT</code>
-*   <strong>R</strong>ead: Čtení existujících záznamů. SQL: <code>SELECT</code>
-*   <strong>U</strong>pdate: Modifikace existujících záznamů. SQL: <code>UPDATE</code>
-*   <strong>D</strong>elete: Smazání existujících záznamů. SQL: <code>DELETE</code></p>
+<p>Základní operace pro interakci s daty v perzistentních datových strukturách:<br>
+&bull; <strong>C</strong>reate: Vytvoření nového záznamu. SQL: <code>INSERT</code><br>
+&bull; <strong>R</strong>ead: Čtení existujících záznamů. SQL: <code>SELECT</code><br>
+&bull; <strong>U</strong>pdate: Modifikace existujících záznamů. SQL: <code>UPDATE</code><br>
+&bull; <strong>D</strong>elete: Smazání existujících záznamů. SQL: <code>DELETE</code></p>
 <h3>Rozdělení jazyka SQL</h3>
 <ul>
 <li><strong>SQL DDL (Data Definition Language)</strong>: Definuje a spravuje strukturu databázových objektů (schéma).<ul>
@@ -376,7 +376,8 @@ Hlavní nástroj: <strong>Entity-Relationship model (ER model)</strong>, grafick
 <h3>Základní operace relační algebry v SQL</h3>
 <ul>
 <li><strong>Selekce (Restrikce)</strong>: Výběr řádků, které splňují podmínku. SQL: Klauzule <code>WHERE</code>.<ul>
-<li>Příklad: <code>SELECT * FROM student WHERE mesto = 'Praha';</code></li>
+<li>Příklad: <code>SELECT<br>
+&bull; FROM student WHERE mesto = 'Praha';</code></li>
 </ul>
 </li>
 <li><strong>Projekce</strong>: Výběr konkrétních sloupců. SQL: Výpis sloupců za <code>SELECT</code>.<ul>
@@ -385,34 +386,37 @@ Hlavní nástroj: <strong>Entity-Relationship model (ER model)</strong>, grafick
 </li>
 </ul>
 <h3>Typy spojení tabulek (JOINs)</h3>
-<p>Propojení dat z více tabulek přes relace (PK/FK).
-*   <code>INNER JOIN</code>: Vrátí pouze řádky se shodou v obou tabulkách.
-*   <code>LEFT JOIN</code> (<code>LEFT OUTER JOIN</code>): Všechny řádky z levé tabulky, shodné z pravé. Bez shody <code>NULL</code> vpravo.
-*   <code>RIGHT JOIN</code> (<code>RIGHT OUTER JOIN</code>): Všechny řádky z pravé tabulky, shodné z levé. Bez shody <code>NULL</code> vlevo.
-*   <code>FULL JOIN</code> (<code>FULL OUTER JOIN</code>): Všechny řádky z obou tabulek. Bez shody <code>NULL</code> na chybějící straně.
-*   <code>CROSS JOIN</code>: Kartézský součin (každý řádek z první s každým z druhé).</p>
+<p>Propojení dat z více tabulek přes relace (PK/FK).<br>
+&bull; <code>INNER JOIN</code>: Vrátí pouze řádky se shodou v obou tabulkách.<br>
+&bull; <code>LEFT JOIN</code> (<code>LEFT OUTER JOIN</code>): Všechny řádky z levé tabulky, shodné z pravé. Bez shody <code>NULL</code> vpravo.<br>
+&bull; <code>RIGHT JOIN</code> (<code>RIGHT OUTER JOIN</code>): Všechny řádky z pravé tabulky, shodné z levé. Bez shody <code>NULL</code> vlevo.<br>
+&bull; <code>FULL JOIN</code> (<code>FULL OUTER JOIN</code>): Všechny řádky z obou tabulek. Bez shody <code>NULL</code> na chybějící straně.<br>
+&bull; <code>CROSS JOIN</code>: Kartézský součin (každý řádek z první s každým z druhé).</p>
 <h3>Agregační funkce a seskupování</h3>
-<p>Agregační funkce zpracovávají skupinu řádků a vrací jednu souhrnnou hodnotu.
-*   <code>COUNT()</code>: Počet řádků/ne-NULL hodnot.
-*   <code>SUM()</code>: Součet hodnot.
-*   <code>AVG()</code>: Aritmetický průměr.
-*   <code>MIN()</code>: Minimální hodnota.
-*   <code>MAX()</code>: Maximální hodnota.
-*   <code>GROUP BY</code>: Seskupuje řádky s identickými hodnotami pro aplikaci agregačních funkcí.
-    *   Příklad: <code>SELECT ID_Fakulty, COUNT(ID_Studenta) FROM Studenti GROUP BY ID_Fakulty;</code>
-*   <code>HAVING</code>: Filtruje skupiny vytvořené <code>GROUP BY</code> na základě podmínek na agregační funkce.
-    *   Příklad: <code>... HAVING COUNT(ID_Studenta) &gt; 500;</code></p>
+<p>Agregační funkce zpracovávají skupinu řádků a vrací jednu souhrnnou hodnotu.<br>
+&bull; <code>COUNT()</code>: Počet řádků/ne-NULL hodnot.<br>
+&bull; <code>SUM()</code>: Součet hodnot.<br>
+&bull; <code>AVG()</code>: Aritmetický průměr.<br>
+&bull; <code>MIN()</code>: Minimální hodnota.<br>
+&bull; <code>MAX()</code>: Maximální hodnota.<br>
+&bull; <code>GROUP BY</code>: Seskupuje řádky s identickými hodnotami pro aplikaci agregačních funkcí.
+   <br>
+&bull; Příklad: <code>SELECT ID_Fakulty, COUNT(ID_Studenta) FROM Studenti GROUP BY ID_Fakulty;</code><br>
+&bull; <code>HAVING</code>: Filtruje skupiny vytvořené <code>GROUP BY</code> na základě podmínek na agregační funkce.
+   <br>
+&bull; Příklad: <code>... HAVING COUNT(ID_Studenta) &gt; 500;</code></p>
 <h3>Množinové operace</h3>
-<p>Kombinují výsledky dvou <code>SELECT</code> dotazů (musí mít stejný počet a kompatibilní typy sloupců).
-*   <code>UNION</code>: Sjednocení, odstraní duplicity.
-*   <code>UNION ALL</code>: Sjednocení, zachová duplicity.
-*   <code>INTERSECT</code>: Průnik (řádky, které jsou v obou dotazech).
-*   <code>EXCEPT</code> (<code>MINUS</code>): Rozdíl (řádky v prvním, ale ne ve druhém dotazu).</p>
+<p>Kombinují výsledky dvou <code>SELECT</code> dotazů (musí mít stejný počet a kompatibilní typy sloupců).<br>
+&bull; <code>UNION</code>: Sjednocení, odstraní duplicity.<br>
+&bull; <code>UNION ALL</code>: Sjednocení, zachová duplicity.<br>
+&bull; <code>INTERSECT</code>: Průnik (řádky, které jsou v obou dotazech).<br>
+&bull; <code>EXCEPT</code> (<code>MINUS</code>): Rozdíl (řádky v prvním, ale ne ve druhém dotazu).</p>
 <h3>Vnořené dotazy (Subqueries)</h3>
-<p><code>SELECT</code> příkaz umístěný uvnitř jiného SQL příkazu.
-*   <strong>Nekorelovaný</strong>: Vnitřní dotaz je nezávislý, provede se jednou.
-    *   Příklad: <code>SELECT jmeno FROM student WHERE prumer &gt; (SELECT AVG(prumer) FROM student);</code>
-*   <strong>Korelovaný</strong>: Vnitřní dotaz se odkazuje na vnější, provede se pro každý řádek vnějšího dotazu.</p>
+<p><code>SELECT</code> příkaz umístěný uvnitř jiného SQL příkazu.<br>
+&bull; <strong>Nekorelovaný</strong>: Vnitřní dotaz je nezávislý, provede se jednou.
+   <br>
+&bull; Příklad: <code>SELECT jmeno FROM student WHERE prumer &gt; (SELECT AVG(prumer) FROM student);</code><br>
+&bull; <strong>Korelovaný</strong>: Vnitřní dotaz se odkazuje na vnější, provede se pro každý řádek vnějšího dotazu.</p>
 <h3>Indexy, Pohledy, Uložené procedury a funkce, Triggery</h3>
 <ul>
 <li><strong>Indexy</strong>: Speciální vyhledávací struktury pro zrychlení <code>SELECT</code> dotazů (zejména s <code>WHERE</code>, <code>JOIN</code>, <code>ORDER BY</code>). Zpomalují <code>INSERT/UPDATE/DELETE</code>.<ul>
@@ -776,10 +780,10 @@ Hlavní nástroj: <strong>Entity-Relationship model (ER model)</strong>, grafick
 <li><strong>Covering Index:</strong> Index obsahuje všechny sloupce pro dotaz, není nutné sahat do tabulky.</li>
 </ul>
 <h2>A. Indexy: Účel a cena</h2>
-<p><strong>Index</strong> zrychluje <code>SELECT</code> (WHERE), <code>ORDER BY</code>, <code>JOIN</code>.
-*   <strong>Výhody:</strong> Dramatické zrychlení čtení.
-*   <strong>Nevýhody:</strong> Zpomaluje <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code> (nutná aktualizace indexů); zabírá místo na disku/RAM.
-*   <strong>Full Table Scan:</strong> Pomalé prohledání celé tabulky, pokud není index použit.</p>
+<p><strong>Index</strong> zrychluje <code>SELECT</code> (WHERE), <code>ORDER BY</code>, <code>JOIN</code>.<br>
+&bull; <strong>Výhody:</strong> Dramatické zrychlení čtení.<br>
+&bull; <strong>Nevýhody:</strong> Zpomaluje <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code> (nutná aktualizace indexů); zabírá místo na disku/RAM.<br>
+&bull; <strong>Full Table Scan:</strong> Pomalé prohledání celé tabulky, pokud není index použit.</p>
 <h2>B. Vnitřní struktury indexů</h2>
 <ol>
 <li><strong>B-Strom (B+Tree):</strong><ul>

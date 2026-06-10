@@ -38,14 +38,14 @@
             <h1>20. Principy vrstvené architektury počítačových sítí, referenční model OSI. Charakteristika lokálních počítačových sítí.</h1>
 <h2>Principy vrstvené architektury</h2>
 <p>Síťová komunikace je komplexní. <strong>Vrstvená architektura</strong> ji rozděluje na menší, spravovatelné vrstvy, z nichž každá má specifické funkce.</p>
-<p><strong>Hlavní principy a výhody:</strong>
-*   <strong>Dekompozice problému:</strong> Rozdělení složitého úkolu na jednodušší vrstvy.
-*   <strong>Abstrakce a rozhraní:</strong> Každá vrstva poskytuje služby vyšší vrstvě a využívá služby nižší. Interní detaily jsou skryté. Standardizovaná rozhraní umožňují nezávislý vývoj.
-*   <strong>Peer-to-peer komunikace:</strong> Stejné vrstvy protilehlých systémů komunikují virtuálně pomocí <strong>protokolů</strong>.
-*   <strong>Zjednodušení údržby:</strong> Snadnější identifikace a řešení problémů.</p>
-<p><strong>Zapouzdření (Encapsulation) a Odpouzdření (Decapsulation):</strong>
-*   <strong>Zapouzdření:</strong> Při odesílání dat (shora dolů) každá vrstva přidá svou řídicí informaci – <strong>hlavičku (Header)</strong>, případně <strong>patičku (Trailer)</strong>. Vzniká <strong>Protocol Data Unit (PDU)</strong>.
-*   <strong>Odpouzdření:</strong> Na přijímací straně (zdola nahoru) každá vrstva svou hlavičku/patičku odřízne a zpracuje.</p>
+<p><strong>Hlavní principy a výhody:</strong><br>
+&bull; <strong>Dekompozice problému:</strong> Rozdělení složitého úkolu na jednodušší vrstvy.<br>
+&bull; <strong>Abstrakce a rozhraní:</strong> Každá vrstva poskytuje služby vyšší vrstvě a využívá služby nižší. Interní detaily jsou skryté. Standardizovaná rozhraní umožňují nezávislý vývoj.<br>
+&bull; <strong>Peer-to-peer komunikace:</strong> Stejné vrstvy protilehlých systémů komunikují virtuálně pomocí <strong>protokolů</strong>.<br>
+&bull; <strong>Zjednodušení údržby:</strong> Snadnější identifikace a řešení problémů.</p>
+<p><strong>Zapouzdření (Encapsulation) a Odpouzdření (Decapsulation):</strong><br>
+&bull; <strong>Zapouzdření:</strong> Při odesílání dat (shora dolů) každá vrstva přidá svou řídicí informaci – <strong>hlavičku (Header)</strong>, případně <strong>patičku (Trailer)</strong>. Vzniká <strong>Protocol Data Unit (PDU)</strong>.<br>
+&bull; <strong>Odpouzdření:</strong> Na přijímací straně (zdola nahoru) každá vrstva svou hlavičku/patičku odřízne a zpracuje.</p>
 <p><strong>Příklad zapouzdření:</strong>
 1.  Aplikační data: <code>DATA</code>
 2.  Transportní vrstva: <code>[TCP_H] DATA</code> (Segment)
@@ -108,17 +108,17 @@
 </ol>
 <h2>Charakteristika lokálních počítačových sítí (LAN)</h2>
 <p><strong>LAN (Local Area Network):</strong> Síť pro omezenou geografickou oblast (budova, kampus).</p>
-<p><strong>Klíčové vlastnosti:</strong>
-*   Vysoká rychlost přenosu dat.
-*   Nízká chybovost.
-*   Sdílené přenosové médium.</p>
-<p><strong>Klíčové prvky a pojmy:</strong>
-*   <strong>MAC adresa (Media Access Control):</strong> Fyzická adresa síťové karty (48 bitů), unikátní, používá se na linkové vrstvě (L2).
-*   <strong>IP adresa (Internet Protocol):</strong> Logická adresa zařízení v síti, používá se na síťové vrstvě (L3) pro směrování.
-*   <strong>Port:</strong> Číslo identifikující konkrétní aplikaci/službu na hostiteli, používá se na transportní vrstvě.
-*   <strong>Switch (přepínač):</strong> Zařízení linkové vrstvy (L2), přeposílá datové rámce na základě MAC adresy cíle, učí se MAC adresy připojených zařízení.
-*   <strong>Router (směrovač):</strong> Zařízení síťové vrstvy (L3), směruje datové pakety mezi různými sítěmi na základě IP adres.
-*   <strong>Topologie sítě:</strong> Fyzické nebo logické uspořádání prvků sítě (např. hvězda, sběrnice, kruh). Dnes převládá hvězda se switchem.</p>
+<p><strong>Klíčové vlastnosti:</strong><br>
+&bull; Vysoká rychlost přenosu dat.<br>
+&bull; Nízká chybovost.<br>
+&bull; Sdílené přenosové médium.</p>
+<p><strong>Klíčové prvky a pojmy:</strong><br>
+&bull; <strong>MAC adresa (Media Access Control):</strong> Fyzická adresa síťové karty (48 bitů), unikátní, používá se na linkové vrstvě (L2).<br>
+&bull; <strong>IP adresa (Internet Protocol):</strong> Logická adresa zařízení v síti, používá se na síťové vrstvě (L3) pro směrování.<br>
+&bull; <strong>Port:</strong> Číslo identifikující konkrétní aplikaci/službu na hostiteli, používá se na transportní vrstvě.<br>
+&bull; <strong>Switch (přepínač):</strong> Zařízení linkové vrstvy (L2), přeposílá datové rámce na základě MAC adresy cíle, učí se MAC adresy připojených zařízení.<br>
+&bull; <strong>Router (směrovač):</strong> Zařízení síťové vrstvy (L3), směruje datové pakety mezi různými sítěmi na základě IP adres.<br>
+&bull; <strong>Topologie sítě:</strong> Fyzické nebo logické uspořádání prvků sítě (např. hvězda, sběrnice, kruh). Dnes převládá hvězda se switchem.</p>
         </div>
         
         <div id="otazka-21" class="question-section">
@@ -483,22 +483,24 @@
 <hr />
 <h2>A. CSS Vlastnosti a Hodnoty</h2>
 <p>CSS (Cascading Style Sheets) popisuje vzhled HTML dokumentů.
-<strong>Struktura pravidla:</strong> <code>selektor { vlastnost: hodnota; }</code>
-*   <strong>Selektor:</strong> Určuje elementy (<code>p</code>, <code>.trida</code>, <code>#identifikator</code>).
-*   <strong>Deklarace:</strong> <code>vlastnost: hodnota;</code> (např. <code>color: red;</code>).</p>
-<p><strong>Typy hodnot:</strong>
-*   <strong>Délkové jednotky:</strong>
-    *   <strong>Absolutní:</strong> <code>px</code>.
-    *   <strong>Relativní:</strong> <code>em</code> (k rodiči), <code>rem</code> (k <code>&lt;html&gt;</code>), <code>%</code>, <code>vw</code>/<code>vh</code> (k oknu).
-*   <strong>Barvy:</strong> Klíčová slova (<code>red</code>), Hex (<code>#FF0000</code>), RGB/RGBA (<code>rgba(255, 0, 0, 0.5)</code>).
-*   <strong>Jiné:</strong> Klíčová slova (<code>auto</code>, <code>none</code>), URL (<code>url('obrazek.png')</code>).</p>
+<strong>Struktura pravidla:</strong> <code>selektor { vlastnost: hodnota; }</code><br>
+&bull; <strong>Selektor:</strong> Určuje elementy (<code>p</code>, <code>.trida</code>, <code>#identifikator</code>).<br>
+&bull; <strong>Deklarace:</strong> <code>vlastnost: hodnota;</code> (např. <code>color: red;</code>).</p>
+<p><strong>Typy hodnot:</strong><br>
+&bull; <strong>Délkové jednotky:</strong>
+   <br>
+&bull; <strong>Absolutní:</strong> <code>px</code>.
+   <br>
+&bull; <strong>Relativní:</strong> <code>em</code> (k rodiči), <code>rem</code> (k <code>&lt;html&gt;</code>), <code>%</code>, <code>vw</code>/<code>vh</code> (k oknu).<br>
+&bull; <strong>Barvy:</strong> Klíčová slova (<code>red</code>), Hex (<code>#FF0000</code>), RGB/RGBA (<code>rgba(255, 0, 0, 0.5)</code>).<br>
+&bull; <strong>Jiné:</strong> Klíčová slova (<code>auto</code>, <code>none</code>), URL (<code>url('obrazek.png')</code>).</p>
 <hr />
 <h2>B. Dědění (Inheritance) a Kaskádování (Cascading)</h2>
 <p>Řeší, jak se styly šíří a jak se řeší konflikty.</p>
 <h3>1. Dědění (Inheritance)</h3>
-<p>Některé vlastnosti rodiče se automaticky přenášejí na potomky.
-*   <strong>Dědí se:</strong> <code>font-family</code>, <code>color</code>, <code>line-height</code>, <code>text-align</code>, <code>font-size</code>.
-*   <strong>Nedědí se:</strong> <code>margin</code>, <code>padding</code>, <code>border</code>, <code>width</code>, <code>height</code>, <code>background-color</code>.</p>
+<p>Některé vlastnosti rodiče se automaticky přenášejí na potomky.<br>
+&bull; <strong>Dědí se:</strong> <code>font-family</code>, <code>color</code>, <code>line-height</code>, <code>text-align</code>, <code>font-size</code>.<br>
+&bull; <strong>Nedědí se:</strong> <code>margin</code>, <code>padding</code>, <code>border</code>, <code>width</code>, <code>height</code>, <code>background-color</code>.</p>
 <h3>2. Kaskádování (Cascading)</h3>
 <p>Proces řešení konfliktů, když se na prvek vztahuje více pravidel pro stejnou vlastnost. Rozhoduje se dle priority:</p>
 <ol>
@@ -534,11 +536,11 @@
 <li><strong>Vnější okraj (Margin):</strong> Průhledný prostor vně rámečku, vytváří mezery mezi boxy.</li>
 </ol>
 <h3>Vlastnost <code>box-sizing</code></h3>
-<p>Určuje, jak se počítají <code>width</code> a <code>height</code>.
-*   <strong><code>box-sizing: content-box;</code> (výchozí):</strong>
+<p>Určuje, jak se počítají <code>width</code> a <code>height</code>.<br>
+&bull; <strong><code>box-sizing: content-box;</code> (výchozí):</strong>
     Celková šířka = <code>width</code> (obsah) + <code>padding</code> + <code>border</code>.
-    $$ \text{Celková šířka} = \text{width} + \text{padding-left} + \text{padding-right} + \text{border-left-width} + \text{border-right-width} $$
-*   <strong><code>box-sizing: border-box;</code> (moderní):</strong>
+    $$ \text{Celková šířka} = \text{width} + \text{padding-left} + \text{padding-right} + \text{border-left-width} + \text{border-right-width} $$<br>
+&bull; <strong><code>box-sizing: border-box;</code> (moderní):</strong>
     <code>width</code> je celková šířka elementu (obsah + padding + border). Padding a border se "vtlačí" dovnitř.
     Doporučuje se globálně: <code>* { box-sizing: border-box; }</code>.</p>
 <hr />

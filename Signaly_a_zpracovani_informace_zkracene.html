@@ -51,10 +51,10 @@
 </ul>
 <hr />
 <h2>B. LTI systémy (Lineární Časově Invariantní)</h2>
-<p>Většina digitálních systémů je navrhována jako LTI pro snadnou analýzu. Musí splňovat:
-*   <strong>Linearita:</strong> Splňuje princip superpozice.
-    $$ \mathcal{T}{a \cdot x_1[n] + b \cdot x_2[n]} = a \cdot y_1[n] + b \cdot y_2[n] $$
-*   <strong>Časová invariance:</strong> Vlastnosti systému se v čase nemění. Posun vstupu o $k$ kroků posune výstup o $k$ kroků.
+<p>Většina digitálních systémů je navrhována jako LTI pro snadnou analýzu. Musí splňovat:<br>
+&bull; <strong>Linearita:</strong> Splňuje princip superpozice.
+    $$ \mathcal{T}{a \cdot x_1[n] + b \cdot x_2[n]} = a \cdot y_1[n] + b \cdot y_2[n] $$<br>
+&bull; <strong>Časová invariance:</strong> Vlastnosti systému se v čase nemění. Posun vstupu o $k$ kroků posune výstup o $k$ kroků.
     $$ \mathcal{T}{x[n-k]} = y[n-k] $$</p>
 <hr />
 <h2>C. Impulsní odezva ($h[n]$)</h2>
@@ -73,10 +73,10 @@ $$ y[n] = x[n] * h[n] = \sum_{k=-\infty}^{\infty} x[k] \cdot h[n-k] $$
 Výpočetní složitost: $O(N \cdot M)$.</p>
 <hr />
 <h2>E. Přenosová funkce ($H(z)$ nebo $H(e^{j\omega})$)</h2>
-<p>Konvoluce v časové oblasti je výpočetně náročná. V Z-doméně se konvoluce mění na násobení.
-*   <strong>Definice:</strong> Poměr Z-transformace výstupu $Y(z)$ k Z-transformaci vstupu $X(z)$, nebo Z-transformace impulsní odezvy $h[n]$.
-    $$ H(z) = \frac{Y(z)}{X(z)} = \mathcal{Z}{h[n]} = \sum_{n=-\infty}^{\infty} h[n] z^{-n} $$
-*   <strong>Frekvenční odezva:</strong> Dosazením $z = e^{j\omega}$ získáme $H(e^{j\omega})$. Popisuje, jak systém mění amplitudu ($|H(e^{j\omega})|$) a fázi ($\arg(H(e^{j\omega}))$) jednotlivých frekvencí. Klíčová pro návrh digitálních filtrů.</p>
+<p>Konvoluce v časové oblasti je výpočetně náročná. V Z-doméně se konvoluce mění na násobení.<br>
+&bull; <strong>Definice:</strong> Poměr Z-transformace výstupu $Y(z)$ k Z-transformaci vstupu $X(z)$, nebo Z-transformace impulsní odezvy $h[n]$.
+    $$ H(z) = \frac{Y(z)}{X(z)} = \mathcal{Z}{h[n]} = \sum_{n=-\infty}^{\infty} h[n] z^{-n} $$<br>
+&bull; <strong>Frekvenční odezva:</strong> Dosazením $z = e^{j\omega}$ získáme $H(e^{j\omega})$. Popisuje, jak systém mění amplitudu ($|H(e^{j\omega})|$) a fázi ($\arg(H(e^{j\omega}))$) jednotlivých frekvencí. Klíčová pro návrh digitálních filtrů.</p>
 <hr />
 <h2>F. Praktický význam v IT</h2>
 <ul>
@@ -158,14 +158,14 @@ $c_n$ jsou komplexní Fourierovy koeficienty (amplituda a fáze).</p>
 $$X[k] = \sum_{n=0}^{N-1} x[n] e^{-j \frac{2\pi}{N} k n}, \quad k = 0, 1, \dots, N-1$$
 Výpočetní složitost: $\mathcal{O}(N^2)$.</p>
 <p><strong>Interpretace a spektrum:</strong>
-$X[k]$ je komplexní číslo.
-*   <strong>Amplitudové spektrum:</strong> $|X[k]| = \sqrt{\operatorname{Re}(X[k])^2 + \operatorname{Im}(X[k])^2}$ – síla frekvenční složky.
-*   <strong>Fázové spektrum:</strong> $\arg(X[k]) = \operatorname{atan2}(\operatorname{Im}(X[k]), \operatorname{Re}(X[k]))$ – časový posun frekvenční složky.</p>
+$X[k]$ je komplexní číslo.<br>
+&bull; <strong>Amplitudové spektrum:</strong> $|X[k]| = \sqrt{\operatorname{Re}(X[k])^2 + \operatorname{Im}(X[k])^2}$ – síla frekvenční složky.<br>
+&bull; <strong>Fázové spektrum:</strong> $\arg(X[k]) = \operatorname{atan2}(\operatorname{Im}(X[k]), \operatorname{Re}(X[k]))$ – časový posun frekvenční složky.</p>
 <h2>C. Rychlá Fourierova transformace (FFT)</h2>
-<p>Efektivní algoritmus pro výpočet DFT.
-*   <strong>Složitost:</strong> Snižuje z $\mathcal{O}(N^2)$ na $\mathcal{O}(N \log N)$.
-*   <strong>Princip:</strong> Využívá symetrie a periodicity, metoda "rozděl a panuj" (např. Cooley-Tukeyho algoritmus pro $N$ mocninu dvojky).
-*   Umožňuje zpracování signálu v reálném čase.</p>
+<p>Efektivní algoritmus pro výpočet DFT.<br>
+&bull; <strong>Složitost:</strong> Snižuje z $\mathcal{O}(N^2)$ na $\mathcal{O}(N \log N)$.<br>
+&bull; <strong>Princip:</strong> Využívá symetrie a periodicity, metoda "rozděl a panuj" (např. Cooley-Tukeyho algoritmus pro $N$ mocninu dvojky).<br>
+&bull; Umožňuje zpracování signálu v reálném čase.</p>
 <h2>D. Číslicové filtry: FIR a IIR</h2>
 <p>LTI systémy pro potlačení/propouštění frekvenčních pásem.</p>
 <h3>1. FIR filtry (Finite Impulse Response)</h3>
@@ -308,27 +308,29 @@ $X[k]$ je komplexní číslo.
 <hr />
 <h2>Typické zkouškové otázky</h2>
 <h3>1. Vysvětlete proces převodu analogového signálu na digitální. Jaké jsou jeho hlavní kroky?</h3>
-<p><strong>Odpověď:</strong> A/D převod má dva kroky:
-*   <strong>Vzorkování:</strong> Diskretizace v čase. Odebírání vzorků v intervalech $T_s$ ($f_s = 1/T_s$). Signál je diskrétní v čase, spojitý v amplitudě.
-*   <strong>Kvantování:</strong> Diskretizace v amplitudě. Zaokrouhlení vzorků na $2^b$ diskrétních úrovní. Vzniká kvantizační šum.</p>
+<p><strong>Odpověď:</strong> A/D převod má dva kroky:<br>
+&bull; <strong>Vzorkování:</strong> Diskretizace v čase. Odebírání vzorků v intervalech $T_s$ ($f_s = 1/T_s$). Signál je diskrétní v čase, spojitý v amplitudě.<br>
+&bull; <strong>Kvantování:</strong> Diskretizace v amplitudě. Zaokrouhlení vzorků na $2^b$ diskrétních úrovní. Vzniká kvantizační šum.</p>
 <h3>2. Formulujte Nyquist-Shannonův vzorkovací teorém a vysvětlete jeho význam pro digitalizaci signálů. Co je Nyquistova frekvence?</h3>
-<p><strong>Odpověď:</strong>
-*   <strong>Teorém:</strong> Signál s $f_{max}$ lze přesně rekonstruovat, pokud $f_s &gt; 2 \cdot f_{max}$.
-*   <strong>Význam:</strong> Definuje minimální $f_s$ pro zachování veškeré informace. Nízká $f_s$ vede k aliasingu a ztrátě informací.
-*   <strong>Nyquistova frekvence ($f_N$):</strong> $f_N = f_s/2$. Nejvyšší frekvence, kterou lze správně zachytit.</p>
+<p><strong>Odpověď:</strong><br>
+&bull; <strong>Teorém:</strong> Signál s $f_{max}$ lze přesně rekonstruovat, pokud $f_s &gt; 2 \cdot f_{max}$.<br>
+&bull; <strong>Význam:</strong> Definuje minimální $f_s$ pro zachování veškeré informace. Nízká $f_s$ vede k aliasingu a ztrátě informací.<br>
+&bull; <strong>Nyquistova frekvence ($f_N$):</strong> $f_N = f_s/2$. Nejvyšší frekvence, kterou lze správně zachytit.</p>
 <h3>3. Co je aliasing, jak vzniká a jaké má praktické projevy? Jak se proti němu bráníme?</h3>
-<p><strong>Odpověď:</strong>
-*   <strong>Aliasing:</strong> Vysokofrekvenční složky ($f &gt; f_N$) se po digitalizaci chybně interpretují jako nižší frekvence.
-*   <strong>Vznik:</strong> Porušení teorému ($f_s \le 2 \cdot f_{max}$).
-*   <strong>Projevy:</strong> Audio - zkreslení, pískání. Video - stroboskopický efekt, Moiré.
-*   <strong>Obrana:</strong> Před vzorkováním použít Anti-aliasing filtr (dolní propust), který odstraní frekvence nad $f_N$.</p>
+<p><strong>Odpověď:</strong><br>
+&bull; <strong>Aliasing:</strong> Vysokofrekvenční složky ($f &gt; f_N$) se po digitalizaci chybně interpretují jako nižší frekvence.<br>
+&bull; <strong>Vznik:</strong> Porušení teorému ($f_s \le 2 \cdot f_{max}$).<br>
+&bull; <strong>Projevy:</strong> Audio - zkreslení, pískání. Video - stroboskopický efekt, Moiré.<br>
+&bull; <strong>Obrana:</strong> Před vzorkováním použít Anti-aliasing filtr (dolní propust), který odstraní frekvence nad $f_N$.</p>
 <h3>4. Popište rozdíly mezi nekomprimovanými, bezztrátově komprimovanými a ztrátově komprimovanými audio formáty. Uveďte příklady a vysvětlete princip ztrátové komprese.</h3>
-<p><strong>Odpověď:</strong>
-*   <strong>Nekomprimované (PCM):</strong> Surová data, nejvyšší kvalita, největší velikost (WAV, AIFF).
-*   <strong>Bezztrátové:</strong> Odstraní redundanci, kvalita PCM, menší velikost, plná rekonstrukce (FLAC, ALAC).
-*   <strong>Ztrátové:</strong>
-    *   <strong>Popis:</strong> Odstraní neslyšitelnou/méně důležitou informaci. Nevratná ztráta, nejmenší velikost (MP3, AAC).
-    *   <strong>Princip:</strong> Využívá psychoakustické modely. Analyzuje frekvence (FFT) a odstraňuje maskované nebo mimo rozsah slyšitelnosti.</p>
+<p><strong>Odpověď:</strong><br>
+&bull; <strong>Nekomprimované (PCM):</strong> Surová data, nejvyšší kvalita, největší velikost (WAV, AIFF).<br>
+&bull; <strong>Bezztrátové:</strong> Odstraní redundanci, kvalita PCM, menší velikost, plná rekonstrukce (FLAC, ALAC).<br>
+&bull; <strong>Ztrátové:</strong>
+   <br>
+&bull; <strong>Popis:</strong> Odstraní neslyšitelnou/méně důležitou informaci. Nevratná ztráta, nejmenší velikost (MP3, AAC).
+   <br>
+&bull; <strong>Princip:</strong> Využívá psychoakustické modely. Analyzuje frekvence (FFT) a odstraňuje maskované nebo mimo rozsah slyšitelnosti.</p>
         </div>
         
         </main>

@@ -41,48 +41,52 @@
 <hr />
 <h2>A. Charakteristika kombinačních logických obvodů</h2>
 <p>Digitální obvod, jehož výstupní hodnoty závisí <strong>výhradně na aktuálních hodnotách vstupů</strong>. Nemá vnitřní paměť ani zpětnou vazbu.</p>
-<p><strong>Hlavní rysy:</strong>
-*   <strong>Bezpaměťovost:</strong> Výstupy jsou funkcí pouze aktuálních vstupů.
-*   <strong>Absence zpětné vazby:</strong> Žádné smyčky vracející výstupy na vstupy.
-*   <strong>Matematický popis:</strong> Booleovy funkce nebo pravdivostní tabulka.
-*   <strong>Propagační zpoždění:</strong> Nenulový čas mezi změnou vstupu a výstupu.
-*   <strong>Příklady:</strong> Sčítačka, Multiplexor, Demultiplexor, Kodér, Dekodér, Komparátor.</p>
+<p><strong>Hlavní rysy:</strong><br>
+&bull; <strong>Bezpaměťovost:</strong> Výstupy jsou funkcí pouze aktuálních vstupů.<br>
+&bull; <strong>Absence zpětné vazby:</strong> Žádné smyčky vracející výstupy na vstupy.<br>
+&bull; <strong>Matematický popis:</strong> Booleovy funkce nebo pravdivostní tabulka.<br>
+&bull; <strong>Propagační zpoždění:</strong> Nenulový čas mezi změnou vstupu a výstupu.<br>
+&bull; <strong>Příklady:</strong> Sčítačka, Multiplexor, Demultiplexor, Kodér, Dekodér, Komparátor.</p>
 <p><strong>Rozdíl od sekvenčních obvodů:</strong> Sekvenční obvody (klopné obvody, registry, čítače) mají paměť – výstup závisí i na předchozím stavu.</p>
 <h2>B. Realizace pomocí logických hradel</h2>
 <p>Logická hradla realizují elementární Booleovy operace.</p>
-<p><strong>Základní logická hradla:</strong>
-*   <strong>AND:</strong> $Y = A \cdot B$ (výstup 1, jen když všechny vstupy 1)
-*   <strong>OR:</strong> $Y = A + B$ (výstup 1, když alespoň jeden vstup 1)
-*   <strong>NOT:</strong> $Y = \overline{A}$ (výstup opačný než vstup)
-*   <strong>NAND:</strong> $Y = \overline{A \cdot B}$ (výstup 0, jen když všechny vstupy 1)
-*   <strong>NOR:</strong> $Y = \overline{A + B}$ (výstup 1, jen když všechny vstupy 0)
-*   <strong>XOR:</strong> $Y = A \oplus B = A \cdot \overline{B} + \overline{A} \cdot B$ (výstup 1, když vstupy různé)
-*   <strong>XNOR:</strong> $Y = \overline{A \oplus B} = A \cdot B + \overline{A} \cdot \overline{B}$ (výstup 1, když vstupy stejné)</p>
+<p><strong>Základní logická hradla:</strong><br>
+&bull; <strong>AND:</strong> $Y = A \cdot B$ (výstup 1, jen když všechny vstupy 1)<br>
+&bull; <strong>OR:</strong> $Y = A + B$ (výstup 1, když alespoň jeden vstup 1)<br>
+&bull; <strong>NOT:</strong> $Y = \overline{A}$ (výstup opačný než vstup)<br>
+&bull; <strong>NAND:</strong> $Y = \overline{A \cdot B}$ (výstup 0, jen když všechny vstupy 1)<br>
+&bull; <strong>NOR:</strong> $Y = \overline{A + B}$ (výstup 1, jen když všechny vstupy 0)<br>
+&bull; <strong>XOR:</strong> $Y = A \oplus B = A \cdot \overline{B} + \overline{A} \cdot B$ (výstup 1, když vstupy různé)<br>
+&bull; <strong>XNOR:</strong> $Y = \overline{A \oplus B} = A \cdot B + \overline{A} \cdot \overline{B}$ (výstup 1, když vstupy stejné)</p>
 <p><strong>Postup návrhu obvodu z hradel:</strong>
 1.  <strong>Pravdivostní tabulka:</strong> Určení výstupů pro všechny kombinace vstupů.
 2.  <strong>Booleova funkce (UDNF):</strong> Součet mintermů (řádky s výstupem 1). Minterm je součin vstupů, negovaných pro hodnotu 0.
-    *   <em>Příklad XOR:</em> $Y = \overline{A} \cdot B + A \cdot \overline{B}$
+   <br>
+&bull; <em>Příklad XOR:</em> $Y = \overline{A} \cdot B + A \cdot \overline{B}$
 3.  <strong>Minimalizace funkce:</strong> Zjednodušení pro snížení počtu hradel, nákladů, spotřeby a zpoždění.
-    *   <strong>Metody:</strong> Booleova algebra, Karnaughova mapa (pro 2-5 proměnných).
+   <br>
+&bull; <strong>Metody:</strong> Booleova algebra, Karnaughova mapa (pro 2-5 proměnných).
 4.  <strong>Nakreslení schématu:</strong> Realizace zjednodušené funkce pomocí hradel.</p>
 <p><strong>Univerzálnost hradel NAND / NOR:</strong>
-Pomocí samotných hradel NAND (nebo samotných NOR) lze realizovat jakoukoliv logickou funkci (NOT, AND, OR, XOR).
-*   <em>Příklad NOT z NAND:</em> $A \text{ NAND } A = \overline{A \cdot A} = \overline{A}$</p>
+Pomocí samotných hradel NAND (nebo samotných NOR) lze realizovat jakoukoliv logickou funkci (NOT, AND, OR, XOR).<br>
+&bull; <em>Příklad NOT z NAND:</em> $A \text{ NAND } A = \overline{A \cdot A} = \overline{A}$</p>
 <h2>C. Realizace pomocí Multiplexorů (MUX)</h2>
-<p><strong>MUX:</strong> Digitální přepínač s $2^n$ datovými vstupy ($D_i$), $n$ selekčními vstupy ($S_j$) a jedním výstupem ($Y$). Výstup $Y$ je roven datovému vstupu, jehož index odpovídá binární hodnotě na selekčních vstupech.
-*   <em>Funkce MUX 4:1:</em> $Y = \overline{S_1} \cdot \overline{S_0} \cdot D_0 + \overline{S_1} \cdot S_0 \cdot D_1 + S_1 \cdot \overline{S_0} \cdot D_2 + S_1 \cdot S_0 \cdot D_3$</p>
+<p><strong>MUX:</strong> Digitální přepínač s $2^n$ datovými vstupy ($D_i$), $n$ selekčními vstupy ($S_j$) a jedním výstupem ($Y$). Výstup $Y$ je roven datovému vstupu, jehož index odpovídá binární hodnotě na selekčních vstupech.<br>
+&bull; <em>Funkce MUX 4:1:</em> $Y = \overline{S_1} \cdot \overline{S_0} \cdot D_0 + \overline{S_1} \cdot S_0 \cdot D_1 + S_1 \cdot \overline{S_0} \cdot D_2 + S_1 \cdot S_0 \cdot D_3$</p>
 <p><strong>Realizace libovolné logické funkce pomocí MUX:</strong>
 1.  <strong>Proměnné na selekční vstupy:</strong> $n$ proměnných funkce na $n$ selekčních vstupů MUX ($2^n$ datových vstupů).
 2.  <strong>Logické hodnoty na datové vstupy:</strong> Na $D_0$ až $D_{2^n-1}$ se přivede 0 nebo 1 dle pravdivostní tabulky funkce pro danou kombinaci selekčních vstupů.
-    *   <em>Příklad XOR (MUX 4:1, $S_1=A, S_0=B$):</em> $D_0=0, D_1=1, D_2=1, D_3=0$.</p>
+   <br>
+&bull; <em>Příklad XOR (MUX 4:1, $S_1=A, S_0=B$):</em> $D_0=0, D_1=1, D_2=1, D_3=0$.</p>
 <h2>D. Realizace pomocí Dekodérů (DEC)</h2>
-<p><strong>Dekodér:</strong> Obvod s $n$ vstupy a $2^n$ výstupy. Aktivuje právě jeden výstup ($Y_k$), jehož index odpovídá binárnímu číslu na vstupech. Každý výstup $Y_k$ odpovídá jednomu mintermu.
-*   <em>Příklad DEC 2:4 ($A_1, A_0$):</em> $Y_0 = \overline{A_1} \cdot \overline{A_0}$, $Y_1 = \overline{A_1} \cdot A_0$, $Y_2 = A_1 \cdot \overline{A_0}$, $Y_3 = A_1 \cdot A_0$.</p>
+<p><strong>Dekodér:</strong> Obvod s $n$ vstupy a $2^n$ výstupy. Aktivuje právě jeden výstup ($Y_k$), jehož index odpovídá binárnímu číslu na vstupech. Každý výstup $Y_k$ odpovídá jednomu mintermu.<br>
+&bull; <em>Příklad DEC 2:4 ($A_1, A_0$):</em> $Y_0 = \overline{A_1} \cdot \overline{A_0}$, $Y_1 = \overline{A_1} \cdot A_0$, $Y_2 = A_1 \cdot \overline{A_0}$, $Y_3 = A_1 \cdot A_0$.</p>
 <p><strong>Realizace libovolné logické funkce pomocí DEC:</strong>
 1.  <strong>Vstupy na dekodér:</strong> $n$ proměnných funkce na vstupy dekodéru ($2^n$ výstupů).
 2.  <strong>Identifikace mintermů:</strong> Najít řádky v pravdivostní tabulce, kde je výstup funkce 1.
 3.  <strong>Zapojení hradla OR:</strong> Výstupy dekodéru odpovídající těmto mintermům se zapojí do vícevstupového hradla OR. Výstup OR je výsledná funkce.
-    *   <em>Příklad XOR (DEC 2:4, $A, B$):</em> Výstup 1 pro $AB=01$ ($Y_1$) a $AB=10$ ($Y_2$). Funkce je $Y = Y_1 + Y_2$.</p>
+   <br>
+&bull; <em>Příklad XOR (DEC 2:4, $A, B$):</em> Výstup 1 pro $AB=01$ ($Y_1$) a $AB=10$ ($Y_2$). Funkce je $Y = Y_1 + Y_2$.</p>
 <hr />
 <h2>Shrnutí možností realizace</h2>
 <ul>
@@ -131,9 +135,9 @@ Pomocí samotných hradel NAND (nebo samotných NOR) lze realizovat jakoukoliv l
 <h2>Klíčové pojmy</h2>
 <p>Sekvenční obvod, Klopný obvod (Flip-Flop, Latch), Synchronní/Asynchronní, Hodiny (CLK), Registry, Posuvný registr, Čítač, Konečný automat (FSM), Moore, Mealy, Graf stavů, Tabulka přechodů, Kódování stavů.</p>
 <h2>A. Základní vlastnosti sekvenčních obvodů</h2>
-<p>Digitální obvod, jehož výstup závisí na aktuálních vstupech <strong>a předchozím vnitřním stavu</strong>.
-*   <strong>Paměť:</strong> Obsahuje paměťové prvky (klopné obvody) pro uchování stavu.
-*   <strong>Zpětná vazba:</strong> Výstupy paměťových prvků ovlivňují budoucí stav.</p>
+<p>Digitální obvod, jehož výstup závisí na aktuálních vstupech <strong>a předchozím vnitřním stavu</strong>.<br>
+&bull; <strong>Paměť:</strong> Obsahuje paměťové prvky (klopné obvody) pro uchování stavu.<br>
+&bull; <strong>Zpětná vazba:</strong> Výstupy paměťových prvků ovlivňují budoucí stav.</p>
 <h3>Rozdělení podle synchronizace:</h3>
 <ul>
 <li><strong>Asynchronní:</strong> Reagují okamžitě na změnu vstupů. Náchylné na hazardy.</li>
@@ -269,12 +273,12 @@ Pomocí samotných hradel NAND (nebo samotných NOR) lze realizovat jakoukoliv l
 </ul>
 <h2>B. Sčítačky (Adders)</h2>
 <h3>1. Poloviční sčítačka (HA - Half Adder)</h3>
-<p>Sčítá $A, B$. Generuje součet $S$ a přenos $C$.
-*   <strong>Rovnice:</strong> $S = A \oplus B$, $C = A \cdot B$.
-*   <strong>Omezení:</strong> Nelze zpracovat přenos $C_{in}$ z nižšího řádu.</p>
+<p>Sčítá $A, B$. Generuje součet $S$ a přenos $C$.<br>
+&bull; <strong>Rovnice:</strong> $S = A \oplus B$, $C = A \cdot B$.<br>
+&bull; <strong>Omezení:</strong> Nelze zpracovat přenos $C_{in}$ z nižšího řádu.</p>
 <h3>2. Úplná sčítačka (FA - Full Adder)</h3>
-<p>Sčítá $A, B, C_{in}$. Generuje součet $S$ a přenos $C_{out}$.
-*   <strong>Rovnice:</strong> $S = A \oplus B \oplus C_{in}$, $C_{out} = (A \cdot B) + (C_{in} \cdot (A \oplus B))$.</p>
+<p>Sčítá $A, B, C_{in}$. Generuje součet $S$ a přenos $C_{out}$.<br>
+&bull; <strong>Rovnice:</strong> $S = A \oplus B \oplus C_{in}$, $C_{out} = (A \cdot B) + (C_{in} \cdot (A \oplus B))$.</p>
 <h3>3. Vícebitové sčítačky</h3>
 <ul>
 <li><strong>Sčítačka s řetězovým přenosem (RCA):</strong><ul>
@@ -292,29 +296,41 @@ Pomocí samotných hradel NAND (nebo samotných NOR) lze realizovat jakoukoliv l
 </li>
 </ul>
 <h2>C. Odčítačky a doplňkový kód</h2>
-<p>Odčítání $A - B$ se realizuje jako sčítání $A + (-B)$.
-*   <strong>Rovnice:</strong> $A - B = A + \bar{B} + 1$ (kde $\bar{B}$ je bitová negace $B$).
-*   <strong>Realizace:</strong>
-    *   Vstup $A$ přímo.
-    *   Vstup $B$ přes XOR hradla řízená signálem <code>SUB</code>.
-    *   Signál <code>SUB</code> je zároveň $C_{in}$ pro nejnižší bit.
-    *   <code>SUB = 0</code> (sčítání): $B \oplus 0 = B$, $C_{in}=0 \implies A+B$.
-    *   <code>SUB = 1</code> (odčítání): $B \oplus 1 = \bar{B}$, $C_{in}=1 \implies A+\bar{B}+1$.</p>
+<p>Odčítání $A - B$ se realizuje jako sčítání $A + (-B)$.<br>
+&bull; <strong>Rovnice:</strong> $A - B = A + \bar{B} + 1$ (kde $\bar{B}$ je bitová negace $B$).<br>
+&bull; <strong>Realizace:</strong>
+   <br>
+&bull; Vstup $A$ přímo.
+   <br>
+&bull; Vstup $B$ přes XOR hradla řízená signálem <code>SUB</code>.
+   <br>
+&bull; Signál <code>SUB</code> je zároveň $C_{in}$ pro nejnižší bit.
+   <br>
+&bull; <code>SUB = 0</code> (sčítání): $B \oplus 0 = B$, $C_{in}=0 \implies A+B$.
+   <br>
+&bull; <code>SUB = 1</code> (odčítání): $B \oplus 1 = \bar{B}$, $C_{in}=1 \implies A+\bar{B}+1$.</p>
 <h2>D. Násobičky (Multipliers)</h2>
-<p>Násobení = generování částečných součinů a jejich sčítání s posunem.
-*   <strong>Sériová násobička:</strong>
-    *   <strong>Princip:</strong> Algoritmus posunu a sčítání. Jeden registr, posuvný registr, jedna sčítačka.
-    *   <strong>Výhoda:</strong> Prostorově nenáročná.
-    *   <strong>Nevýhoda:</strong> Pomalá ($n$ taktů pro $n$-bitové násobení).
-*   <strong>Paralelní (Pole) násobička:</strong>
-    *   <strong>Konstrukce:</strong> Matice AND hradel (částečné součiny) a síť sčítaček (např. Wallaceův strom).
-    *   <strong>Výhoda:</strong> Extrémně rychlá (jeden takt).
-    *   <strong>Nevýhoda:</strong> Velká hardwarová náročnost, spotřeba.</p>
+<p>Násobení = generování částečných součinů a jejich sčítání s posunem.<br>
+&bull; <strong>Sériová násobička:</strong>
+   <br>
+&bull; <strong>Princip:</strong> Algoritmus posunu a sčítání. Jeden registr, posuvný registr, jedna sčítačka.
+   <br>
+&bull; <strong>Výhoda:</strong> Prostorově nenáročná.
+   <br>
+&bull; <strong>Nevýhoda:</strong> Pomalá ($n$ taktů pro $n$-bitové násobení).<br>
+&bull; <strong>Paralelní (Pole) násobička:</strong>
+   <br>
+&bull; <strong>Konstrukce:</strong> Matice AND hradel (částečné součiny) a síť sčítaček (např. Wallaceův strom).
+   <br>
+&bull; <strong>Výhoda:</strong> Extrémně rychlá (jeden takt).
+   <br>
+&bull; <strong>Nevýhoda:</strong> Velká hardwarová náročnost, spotřeba.</p>
 <h2>E. Detekce přetečení (Overflow)</h2>
-<p>Výsledek se nevejde do bitů.
-*   <strong>Neznaménková čísla:</strong> Přetečení, pokud $C_{out}$ z MSB je $1$.
-*   <strong>Znaménková čísla (doplňkový kód):</strong> Přetečení, pokud sečteme dvě čísla stejného znaménka a výsledek má znaménko opačné.
-    *   <strong>Hardwarová detekce:</strong>
+<p>Výsledek se nevejde do bitů.<br>
+&bull; <strong>Neznaménková čísla:</strong> Přetečení, pokud $C_{out}$ z MSB je $1$.<br>
+&bull; <strong>Znaménková čísla (doplňkový kód):</strong> Přetečení, pokud sečteme dvě čísla stejného znaménka a výsledek má znaménko opačné.
+   <br>
+&bull; <strong>Hardwarová detekce:</strong>
         $$\text{Overflow Flag} = C_{in_{MSB}} \oplus C_{out_{MSB}}$$
         (XOR přenosu do MSB a z MSB).</p>
 <hr />
@@ -371,24 +387,26 @@ Pomocí samotných hradel NAND (nebo samotných NOR) lze realizovat jakoukoliv l
 <hr />
 <h2>A. Procesory (CPU / MCU)</h2>
 <p><strong>Definice:</strong> Univerzální programovatelné sekvenční obvody. Sekvenčně čtou a provádějí strojové instrukce z paměti.
-<strong>Architektura:</strong> Řadič provádí <strong>Fetch-Decode-Execute cyklus</strong>:
-*   <strong>Fetch:</strong> Načtení instrukce z paměti (adresa z <strong>PC</strong> - Program Counter). PC se inkrementuje.
-*   <strong>Decode:</strong> Dekódování instrukce (operace, operandy).
-*   <strong>Execute:</strong> Provedení operace (<strong>ALU</strong> - Aritmeticko-logická jednotka, paměť, I/O, skok).
-*   <strong>Výkon:</strong> Zvyšován technikami jako <strong>pipeline</strong> (překrývání fází instrukcí) a <strong>cache</strong> (rychlá paměť pro často používaná data/instrukce).
+<strong>Architektura:</strong> Řadič provádí <strong>Fetch-Decode-Execute cyklus</strong>:<br>
+&bull; <strong>Fetch:</strong> Načtení instrukce z paměti (adresa z <strong>PC</strong> - Program Counter). PC se inkrementuje.<br>
+&bull; <strong>Decode:</strong> Dekódování instrukce (operace, operandy).<br>
+&bull; <strong>Execute:</strong> Provedení operace (<strong>ALU</strong> - Aritmeticko-logická jednotka, paměť, I/O, skok).<br>
+&bull; <strong>Výkon:</strong> Zvyšován technikami jako <strong>pipeline</strong> (překrývání fází instrukcí) a <strong>cache</strong> (rychlá paměť pro často používaná data/instrukce).
 <strong>Realizace FSM:</strong> Softwarově. Stav v proměnné, logika <code>switch-case</code> v nekonečné smyčce. Striktně sekvenční, časová režie, omezený paralelismus.
 <strong>Použití:</strong> Běžné počítače, OS, embedded systémy (mikrokontroléry).
 <strong>Typické chyby:</strong> Ignorování pipeline/cache. Představa pravého paralelismu v rámci jednoho vlákna.</p>
 <hr />
 <h2>B. FPGA obvody (Field Programmable Gate Array)</h2>
 <p><strong>Definice:</strong> Rekonfigurovatelná polovodičová součástka. Po výrobě neobsahuje pevnou funkci. Umožňuje implementovat vlastní, vysoce paralelní hardware.
-<strong>Vnitřní architektura:</strong>
-*   <strong>CLB / LE (Configurable Logic Blocks / Logic Elements):</strong> Základní buňky. Obsahují:
-    *   <strong>LUT (Look-Up Table):</strong> Malá RAM pro kombinační logiku (pravdivostní tabulka).
-    *   <strong>Klopný obvod (D-Flip-Flop):</strong> Paměťový prvek pro sekvenční logiku (uložení stavu).
-*   <strong>Propojovací matice:</strong> Síť programovatelných spínačů pro propojení logických bloků.
-*   <strong>I/O Bloky:</strong> Rozhraní s fyzickými piny čipu.
-*   (Moderní FPGA mají i DSP a paměťové bloky.)
+<strong>Vnitřní architektura:</strong><br>
+&bull; <strong>CLB / LE (Configurable Logic Blocks / Logic Elements):</strong> Základní buňky. Obsahují:
+   <br>
+&bull; <strong>LUT (Look-Up Table):</strong> Malá RAM pro kombinační logiku (pravdivostní tabulka).
+   <br>
+&bull; <strong>Klopný obvod (D-Flip-Flop):</strong> Paměťový prvek pro sekvenční logiku (uložení stavu).<br>
+&bull; <strong>Propojovací matice:</strong> Síť programovatelných spínačů pro propojení logických bloků.<br>
+&bull; <strong>I/O Bloky:</strong> Rozhraní s fyzickými piny čipu.<br>
+&bull; (Moderní FPGA mají i DSP a paměťové bloky.)
 <strong>Realizace FSM:</strong> Hardwarově. LUT pro přechodovou/výstupní logiku, klopné obvody pro fyzické držení stavu. Masivní paralelismus, real-time, nízká latence.
 <strong>Použití:</strong> Zpracování signálů, měření/řízení, akcelerátory (kryptografie, AI), prototypování ASIC.
 <strong>Typické chyby:</strong> Tvrzení, že FPGA "spouští program". Ignorování hodinových signálů a synchronizace.</p>
@@ -465,12 +483,12 @@ Pomocí samotných hradel NAND (nebo samotných NOR) lze realizovat jakoukoliv l
 <li><strong>Cache (vyrovnávací paměť):</strong> Malá, velmi rychlá paměť blízko CPU. Ukládá často používaná data/instrukce z hlavní paměti, čímž zkracuje dobu čekání procesoru a zvyšuje výkon.</li>
 </ul>
 <h3>3. Kdy zvolit FPGA místo procesoru?</h3>
-<p>FPGA je vhodnější pro úlohy vyžadující:
-*   <strong>Masivní paralelismus:</strong> Mnoho souběžných operací (zpracování obrazu, DSP).
-*   <strong>Velmi nízkou latenci a determinismus:</strong> Rychlá a předvídatelná odezva (řízení v reálném čase).
-*   <strong>Vysokou propustnost:</strong> Pro objem dat nebo rychlost operací, kde CPU nestačí.
-*   <strong>Hardwarovou akceleraci:</strong> Specifické algoritmy mapované na paralelní hardware.
-*   <strong>Flexibilitu hardwaru po výrobě:</strong> Možnost změnit hardwarovou funkci čipu.</p>
+<p>FPGA je vhodnější pro úlohy vyžadující:<br>
+&bull; <strong>Masivní paralelismus:</strong> Mnoho souběžných operací (zpracování obrazu, DSP).<br>
+&bull; <strong>Velmi nízkou latenci a determinismus:</strong> Rychlá a předvídatelná odezva (řízení v reálném čase).<br>
+&bull; <strong>Vysokou propustnost:</strong> Pro objem dat nebo rychlost operací, kde CPU nestačí.<br>
+&bull; <strong>Hardwarovou akceleraci:</strong> Specifické algoritmy mapované na paralelní hardware.<br>
+&bull; <strong>Flexibilitu hardwaru po výrobě:</strong> Možnost změnit hardwarovou funkci čipu.</p>
         </div>
         
         </main>

@@ -39,11 +39,11 @@
 <h2>A. Číselné soustavy a převody</h2>
 <p>Čísla v poziční soustavě o základu $b$:
 $$ (a_n \dots a_0 . a_{-1} \dots a_{-m})<em>b = \sum</em>{i=-m}^{n} a_i b^i $$</p>
-<p><strong>Základní soustavy:</strong>
-*   <strong>Binární ($b=2$):</strong> Cifry 0, 1. Základ pro digitální systémy.
-*   <strong>Oktalová ($b=8$):</strong> Cifry 0-7. Historicky pro kompaktní binární zápis (3 bity = 1 cifra).
-*   <strong>Decimální ($b=10$):</strong> Cifry 0-9. Pro lidi, vstup/výstup.
-*   <strong>Hexadecimální ($b=16$):</strong> Cifry 0-9, A-F (A=10, ..., F=15). 1 cifra = 4 bity. Pro adresy, barvy, kompaktní binární data.</p>
+<p><strong>Základní soustavy:</strong><br>
+&bull; <strong>Binární ($b=2$):</strong> Cifry 0, 1. Základ pro digitální systémy.<br>
+&bull; <strong>Oktalová ($b=8$):</strong> Cifry 0-7. Historicky pro kompaktní binární zápis (3 bity = 1 cifra).<br>
+&bull; <strong>Decimální ($b=10$):</strong> Cifry 0-9. Pro lidi, vstup/výstup.<br>
+&bull; <strong>Hexadecimální ($b=16$):</strong> Cifry 0-9, A-F (A=10, ..., F=15). 1 cifra = 4 bity. Pro adresy, barvy, kompaktní binární data.</p>
 <h3>Převody mezi soustavami</h3>
 <ul>
 <li><strong>Z libovolné do desítkové:</strong> Polynomický rozvoj.<ul>
@@ -160,21 +160,21 @@ $$ (a_n \dots a_0 . a_{-1} \dots a_{-m})<em>b = \sum</em>{i=-m}^{n} a_i b^i $$</
 1.  <strong>Fetch:</strong> Načtení instrukce z paměti (adresa z PC).
 2.  <strong>Decode:</strong> Dekódování instrukce (operace, operandy).
 3.  <strong>Execute:</strong> Provedení operace (ALU, přesun dat, skok).</p>
-<p><strong>Registry</strong> (rychlé paměti v CPU):
-*   <strong>Všeobecné registry (GPR):</strong> Ukládání operandů a mezivýsledků. Např. <code>$EAX$/$RAX$</code>, <code>$EBX$/$RBX$</code> (x86/x64).
-*   <strong>Ukazatel instrukcí (IP/PC):</strong> Adresa následující instrukce. Automaticky inkrementován.
-*   <strong>Ukazatel zásobníku (SP):</strong> Ukazuje na vrchol zásobníku (Stack) v RAM. Pro návratové adresy, lokální proměnné.
-*   <strong>Stavový registr (Flags):</strong> Bity reflektující výsledek operace (ALU). Klíčové: <code>$ZF$</code> (nula), <code>$CF$</code> (přenos), <code>$OF$</code> (přetečení znaménkového), <code>$SF$</code> (záporný).</p>
+<p><strong>Registry</strong> (rychlé paměti v CPU):<br>
+&bull; <strong>Všeobecné registry (GPR):</strong> Ukládání operandů a mezivýsledků. Např. <code>$EAX$/$RAX$</code>, <code>$EBX$/$RBX$</code> (x86/x64).<br>
+&bull; <strong>Ukazatel instrukcí (IP/PC):</strong> Adresa následující instrukce. Automaticky inkrementován.<br>
+&bull; <strong>Ukazatel zásobníku (SP):</strong> Ukazuje na vrchol zásobníku (Stack) v RAM. Pro návratové adresy, lokální proměnné.<br>
+&bull; <strong>Stavový registr (Flags):</strong> Bity reflektující výsledek operace (ALU). Klíčové: <code>$ZF$</code> (nula), <code>$CF$</code> (přenos), <code>$OF$</code> (přetečení znaménkového), <code>$SF$</code> (záporný).</p>
 <h2>10.2 Instrukce a instrukční soubor (ISA)</h2>
 <p><strong>Instrukční soubor (ISA)</strong>: Sada všech instrukcí, kterým procesor rozumí (např. x86, ARM).
-<strong>Strojová instrukce</strong>: Binární slovo.
-*   <strong>Operační znak (Opcode):</strong> Typ operace.
-*   <strong>Operandy:</strong> Data pro operaci (registry, literály, adresy).</p>
-<p><strong>Typy operací:</strong>
-*   Aritmetické a logické (ALU): <code>$ADD$</code>, <code>$SUB$</code>, <code>$AND$</code>.
-*   Přesuny dat: <code>$MOV$</code> (registr-registr, registr-paměť).
-*   Skoky a volání podprogramů: <code>$JMP$</code>, <code>$CALL$</code>.
-*   I/O operace: Komunikace s periferiemi (např. <code>$IN$</code>, <code>$OUT$</code> nebo Memory-Mapped I/O).</p>
+<strong>Strojová instrukce</strong>: Binární slovo.<br>
+&bull; <strong>Operační znak (Opcode):</strong> Typ operace.<br>
+&bull; <strong>Operandy:</strong> Data pro operaci (registry, literály, adresy).</p>
+<p><strong>Typy operací:</strong><br>
+&bull; Aritmetické a logické (ALU): <code>$ADD$</code>, <code>$SUB$</code>, <code>$AND$</code>.<br>
+&bull; Přesuny dat: <code>$MOV$</code> (registr-registr, registr-paměť).<br>
+&bull; Skoky a volání podprogramů: <code>$JMP$</code>, <code>$CALL$</code>.<br>
+&bull; I/O operace: Komunikace s periferiemi (např. <code>$IN$</code>, <code>$OUT$</code> nebo Memory-Mapped I/O).</p>
 <h2>10.3 Jazyk symbolických adres (JSA / Assembler)</h2>
 <p><strong>Assembler</strong>: Textové zkratky (mnemoniky) pro strojový kód.
 <strong>Symbolická adresa (Návěští/Label)</strong>: Textový štítek místo číselné adresy (např. <code>loop_start:</code>). Překladač nahradí reálnou adresou.
@@ -341,13 +341,16 @@ union Data d; d.i = 5; // d.f je neplatné</code></li>
 <ul>
 <li><code>void* malloc(size_t size)</code>: Alokuje <code>size</code> bajtů. Paměť neinicializuje. Vrací <code>void*</code> nebo <code>NULL</code> při selhání.
     <code>c
-    int *arr = (int*) malloc(10 * sizeof(int));</code></li>
-<li><code>void* calloc(size_t num, size_t size)</code>: Alokuje <code>num * size</code> bajtů. <strong>Vynuluje</strong> paměť. Vrací <code>void*</code> nebo <code>NULL</code>.
+    int *arr = (int*) malloc(10<br>
+&bull; sizeof(int));</code></li>
+<li><code>void* calloc(size_t num, size_t size)</code>: Alokuje <code>num<br>
+&bull; size</code> bajtů. <strong>Vynuluje</strong> paměť. Vrací <code>void*</code> nebo <code>NULL</code>.
     <code>c
     int *arr_zero = (int*) calloc(10, sizeof(int));</code></li>
 <li><code>void* realloc(void* ptr, size_t new_size)</code>: Změní velikost bloku na <code>new_size</code>. Může přesunout data. Vrací <code>void*</code> nebo <code>NULL</code>.
     <code>c
-    arr = (int*) realloc(arr, 20 * sizeof(int));</code></li>
+    arr = (int*) realloc(arr, 20<br>
+&bull; sizeof(int));</code></li>
 <li><code>void free(void* ptr)</code>: Uvolní paměť alokovanou <code>malloc</code>/<code>calloc</code>/<code>realloc</code>. <strong>Kriticky důležité</strong> pro prevenci úniků paměti.
     <code>c
     free(arr);</code></li>
@@ -416,9 +419,9 @@ union Data d; d.i = 5; // d.f je neplatné</code></li>
 <h2>Klíčové pojmy</h2>
 <p>Algoritmus, časová složitost, paměťová složitost, Big-O notace, lineární vyhledávání, binární vyhledávání, quicksort, mergesort, heapsort, stabilita řazení, in-place algoritmus, pivot, halda.</p>
 <h2>A. Složitost algoritmů (Asymptotická složitost)</h2>
-<p>Porovnává efektivitu algoritmů nezávisle na hardwaru. Sleduje růst spotřeby zdrojů (čas/paměť) s velikostí vstupu $n$.
-*   <strong>Časová složitost:</strong> Počet elementárních operací.
-*   <strong>Prostorová (paměťová) složitost:</strong> Množství dodatečné paměti.</p>
+<p>Porovnává efektivitu algoritmů nezávisle na hardwaru. Sleduje růst spotřeby zdrojů (čas/paměť) s velikostí vstupu $n$.<br>
+&bull; <strong>Časová složitost:</strong> Počet elementárních operací.<br>
+&bull; <strong>Prostorová (paměťová) složitost:</strong> Množství dodatečné paměti.</p>
 <h3>Velká O notace (Asymptotická horní mez)</h3>
 <p>Značí $O(f(n))$, definuje asymptotickou horní mez pro růst funkce (nejhorší možný případ).
 Formálně: $g(n) \in O(f(n))$, pokud existují $c, n_0 &gt; 0$ takové, že pro všechna $n \ge n_0$ platí $0 \le g(n) \le c \cdot f(n)$.
@@ -544,22 +547,22 @@ Zanedbává aditivní konstanty a méně významné členy (např. $3n^2 + 5n + 
 <p>Rekurze, rekurzivní volání, báze rekurze, rekurzivní krok, zásobník programu (call stack), aktivační záznam (stack frame), návratová adresa, stack overflow, iterace, koncová rekurze, optimalizace koncové rekurze (TCO).</p>
 <h2>A. Pojem rekurze a její použití</h2>
 <p><strong>Rekurze:</strong> Programovací technika, kdy se funkce volá sama (přímá/nepřímá).
-<strong>Podmínky pro správnou rekurzi:</strong>
-*   <strong>Bázový (kotevní) případ:</strong> Ukončovací podmínka, při které je výsledek znám a funkce se již nevolá rekurzivně.
-*   <strong>Rekurzivní krok:</strong> Funkce volá sebe sama s modifikovaným vstupem, který se prokazatelně přibližuje k bázovému případu.</p>
-<p><strong>Typické použití rekurze:</strong>
-*   <strong>Hierarchické a stromové struktury:</strong> Procházení stromů (In-order, Pre-order, Post-order), adresářů.
-*   <strong>Algoritmy Rozděl a panuj:</strong> Quick Sort, Merge Sort, Binární vyhledávání.
-*   <strong>Kombinatorické úlohy:</strong> Generování permutací, Hanojské věže, Backtracking, Fibonacciho posloupnost.</p>
+<strong>Podmínky pro správnou rekurzi:</strong><br>
+&bull; <strong>Bázový (kotevní) případ:</strong> Ukončovací podmínka, při které je výsledek znám a funkce se již nevolá rekurzivně.<br>
+&bull; <strong>Rekurzivní krok:</strong> Funkce volá sebe sama s modifikovaným vstupem, který se prokazatelně přibližuje k bázovému případu.</p>
+<p><strong>Typické použití rekurze:</strong><br>
+&bull; <strong>Hierarchické a stromové struktury:</strong> Procházení stromů (In-order, Pre-order, Post-order), adresářů.<br>
+&bull; <strong>Algoritmy Rozděl a panuj:</strong> Quick Sort, Merge Sort, Binární vyhledávání.<br>
+&bull; <strong>Kombinatorické úlohy:</strong> Generování permutací, Hanojské věže, Backtracking, Fibonacciho posloupnost.</p>
 <p><strong>Výhody rekurze:</strong> Čitelnost, elegance, kratší kód pro rekurzivně definované problémy.
 <strong>Nevýhody rekurze:</strong> Nižší výkon (režie volání funkcí), paměťová náročnost (zásobník), obtížnější ladění.</p>
 <h2>B. Využití zásobníku programu (Call Stack)</h2>
 <p><strong>Zásobník programu (Call Stack):</strong> Datová struktura typu LIFO (Last-In, First-Out), spravuje volání funkcí.
-<strong>Aktivační záznam (Stack Frame):</strong> Vytvoří se na vrcholu zásobníku při každém volání funkce. Obsahuje:
-*   Lokální proměnné
-*   Parametry funkce
-*   Návratovou adresu (kam se vrátit po dokončení funkce)
-*   Uložené registry</p>
+<strong>Aktivační záznam (Stack Frame):</strong> Vytvoří se na vrcholu zásobníku při každém volání funkce. Obsahuje:<br>
+&bull; Lokální proměnné<br>
+&bull; Parametry funkce<br>
+&bull; Návratovou adresu (kam se vrátit po dokončení funkce)<br>
+&bull; Uložené registry</p>
 <p><strong>Mechanismus:</strong> Volání funkce $\rightarrow$ nový aktivační záznam na zásobník. Rekurzivní volání $\rightarrow$ další záznam. Návrat z funkce $\rightarrow$ záznam se ze zásobníku odstraní (pop), řízení se vrátí na návratovou adresu.</p>
 <p><strong>Riziko: Stack Overflow (Přetečení zásobníku):</strong> Zásobník má omezenou velikost. Příliš hluboká rekurze (chybí báze, velký vstup) vyčerpá přidělenou paměť $\rightarrow$ pád programu.</p>
 <h2>C. Rekurzivní vs. nerekurzivní (iterativní) realizace</h2>
@@ -590,15 +593,16 @@ Zanedbává aditivní konstanty a méně významné členy (např. $3n^2 + 5n + 
 </tr>
 </tbody>
 </table>
-<p><strong>Příklad: Výpočet faktoriálu $n!$</strong>
-*   <strong>Rekurzivní:</strong>
+<p><strong>Příklad: Výpočet faktoriálu $n!$</strong><br>
+&bull; <strong>Rekurzivní:</strong>
     <code>c
     long faktorial_rekurzivni(int n) {
         if (n &lt;= 1) return 1; // Bázový případ
-        return n * faktorial_rekurzivni(n - 1); // Rekurzivní krok
+        return n<br>
+&bull; faktorial_rekurzivni(n - 1); // Rekurzivní krok
     }</code>
-    Riziko Stack Overflow pro velké $n$.
-*   <strong>Iterativní:</strong>
+    Riziko Stack Overflow pro velké $n$.<br>
+&bull; <strong>Iterativní:</strong>
     <code>c
     long faktorial_iterativni(int n) {
         long vysledek = 1;
@@ -650,19 +654,21 @@ Zanedbává aditivní konstanty a méně významné členy (např. $3n^2 + 5n + 
         <div id="otazka-14" class="question-section">
             <h1>14. Členění programu v jazyce vyšší úrovně. Metody, funkce, procedury, makra. Parametry metod, procedur a funkcí a způsoby jejich předávání. Globální a lokální proměnné.</h1>
 <h3>A. Členění programu (Modularita)</h3>
-<p>Dělení programu na menší, logicky ucelené celky pro:
-*   Zvýšená přehlednost, čitelnost
-*   Usnadnění testování
-*   Zamezení duplicitě kódu (DRY)
-*   Znovupoužitelnost, snadnější údržba
-*   Abstrakce a skrývání detailů</p>
-<p><strong>Základní podprogramové jednotky:</strong>
-*   <strong>Funkce:</strong> Blok kódu, který přijímá vstupy (parametry), provádí výpočet a <strong>vrací hodnotu</strong> (pomocí <code>return</code>). Pro výpočty, transformace dat. Ideálně bez vedlejších efektů.
-*   <strong>Procedura:</strong> Blok kódu, který provádí posloupnost příkazů, ale <strong>nevrací explicitně žádnou hodnotu</strong> (v C/C++ má návratový typ <code>void</code>). Pro akce s vedlejšími efekty (např. I/O, změna globálních proměnných).
-*   <strong>Metoda:</strong> Funkce, která je <strong>přidružená k objektu nebo třídě</strong> v objektově orientovaném programování (OOP). Volána na instanci objektu, má přístup k jeho datům (<code>this</code>). Klíčová pro zapouzdření.
-*   <strong>Makro:</strong> Instrukce pro <strong>preprocesor</strong> (<code>#define</code>), která před kompilací provede <strong>textovou substituci</strong>. Není typově bezpečné.
-    *   <strong>Nevýhody:</strong> Není typově bezpečné, problémy s vyhodnocováním výrazů (chybějící závorky!), obtížné ladění, zvětšování kódu (Code Bloat).
-    *   <strong>Alternativy (C++):</strong> <code>inline</code> funkce, šablony.</p>
+<p>Dělení programu na menší, logicky ucelené celky pro:<br>
+&bull; Zvýšená přehlednost, čitelnost<br>
+&bull; Usnadnění testování<br>
+&bull; Zamezení duplicitě kódu (DRY)<br>
+&bull; Znovupoužitelnost, snadnější údržba<br>
+&bull; Abstrakce a skrývání detailů</p>
+<p><strong>Základní podprogramové jednotky:</strong><br>
+&bull; <strong>Funkce:</strong> Blok kódu, který přijímá vstupy (parametry), provádí výpočet a <strong>vrací hodnotu</strong> (pomocí <code>return</code>). Pro výpočty, transformace dat. Ideálně bez vedlejších efektů.<br>
+&bull; <strong>Procedura:</strong> Blok kódu, který provádí posloupnost příkazů, ale <strong>nevrací explicitně žádnou hodnotu</strong> (v C/C++ má návratový typ <code>void</code>). Pro akce s vedlejšími efekty (např. I/O, změna globálních proměnných).<br>
+&bull; <strong>Metoda:</strong> Funkce, která je <strong>přidružená k objektu nebo třídě</strong> v objektově orientovaném programování (OOP). Volána na instanci objektu, má přístup k jeho datům (<code>this</code>). Klíčová pro zapouzdření.<br>
+&bull; <strong>Makro:</strong> Instrukce pro <strong>preprocesor</strong> (<code>#define</code>), která před kompilací provede <strong>textovou substituci</strong>. Není typově bezpečné.
+   <br>
+&bull; <strong>Nevýhody:</strong> Není typově bezpečné, problémy s vyhodnocováním výrazů (chybějící závorky!), obtížné ladění, zvětšování kódu (Code Bloat).
+   <br>
+&bull; <strong>Alternativy (C++):</strong> <code>inline</code> funkce, šablony.</p>
 <h3>B. Způsoby předávání parametrů</h3>
 <ul>
 <li><strong>Formální parametry:</strong> Proměnné definované v hlavičce podprogramu.</li>
@@ -781,12 +787,12 @@ Zanedbává aditivní konstanty a méně významné členy (např. $3n^2 + 5n + 
 <li>tabulka virtuálních metod (VMT)</li>
 </ul>
 <h2>A. Význam OOP</h2>
-<p>OOP organizuje program kolem <strong>objektů</strong>, které sdružují data (atributy) a související funkčnost (metody).
-*   <strong>Výhody:</strong> Lepší modularita, znovupoužitelnost kódu, snadnější údržba.
-*   <strong>Třída:</strong> Šablona/předpis pro objekty (definuje atributy a metody).
-*   <strong>Objekt / Instance:</strong> Konkrétní zástupce třídy v paměti s vlastním stavem.
-*   <strong>Atributy:</strong> Proměnné uvnitř třídy (stav objektu).
-*   <strong>Metody:</strong> Funkce uvnitř třídy (chování objektu).</p>
+<p>OOP organizuje program kolem <strong>objektů</strong>, které sdružují data (atributy) a související funkčnost (metody).<br>
+&bull; <strong>Výhody:</strong> Lepší modularita, znovupoužitelnost kódu, snadnější údržba.<br>
+&bull; <strong>Třída:</strong> Šablona/předpis pro objekty (definuje atributy a metody).<br>
+&bull; <strong>Objekt / Instance:</strong> Konkrétní zástupce třídy v paměti s vlastním stavem.<br>
+&bull; <strong>Atributy:</strong> Proměnné uvnitř třídy (stav objektu).<br>
+&bull; <strong>Metody:</strong> Funkce uvnitř třídy (chování objektu).</p>
 <h2>B. Tři základní pilíře OOP</h2>
 <ol>
 <li><strong>Zapouzdření (Encapsulation):</strong><ul>
@@ -874,10 +880,10 @@ Zanedbává aditivní konstanty a méně významné členy (např. $3n^2 + 5n + 
 <h3>Princip fungování</h3>
 <p>Spustí se, vykonává instrukce, čeká na textový vstup, zpracuje, vypíše výstup, skončí po <code>main()</code>.</p>
 <h3>Vstup a výstup</h3>
-<p>Využívá standardní proudy:
-*   <code>stdin</code> (standardní vstup): Klávesnice. C: <code>scanf()</code>, <code>getchar()</code>.
-*   <code>stdout</code> (standardní výstup): Konzole. C: <code>printf()</code>.
-*   <code>stderr</code> (standardní chybový výstup): Pro chybová hlášení. C: <code>fprintf(stderr, ...)</code>.
+<p>Využívá standardní proudy:<br>
+&bull; <code>stdin</code> (standardní vstup): Klávesnice. C: <code>scanf()</code>, <code>getchar()</code>.<br>
+&bull; <code>stdout</code> (standardní výstup): Konzole. C: <code>printf()</code>.<br>
+&bull; <code>stderr</code> (standardní chybový výstup): Pro chybová hlášení. C: <code>fprintf(stderr, ...)</code>.
 Proudy lze přesměrovat (např. <code>program &lt; input.txt &gt; output.txt 2&gt; errors.log</code>) nebo propojit rourami (<code>program1 | program2</code>).</p>
 <h3>Výhody</h3>
 <ul>
@@ -908,14 +914,19 @@ Proudy lze přesměrovat (např. <code>program &lt; input.txt &gt; output.txt 2&
 <li><strong>Registrace a vytvoření okna:</strong> Nutné definovat (<code>WNDCLASSEX</code>) a zaregistrovat (<code>RegisterClassEx()</code>) třídu okna, pak vytvořit okno (<code>CreateWindowEx()</code>).</li>
 </ul>
 <h3>16.2.2 Moderní frameworky pro Windows</h3>
-<p>Zjednodušují vývoj nad Win32 API.
-*   <strong>C++:</strong>
-    *   <strong>MFC:</strong> Starší objektový obal nad Win32 API.
-    *   <strong>Qt:</strong> Multiplatformní framework, vlastní signály/sloty.
-    *   <strong>wxWidgets:</strong> Multiplatformní, snaží se o nativní vzhled.
-*   <strong>C# a .NET:</strong>
-    *   <strong>Windows Forms (WinForms):</strong> Starší, rychlý vývoj, pixelové pozicování, GDI+.
-    *   <strong>WPF (Windows Presentation Foundation):</strong> Moderní, odděluje vzhled (XAML) od logiky, DirectX, Data Binding, hardwarová akcelerace.</p>
+<p>Zjednodušují vývoj nad Win32 API.<br>
+&bull; <strong>C++:</strong>
+   <br>
+&bull; <strong>MFC:</strong> Starší objektový obal nad Win32 API.
+   <br>
+&bull; <strong>Qt:</strong> Multiplatformní framework, vlastní signály/sloty.
+   <br>
+&bull; <strong>wxWidgets:</strong> Multiplatformní, snaží se o nativní vzhled.<br>
+&bull; <strong>C# a .NET:</strong>
+   <br>
+&bull; <strong>Windows Forms (WinForms):</strong> Starší, rychlý vývoj, pixelové pozicování, GDI+.
+   <br>
+&bull; <strong>WPF (Windows Presentation Foundation):</strong> Moderní, odděluje vzhled (XAML) od logiky, DirectX, Data Binding, hardwarová akcelerace.</p>
 <h3>Výhody GUI</h3>
 <ul>
 <li>Intuitivní interakce (vizuální prvky).</li>
@@ -1007,20 +1018,23 @@ Proudy lze přesměrovat (např. <code>program &lt; input.txt &gt; output.txt 2&
 <p>systémové volání (syscall), API, uživatelský režim (user space), režim jádra (kernel space), zpracování zpráv, fronta zpráv, událostní smyčka, proces, vlákno (thread), kontext procesu/vlákna, multithreading, sdílená paměť, zásobník (stack), ukazatel instrukcí (Instruction Pointer), race condition (souběh), kritická sekce, synchronizace, mutex, semafor (binary, counting), podmínková proměnná (condition variable), deadlock (uváznutí), starvation (hladovění), atomické operace, paměťové bariéry.</p>
 <hr />
 <h2>A. Programátorská rozhraní operačního systému (API / Syscalls)</h2>
-<p>Aplikace v <strong>uživatelském prostoru (User Space)</strong> nemají přímý přístup k HW. Žádají <strong>jádro (Kernel)</strong> o privilegované operace přes <strong>API</strong>, které volá <strong>systémová volání (Syscalls)</strong>.
-*   <strong>Syscall:</strong> Mechanismus, kterým program v user space žádá jádro o službu. Zahrnuje <strong>přepnutí režimu</strong> (user $\leftrightarrow$ kernel).
-*   <strong>Účel:</strong>
-    *   <strong>Bezpečnost:</strong> Izolace aplikací.
-    *   <strong>Abstrakce:</strong> Jednotné rozhraní k HW.
-    *   <strong>Správa zdrojů:</strong> Jádro alokuje zdroje.
-*   <strong>Příklady:</strong> POSIX (<code>fork()</code>, <code>open()</code>), Win32 API (<code>CreateProcess()</code>, <code>ReadFile()</code>).
-*   <strong>Kategorie:</strong> Správa procesů, souborů, zařízení, informací, komunikace.</p>
+<p>Aplikace v <strong>uživatelském prostoru (User Space)</strong> nemají přímý přístup k HW. Žádají <strong>jádro (Kernel)</strong> o privilegované operace přes <strong>API</strong>, které volá <strong>systémová volání (Syscalls)</strong>.<br>
+&bull; <strong>Syscall:</strong> Mechanismus, kterým program v user space žádá jádro o službu. Zahrnuje <strong>přepnutí režimu</strong> (user $\leftrightarrow$ kernel).<br>
+&bull; <strong>Účel:</strong>
+   <br>
+&bull; <strong>Bezpečnost:</strong> Izolace aplikací.
+   <br>
+&bull; <strong>Abstrakce:</strong> Jednotné rozhraní k HW.
+   <br>
+&bull; <strong>Správa zdrojů:</strong> Jádro alokuje zdroje.<br>
+&bull; <strong>Příklady:</strong> POSIX (<code>fork()</code>, <code>open()</code>), Win32 API (<code>CreateProcess()</code>, <code>ReadFile()</code>).<br>
+&bull; <strong>Kategorie:</strong> Správa procesů, souborů, zařízení, informací, komunikace.</p>
 <hr />
 <h2>B. Zpracování zpráv (Message Processing / Event-Driven)</h2>
-<p>Základní technika pro asynchronní komunikaci a <strong>programování řízené událostmi (Event-Driven Programming)</strong>.
-*   <strong>Princip:</strong> Odesílatel generuje <strong>zprávy</strong> do <strong>fronty zpráv</strong>. Příjemce v <strong>událostní smyčce (Event Loop)</strong> zprávy vybírá a zpracovává (pomocí callback funkcí).
-*   <strong>Fáze Event Loop:</strong> Čekání na událost $\to$ Vybrání události $\to$ Zpracování události.
-*   <strong>Využití:</strong> GUI aplikace, asynchronní I/O (Node.js), distribuované systémy.</p>
+<p>Základní technika pro asynchronní komunikaci a <strong>programování řízené událostmi (Event-Driven Programming)</strong>.<br>
+&bull; <strong>Princip:</strong> Odesílatel generuje <strong>zprávy</strong> do <strong>fronty zpráv</strong>. Příjemce v <strong>událostní smyčce (Event Loop)</strong> zprávy vybírá a zpracovává (pomocí callback funkcí).<br>
+&bull; <strong>Fáze Event Loop:</strong> Čekání na událost $\to$ Vybrání události $\to$ Zpracování události.<br>
+&bull; <strong>Využití:</strong> GUI aplikace, asynchronní I/O (Node.js), distribuované systémy.</p>
 <hr />
 <h2>C. Programování vláken (Multithreading)</h2>
 <ul>
@@ -1153,13 +1167,13 @@ Proudy lze přesměrovat (např. <code>program &lt; input.txt &gt; output.txt 2&
             <h1>18. Operační systém (OS)</h1>
 <h2>A. Vysvětlení pojmu</h2>
 <p><strong>Operační systém (OS):</strong> Komplexní programové vybavení, <strong>prostředník</strong> mezi hardwarovými prostředky počítače a aplikačním softwarem.</p>
-<p><strong>Hlavní role:</strong>
-*   <strong>Správce prostředků:</strong> Efektivně přiděluje a spravuje HW (CPU, paměť, I/O zařízení) mezi běžící programy.
-*   <strong>Rozšířený stroj:</strong> Poskytuje aplikacím zjednodušenou a abstraktní reprezentaci hardwaru.</p>
-<p><strong>Kernel (jádro):</strong> Základní jádro OS, zavádí se při <strong>bootování</strong> do RAM.
-*   <strong>Privilegovaný režim (Kernel Mode):</strong> Kernel běží s neomezeným přístupem k HW.
-*   <strong>Neprivilegovaný režim (User Mode):</strong> Běžné aplikace s omezenými oprávněními. Přístup k HW jen přes <strong>systémová volání (Syscalls)</strong> obsluhovaná jádrem.
-*   <strong>Cíl:</strong> Zajištění bezpečnosti a stability systému.</p>
+<p><strong>Hlavní role:</strong><br>
+&bull; <strong>Správce prostředků:</strong> Efektivně přiděluje a spravuje HW (CPU, paměť, I/O zařízení) mezi běžící programy.<br>
+&bull; <strong>Rozšířený stroj:</strong> Poskytuje aplikacím zjednodušenou a abstraktní reprezentaci hardwaru.</p>
+<p><strong>Kernel (jádro):</strong> Základní jádro OS, zavádí se při <strong>bootování</strong> do RAM.<br>
+&bull; <strong>Privilegovaný režim (Kernel Mode):</strong> Kernel běží s neomezeným přístupem k HW.<br>
+&bull; <strong>Neprivilegovaný režim (User Mode):</strong> Běžné aplikace s omezenými oprávněními. Přístup k HW jen přes <strong>systémová volání (Syscalls)</strong> obsluhovaná jádrem.<br>
+&bull; <strong>Cíl:</strong> Zajištění bezpečnosti a stability systému.</p>
 <h2>B. Poskytované funkce (Služby OS)</h2>
 <ul>
 <li><strong>Správa procesů a vláken:</strong><ul>
@@ -1272,19 +1286,19 @@ Proudy lze přesměrovat (např. <code>program &lt; input.txt &gt; output.txt 2&
 </li>
 </ul>
 <h2>B. Struktura procesu v paměti</h2>
-<p>Adresní prostor procesu se dělí na:
-*   <strong>Textový segment (Code):</strong> Strojové instrukce, Read-Only.
-*   <strong>Datový segment (Data):</strong> Globální a statické proměnné (inicializované/neinicializované).
-*   <strong>Halda (Heap):</strong> Dynamicky alokovaná paměť za běhu ($malloc$, $new$), roste nahoru.
-*   <strong>Zásobník (Stack):</strong> Lokální proměnné, parametry funkcí, návratové adresy, roste dolů.</p>
+<p>Adresní prostor procesu se dělí na:<br>
+&bull; <strong>Textový segment (Code):</strong> Strojové instrukce, Read-Only.<br>
+&bull; <strong>Datový segment (Data):</strong> Globální a statické proměnné (inicializované/neinicializované).<br>
+&bull; <strong>Halda (Heap):</strong> Dynamicky alokovaná paměť za běhu ($malloc$, $new$), roste nahoru.<br>
+&bull; <strong>Zásobník (Stack):</strong> Lokální proměnné, parametry funkcí, návratové adresy, roste dolů.</p>
 <h2>C. Řízení procesu: PCB (Process Control Block)</h2>
-<p>Datová struktura v jádře OS, udržuje informace o procesu:
-*   <strong>PID:</strong> Unikátní ID procesu.
-*   <strong>Stav procesu:</strong> Aktuální fáze životního cyklu.
-*   <strong>Kontext procesoru:</strong> Uložené hodnoty registrů CPU (vč. Instruction Pointeru a Stack Pointeru).
-*   <strong>Informace o správě paměti:</strong> Ukazatele na tabulky stránek.
-*   <strong>Vlastník a oprávnění:</strong> Uživatel, oprávnění.
-*   <strong>Seznam otevřených souborů a prostředků:</strong> Deskriptory souborů, socketů.</p>
+<p>Datová struktura v jádře OS, udržuje informace o procesu:<br>
+&bull; <strong>PID:</strong> Unikátní ID procesu.<br>
+&bull; <strong>Stav procesu:</strong> Aktuální fáze životního cyklu.<br>
+&bull; <strong>Kontext procesoru:</strong> Uložené hodnoty registrů CPU (vč. Instruction Pointeru a Stack Pointeru).<br>
+&bull; <strong>Informace o správě paměti:</strong> Ukazatele na tabulky stránek.<br>
+&bull; <strong>Vlastník a oprávnění:</strong> Uživatel, oprávnění.<br>
+&bull; <strong>Seznam otevřených souborů a prostředků:</strong> Deskriptory souborů, socketů.</p>
 <h2>D. Životní cyklus a stavy procesu</h2>
 <ol>
 <li><strong>Nový (New):</strong> Proces se vytváří, OS alokuje paměť, zakládá PCB.</li>
@@ -1293,20 +1307,20 @@ Proudy lze přesměrovat (např. <code>program &lt; input.txt &gt; output.txt 2&
 <li><strong>Čekající / Blokovaný (Waiting / Blocked):</strong> Čeká na externí událost (I/O, stisk klávesy, uvolnění mutexu). Nespotřebovává CPU.</li>
 <li><strong>Ukončený (Terminated / Zombie):</strong> Dokončil práci nebo byl ukončen. Prostředky uvolněny, PCB zůstává, dokud rodič nepřečte návratový kód (zombie).</li>
 </ol>
-<p><strong>Přechody mezi stavy:</strong>
-*   <strong>Ready $\rightarrow$ Running:</strong> Plánovač vybere proces (Dispatch).
-*   <strong>Running $\rightarrow$ Ready:</strong> Vypršel časový kvant (preempce) nebo vyšší priorita.
-*   <strong>Running $\rightarrow$ Waiting:</strong> Proces zažádal o I/O operaci nebo se zablokoval.
-*   <strong>Waiting $\rightarrow$ Ready:</strong> I/O operace dokončena nebo událost nastala.
-*   <strong>Running $\rightarrow$ Terminated:</strong> Proces dokončil práci nebo byl ukončen.</p>
+<p><strong>Přechody mezi stavy:</strong><br>
+&bull; <strong>Ready $\rightarrow$ Running:</strong> Plánovač vybere proces (Dispatch).<br>
+&bull; <strong>Running $\rightarrow$ Ready:</strong> Vypršel časový kvant (preempce) nebo vyšší priorita.<br>
+&bull; <strong>Running $\rightarrow$ Waiting:</strong> Proces zažádal o I/O operaci nebo se zablokoval.<br>
+&bull; <strong>Waiting $\rightarrow$ Ready:</strong> I/O operace dokončena nebo událost nastala.<br>
+&bull; <strong>Running $\rightarrow$ Terminated:</strong> Proces dokončil práci nebo byl ukončen.</p>
 <h2>E. Přepínání kontextu (Context Switch)</h2>
 <p>Mechanismus pro multitasking, umožňuje střídání procesů na CPU:
 1.  OS pozastaví proces A.
 2.  Uloží registry CPU do PCB procesu A.
 3.  Načte registry z PCB procesu B do CPU.
 4.  Změní mapování virtuální paměti na adresní prostor B.
-5.  Procesor pokračuje v B.
-*   <strong>Režie:</strong> Čistá výpočetní režie, CPU nevykonává užitečný kód aplikace.</p>
+5.  Procesor pokračuje v B.<br>
+&bull; <strong>Režie:</strong> Čistá výpočetní režie, CPU nevykonává užitečný kód aplikace.</p>
 <h2>Praktické použití</h2>
 <p>Multitasking, izolace aplikací, správa prostředků, stabilita systému.</p>
 <h2>Nejčastější chyby u zkoušky</h2>
